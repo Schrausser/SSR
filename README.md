@@ -37,7 +37,7 @@ Solar system simulation.
 ![figure.\label{pic12}](pic12.jpg)
 
 
-![figure.\label{pic12}](pic13.jpg)
+![figure.\label{pic13}](pic13.jpg)
 
 
 ![figure.\label{pic14}](pic14.jpg)
