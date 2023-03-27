@@ -1,6 +1,6 @@
 !!
-      SSR SONNENSYSTEMROTATION v3.2
-       © 2020 by Dietmar Schrausser
+      SSR SONNENSYSTEMROTATION v3.2.1
+      © 2020-23 by Dietmar Schrausser
 !!
 
 ! %Einstellungen
@@ -89,7 +89,7 @@ ELSE
  GOSUB dialog2prm
  aed=1 %Entfernung
  aed$=" 1.0AE"
- ed=110 %Vergrösserungsfaktor
+ ed=sx/2.9 %Vergrösserungsfaktor
  inf=1 %Startinfofensterschalter
  swu=-1 %Uhrzeit- und Kalenderskala
  ur$=""
@@ -103,10 +103,10 @@ ENDIF
 
 GOSUB mnt
 
-SENSORS.OPEN 3
-SENSORS.OPEN 8
+! SENSORS.OPEN 3
+! SENSORS.OPEN 8
 scr=0
-GR.OPEN scr,scr,scr,scr,0,1
+GR.OPEN 255,20,10,0,0,1
 GR.SCREEN sx,sy
 
 clz1=sx/28 %8
@@ -161,13 +161,21 @@ jx=yr %Jahr
 
 st:
 
-IF s07=2
- GOSUB fin
- RUN "../../rfo-basic/source/zeit_real2.bas","r"
+IF s07=2 % // Information //
+ !INCLUDE "ssri01.bas"
+ !INCLUDE "ssri02.bas"
+ INCLUDE "ssri03.bas"
+ INCLUDE "ssri04.bas"
+ !INCLUDE "ssri05.bas"
+ !INCLUDE "ssri06.bas"
+ !INCLUDE "ssri07.bas"
+ INCLUDE "ssri08.bas"
+ GOSUB dialog
 ENDIF
 
 mnc=min/60 %Minutentakt
-AE=1/(ed/110) %Astronomische Einheit
+
+AE=1/(ed/(sx/2.9)) %Astronomische Einheit
 
 IF s07=1 THEN v=0 %bei Echtzeit
 i=i+v %Tagposition
@@ -177,6 +185,26 @@ GR.CLS
 
 GR.TEXT.SETFONT "courier","",1
 
+! %Oortsche Wolke 
+d=100000 %AE
+IF u10=1 & ed<50000 & AE<10000000 %
+ GR.COLOR 50,60,60,60,1
+ GR.CIRCLE sn,mx,my,ed*d*1
+ GR.COLOR 255,20,10,0,1
+ GR.CIRCLE sn,mx,my,ed*d*0.5
+
+ENDIF
+
+! %Asteroidengürtel
+d=3
+IF u04=1 & ed>5 & AE<10000 %
+
+ GR.COLOR 30,100,100,60,1
+ GR.CIRCLE sn,mx,my,ed*d*1.8
+ GR.COLOR 255,20,10,0,1
+ GR.CIRCLE sn,mx,my,ed*d*1.43
+ENDIF
+
 IF s01=1 %Jahreszeiten
  GR.COLOR 35,cc,cc,0,1
  GR.LINE ln,0,my,sx,my
@@ -184,10 +212,10 @@ IF s01=1 %Jahreszeiten
  ! %Namen
  stl=431
  ac=360/24
- lt=132
+ lt=sy/4.8125 % // Distanz //
  GR.TEXT.ALIGN 2
  ! GR.TEXT.BOLD 1
- GR.TEXT.SIZE txz1 %12
+ GR.TEXT.SIZE sx/36 %12
  GR.COLOR 40,cc,cc,0,1
  GR.ROTATE.START stl+ac,mx,my
  GR.TEXT.DRAW tx,mx+2,my-lt,"W"
@@ -204,14 +232,14 @@ IF s01=1 %Jahreszeiten
 ENDIF
 
 IF t34=1 %Himmelsgewölbe
- GR.COLOR 40,cc/2,cc/2,cc/2,0
+ GR.COLOR 35,cc/2,cc/2,cc/2,0
  GR.CIRCLE cl,mx,my,mx
  FOR hg=1 TO 90 STEP 6
   GR.CIRCLE cl,mx,my,mx*SIN(TORADIANS(hg))
  NEXT
  FOR w=1 TO 24
   GR.ROTATE.START w/24*360,mx,my
-  GR.LINE ln, 0,my,mx-10,my
+  GR.LINE ln, 0,my,mx-sx/108,my
   GR.ROTATE.END
  NEXT
 ENDIF
@@ -224,7 +252,7 @@ IF t31=1 %Rektaszension
  FOR hr=0 TO 24
   GR.ROTATE.START ((hr/24)*360)-cor,mx,my
   IF hr>0
-   GR.TEXT.DRAW tx,mx,sx*1.24,INT$(24-hr)
+   GR.TEXT.DRAW tx,mx,sx*1.45,INT$(24-hr)
   ENDIF
   GR.ROTATE.END
  NEXT
@@ -234,15 +262,16 @@ IF t31=1 %Rektaszension
  pos=h_+m_1+s_1
  pos1=-(pos/24)*360
  GR.ROTATE.START pos1,mx,my
- GR.LINE ln, mx,my,mx,sy-93
- GR.CIRCLE cl,mx,sy-87,7
+ GR.LINE ln, mx,my,mx,sy-sy/3.9
+ GR.CIRCLE cl,mx,sy-sy/3.95,sy/115.5
  GR.ROTATE.END
- GR.TEXT.SIZE txz1 %12
+ GR.COLOR 80, cc,cc,0, 1
+ GR.TEXT.SIZE sx/30.857 
  GR.TEXT.ALIGN 2
  rk1$=INT$(h_)+CHR$(688)
  rk1$=rk1$+INT$(m_)+"'"
  rk1$=rk1$+INT$(s_)+"''"
- GR.TEXT.DRAW tx,mx,12,rk1$
+ GR.TEXT.DRAW tx,mx,sy/40,rk1$
 ENDIF
 
 IF s02=1 %Monate
@@ -255,10 +284,10 @@ IF s02=1 %Monate
  ! %Monatsnummern
  stl=410
  ac=360/24
- lt=117
+ lt=sy/6.6 % // Distanz //
  GR.TEXT.ALIGN 2
  ! GR.TEXT.BOLD 0
- GR.TEXT.SIZE txz1 %11
+ GR.TEXT.SIZE sx/36 
  GR.COLOR 40,cc,cc,cc,1
  GR.ROTATE.START stl+ac,mx,my
  GR.TEXT.DRAW tx,mx,my-lt,"1"
@@ -308,49 +337,50 @@ IF t00=1
    GR.ROTATE.END
   NEXT
   %Tierkreissymbole
-  GR.COLOR 35,cc,cc,0,1
+  dis=sy/5.372
+  GR.COLOR 100,cc,cc,0,1
   GR.TEXT.ALIGN 2
   ! GR.TEXT.BOLD 1
-  GR.TEXT.SIZE txz1*2 %15
+  GR.TEXT.SIZE txz1*1.5 %15
   GR.ROTATE.START 16,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9804)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9804)
   GR.ROTATE.END
   GR.ROTATE.START 46,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9803)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9803)
   GR.ROTATE.END
   GR.ROTATE.START 75,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9802)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9802)
   GR.ROTATE.END
   GR.ROTATE.START 105,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9801)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9801)
   GR.ROTATE.END
   GR.ROTATE.START 135,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9800)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9800)
   GR.ROTATE.END
   GR.ROTATE.START 165,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9811)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9811)
   GR.ROTATE.END
   GR.ROTATE.START 196,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9810)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9810)
   GR.ROTATE.END
   GR.ROTATE.START 226,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9809)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9809)
   GR.ROTATE.END
   GR.ROTATE.START 256,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9808)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9808)
   GR.ROTATE.END
   GR.ROTATE.START 286,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9807)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9807)
   GR.ROTATE.END
   GR.ROTATE.START 316,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9806)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9806)
   GR.ROTATE.END
   GR.ROTATE.START 345,mx,my
-  GR.TEXT.DRAW tx,mx,my-134,CHR$(9805)
+  GR.TEXT.DRAW tx,mx,my-dis,CHR$(9805)
   GR.ROTATE.END
  ENDIF
- IF ae/Lj>=2300 & ae/Lj<=32000
-  GR.COLOR 30, cc,cc,0, 0
+ IF ae/Lj>=2500 & ae/Lj<=90000
+  GR.COLOR 70, cc,cc/5,0, 0
   GR.CIRCLE cl,mx,my,ed*(3000*Lj)
  ENDIF
 ENDIF
@@ -370,7 +400,7 @@ gr=(ed*0.005)*1.45
 GR.COLOR cc-55,cc,0,0,1 %Beteigeuze Vergleich
 gr=(ed*4.11)*1.45
 !!
-IF gr<1 THEN gr=1
+IF gr<sx/400 THEN gr=sx/400
 GR.CIRCLE sn,mx,my,gr
 IF t06=1 & ae/Lj<=5 %Text
  GR.COLOR cc,cc,cc,cc,1
@@ -405,7 +435,7 @@ ENDIF
 IF AE<2000 %Darstellung
  GR.COLOR 150,100,255,0,1
  GR.ROTATE.START pos-i/uf,mx,my
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/700
  IF u11=1 & ae<=2.5 %Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
@@ -448,7 +478,7 @@ ENDIF
 IF AE<2000 %Darstellung
  GR.COLOR 250,255,255,255,1
  GR.ROTATE.START pos-i/uf,mx,my
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/550 
  IF u11=1 & ae<=2.5 %Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
@@ -488,8 +518,8 @@ IF s04=1 %Erdprojektion
 ENDIF
 GR.ROTATE.START -i,mx,my
 IF AE<2000 %Darstellung
- GR.COLOR 255,100,100,255
- GR.CIRCLE cl,mx-ed,my-ed,1
+ GR.COLOR 255,100,100,255,1
+ GR.CIRCLE cl,mx-ed,my-ed,sx/500
  IF u11=1 & ae<=2.5 %Text
   pot= 0
   ! GR.TEXT.BOLD 0
@@ -505,9 +535,10 @@ IF AE<2000 %Darstellung
   GR.ROTATE.END
  ENDIF
 ENDIF
+!! 
 IF s08=1 %Blickrichtung
  IF swk=-1|swk=0
-  SENSORS.READ 3,cp,dmy,dmy
+ ! SENSORS.READ 3,cp,dmy,dmy
   GR.COLOR cc-65,cc,0,0,0
   GR.ROTATE.START 180-cp+i,mx-ed,my-ed
   GR.LINE ln,mx-ed,my-ed,mx-ed,my-15-ed
@@ -521,6 +552,7 @@ IF s08=1 %Blickrichtung
   GR.ROTATE.END
  ENDIF
 ENDIF
+!! 
 IF s03=1 %Erdzeitskala
  IF s07=1 & swu=1 %Uhrzeit und Kalenderskala
   GR.COLOR 80,cc,cc,cc,1
@@ -541,7 +573,7 @@ IF s03=1 %Erdzeitskala
   GR.LINE ln, 0-ed,0-ed,2*sx-ed,2*sy-ed
 
   GR.COLOR 20,0,0,cc,1
-  GR.ARC arc,mx-ed-150,my-ed-150,mx-ed+150,my-ed+150,56,180,1
+  GR.ARC arc,mx-ed-sx/6,my-ed-sx/6,mx-ed+sx/6,my-ed+sx/6,62,180,1
 
   GR.ROTATE.END
  ENDIF
@@ -583,7 +615,7 @@ ENDIF
 IF AE<2000 %Darstellung
  GR.COLOR 255,255,100,100,1
  GR.ROTATE.START pos-i/uf,mx,my
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/600
  IF u11=1 & ae<=2.5 %Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
@@ -606,13 +638,8 @@ IF u03=1
 ENDIF
 ! %%%%%%%%%%%%%
 
-! %Asteroidengürtel
-d=3
-IF u04=1 & ed<45 & AE<10000 %
- GR.COLOR 50,100,100,60,0
- GR.CIRCLE sn,mx,my,ed*d*1.43
- GR.CIRCLE sn,mx,my,ed*d*1.8
-ENDIF
+
+
 
 ! %Jupiter
 pos=210 %Position
@@ -621,7 +648,7 @@ uf=11.9 %J Umlauf
 jrd=TORADIANS(((pos-i/uf)-45))
 jsx=mx-ed*(d*1.45)*SIN(-jrd) %Jupiterkoordinaten
 jsy=my-ed*(d*1.45)*COS(jrd) %
-IF s00=1 & ed<30 & AE<10000 %Umlaufbahn
+IF s00=1 & ed<sy/10 & AE<3000 %Umlaufbahn
  GR.COLOR 60,100,100,100,0
  GR.CIRCLE sn,mx,my,ed*d*1.43
 ENDIF
@@ -631,11 +658,11 @@ IF u05=3%1 %Projektion
  GR.LINE ln, -2*sx,my,mx,my
  GR.ROTATE.END
 ENDIF
-IF AE<2000 %Darstellung
+IF AE<1000 %Darstellung
  GR.COLOR 150,255,255,100,1
  GR.ROTATE.START pos-i/uf,mx,my
- GR.CIRCLE cl,mx-ed*d,my-ed*d,2
- IF u11=1 & ae<20 %Text
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
+ IF u11=1 & ae<40 %Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
   ! GR.TEXT.BOLD 0
@@ -660,7 +687,7 @@ uf=26.46
 srd=TORADIANS(((pos-i/uf)-45))
 ssx=mx-ed*(d*1.45)*SIN(-srd) %Saturnkoordinaten
 ssy=my-ed*(d*1.45)*COS(srd) %
-IF s00=1 & ed<20 & AE<3000 %Umlaufbahn
+IF s00=1 & ed<sy/10 & AE<3000 %Umlaufbahn
  GR.COLOR 60,100,100,100,0
  GR.CIRCLE sn,mx,my,ed*d*1.43
 ENDIF
@@ -673,9 +700,9 @@ ENDIF
 IF AE<1000 %Darstellung
  GR.COLOR 150,255,255,255,1
  GR.ROTATE.START pos-i/uf,mx,my
- GR.CIRCLE cl,mx-ed*d,my-ed*d,2
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
  GR.LINE ln,mx-ed*d-5,my-ed*d, mx-ed*d+5, my-ed*d
- IF u11=1 & ae<=20 %Text
+ IF u11=1 & ae<=90 %Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
   ! GR.TEXT.BOLD 0
@@ -700,7 +727,7 @@ uf=84
 urd=TORADIANS(((pos-i/uf)-45))
 usx=mx-ed*(d*1.45)*SIN(-urd) %Uranuskoordinaten
 usy=my-ed*(d*1.45)*COS(urd) %
-IF ed<10
+IF ed<sy/20
  IF s00=1 & AE<10000 %Umlaufbahn
   GR.COLOR 60,100,100,100,0
   GR.CIRCLE sn,mx,my,ed*d*1.42
@@ -714,8 +741,8 @@ IF ed<10
  IF AE<2000 %Darstellung
   GR.COLOR 150,100,100,255,1
   GR.ROTATE.START pos-i/uf,mx,my
-  GR.CIRCLE cl,mx-ed*d,my-ed*d,1
-  IF u11=1 & ae<=60 %Text
+  GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/450
+  IF u11=1 & ae<=125 %Text
    pot= -pos
    GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
    ! GR.TEXT.BOLD 0
@@ -741,7 +768,7 @@ uf=165
 nrd=TORADIANS(((pos-i/uf)-45))
 npx=mx-ed*(d*1.45)*SIN(-nrd) %Neptunkoordinaten
 npy=my-ed*(d*1.45)*COS(nrd) %
-IF ed<10
+IF ed<sy/20
  IF s00=1 & AE<10000 %Umlaufbahn
   GR.COLOR 60,100,100,100,0
   GR.CIRCLE sn,mx,my,ed*d*1.42
@@ -755,8 +782,8 @@ IF ed<10
  IF AE<2000 %Darstellung
   GR.COLOR 100,200,200,255,1
   GR.ROTATE.START pos-i/uf,mx,my
-  GR.CIRCLE cl,mx-ed*d,my-ed*d,1
-  IF u11=1 & ae<=60 %Text
+  GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/450
+  IF u11=1 & ae<=185 %Text
    pot=-pos
    GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
    ! GR.TEXT.BOLD 0
@@ -782,7 +809,7 @@ uf=249
 prd=TORADIANS(((pos-i/uf)-45))
 plx=mx-ed*(d*1.45)*SIN(-prd) %Plutokoordinaten
 ply=my-ed*(d*1.45)*COS(prd) %
-IF ed<10
+IF ed<sy/20
  IF s00=1 & AE<10000 %Umlaufbahn
   GR.COLOR 60,100,100,100,0
   GR.CIRCLE sn,mx,my,ed*d*1.42
@@ -796,8 +823,8 @@ IF ed<10
  IF AE<2000 %Darstellung
   GR.COLOR 80,200,200,0,1
   GR.ROTATE.START pos-i/uf,mx,my
-  GR.CIRCLE cl,mx-ed*d,my-ed*d,1
-  IF u11=1 & ae<=60 %Text
+  GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/800
+  IF u11=1 & ae<=220 %Text
    pot= -pos
    GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
    ! GR.TEXT.BOLD 0
@@ -816,14 +843,6 @@ IF u09=1
 ENDIF
 ! %%%%%%%%%%%%%
 
-! %Oortsche Wolke 
-d=100000 %AE
-IF u10=1 & ed<50000 & AE<10000000 %
- GR.COLOR 50,100,100,60,0
- GR.CIRCLE sn,mx,my,ed*d*0.5
- GR.CIRCLE sn,mx,my,ed*d*1
-ENDIF
-
 ! %Alpha Centauri %%%
 d=4.367
 d=d*0.8
@@ -839,7 +858,7 @@ pos=(pos1/24)*9
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-100,cc,cc,cc,1 
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
  GR.COLOR cc-200,cc,cc/2,cc/2,0
  GR.CIRCLE cl,mx-ed*d,my-ed*d,ed*(Lj*0.22)
 ENDIF
@@ -868,7 +887,7 @@ pos=157 % Position
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc,cc,cc/2,cc/2,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -894,7 +913,7 @@ pos=11
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-80,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -921,7 +940,7 @@ pos= 275 %Position Steinbock
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-35,cc/2,cc/2,cc/1.2,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -948,7 +967,7 @@ pos= 73 %Position Löwe
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-120,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -975,7 +994,7 @@ pos= 265.5 %Position Steinbock
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-120,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1002,7 +1021,7 @@ pos= 320 %Position Skorpion
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-120,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1029,7 +1048,7 @@ pos= 305 %Position Schütze
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-120,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1055,7 +1074,7 @@ pos= 147 %Position Stier
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-35,cc/2,cc/2,cc/1.2,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1081,7 +1100,7 @@ pos= 136 %Position Stier
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc,cc,cc/2,cc/2,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1107,7 +1126,7 @@ pos= 108 %Position
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-120,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1133,7 +1152,7 @@ pos= 112 %Position Krebs - Zwilling
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-120,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1159,7 +1178,7 @@ pos= 124 %Position Zwilling
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-35,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1186,7 +1205,7 @@ pos= 146%Position Zwilling -Stier
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-120,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1213,7 +1232,7 @@ pos= 178 %Position Widder
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-35,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1239,7 +1258,7 @@ pos= 22.5 %Position Jungfrau
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-35,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1265,7 +1284,7 @@ pos= 338 %Position Skorpion
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc,cc,cc/2,cc/2,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1291,7 +1310,7 @@ pos= 287 %Position Schuetze
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc-120,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1317,7 +1336,7 @@ pos= 207 %Position Fisch-Widder
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc,cc,cc/2,cc/2,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1372,7 +1391,7 @@ d=d*Lj %AE
 GR.ROTATE.START 15,mx,my
 GR.COLOR cc/6,cc,cc,cc,1
 IF ae/Lj<4*10^8 %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1%ed*85000*Lj
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400%ed*85000*Lj
 ENDIF
 IF t06=1 & ae/Lj<10^8 %Text
  GR.ROTATE.START -15,mx-ed*d,my-ed*d
@@ -1397,7 +1416,7 @@ d=d*Lj %AE
 GR.ROTATE.START 22.5,mx,my
 GR.COLOR cc/6,cc,cc,cc,1
 IF ae/Lj<4*10^8 %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1%ed*30000*Lj
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400%ed*30000*Lj
 ENDIF
 IF t06=1 & ae/Lj<10^8 %Text
  GR.ROTATE.START -22.5,mx-ed*d,my-ed*d
@@ -1422,7 +1441,7 @@ d=d*Lj %AE
 GR.ROTATE.START 34.5,mx,my
 GR.COLOR cc/6,cc,cc,cc,1
 IF ae/Lj<4*10^8 %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1%ed*25000*Lj
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400%ed*25000*Lj
 ENDIF
 IF t06=1 & ae/Lj<10^8 %Text
  GR.ROTATE.START -34.5,mx-ed*d,my-ed*d
@@ -1474,7 +1493,7 @@ pos= 169 %Position Widder-Stier
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc/4,cc/2,cc/2,cc,0
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1501,7 +1520,7 @@ pos= 141 %Position
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc/3,cc,cc/3,cc/2,0
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1528,7 +1547,7 @@ pos= 20 %Position
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc/3,cc,cc/3,cc/2,0
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1555,7 +1574,7 @@ pos= 118 %Position
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc/3,cc,cc/3,cc/2,0
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1582,7 +1601,7 @@ pos= 311 %Position Schütze-Skorpion
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc/3,cc,cc/3,cc/2,0
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1609,7 +1628,7 @@ pos= 334 %Position
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc/8,cc,cc,cc,1
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1%ed*72*Lj
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400%ed*72*Lj
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1636,7 +1655,7 @@ pos= 23 %Position
 GR.ROTATE.START pos,mx,my
 GR.COLOR cc/8,cc,cc,cc,0
 IF ae<200*d %Darstellung
- GR.CIRCLE cl,mx-ed*d,my-ed*d,1
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,sx/400
 ENDIF
 IF t06=1 & ae<5*d %Text
  GR.ROTATE.START -pos,mx-ed*d,my-ed*d
@@ -1656,7 +1675,7 @@ ENDIF
 GR.ROTATE.END
 
 ! %Galaxie
-IF ae/Lj>=9000
+IF ae/Lj>=6000
  d=200000 %Lichtjahre
  d=d*Lj %AE
  GR.ROTATE.START -10,mx,my 
@@ -1683,12 +1702,12 @@ ENDIF
 GR.COLOR 80,cc,cc,cc,0
 ! ! GR.TEXT.BOLD 1
 GR.TEXT.ALIGN 3
-GR.TEXT.SIZE sx/35 %txz1 %12
+GR.TEXT.SIZE sx/35 %txz1 
 IF s10=1 %Skala
- GR.LINE ln,0,sy-13,mx,sy-14
- GR.LINE ln,0,sy-16,0,sy-11
- GR.LINE ln,mx,sy-16,mx,sy-11
- GR.LINE ln,mx/2,sy-16,mx/2,sy-11
+ GR.LINE ln,0,sy-sy/177.69,mx,sy-sy/165
+ GR.LINE ln,0,sy-sy/144.375,0,sy-sy/210
+ GR.LINE ln,mx,sy-sy/144.375,mx,sy-sy/210 
+ GR.LINE ln,mx/2,sy-sy/144.375,mx/2,sy-sy/210
  IF AE<Lj
   GR.TEXT.DRAW txt,mx,sy-sy/100,FORMAT$("#####.#",AE)+"AE"
  ENDIF
@@ -1751,10 +1770,10 @@ IF s09=1 %Text
   GR.TEXT.DRAW txt,sx,sy-sy/100,"Echtzeit"
  ENDIF
 ENDIF
-
+!! 
 IF s08=1 %Kompass
  lg=15:p=10
- SENSORS.READ 3,cp,cpi,crl
+! SENSORS.READ 3,cp,cpi,crl
  IF swk=1| swk=0
   GR.COLOR cc/3,cc,50,50,1
   GR.CIRCLE cl,mx,my/(p/2),13
@@ -1780,7 +1799,7 @@ IF s08=1 %Kompass
   GR.ROTATE.END
  ENDIF
 ENDIF
-
+!! 
 GR.TOUCH2 t2,tx,ty
 IF t2
  GOSUB dialog
@@ -1820,9 +1839,9 @@ IF s07=0
 ENDIF
 
 GR.RENDER
-
+!! 
 IF s11=1 %SCRS
- SENSORS.READ 8,bwg,dmy,dmy 
+! SENSORS.READ 8,bwg,dmy,dmy 
  IF bwg=5000 THEN sw0=1
  IF bwg=1&sw0=1
   scrs$=pat$+"SSR"+Y$+M$+D$+h$+min$+sec$
@@ -1832,7 +1851,7 @@ IF s11=1 %SCRS
   sw0=0
  ENDIF
 ENDIF 
-
+!! 
 IF s07=1 
  v=0.1  %Umlaufgeschwindigkeit bei Simulation
  sw=1   %Vollsimulation Schalter
@@ -1841,10 +1860,6 @@ IF s07=1
 ELSE
  GOTO st
 ENDIF
-
-OnError:
-GOSUB fin
-END
 
 ONMENUKEY:
 GOSUB dialog
@@ -2212,7 +2227,7 @@ IF sel3=2:s07=-1:ENDIF
 IF sel3=1:s07=1:ENDIF
 IF sel3=4
  INPUT"Anfangsentfernung AEo=…                   [ 1Lj=63241.1AE | 1pc=206264.8AE ]",aed,1
- ed=110/aed
+ ed=(sx/2.9)/aed
  IF aed<Lj
   aed$=FORMAT$("#####.#",aed)+"AE"
  ENDIF
