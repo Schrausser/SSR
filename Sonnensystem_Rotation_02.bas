@@ -167,7 +167,7 @@ IF s07=2 % // Information //
  INCLUDE "ssri03.bas"
  INCLUDE "ssri04.bas"
  !INCLUDE "ssri05.bas"
- !INCLUDE "ssri06.bas"
+ INCLUDE "ssri06.bas"
  !INCLUDE "ssri07.bas"
  INCLUDE "ssri08.bas"
  GOSUB dialog
