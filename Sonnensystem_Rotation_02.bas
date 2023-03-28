@@ -103,7 +103,7 @@ ENDIF
 
 GOSUB mnt
 
-! SENSORS.OPEN 3
+SENSORS.OPEN 3
 ! SENSORS.OPEN 8
 scr=0
 GR.OPEN 255,20,10,0,0,1
@@ -162,8 +162,8 @@ jx=yr %Jahr
 st:
 
 IF s07=2 % // Information //
- !INCLUDE "ssri01.bas"
- !INCLUDE "ssri02.bas"
+ INCLUDE "ssri01.bas"
+ INCLUDE "ssri02.bas"
  INCLUDE "ssri03.bas"
  INCLUDE "ssri04.bas"
  !INCLUDE "ssri05.bas"
@@ -512,17 +512,16 @@ ENDIF
 IF s04=1 %Erdprojektion
  GR.ROTATE.START -i+45,mx,my
  GR.COLOR 65,200,200,255,1
- GR.LINE ln,-4,my,mx,my
- IF s03=1 THEN GR.CIRCLE cl, 5,my,3
+ GR.LINE ln,-sx/470,my,mx,my
+ IF s03=1 THEN GR.CIRCLE cl, sx/216,my,sx/360
  GR.ROTATE.END
 ENDIF
 GR.ROTATE.START -i,mx,my
 IF AE<2000 %Darstellung
  GR.COLOR 255,100,100,255,1
  GR.CIRCLE cl,mx-ed,my-ed,sx/500
- IF u11=1 & ae<=2.5 %Text
+ IF u11=1 & ae<=2.5 % // Text //
   pot= 0
-  ! GR.TEXT.BOLD 0
   GR.TEXT.ALIGN 2
   GR.TEXT.SIZE txz1 %11
   IF t00=1
@@ -530,15 +529,15 @@ IF AE<2000 %Darstellung
    GR.TEXT.DRAW txt,mx-ed,my-ed+20,CHR$(9792)
   ELSE
    GR.ROTATE.START -pot+i,mx-ed,my-ed
-   GR.TEXT.DRAW txt,mx-ed,my-ed-10,"Erde"
+   GR.TEXT.DRAW txt,mx-ed,my-ed-sy/231,"Erde"
   ENDIF
   GR.ROTATE.END
  ENDIF
 ENDIF
-!! 
+
 IF s08=1 %Blickrichtung
  IF swk=-1|swk=0
- ! SENSORS.READ 3,cp,dmy,dmy
+  SENSORS.READ 3,cp,dmy,dmy
   GR.COLOR cc-65,cc,0,0,0
   GR.ROTATE.START 180-cp+i,mx-ed,my-ed
   GR.LINE ln,mx-ed,my-ed,mx-ed,my-15-ed
@@ -552,7 +551,7 @@ IF s08=1 %Blickrichtung
   GR.ROTATE.END
  ENDIF
 ENDIF
-!! 
+
 IF s03=1 %Erdzeitskala
  IF s07=1 & swu=1 %Uhrzeit und Kalenderskala
   GR.COLOR 80,cc,cc,cc,1
@@ -1770,10 +1769,10 @@ IF s09=1 %Text
   GR.TEXT.DRAW txt,sx,sy-sy/100,"Echtzeit"
  ENDIF
 ENDIF
-!! 
+
 IF s08=1 %Kompass
  lg=15:p=10
-! SENSORS.READ 3,cp,cpi,crl
+ SENSORS.READ 3,cp,cpi,crl
  IF swk=1| swk=0
   GR.COLOR cc/3,cc,50,50,1
   GR.CIRCLE cl,mx,my/(p/2),13
@@ -1799,7 +1798,7 @@ IF s08=1 %Kompass
   GR.ROTATE.END
  ENDIF
 ENDIF
-!! 
+
 GR.TOUCH2 t2,tx,ty
 IF t2
  GOSUB dialog
@@ -1929,7 +1928,7 @@ smb$=CHR$(9989)
 smq$=CHR$(9654)
 GOSUB menu
 std:
-ARRAY.LOAD sel$[],o00$,o01$,o02$,o03$,o08$,o04$,o05$,o06$,o10$,o09$,o07$,o11$,"Ok"
+ARRAY.LOAD sel$[],o00$,o01$,o02$,o03$,o08$,o04$,o05$,o06$,o10$,o09$,o07$,o11$,"Ok", "Exit"
 DIALOG.SELECT sel, sel$[],"SSR SONNENSYSTEMROTATION v3.0 - Ebenen:"
 IF sel=1:s00=s00*-1:ENDIF
 IF sel=2:s01=s01*-1:ENDIF
@@ -1952,6 +1951,7 @@ IF sel=10:s09=s09*-1:ENDIF
 IF sel=09:s10=s10*-1:ENDIF
 IF sel=12:s11=s11*-1:ENDIF
 IF sel=13:RETURN:   ENDIF
+IF sel=14:gosub fin: end:  ENDIF
 GOSUB menu
 GOTO std
 RETURN
