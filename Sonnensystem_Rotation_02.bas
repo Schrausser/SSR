@@ -1,8 +1,10 @@
 !!
-      SSR SONNENSYSTEMROTATION v3.2.1
+           SONNENSYSTEMROTATION
+          + semper ubique sum +
       © 2020-23 by Dietmar Schrausser
 !!
-
+_name$="SSR"
+_ver$="v3.2.5"
 ! %Einstellungen
 FILE.EXISTS fx, "ssr.ini"
 IF fx
@@ -132,7 +134,7 @@ au_=1.4959787*10^11 %AE in m
 Lj=63241.07 %1Lj in AE
 !! 
 IF inf=1 & s07<>2 %Startinfo
- DIALOG.MESSAGE ,"SSR SONNENSYSTEMROTATION v3.0         Copyright © 2020 by                   Dietmar G. SCHRAUSSER                       + Semper ubique sum +",m
+ DIALOG.MESSAGE ,_name$+" SONNENSYSTEMROTATION "+_ver$+"       Copyright © 2020-23 by                   Dietmar G. SCHRAUSSER                       + Semper ubique sum +",m
 ENDIF
 !! 
 GOSUB dialog
@@ -565,21 +567,19 @@ IF s03=1 %Erdzeitskala
  cr=((1/24)*360)-3 %Korrekturfaktor
  IF s07=1 %bei Echtzeit
   GR.ROTATE.START ((12/24)-(((st-sz)+mnc)/24))*360-cr,mx-ed,my-ed
-  GR.LINE ln, mx-ed,my-ed,2*sx-ed,2*sy-ed
+  GR.LINE ln, mx-ed,my-ed,2*sx+ed,2*sy+ed
   GR.CIRCLE cl, mx-ed+10,my-ed+15,3
   GR.ROTATE.END
   GR.ROTATE.START (((12/24)-(((st-sz)+mnc)/24))*360)-90-cr,mx-ed,my-ed
   GR.LINE ln, 0-ed,0-ed,2*sx-ed,2*sy-ed
-
-  GR.COLOR 20,0,0,cc,1
-  GR.ARC arc,mx-ed-sx/6,my-ed-sx/6,mx-ed+sx/6,my-ed+sx/6,62,180,1
-
+  GR.COLOR 20,0,2,cc,1 
+  GR.ARC arc,mx-ed-sx/6,my-ed-sx/6,mx-ed+sx/6,my-ed+sx/6,62.7,180,1
   GR.ROTATE.END
  ENDIF
  IF s07=-1 %bei Simulation
   FOR j1=1 TO 24
    GR.ROTATE.START (j1/24)*360-41,mx-ed,my-ed
-   GR.LINE ln, mx-ed,my-ed,2*sx-ed,2*sy-ed
+   GR.LINE ln, mx-ed,my-ed,2*mx+ed,2*my+ed
    GR.ROTATE.END
   NEXT
  ENDIF
@@ -1777,7 +1777,6 @@ IF s08=1 %Kompass
   GR.COLOR cc/3,cc,50,50,1
   GR.CIRCLE cl,mx,my/(p/2),13
   GR.COLOR cc,cc,50,50,0
-
   GR.CIRCLE cl,mx+13*crl/90,my/(p/2)+13*cpi/90,13
   GR.CIRCLE cl,mx,my/(p/2),2
   GR.ROTATE.START 360-cp,mx,sy/p
@@ -1807,8 +1806,12 @@ ENDIF
 
 GR.TOUCH tc,tx,ty
 IF tc
- IF ty<sy/3 THEN ed=ed/1.05
- IF ty>sy*2/3 THEN ed=ed*1.05
+ IF ae/Lj<=2.5*10^8 % // max Entfernung //
+  IF ty<sy/3 THEN ed=ed/1.05
+ ENDIF
+ IF ae>=0.002 % // min Entfernung //
+  IF ty>sy*2/3 THEN ed=ed*1.05
+ ENDIF
  IF s07=-1
   IF ty<=sy*2/3 & ty>=sy/3
    IF tx<mx THEN v=v+0.1
@@ -1843,7 +1846,7 @@ IF s11=1 %SCRS
 ! SENSORS.READ 8,bwg,dmy,dmy 
  IF bwg=5000 THEN sw0=1
  IF bwg=1&sw0=1
-  scrs$=pat$+"SSR"+Y$+M$+D$+h$+min$+sec$
+  scrs$=pat$+_name$+Y$+M$+D$+h$+min$+sec$
   GR.SCREEN.TO_BITMAP scrs
   GR.BITMAP.SAVE scrs,scrs$
   TONE 11500,55
@@ -1928,8 +1931,8 @@ smb$=CHR$(9989)
 smq$=CHR$(9654)
 GOSUB menu
 std:
-ARRAY.LOAD sel$[],o00$,o01$,o02$,o03$,o08$,o04$,o05$,o06$,o10$,o09$,o07$,o11$,"Ok", "Exit"
-DIALOG.SELECT sel, sel$[],"SSR SONNENSYSTEMROTATION v3.0 - Ebenen:"
+ARRAY.LOAD sel$[],o00$,o01$,o02$,o03$,o08$,o04$,o05$,o06$,o10$,o09$,o07$,o11$,"Ok", "exit"
+DIALOG.SELECT sel, sel$[],_name$+" SONNENSYSTEMROTATION "+_ver$+" - Ebenen:"
 IF sel=1:s00=s00*-1:ENDIF
 IF sel=2:s01=s01*-1:ENDIF
 IF sel=3:s02=s02*-1:ENDIF
@@ -1951,7 +1954,7 @@ IF sel=10:s09=s09*-1:ENDIF
 IF sel=09:s10=s10*-1:ENDIF
 IF sel=12:s11=s11*-1:ENDIF
 IF sel=13:RETURN:   ENDIF
-IF sel=14:gosub fin: end:  ENDIF
+IF sel=14:GOSUB fin: END:  ENDIF
 GOSUB menu
 GOTO std
 RETURN
@@ -2352,7 +2355,8 @@ TEXT.WRITELN fsr, rk$
 TEXT.WRITELN fsr, ur$
 TEXT.WRITELN fsr, kp$
 TEXT.CLOSE fsr
-
-PRINT "SSR SONNENSYSTEMROTATION v3.2 "
-PRINT"Copyright © 2020 by Dietmar G. SCHRAUSSER"
+CONSOLE.TITLE _name$
+PRINT _name$+" SONNENSYSTEMROTATION "+_ver$
+PRINT"Copyright © 2020-23 by Dietmar Gerald SCHRAUSSER"
+PRINT"https://github.com/Schrausser/SSR"
 RETURN
