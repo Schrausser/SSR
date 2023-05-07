@@ -23,7 +23,7 @@ pcl_=3.261564           % pc in Lj
 pcm_=3.0856776*10^16    % pc in m
 !
 GR.BITMAP.CREATE scrs, sx,sy
-pat$="../../EIGENEDATEIEN/SSR/scrs/"
+pat$="../../SSR/"
 !
 GOSUB einstellungen     % ini
 GOSUB mnt               % Monatslängen
@@ -3393,7 +3393,7 @@ TEXT.WRITELN fsr, kp$
 TEXT.CLOSE fsr
 CONSOLE.TITLE _name$
 PRINT _name$+" SONNENSYSTEMROTATION "+_ver$
-PRINT"Copyright "+cr$+" 2020-23 by Dietmar Gerald SCHRAUSSER"
+PRINT"Copyright "+_cr$+" 2020-23 by Dietmar Gerald SCHRAUSSER"
 PRINT"https://github.com/Schrausser/SSR"
 RETURN
 ! % ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
