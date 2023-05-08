@@ -43,14 +43,15 @@ Surrounding stars and their relative position to earth, artificial horizon facin
 
 ![figure.\label{pic12}](pic12.jpg)
 
-Towards the Hubble deep field from a distance of $r=151Mpc$ within the surrounding galaxy clusters and superclusters with relative historical positions:
+Towards Hubble deep field from a distance of $r=151Mpc$ within the surrounding galaxy clusters and superclusters with relative historical positions:
 
 ![figure.\label{pic13}](pic13.jpg)
 
+Most distant quasars on the edge of the observable universe at $r>14Gpc$:
 
 ![figure.\label{pic14}](pic14.jpg)
 
-Local star cluster containing the signs of the zodiac and surrounding nebulae seen from a distance of $r=3kpc.$
+Local star cluster containing the signs of the zodiac and surrounding nebulae seen from a distance of $r=3kpc$:
 
 ![figure.\label{pic15}](pic15.jpg)
 
