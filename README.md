@@ -7,11 +7,17 @@ Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and in
 
 ![figure.\label{pic2}](pic2.jpg)
 
+Solar system with Asteroid and Kuiper belts as well as Heliosphere:
+
 
 ![figure.\label{pic3}](pic3.jpg)
 
+Inner solar system with orbits, current rotation position of the earth with time and position representation, as well as projection lines to the neighboring planets:
+
 
 ![figure.\label{pic4}](pic4.jpg)
+
+Surrounding stars and their relative position to earth, artificial horizon facing south:
 
 
 ![figure.\label{pic5}](pic5.jpg)
@@ -46,4 +52,5 @@ Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and in
 
 ![figure.\label{pic15}](pic15.jpg)
 
+### References
 Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale,‎ 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
