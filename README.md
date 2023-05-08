@@ -72,6 +72,6 @@ Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissa
 
 Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. *Bulletin of the Astronomical Institutes of the Netherlands.* 11, 91-110. [ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract](https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract)
 
-Tully, R. B., Courtois, H., Hoffman, Y., & Pomarède, D. (2014). The Laniakea supercluster of galaxies. *Nature*. 513, 71–73. [DOI:10.1038/nature13674](https://doi.org/10.1038/nature13674)
+Tully, R. B., Courtois, H., Hoffman, Y., & Pomarède, D. (2014). The Laniakea supercluster of galaxies. *Nature*. 513, 71-73. [DOI:10.1038/nature13674](https://doi.org/10.1038/nature13674)
 
 Wang, F., et al. (2021). A Luminous Quasar at Redshift 7.642. *The Astrophysical Journal*. 907(1), L1. [DOI:10.3847%2F2041-8213%2Fabd8c6](https://doi.org/10.3847%2F2041-8213%2Fabd8c6)
