@@ -26,7 +26,7 @@ Surrounding stars at $r=194.2pc$ and their relative position to earth, artificia
 
 ![figure.\label{pic6}](pic6.jpg)
 
-The Milky Way @ $r=19kpc$ with magellanic clouds and sagittarius dwarf elliptical galaxy Sag DEG (Ibata et al., 1994):
+The Milky Way @ $r=19kpc$ with magellanic clouds, sagittarius dwarf elliptical galaxy Sag DEG (Ibata et al., 1994) and V838 Monocerotis (Brown et al., 2002):
 
 ![figure.\label{pic7}](pic7.jpg)
 
@@ -62,6 +62,8 @@ Local star cluster containing the signs of the zodiac and surrounding nebulae se
 ![figure.\label{pic15}](pic15.jpg)
 
 ### References
+Brown, N. J., Waagen, E. O., Scovil, C., Nelson, P., Oksanen, A., Solonen, J., & Price, A. (2002). Peculiar variable in Monoceros. *International Astronomical Union Circular*. 7785,1. [ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)
+
 Ferguson, H. (1996). *The Hubble Deep Field – field selection*. Space Telescope Science Institute.
 
 Hills, J. G. (1981). Comet showers and the steady-state infall of comets from the Oort Cloud. *Astronomical Journal*. 86, 1730–1740. [DOI:10.1086%2F113058](https://doi.org/10.1086%2F113058)
