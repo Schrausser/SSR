@@ -53,7 +53,7 @@ Towards the HDF from a distance of $r=151Mpc$ within the surrounding galaxy clus
 
 ![figure.\label{pic13}](pic13.jpg)
 
-Most distant quasars on the edge of the observable universe at $r>14Gpc$:
+Most distant quasars on the edge of the observable universe at $r>9Gpc$ (see eg. Wang et al., 2021):
 
 ![figure.\label{pic14}](pic14.jpg)
 
@@ -67,3 +67,5 @@ Ferguson, H. (1996). *The Hubble Deep Field – field selection*. Space Telesco
 Ibata, R. A., Gilmore, G., & Irwin, M. J. (1994). A dwarf satellite galaxy in Sagittarius. *Nature*. 370, 194-196. [DOI:10.1038%2F370194a0](https://doi.org/10.1038%2F370194a0)
 
 Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale,‎ 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
+
+Wang, F., et al. (2021). A Luminous Quasar at Redshift 7.642. *The Astrophysical Journal*. 907(1), L1. [DOI:10.3847%2F2041-8213%2Fabd8c6](https://doi.org/10.3847%2F2041-8213%2Fabd8c6)
