@@ -1,5 +1,5 @@
 # SSR
-Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with zodiac signs and timepiece covering the solar system in the entire observable universe up to $r=14.25Gpc.$ Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784) and more:
+Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with zodiac signs and timepiece covering the solar system in the entire observable universe up to $r=14.25Gpc.$ Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), inner cloud (Hills, 1981), oort cloud (Oort, 1950) and more:
 
 
 ![figure.\label{pic1}](pic1.jpg)
@@ -64,8 +64,12 @@ Local star cluster containing the signs of the zodiac and surrounding nebulae se
 ### References
 Ferguson, H. (1996). *The Hubble Deep Field – field selection*. Space Telescope Science Institute.
 
+Hills, J. G. (1981). Comet showers and the steady-state infall of comets from the Oort Cloud. *Astronomical Journal*. 86, 1730–1740. [DOI:10.1086%2F113058](https://doi.org/10.1086%2F113058)
+
 Ibata, R. A., Gilmore, G., & Irwin, M. J. (1994). A dwarf satellite galaxy in Sagittarius. *Nature*. 370, 194-196. [DOI:10.1038%2F370194a0](https://doi.org/10.1038%2F370194a0)
 
 Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale,‎ 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
+
+Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. *Bull. Astron. Inst. Neth.* 11, 91–110.
 
 Wang, F., et al. (2021). A Luminous Quasar at Redshift 7.642. *The Astrophysical Journal*. 907(1), L1. [DOI:10.3847%2F2041-8213%2Fabd8c6](https://doi.org/10.3847%2F2041-8213%2Fabd8c6)
