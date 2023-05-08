@@ -1,13 +1,14 @@
 # SSR
-Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with zodiac signs and timepiece covering the solar system in the entire observable universe up to $r=14.25Gpc.$ Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784) and more.
+Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with zodiac signs and timepiece covering the solar system in the entire observable universe up to $r=14.25Gpc.$ Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784) and more:
 
 
 ![figure.\label{pic1}](pic1.jpg)
 
+The sun at $r=0.1au$ astronomical units:
 
 ![figure.\label{pic2}](pic2.jpg)
 
-Solar system with Asteroid and Kuiper belts as well as Heliosphere:
+Solar system with Asteroid and Kuiper belts as well as Heliosphere @ $r=58.6au$:
 
 
 ![figure.\label{pic3}](pic3.jpg)
@@ -17,7 +18,7 @@ Inner solar system with orbits, current rotation position of the earth with time
 
 ![figure.\label{pic4}](pic4.jpg)
 
-Surrounding stars and their relative position to earth, artificial horizon facing south:
+Surrounding stars at $r=194.2pc$ and their relative position to earth, artificial horizon facing south:
 
 
 ![figure.\label{pic5}](pic5.jpg)
