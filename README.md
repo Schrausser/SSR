@@ -1,5 +1,6 @@
 # SSR
-Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with zodiac signs and timepiece covering the solar system in the entire observable universe up to $r=14.25Gpc.$ Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), inner cloud (Hills, 1981), oort cloud (Oort, 1950) and more:
+Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with zodiac signs and timepiece covering the solar system in the entire observable universe up to $r=14.25Gpc.$  
+Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), inner cloud (Hills, 1981), Oort cloud (Oort, 1950) and more:
 
 
 ![figure.\label{pic1}](pic1.jpg)
@@ -8,17 +9,17 @@ The sun at $r=0.1au$ astronomical units:
 
 ![figure.\label{pic2}](pic2.jpg)
 
-Solar system with Asteroid and Kuiper belts as well as Heliosphere @ $r=58.6au$:
+Solar system with asteroid and Kuiper belts as well as Heliosphere at $r=58.6au$:
 
 
 ![figure.\label{pic3}](pic3.jpg)
 
-Inner solar system with orbits, current rotation position of the earth with time and position representation, as well as projection lines to the neighboring planets @ $r=1.4au$:
+Inner solar system with orbits, current rotation position of the earth with time and position representation, as well as projection lines to the neighboring planets at $r=1.4au$:
 
 
 ![figure.\label{pic4}](pic4.jpg)
 
-Surrounding stars at $r=194.2pc$ and their relative position to earth, artificial horizon facing south:
+Surrounding stars at $r=194.2pc$ and their relative positions to earth, artificial horizon facing south:
 
 
 ![figure.\label{pic5}](pic5.jpg)
@@ -26,11 +27,11 @@ Surrounding stars at $r=194.2pc$ and their relative position to earth, artificia
 
 ![figure.\label{pic6}](pic6.jpg)
 
-The Milky Way @ $r=19kpc$ with magellanic clouds, sagittarius dwarf elliptical galaxy Sag DEG (Ibata et al., 1994) and V838 Monocerotis (Brown et al., 2002):
+The Milky Way at $r=19kpc$ with magellanic clouds, sagittarius dwarf elliptical galaxy Sag DEG (Ibata et al., 1994) and V838 Monocerotis (Brown et al., 2002):
 
 ![figure.\label{pic7}](pic7.jpg)
 
-Closer stars with their relative historical position and representation from $r=14.6pc$ before 1976:
+Closer stars with their relative historical position and representation, from $r=14.6pc$ before the year 1976:
 
 ![figure.\label{pic8}](pic8.jpg)
 
@@ -45,7 +46,7 @@ Interactive simulation to compare sizes of stars:
 
 ![figure.\label{pic11}](pic11.jpg)
 
-Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, 1996):
+Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, 1996):
 
 ![figure.\label{pic12}](pic12.jpg)
 
@@ -70,7 +71,7 @@ Hills, J. G. (1981). Comet showers and the steady-state infall of comets from t
 
 Ibata, R. A., Gilmore, G., & Irwin, M. J. (1994). A dwarf satellite galaxy in Sagittarius. *Nature*. 370, 194-196. [DOI:10.1038%2F370194a0](https://doi.org/10.1038%2F370194a0)
 
-Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale,‎ 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
+Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale, 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
 
 Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. *Bulletin of the Astronomical Institutes of the Netherlands.* 11, 91-110. [ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract](https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract)
 
