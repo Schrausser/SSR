@@ -13,7 +13,7 @@ Solar system with Asteroid and Kuiper belts as well as Heliosphere @ $r=58.6au$:
 
 ![figure.\label{pic3}](pic3.jpg)
 
-Inner solar system with orbits, current rotation position of the earth with time and position representation, as well as projection lines to the neighboring planets:
+Inner solar system with orbits, current rotation position of the earth with time and position representation, as well as projection lines to the neighboring planets @ $r=1.4au$:
 
 
 ![figure.\label{pic4}](pic4.jpg)
@@ -26,26 +26,26 @@ Surrounding stars at $r=194.2pc$ and their relative position to earth, artificia
 
 ![figure.\label{pic6}](pic6.jpg)
 
-The Milky Way @ $r=19kpc$:
+The Milky Way with magellanic clouds and sagittarius dwarf elliptical galaxy Sag DEG @ $r=19kpc$:
 
 ![figure.\label{pic7}](pic7.jpg)
 
-Closer stars with relative historical position and representation from $r=14.6pc$ before 1976:
+Closer stars with their relative historical position and representation from $r=14.6pc$ before 1976:
 
 ![figure.\label{pic8}](pic8.jpg)
 
-Interactive simulation to show the distances between earth, moon and sun with the corresponding perspective projection lines:
+Interactive simulation to display distances between earth, moon and sun with corresponding perspective projection lines:
 
 ![figure.\label{pic9}](pic9.jpg)
 
-Interactive simulation to compare the sizes of stars:
+Interactive simulation to compare sizes of stars:
 
 ![figure.\label{pic10}](pic10.jpg)
 
 
 ![figure.\label{pic11}](pic11.jpg)
 
-The Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, 1996):
+Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, 1996):
 
 ![figure.\label{pic12}](pic12.jpg)
 
