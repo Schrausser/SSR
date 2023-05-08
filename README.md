@@ -37,7 +37,7 @@ Closer stars with relative historical position and representation from $r=14.6pc
 
 ![figure.\label{pic9}](pic9.jpg)
 
-Interactive simulation to show the differences in size of stars and the planets:
+Interactive simulation to compare the sizes of stars:
 
 ![figure.\label{pic10}](pic10.jpg)
 
