@@ -40,10 +40,11 @@ Surrounding stars and their relative position to earth, artificial horizon facin
 
 ![figure.\label{pic11}](pic11.jpg)
 
+The Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, 1996):
 
 ![figure.\label{pic12}](pic12.jpg)
 
-Towards Hubble deep field from a distance of $r=151Mpc$ within the surrounding galaxy clusters and superclusters with relative historical positions:
+Towards the HDF from a distance of $r=151Mpc$ within the surrounding galaxy clusters and superclusters with relative historical positions:
 
 ![figure.\label{pic13}](pic13.jpg)
 
@@ -56,4 +57,6 @@ Local star cluster containing the signs of the zodiac and surrounding nebulae se
 ![figure.\label{pic15}](pic15.jpg)
 
 ### References
+Ferguson, H. (1996). *The Hubble Deep Field – field selection*. Space Telescope Science Institute.
+
 Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale,‎ 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
