@@ -70,6 +70,6 @@ Ibata, R. A., Gilmore, G., & Irwin, M. J. (1994). A dwarf satellite galaxy in
 
 Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale,‎ 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
 
-Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. *Bull. Astron. Inst. Neth.* 11, 91–110.
+Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. *Bulletin of the Astronomical Institutes of the Netherlands.* 11, 91–110.[https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract](https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract)
 
 Wang, F., et al. (2021). A Luminous Quasar at Redshift 7.642. *The Astrophysical Journal*. 907(1), L1. [DOI:10.3847%2F2041-8213%2Fabd8c6](https://doi.org/10.3847%2F2041-8213%2Fabd8c6)
