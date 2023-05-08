@@ -32,9 +32,9 @@ The Milky Way @ $r=19kpc$:
 
 Closer stars with relative historical position and representation from $r=14.6pc$ before 1976:
 
-
 ![figure.\label{pic8}](pic8.jpg)
 
+Interactive simulation to show the distances between earth, moon and sun with the corresponding perspective projection lines:
 
 ![figure.\label{pic9}](pic9.jpg)
 
