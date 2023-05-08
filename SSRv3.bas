@@ -2749,7 +2749,7 @@ GR.ORIENTATION 1
 GR.SCREEN sx,sy            % Bildschirmformat
 mx=sx/2:my=sy/2
 GR.SET.STROKE 2
-ARRAY.LOAD selinf$[],"i Astronomische Parameter","i Sonnensystem Parameter","i Stern Größenvergleich","i Rotationen im inneren Sonnensystem","i Rotationen im äußeren Sonnensystem","i Sonne-Mond-Erde Distanz"
+ARRAY.LOAD selinf$[],"i Astronomische Parameter","i Sonnensystem Parameter","i Stern Größenvergleich","i Rotationen im inneren Sonnensystem","i Rotationen im äußeren Sonnensystem","i Sonne-Mond-Erde Distanz","i Zehnerpotenzen"
 DIALOG.SELECT selinf, selinf$[],"i Information:"
 GOSUB global
 IF selinf=1:INCLUDE ssr_parameter1.bas:ENDIF
@@ -2758,6 +2758,7 @@ IF selinf=3:INCLUDE ssr_sterngr.bas   :ENDIF
 IF selinf=4:INCLUDE ssr_rotat1.bas    :ENDIF
 IF selinf=5:INCLUDE ssr_rotat2.bas    :ENDIF
 IF selinf=6:INCLUDE ssr_distanz.bas   :ENDIF
+IF selinf=7:INCLUDE ssr_potenz.bas    :ENDIF
 GR.ORIENTATION -1
 GR.SCREEN sx,sy            % Bildschirmformat
 mx=sx/2:my=sy/2
@@ -3396,7 +3397,7 @@ TEXT.WRITELN fsr, kp$
 TEXT.CLOSE fsr
 CONSOLE.TITLE _name$
 PRINT _name$+" SONNENSYSTEMROTATION "+_ver$
-PRINT"Copyright "+_cr$+" 2020-23 by Dietmar Gerald SCHRAUSSER"
+PRINT"Copyright "+_cr$+" 2023 by Dietmar Gerald SCHRAUSSER"
 PRINT"https://github.com/Schrausser/SSR"
 RETURN
 ! % ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
