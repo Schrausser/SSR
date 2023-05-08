@@ -25,8 +25,11 @@ Surrounding stars and their relative position to earth, artificial horizon facin
 
 ![figure.\label{pic6}](pic6.jpg)
 
+The Milky Way @ $r=19kpc$:
 
 ![figure.\label{pic7}](pic7.jpg)
+
+Closer stars with relative historical position and representation from $r=14.6pc$ before 1976:
 
 
 ![figure.\label{pic8}](pic8.jpg)
@@ -34,6 +37,7 @@ Surrounding stars and their relative position to earth, artificial horizon facin
 
 ![figure.\label{pic9}](pic9.jpg)
 
+Interactive simulation to show the differences in size of stars and the planets:
 
 ![figure.\label{pic10}](pic10.jpg)
 
