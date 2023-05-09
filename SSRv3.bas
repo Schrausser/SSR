@@ -15,17 +15,22 @@ SENSORS.OPEN 8          %
 GR.OPEN 255,0,0,0,0,-1  %
 GR.SCREEN sx,sy
 GOSUB global            % Globale Variablen
-c_=1079252849           % km/h Lichtgeschwindigkeit
-au_=1.4959787*10^11     % AE in m
-Lj_=63241.07            % Lj in AE
-pc_=648000/PI()         % pc aus AE
-pcl_=3.261564           % pc in Lj
-pcm_=3.0856776*10^16    % pc in m
+c_m=299792458           % c in m/s (exakt, SI)
+c_=c_m*3.6              % c in km/h
+au_=149597870700        % AE in m (exakt, quasi SI)
+Lj_m=c_m*31557600       % Lj in m
+Lj_=Lj_m/au_            % Lj in AE     
+pcm_=30856775814913673  % pc in m (exakt, SI)
+pcl_=pcm_/Lj_m          % pc in Lj
+pc_=648000/PI()         % pc aus AE (IAU, 2016)
+a_=365.25               % Tage pro Jahr
+ca_=360/a_              % Korrekturfaktor bei Simulation
 !
 GR.BITMAP.CREATE scrs, sx,sy
 pat$="../../SSR/"
 !
 GOSUB einstellungen     % ini
+GOSUB zeit:jx=yr        % Jahr für Simulation
 GOSUB mnt               % Monatslängen
 GOSUB dialog            % Hauptmenü
 t37=-1                  % sw Grössenvergleich...
@@ -33,8 +38,8 @@ t37=-1                  % sw Grössenvergleich...
 st0: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 DO 
  GR.SET.STROKE 2
- IF s07=1
-  GOSUB zeit              % Aktuelle Zeit
+ IF s07=1               % bei Echtzeit
+  GOSUB zeit            % Aktuelle Zeit
   !
   ! % Schaltjahr %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   sj=0
@@ -49,25 +54,25 @@ DO
   !
   tg=nt+1                 % Tagnummer
   tg=tg+10                %
-  i=((tg/366)*360)-135    % Tagposition
+  i=((tg/a_)*360)-135    % Tagposition
   j=0                     % Tagzaehler
   jx=yr                   % Jahr
   !
  ENDIF
- GR.SCREEN sx,sy         % Bildschirmformat
+ GR.SCREEN sx,sy          % Bildschirmformat
  mx=sx/2:my=sy/2
  IF sx>sy
-  swbs=0                 % Schalter Breitformat
+  swbs=0                  % Schalter Breitformat
  ELSE
-  swbs=1                 % Schalter Hochformat
+  swbs=1                  % Schalter Hochformat
  ENDIF
  !
- mnc=min/60              % Minutentakt
- ae=(sx/2.9)/ed     %%%% % Faktor ed zu AE
+ mnc=min/60               % Minutentakt
+ ae=(sx/2.9)/ed      %%%% % Faktor ed zu AE
  aed=ae
- IF s07=1 THEN v=0       % bei Echtzeit
- i=i+v                   % Tagposition
- nt=nt+v                 % Tagnummer
+ IF s07=1 THEN v=0        % bei Echtzeit
+ i=i+v                    % Tagposition bei Simulation
+ nt=nt+v/ca_              % Tagnummer bei Simulation
  ! 
  GR.CLS
  GR.TEXT.SETFONT "courier","",1
@@ -245,7 +250,7 @@ DO
  ! % Monate %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  IF s02=1 
   FOR s=1 TO 12
-   GR.ROTATE.START 180-((s/12)*360)-((10/366)*360),mx,my
+   GR.ROTATE.START 180-((s/12)*360)-((10/a_)*360),mx,my
    GR.COLOR 8, cc, cc,cc, 1
    GR.LINE ln,-sx,my,sx*2,my
    GR.ROTATE.END
@@ -422,12 +427,12 @@ DO
   grh=ed*((jx+3500)*Lj_)*c145
   IF grh>40
    GR.CIRCLE cl,mx,my,grh
-   GR.TEXT.DRAW txt,mx,my+grh-c10,"-3500 Noah"
+   GR.TEXT.DRAW txt,mx,my+grh-c10,"-3500 Noah" %
   ENDIF
-  grh=ed*((jx+5200)*Lj_)*c145
+  grh=ed*((jx+5500)*Lj_)*c145
   IF grh>40
    GR.CIRCLE cl,mx,my,grh
-   GR.TEXT.DRAW txt,mx,my+grh-c10,"-5200 Jahr der Welt"
+   GR.TEXT.DRAW txt,mx,my+grh-c10,"-5500 Jahr der Welt" %
   ENDIF
   grh=ed*((jx+10000)*Lj_)*c145
   IF grh>40
@@ -534,7 +539,7 @@ DO
   j=j+1:jx=jx+1:nt=1
  ENDIF
  IF nt<0
-  j=j-1:jx=jx-1:nt=366
+  j=j-1:jx=jx-1:nt=a_
  ENDIF
  ! % Textoutput %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  GR.COLOR 80,cc,cc,cc,0
@@ -570,35 +575,37 @@ DO
      GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.#",(ae/pc_)/10^6)+"Mpc"
     ENDIF
     IF ae>=Lj_*(pcl_*10^9)
-     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.#",(ae/pc_)/10^9)+"Gpc"
+     mxd=ae/pc_:IF mxd>=14.3*10^9 THEN mxd=14.3*10^9
+     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.#",mxd/10^9)+"Gpc"
     ENDIF
    ENDIF
   ENDIF
+  GR.TEXT.ALIGN 3
   IF s07=0                     % bei Vollsimulation
-   GR.TEXT.ALIGN 3
    GR.TEXT.DRAW txt,sx,sy-dtx3,FORMAT$("# ###### ###### ###### ######",v_)+"AE/h"
    GR.TEXT.DRAW txt,sx,sy-dtx2,FORMAT$("# ###### ###### ######",v_c)+"c"
   ENDIF
-  IF s07<>0
-   GR.TEXT.ALIGN 3
+  IF s07=1                     % bei Echtzeit
    GR.TEXT.DRAW txt,sx,sy-dtx2,INT$(VAL(y$)-AE/Lj_+1)
+  ENDIF
+  IF s07=-1                    % bei Simulation
+   GR.TEXT.DRAW txt,sx,sy-dtx2,INT$(jx-AE/Lj_+1)
   ENDIF
  ENDIF
  IF s09=1 % Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  IF s07=0                    % bei Vollsimulation
+  IF s07=0                     % bei Vollsimulation
    GR.TEXT.ALIGN 1
    GR.TEXT.DRAW txt,dtx4,dtx1,"SSR SONNENSYSTEMROTATION "+_ver$+" Vollsimulation"
-   GR.TEXT.DRAW txt,dtx4,dtx1+dtx1,"Copyright © 2020-23 by Dietmar Gerald Schrausser"
+   GR.TEXT.DRAW txt,dtx4,dtx1+dtx1,"Copyright "+_cr$+" 2023 by Dietmar Gerald Schrausser"
   ENDIF
-  IF s07=-1                   % bei Simulation
+  IF s07=-1                    % bei Simulation
    GR.TEXT.ALIGN 1
    GR.TEXT.DRAW txt,dtx4,dtx1,INT$(jx)
    GR.TEXT.ALIGN 3
    GR.TEXT.DRAW txt,sx,dtx1,INT$(nt+1)+"T"
-   !GR.TEXT.ALIGN 3
-   GR.TEXT.DRAW txt,sx,sy-dtx3,"Simulation"+FORMAT$("#.#",v)+"x"
+   GR.TEXT.DRAW txt,sx,sy-dtx3,"Simulation: "+STR$(ROUND(v/0.1,3))+"x"
   ENDIF
-  IF s07=1                    % bei Echtzeit
+  IF s07=1                     % bei Echtzeit
    GR.TEXT.ALIGN 1
    GR.TEXT.DRAW txt,dtx4,dtx1,d$+"."+m$+"."+y$
    GR.TEXT.ALIGN 3
@@ -643,28 +650,28 @@ DO
  ENDIF
  GR.TOUCH tc,tx,ty
  IF tc
-  IF ae/pc_<=14.25*10^9         % // max Entfernung //
+  IF ae/pc_<14.25*10^9          % // max Entfernung //
    IF ty<sy/3 THEN ed=ed/vse    %%%%%%%%
   ENDIF
   IF ae>=0.002                  % // min Entfernung //
    IF ty>sy*2/3 THEN ed=ed*vse  %%%%%%%%
   ENDIF
-  IF s07=-1                     %
+  IF s07=-1                     % bei Simulation
    IF ty<=sy*2/3 & ty>=sy/3
-    IF tx<mx THEN v=v+0.1
-    IF tx>mx THEN v=v-0.1
+    IF tx<mx THEN v=v+vsmn
+    IF tx>mx THEN v=v-vsmn
    ENDIF
   ENDIF
  ENDIF
  ! % Vollsimulation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  IF s07=0
   IF sw=1
-   ed=ed/vsm %%%%%%%%
-   IF ae/Lj_>=2.5*10^8:sw=-1:PAUSE 2000:ENDIF
+   ed=ed/vsm %%%%%%%% 
+   IF ae/pc_>=vsm_mx:sw=-1:PAUSE 2000:ENDIF
   ENDIF
   IF sw=-1
-   ed=ed*vsm %%%%%%%%
-   IF ae<=0.02:sw=1:PAUSE 2000:ENDIF
+   ed=ed*vsm %%%%%%%% 
+   IF ae<=vsm_mn:sw=1:PAUSE 2000:ENDIF
   ENDIF
   GOSUB zeit
   IF sec<>sec1
@@ -2669,8 +2676,8 @@ GOSUB menu10
 GOTO std10
 RETURN
 menu10:
-IF s10=1:sk01$=smb$+"  Entfernungen":ENDIF
-IF s10=-1: sk01$="     Entfernungen aus":ENDIF
+IF s10=1:sk01$=smb$+"  Entfernung und Zeit":ENDIF
+IF s10=-1: sk01$="     Entfernung und Zeit aus":ENDIF
 IF t31=1:sk02$=smb$+"  Rektaszension"+rk$:ENDIF
 IF t31=-1: sk02$="     Rektaszension":ENDIF
 IF t39=1:sk03$=smb$+"  Deklination"+dkl$:ENDIF
@@ -2705,10 +2712,18 @@ ARRAY.LOAD sel3$[],r03$,r02$,r01$,r04$,r05$
 DIALOG.SELECT sel3, sel3$[],"Modus:"
 IF sel3=1
  INPUT"Zeitrafferfaktor ve=…",vse,1.05:s07=1
+ IF vse<=1 THEN vse=1.05
 ENDIF
-IF sel3=2:s07=-1:ENDIF
+IF sel3=2: INPUT"Beschleunigungsfaktor vsmn=…",vsmn,0.1:v=0.1:s07=-1:ENDIF
 IF sel3=3
+ INPUT"Minimaldistanz in AE=…",vsm_mn,0.02
+ IF vsm_mn<0.01 THEN vsm_mn=0.01
+ IF vsm_mn>100000 THEN vsm_mn=100000
+ INPUT"Maximaldistanz in pc=…",vsm_mx,2.5*10^8
+ IF vsm_mx<1 THEN vsm_mx=1
+ IF vsm_mx>14.25*10^9 THEN vsm_mx=14.25*10^9
  INPUT"Zeitrafferfaktor vs=…",vsm,1.05:s07=0
+ IF vsm<=1 THEN vsm=1.05
 ENDIF
 IF sel3=4                  %in AE
  ARRAY.LOAD selae0$[],"Astronomische Einheit AE","Lichtjahr Lj","Parsec pc"
@@ -3060,7 +3075,10 @@ IF fx
  TEXT.READLN fsr, ini$:swu=VAL(ini$)
  TEXT.READLN fsr, ini$:swk=VAL(ini$)
  TEXT.READLN fsr, ini$:inf=VAL(ini$)
+ TEXT.READLN fsr, ini$:vsm_mn=VAL(ini$)
+ TEXT.READLN fsr, ini$:vsm_mx=VAL(ini$)
  TEXT.READLN fsr, ini$:vsm=VAL(ini$)
+ TEXT.READLN fsr, ini$:vsmn=VAL(ini$)
  TEXT.READLN fsr, ini$:vse=VAL(ini$)
  TEXT.READLN fsr, ini$:ae1=VAL(ini$)
  TEXT.READLN fsr, ini$:v=VAL(ini$)
@@ -3097,6 +3115,9 @@ ELSE                % Voreinstellung
  swk=0              % Kompassoption
  kp$=""
  vse=1.05           % Geschwindigkeit 
+ vsmn=0.1           % Beschleunigung Simulation
+ vsm_mn=0.02        % Minimaldistanz bei Vollsimulation
+ vsm_mx=2.5*10^8    % Maximaldistanz bei Vollsimulation
  vsm=1.05           % Geschwindigkeit Vollsimulation
  v=0.1              % Umlaufgeschwindigkeit bei Simulation
  sw=1               % Vollsimulation Schalter
@@ -3378,7 +3399,10 @@ TEXT.WRITELN fsr, ed
 TEXT.WRITELN fsr, swu
 TEXT.WRITELN fsr, swk
 TEXT.WRITELN fsr, inf
+TEXT.WRITELN fsr, vsm_mn
+TEXT.WRITELN fsr, vsm_mx
 TEXT.WRITELN fsr, vsm
+TEXT.WRITELN fsr, vsmn
 TEXT.WRITELN fsr, vse
 TEXT.WRITELN fsr, ae1
 TEXT.WRITELN fsr, v
