@@ -1,25 +1,25 @@
 # SSR
-Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with zodiac signs and timepiece covering the solar system in the entire observable universe up to $r=14.25Gpc.$  
-Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), inner cloud (Hills, 1981), Oort cloud (Oort, 1950) and more:
+Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with Zodiac signs and timepiece covering the Solar System in the entire observable Universe up to $r=14.25Gpc.$  
+Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), Inner Cloud (Hills, 1981), Oort Cloud (Oort, 1950) and more:
 
 
 ![figure.\label{pic1}](pic1.jpg)
 
-The sun at $r=0.1au$ astronomical units:
+The Sun at $r=0.1au$ astronomical units:
 
 ![figure.\label{pic2}](pic2.jpg)
 
-Solar system with asteroid and Kuiper belts as well as Heliosphere at $r=58.6au$:
+Solar System with Asteroid and Kuiper Belts as well as Heliosphere at $r=58.6au$:
 
 
 ![figure.\label{pic3}](pic3.jpg)
 
-Inner solar system with orbits, current rotation position of the earth with time and position representation, as well as projection lines to the neighboring planets at $r=1.4au$:
+Inner Solar System with orbits, current rotation position of the Earth with time and position representation, as well as projection lines to the neighboring planets at $r=1.4au$:
 
 
 ![figure.\label{pic4}](pic4.jpg)
 
-Surrounding stars at $r=194.2pc$ and their relative positions to earth, artificial horizon facing south:
+Surrounding stars at $r=194.2pc$ and their relative positions to Earth, artificial horizon facing south:
 
 
 ![figure.\label{pic5}](pic5.jpg)
@@ -27,7 +27,7 @@ Surrounding stars at $r=194.2pc$ and their relative positions to earth, artifici
 
 ![figure.\label{pic6}](pic6.jpg)
 
-The Milky Way at $r=19kpc$ with magellanic clouds, sagittarius dwarf elliptical galaxy Sag DEG (Ibata et al., 1994) and V838 Monocerotis (Brown et al., 2002):
+The Milky Way at $r=19kpc$ with Magellanic Clouds, Sagittarius Dwarf Elliptical Galaxy Sag DEG (Ibata et al., 1994) and V838 Monocerotis (Brown et al., 2002):
 
 ![figure.\label{pic7}](pic7.jpg)
 
@@ -35,7 +35,7 @@ Closer stars with their relative historical position and representation, from $r
 
 ![figure.\label{pic8}](pic8.jpg)
 
-Interactive simulation to display distances between earth, moon and sun with corresponding perspective projection lines:
+Interactive simulation to display distances between Earth, Moon and Sun with corresponding perspective projection lines:
 
 ![figure.\label{pic9}](pic9.jpg)
 
@@ -54,11 +54,11 @@ Towards the HDF from a distance of $r=151Mpc$ within the surrounding galaxy clus
 
 ![figure.\label{pic13}](pic13.jpg)
 
-Most distant quasars on the edge of the observable universe at $r>9Gpc$ (see eg. Wang et al., 2021):
+Most distant quasars on the edge of the observable Universe at $r>9Gpc$ (see eg. Wang et al., 2021):
 
 ![figure.\label{pic14}](pic14.jpg)
 
-Local star cluster containing the signs of the zodiac and surrounding nebulae seen from a distance of $r=3kpc$:
+Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac and surrounding nebulae seen from a distance of $r=3kpc$:
 
 ![figure.\label{pic15}](pic15.jpg)
 
