@@ -31,6 +31,7 @@ pat$="../../SSR/"
 !
 GOSUB einstellungen     % ini
 GOSUB zeit:jx=yr        % Jahr für Simulation
+GOSUB tagnr
 GOSUB mnt               % Monatslängen
 GOSUB dialog            % Hauptmenü
 t37=-1                  % sw Grössenvergleich...
