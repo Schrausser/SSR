@@ -1,6 +1,7 @@
 # SSR
 Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with Zodiac signs and timepiece covering the Solar System in the entire observable Universe up to $r=14.25Gpc.$  
-Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), Inner Cloud (Hills, 1981), Oort Cloud (Oort, 1950) and more:
+Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), Inner Cloud (Hills, 1981), Oort Cloud (Oort, 1950) and more.  
+Solar System parameters of the Sun, planets and Moon are based on the current NASA Planetary Fact Sheets (Williams, 2023). Positions, distances and sizes of the remaining objects come from Wikipedia sources (Wikipedia contributors, 2023), which can be traced back primarily to the `SIMBAD` astronomical database (Strasbourg astronomical Data Center, 2023).
 
 
 ![figure.\label{pic1}](pic1.jpg)
@@ -75,6 +76,13 @@ Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissan
 
 Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. *Bulletin of the Astronomical Institutes of the Netherlands.* 11, 91-110. [ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract](https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract)
 
+Strasbourg astronomical Data Center. (2023). *SIMBAD, Set of Identifications, Measurements and Bibliography for Astronomical Data*. CDS. STRASBOURG, France. [cdsweb.u-strasbg.fr/Simbad.html](http://cdsweb.u-strasbg.fr/Simbad.html)
+
 Tully, R. B., Courtois, H., Hoffman, Y., & Pomarède, D. (2014). The Laniakea supercluster of galaxies. *Nature*. 513, 71-73. [DOI:10.1038/nature13674](https://doi.org/10.1038/nature13674)
 
 Wang, F., et al. (2021). A Luminous Quasar at Redshift 7.642. *The Astrophysical Journal*. 907(1), L1. [DOI:10.3847%2F2041-8213%2Fabd8c6](https://doi.org/10.3847%2F2041-8213%2Fabd8c6)
+
+Wikipedia contributors. (2023). *Wikipedia, The Free Encyclopedia.* Retrieved May 2023 from [www.wikipedia.org](https://www.wikipedia.org)
+
+Williams, D. R. (2023). *Planetary Fact Sheet*. NASA Goddard Space Flight Center.
+[nssdc.gsfc.nasa.gov/planetary/factsheet](https://nssdc.gsfc.nasa.gov/planetary/factsheet/)
