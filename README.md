@@ -55,7 +55,7 @@ Towards the HDF from a distance of $r=151Mpc$ within the surrounding galaxy clus
 
 ![figure.\label{pic13}](pic13.jpg)
 
-Most distant quasars on the edge of the observable Universe at $r>9Gpc$ (see eg. Wang et al., 2021):
+Most distant quasars on the edge of the observable Universe at $r>9Gpc$ (see e.g. Wang et al., 2021):
 
 ![figure.\label{pic14}](pic14.jpg)
 
