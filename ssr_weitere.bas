@@ -22,7 +22,7 @@ FOR igw=1 TO n_gw
  ds_x=gwds[igw]                   %Sekunde                    
  GOSUB dekl
  ! %                              %Rekta Position
- h_x=gwh_[igw]                    %Sunde                      
+ h_x=gwh_[igw]                    %Stunde                      
  m_x=gwm_[igw]                    %Minute
  s_x=gws_[igw]                    %Sekunde            
  GOSUB r_pos
