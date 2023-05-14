@@ -30,6 +30,7 @@ GR.TEXT.SETFONT "courier","",1
 GR.TEXT.ALIGN 1
 GR.TEXT.SIZE txzi
 GR.TEXT.DRAW tx,a06,sy/77,"i Astronomische Parameter:"
+GOSUB source_
 GR.LINE ln, 0,sy/42.6,sx,sy/42.6
 GR.TEXT.SIZE txzi2
 FOR i=1 TO 20

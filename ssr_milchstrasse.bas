@@ -9,6 +9,8 @@
 !!
 t06=t06gm
 ! % Milchstraßensystem %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+dz= 26438                           %Zentrum Entfernung Lj
+gm_d01=dz/pcl_
 IF ae/Lj_>=300
  ! % Darstellung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  d=200000*Lj_                       %Lichtjahre in AE
@@ -28,7 +30,7 @@ IF ae/Lj_>=300
  objname$=""                        %Name
  pro_=gm06                          %Projektionsvariable
  rds=15000                          %Objektradius Lj
- d= 26438                           %Lichtjahre Entfernung
+ d= dz                              %Lichtjahre Entfernung
  dg_x=-29:dm_x=0:ds_x=28            %Deklination
  GOSUB dekl
  h_x=17:m_x=45:s_x=40               %Rekta Position
@@ -41,6 +43,7 @@ objname$="M24"                      %Name
 pro_=gm05                           %Projektionsvariable
 rds=150                             %Objektradius Lj
 d= 12500                            %Lichtjahre Entfernung
+gm_d02=d/pcl_
 dg_x=-18:dm_x=26:ds_x=0             %Deklination
 GOSUB dekl
 h_x=18:m_x=18.4:s_x=0               %Rekta Position
@@ -52,6 +55,7 @@ objname$="Sag DEG"                  %Name
 pro_=gm01                           %Projektionsvariable
 rds=5000                            %Objektradius Lj
 d= 72000                            %Lichtjahre Entfernung
+gm_d03=d/pcl_
 dg_x=-30:dm_x=32:ds_x=43            %Deklination
 GOSUB dekl
 h_x=18:m_x=55:s_x=19.5              %Rekta Position
@@ -63,6 +67,7 @@ objname$="M54"                      %Name
 pro_=gm02                           %Projektionsvariable
 rds=153                             %Objektradius Lj
 d= 87400                            %Lichtjahre Entfernung
+gm_d04=d/pcl_
 dg_x=-30:dm_x=28:ds_x=47.5          %Deklination
 GOSUB dekl
 h_x=18:m_x=55:s_x=3.33              %Rekta Position
@@ -74,6 +79,7 @@ objname$="Kleine Wolke"             %Name
 pro_=gm04                           %Projektionsvariable
 rds=10100/2                         %Objektradius Lj
 d= 209000                           %Lichtjahre Entfernung
+gm_d05=d/pcl_
 dg_x=-73:dm_x=6:ds_x=0              %Deklination
 GOSUB dekl
 h_x=0:m_x=51:s_x=0                  %Rekta Position
@@ -85,6 +91,7 @@ objname$="Große Wolke"              %Name
 pro_=gm03                           %Projektionsvariable
 rds=25100/2                         %Objektradius Lj
 d= 162980                           %Lichtjahre Entfernung
+gm_d06=d/pcl_
 dg_x=-69:dm_x=48:ds_x=0             %Deklination
 GOSUB dekl
 h_x=5:m_x=24:s_x=0                  %Rekta Position
@@ -98,6 +105,7 @@ objname$="_"                        %Name
 pro_=t__                            %Projektionsvariable
 rds=__                              %Objektradius Lj
 d= ____                             %Lichtjahre Entfernung
+gm_d__=d/pcl_
 dg_x=__:dm_x=__:ds_x=__             %Deklination
 GOSUB dekl
 h_x=__:m_x=__:s_x=__                %Rekta Position

@@ -13,10 +13,10 @@ y_08=sy/3                              %700 y unten
 d_08=sy/10 
 ae_08=1
 DO
- sz=630.0/x_08
+ sz=(r_erd_km/10)/x_08
  szv=602/x_08
- szm=173.8/x_08
- sz1=66900.0/x_08
+ szm=(r_mnd_km/10)/x_08
+ sz1=(r_sne_km/10)/x_08
  km=au_/1000*ae_08
  GR.CLS
  GR.TEXT.SETFONT "courier","",1
@@ -40,6 +40,7 @@ DO
  GR.TEXT.SIZE txzi
  GR.COLOR 200,255/2,255/2,255/2,1
  GR.TEXT.DRAW tx,20,40,"i Erde-Mond-Sonne Distanz:"
+ GOSUB sourceg1
  GR.LINE ln, 1,50,sx-1,50
  GR.TEXT.ALIGN 3
  GR.TEXT.SIZE txz3/1.2
@@ -66,4 +67,3 @@ END08:
 tc2=0
 PAUSE100
 ! % END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-

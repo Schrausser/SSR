@@ -9,7 +9,7 @@
 !!
 c=cc
 sc2=29.53
-sw=1                 % // Zeiger und Skalen //
+sw=1                  % // Zeiger und Skalen //
 swe=-1                % // Echtzeit          //
 sws=1                 % // Simulation        //
 v=1                   % // Geschwindigkeit   //
@@ -65,14 +65,14 @@ ENDIF
 ! // Sonne //
 GR.COLOR c,c,c,c/2,1
 GR.CIRCLE cl,mx,my,sx/60                  % // Sonne    //
-GR.ROTATE.START 90-(b1/24)*360/366-upe,mx,my
+GR.ROTATE.START 90-(b1/24)*360/a_-upe,mx,my
 IF sw=1
  GR.COLOR c/2,c,c,c,0
  GR.LINE ln,mx,my-pse,mx,my               % // Zeiger   //
 ENDIF
-GR.ROTATE.START -((b1/24)/25.38)*360,mx,my 
+GR.ROTATE.START -((b1/24)/rt_sne_)*360,mx,my 
 GR.COLOR c,c,0,0,0
-GR.LINE ln, mx,my,mx,my-sy/128.33       % // Rotation //
+GR.LINE ln, mx,my,mx,my-sy/128.33         % // Rotation //
 GR.ROTATE.END
 IF sw=1
  ! // Mondskala //
@@ -101,7 +101,7 @@ ENDIF
 GR.COLOR c,c,c,c,0
 GR.LINE ln,mx,my-pse,mx,my-pse+sx/120     % // Rotation //
 ! // Mond //
-GR.ROTATE.START -(b1/24)/27*360+b/24*360-180-upmd,mx,my-pse
+GR.ROTATE.START -(b1/24)/uf_mnd_t*360+b/24*360-180-upmd,mx,my-pse
 IF sw=1
  GR.COLOR c/2,c,c,c,0
  GR.LINE ln,mx,my-pse+sx/54,mx,my-pse     % // Zeiger   //
@@ -112,7 +112,7 @@ GR.ROTATE.END % // Mond  //
 GR.ROTATE.END % // Erde  //
 GR.ROTATE.END % // Sonne //
 ! // Sonne 2 //
-GR.ROTATE.START 90-((b1/24)/(366*0.62))*360-(upe+upv),mx,my
+GR.ROTATE.START 90-((b1/24)/(a_*uf_vns_j))*360-(upe+upv),mx,my
 IF sw=1
  GR.COLOR c/2,c,c,c,0
  GR.LINE ln,mx,my-psv,mx,my               % // Zeiger   //
@@ -124,7 +124,8 @@ IF sw=1
 ENDIF
 ! // Venus //
 GR.COLOR 160,c,c,c,1
-GR.ROTATE.START ((b1/24)/243)*360,mx,my-psv
+GR.ROTATE.START (b1/(24*rt_vns_))*360,mx,my-psv
+
 GR.ARC ar,mx-sx/108,my-sx/108-psv,mx+sx/108,my+sx/108-psv,0,235,1 % // Venus
 IF sw=1
  GR.COLOR c,c,c,c,0
@@ -135,7 +136,7 @@ GR.LINE ln,mx,my-psv,mx,my-psv-sx/360          % // Rotation //
 GR.ROTATE.END % // Venus   //
 GR.ROTATE.END % // Sonne 2 //
 ! // Sonne 3 //
-GR.ROTATE.START 90-((b1/24)/(366*1.88))*360-(upe+upm),mx,my
+GR.ROTATE.START 90-((b1/24)/(a_*uf_mrs_j))*360-(upe+upm),mx,my
 IF sw=1
  GR.COLOR c/2,c,c,c,0
  GR.LINE ln,mx,my-psm,mx,my               % // Zeiger  //
@@ -153,7 +154,7 @@ ENDIF
 ! // Mars //
 GR.COLOR c/1.5,c,150,150,1
 GR.CIRCLE cl,mx,my-psm,sx/135             % // Mars     //
-GR.ROTATE.START 180-(b/24.03)*360 ,mx,my-psm
+GR.ROTATE.START 180-(b1/(24*rt_mrs_))*360 ,mx,my-psm
 IF sw=1
  GR.COLOR c,c,c,c,0
  GR.LINE ln,mx,my-psm+sx/360,mx,my-psm+sx/98.18  % // Zeiger   //
@@ -163,7 +164,7 @@ GR.LINE ln,mx,my-psm,mx,my-psm+sx/120       % // Rotation //
 GR.ROTATE.END % // Mars    //
 GR.ROTATE.END % // Sonne 3 //
 ! // Sonne 4 //
-GR.ROTATE.START 90-((b1/24)/(366*0.24))*360-(upe+upmk),mx,my
+GR.ROTATE.START 90-((b1/24)/(a_*uf_mkr_j))*360-(upe+upmk),mx,my
 IF sw=1
  GR.COLOR c/2,c,c,c,0
  GR.LINE ln,mx,my-psmk,mx,my %Zeiger
@@ -176,7 +177,7 @@ ENDIF
 ! // Merkur //
 GR.COLOR 180,c,c,0,1
 GR.CIRCLE cl,mx,my-psmk,sx/180             % // Merkur //
-GR.ROTATE.START 180-((b1/24)/58.65)*360 ,mx,my-psmk
+GR.ROTATE.START 180-(b1/(24*rt_mkr_))*360 ,mx,my-psmk
 IF sw=1
  GR.COLOR c,c,c,c,0
  GR.LINE ln,mx,my-psmk+sx/360,mx,my-psmk+sx/120   % // Zeiger //
@@ -192,13 +193,14 @@ GR.TEXT.DRAW tx,sx-2,sy-4,"Inneres Sonnensystem"
 GR.TEXT.ALIGN 1
 GR.TEXT.SIZE txzi
 GR.COLOR c-40, c/2, c/2, c/2, 1
-GR.TEXT.DRAW tx,20,40,"i Planetenrotationen:
+GR.TEXT.DRAW tx,20,40,"i Planetenrotationen:"
+GOSUB sourceg1
 GR.LINE ln,1,sy/46.2,sx-1,sy/46.2
 ! // Werk //
 b=b+v                           % // Stundenzähler,24h //
 b1=b1+v
 IF b>24
- a=a+1                          % // Tageszähler, 366t //
+ a=a+1                          % // Tageszähler, 365.25t //
  b=0
 ENDIF
 GR.TOUCH2 tc2,tx2,ty2
@@ -232,4 +234,3 @@ END_01:
 tc2=0
 PAUSE 100
 ! % END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-

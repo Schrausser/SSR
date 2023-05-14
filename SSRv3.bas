@@ -8,37 +8,37 @@
            © 2020-23 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.6.9"
+_ver$="v3.7.0"
 INCLUDE strg.inc
+INCLUDE ssr.inc
 SENSORS.OPEN 3          %
 SENSORS.OPEN 8          %
 GR.OPEN 255,0,0,0,0,-1  %
 GR.SCREEN sx,sy
 GOSUB global            % Globale Variablen
 c_m=299792458           % c in m/s (exakt, SI)
-c_=c_m*3.6              % c in km/h
 au_=149597870700        % AE in m (exakt, quasi SI)
-Lj_m=c_m*31557600       % Lj in m
-Lj_=Lj_m/au_            % Lj in AE     
-pcm_=30856775814913673  % pc in m (exakt, SI)
-pcl_=pcm_/Lj_m          % pc in Lj
 pc_=648000/PI()         % pc aus AE (IAU, 2016)
 a_=365.25               % Tage pro Jahr
 ca_=360/a_              % Korrekturfaktor bei Simulation
+GOSUB astroparameter    %
+!
+INCLUDE ssr_globals1.bas % Globale Parameter (NASA)
+INCLUDE ssr_globals2.bas % Globale Parameter (CDS SIMBAD)
 !
 GR.BITMAP.CREATE scrs, sx,sy
 pat$="../../SSR/"
-!
-GOSUB einstellungen     % ini
+!   
+INCLUDE ssr_ini.bas     % ini
+GOSUB weitere_ini       %
 GOSUB zeit:jx=yr        % Jahr für Simulation
-GOSUB tagnr
+GOSUB tagnr             % Tagnr für Simulation
 GOSUB mnt               % Monatslängen
 GOSUB dialog            % Hauptmenü
-t37=-1                  % sw Grössenvergleich...
 !
 st0: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 DO 
- GR.SET.STROKE 2
+ GR.SET.STROKE skl      % 1-5
  IF s07=1               % bei Echtzeit
   GOSUB zeit            % Aktuelle Zeit
   !
@@ -55,7 +55,7 @@ DO
   !
   tg=nt+1                 % Tagnummer
   tg=tg+10                %
-  i=((tg/a_)*360)-135    % Tagposition
+  i=((tg/a_)*360)-135     % Tagposition
   j=0                     % Tagzaehler
   jx=yr                   % Jahr
   !
@@ -137,7 +137,7 @@ DO
   ENDIF
   ! % Kuipergürtel %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   d=45
-  gr1=ed*d*1.42
+  gr1=ed*d*c142
   IF u13=1 & ed<500 & AE<100000 %
    GR.COLOR 30,60,60,100,1
    GR.CIRCLE sn,mx,my,ed*d*1.8
@@ -164,7 +164,7 @@ DO
    ELSE
     GR.COLOR cc,0,0,0,1
    ENDIF
-   GR.CIRCLE sn,mx,my,ed*d*1.42
+   GR.CIRCLE sn,mx,my,ed*d*c142
    IF u11=1&ae>1.5&ae<45
     GR.TEXT.ALIGN 2
     GR.COLOR 150,100,100,60,1
@@ -219,7 +219,7 @@ DO
    FOR hr=0 TO 24
     GR.ROTATE.START ((hr/24)*360)-cor,mx,my
     IF hr>0
-     GR.TEXT.DRAW tx,mx,sx*1.42,INT$(24-hr)
+     GR.TEXT.DRAW tx,mx,sx*c142,INT$(24-hr)
     ENDIF
     GR.ROTATE.END
    NEXT
@@ -317,40 +317,40 @@ DO
     GR.TEXT.ALIGN 2
     GR.TEXT.SIZE txz1*1.5 %15
     GR.ROTATE.START 16,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9804)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz01$
     GR.ROTATE.END
     GR.ROTATE.START 46,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9803)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz02$
     GR.ROTATE.END
     GR.ROTATE.START 75,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9802)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz03$
     GR.ROTATE.END
     GR.ROTATE.START 105,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9801)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz04$
     GR.ROTATE.END
     GR.ROTATE.START 135,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9800)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz05$
     GR.ROTATE.END
     GR.ROTATE.START 165,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9811)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz06$
     GR.ROTATE.END
     GR.ROTATE.START 196,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9810)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz07$
     GR.ROTATE.END
     GR.ROTATE.START 226,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9809)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz08$
     GR.ROTATE.END
     GR.ROTATE.START 256,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9808)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz09$
     GR.ROTATE.END
     GR.ROTATE.START 286,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9807)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz10$
     GR.ROTATE.END
     GR.ROTATE.START 316,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9806)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz11$
     GR.ROTATE.END
     GR.ROTATE.START 345,mx,my
-    GR.TEXT.DRAW tx,mx,my-dis,CHR$(9805)
+    GR.TEXT.DRAW tx,mx,my-dis,_tz12$
     GR.ROTATE.END
    ENDIF
    IF ae/Lj_>=800 & ae/Lj_<=90000
@@ -413,7 +413,7 @@ DO
   grh=ed*((jx-170)*Lj_)*c145
   IF grh>40
    GR.CIRCLE cl,mx,my,grh
-   GR.TEXT.DRAW txt,mx,my+grh-c10,"170 Ptolemaeus"
+   GR.TEXT.DRAW txt,mx,my+grh-c10,"170 Ptolemaeus" % [1]
   ENDIF
   grh=ed*((jx-0)*Lj_)*c145
   IF grh>40
@@ -423,17 +423,17 @@ DO
   grh=ed*((jx+1200)*Lj_)*c145
   IF grh>40
    GR.CIRCLE cl,mx,my,grh
-   GR.TEXT.DRAW txt,mx,my+grh-c10,"-1200 Troja"
+   GR.TEXT.DRAW txt,mx,my+grh-c10,"-1200 Troja" %[2]
   ENDIF
   grh=ed*((jx+3500)*Lj_)*c145
   IF grh>40
    GR.CIRCLE cl,mx,my,grh
-   GR.TEXT.DRAW txt,mx,my+grh-c10,"-3500 Noah" %
+   GR.TEXT.DRAW txt,mx,my+grh-c10,"-3500 Noah" %[3]
   ENDIF
   grh=ed*((jx+5500)*Lj_)*c145
   IF grh>40
    GR.CIRCLE cl,mx,my,grh
-   GR.TEXT.DRAW txt,mx,my+grh-c10,"-5500 Jahr der Welt" %
+   GR.TEXT.DRAW txt,mx,my+grh-c10,"-5500 Jahr der Welt" %[3]
   ENDIF
   grh=ed*((jx+10000)*Lj_)*c145
   IF grh>40
@@ -481,38 +481,44 @@ DO
    GR.TEXT.DRAW txt,mx,my+grh-c10,"-4.6Ga Hadaikum"
   ENDIF
  ENDIF 
+!!
+References:
+[1]Halma, N. (1813). Composition Mathematique de Claude Ptolemee. Vorwort. Paris.
+[2]Eratosthenes. (-220). Chronographai. Verloren, nach Kokkinos, 2009.
+[3]Petavius, D. (1630). Uranologion sive systema variorum authorum. S. 351. Lutetiae Parisiorum.
+!!
  ! % Grössenvergleich %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- IF t37=1 
+ IF swvgl=1 
   dst=500
   SW.BEGIN vglst
    SW.CASE 4 %%%%%%%%%%%%%%%%%
-    gr1=(ed*3.55)*1.42
+    gr1=(ed*r_btg_ae)*c142
     GR.COLOR (cc-155),cc,0,0,1
     vglst$="'Beteigeuze'"
     SW.BREAK
    SW.CASE 6 %%%%%%%%%%%%%%%%% 
     dst=Lj_*1400
-    gr1=(ed*12*Lj_)*1.42
+    gr1=(ed*r_orn_ae)*c142
     GR.COLOR cc/3,cc,cc/3,cc/2,1
     vglst$="'Orionnebel'"
     SW.BREAK
    SW.CASE 2 %%%%%%%%%%%%%%%%%
-    gr1=(ed*0.008)*1.42
+    gr1=(ed*r_srs_ae)*c142
     GR.COLOR (cc-55),cc,cc,0,1
     vglst$="'Sirius'"
     SW.BREAK
    SW.CASE 1 %%%%%%%%%%%%%%%%%
-    gr1=(ed*0.006)*1.42
+    gr1=(ed*r_acn_ae)*c142
     GR.COLOR cc-20,cc,cc,cc,1
-    vglst$="'"+CHR$(945)+" Centauri A'"
+    vglst$="'"+_ga$+" Centauri A'"
     SW.BREAK
    SW.CASE 3 %%%%%%%%%%%%%%%%%
-    gr1=(ed*0.2)*1.42
+    gr1=(ed*r_adb_ae)*c142
     GR.COLOR (cc-40),cc,0,0,1
     vglst$="'Aldebaran'"
     SW.BREAK
    SW.CASE 5 %%%%%%%%%%%%%%%%%
-    gr1=(ed*10.75)*1.42
+    gr1=(ed*r_rsg_ae)*c142
     GR.COLOR (cc-155),cc,0,0,1
     vglst$="'RSGC2-01'"
     SW.BREAK
@@ -533,6 +539,7 @@ DO
  IF gx00=1 & ae*pc_>cc*10^3  THEN GOSUB galaxien
  IF gh00=1 & ae*pc_>1.3*10^6 THEN GOSUB haufen
  IF gq00=1 & ae*pc_>2*10^8   THEN GOSUB quasare
+ IF gw00=1                   THEN GOSUB weitere
  !
  ! % Simulation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  jc=i-(j*360)
@@ -661,6 +668,8 @@ DO
    IF ty<=sy*2/3 & ty>=sy/3
     IF tx<mx THEN v=v+vsmn
     IF tx>mx THEN v=v-vsmn
+    IF v>10 THEN v=10           % Grenzwert 100x
+    IF v<-10 THEN v=-10         %
    ENDIF
   ENDIF
  ENDIF
@@ -675,11 +684,11 @@ DO
    IF ae<=vsm_mn:sw=1:PAUSE 2000:ENDIF
   ENDIF
   GOSUB zeit
-  IF sec<>sec1
+  IF sec<>sec1                % Geschwindigkeit
    sec1=sec
-   v_=(SQR((ae-ae1)^2))*3600  % AE/h
+   v_=ABS(ae-ae1)*3600        % AE/h
    v_c=v_*(au_/1000)
-   v_c=v_c/c_                 % Prozent c
+   v_c=v_c/c_                 % c
    ae1=ae
   ENDIF
  ENDIF
@@ -746,6 +755,7 @@ dtx2=sy/40              % Text Abstand 2
 dtx3=sy/100             % Text Abstand 3
 dtx4=sx/100             % Text Abstand 4
 c145=1.45               % sx/760 %1.45 corr
+c142=1.42               % 1.42 corr
 c10=sy/231              % 10 corr
 c01=sx/1080             % 1 corr
 c02=c01*2               % 2 corr
@@ -758,7 +768,24 @@ pl04=sx/600             % Größe Mars
 pl05=sx/450             % Größe Uranus,Neptun
 pl06=sx/800             % Größe Pluto
 gr_0=sx/400             % allg. Objekt Größe 
+swvgl=-1                % sw Grössenvergleich
 !ed=ed/aed              % Anfangsentfernung
+RETURN
+! Bei Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+astroparameter:
+pcm_=pc_*au_            % pc in m 
+c_=c_m*3.6              % c in km/h
+Lj_m=c_m*31557600       % Lj in m
+Lj_=Lj_m/au_            % Lj in AE  
+pcl_=pcm_/Lj_m          % pc in Lj
+GOSUB sterne            %
+GOSUB sternhaufen       %
+GOSUB nebel             %
+GOSUB milchstrasse      %
+GOSUB galaxien          %
+GOSUB haufen            %
+GOSUB quasare           %
+GOSUB weitere_in        %
 RETURN
 ! % Tagesanzahl %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tagnr: 
@@ -817,6 +844,7 @@ milchstrasse::INCLUDE ssr_milchstrasse.bas:RETURN
 galaxien::INCLUDE ssr_galaxien.bas:RETURN
 haufen::  INCLUDE ssr_haufen.bas:  RETURN
 quasare:: INCLUDE ssr_quasare.bas: RETURN 
+weitere:: INCLUDE ssr_weitere.bas: RETURN 
 ! % Beobachtbares Universum r=14.25 Gpc %%%%%%%%%%%%%%%%%%
 ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ! % Objektdarstellung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -856,12 +884,10 @@ s11=1
 RETURN
 ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dialog: 
-smb$=CHR$(9989)
-smq$=CHR$(9654)
 GOSUB anfangsentfernung %aed$
 GOSUB menu
 std:
-ARRAY.LOAD sel$[],o05$,o06$,o12$,o13$,o14$,o15$,o17$,o16$,o10$,o09$,o07$,o11$,"Ok","exit"
+ARRAY.LOAD sel$[],o05$,o06$,o12$,o13$,o14$,o15$,o17$,o16$,o18$,o10$,o09$,o07$,o11$,"Ok","exit"
 DIALOG.SELECT sel, sel$[],_name$+" SONNENSYSTEMROTATION "+_ver$+" - Ebenen:"
 IF sel=1:GOSUB dialog1:ENDIF 
 IF sel=2:GOSUB dialog2:ENDIF 
@@ -871,12 +897,13 @@ IF sel=5:GOSUB dialog6:ENDIF
 IF sel=6:GOSUB dialog7:ENDIF
 IF sel=7:GOSUB dialog8:ENDIF
 IF sel=8:GOSUB dialog9:ENDIF
-IF sel=9:GOSUB dialog10:ENDIF
-IF sel=10:s09=s09*-1:ENDIF
-IF sel=11:GOSUB dialog3:ENDIF
-IF sel=12:s11=s11*-1:ENDIF
-IF sel=13:RETURN:   ENDIF
-IF sel=14:GOSUB fin: END:  ENDIF
+IF sel=9:GOSUB dialog11:ENDIF
+IF sel=10:GOSUB dialog10:ENDIF
+IF sel=11:s09=s09*-1:ENDIF
+IF sel=12:GOSUB dialog3:ENDIF
+IF sel=13:s11=s11*-1:ENDIF
+IF sel=14:RETURN:   ENDIF
+IF sel=15:GOSUB fin: END:  ENDIF
 GOSUB menu
 GOTO std
 RETURN
@@ -898,9 +925,11 @@ IF gh00=1:o17$=smb$+"  Galaxienhaufen...":ENDIF
 IF gh00=-1:o17$="     Galaxienhaufen aus":ENDIF
 IF gq00=1:o16$=smb$+"  Quasare...":ENDIF
 IF gq00=-1:o16$="     Quasare aus":ENDIF
+IF gw00=1:o18$=smb$+"  Weitere...":ENDIF
+IF gw00=-1:o18$="     Weitere aus":ENDIF
 IF s07=1:o07$=smq$+"  Echtzeit @ "+aed$:ENDIF
 IF s07=-1:o07$= smq$+ "  Simulation @ "+aed$:ENDIF
-IF s07=0:o07$=CHR$(8734)+"  Vollsimulation":ENDIF
+IF s07=0:o07$=oo$+"  Vollsimulation":ENDIF
 !IF s07=2:o07$="i  Information":ENDIF
 IF s09=1:o09$=smb$+"  Text":ENDIF
 IF s09=-1:o09$="     Text aus":ENDIF
@@ -961,22 +990,22 @@ IF u00=1:q00$=smb$+"  Ebene an":ENDIF
 IF u00=-1: q00$="     Ebene aus":ENDIF
 IF s00=1:q20$=smb$+"  Umlaufbahnen":ENDIF
 IF s00=-1: q20$="     Umlaufbahnen aus":ENDIF
-IF u01=1:q01$=smb$+"  Merkur [0.4AE]":ENDIF
-IF u01=-1: q01$="     Merkur [0.4AE]":ENDIF
-IF u02=1:q02$=smb$+"  Venus [0.7AE]":ENDIF
-IF u02=-1: q02$="     Venus [0.7AE]":ENDIF
-IF u03=1:q03$=smb$+"  Mars [1.5AE]":ENDIF
-IF u03=-1: q03$="     Mars [1.5AE]":ENDIF
+IF u01=1:q01$=smb$+"  Merkur ["+STR$(ROUND(d_mkr_ae,1))+"AE]":ENDIF
+IF u01=-1: q01$="     Merkur ["+STR$(ROUND(d_mkr_ae,1))+"AE]":ENDIF
+IF u02=1:q02$=smb$+"  Venus ["+STR$(ROUND(d_vns_ae,1))+"AE]":ENDIF
+IF u02=-1: q02$="     Venus ["+STR$(ROUND(d_vns_ae,1))+"AE]":ENDIF
+IF u03=1:q03$=smb$+"  Mars ["+STR$(ROUND(d_mrs_ae,1))+"AE]":ENDIF
+IF u03=-1: q03$="     Mars ["+STR$(ROUND(d_mrs_ae,1))+"AE]":ENDIF
 IF u04=1:q04$=smb$+"  Asteroidengürtel [~3.3AE]":ENDIF
 IF u04=-1: q04$="     Asteroidengürtel [~3.3AE]":ENDIF
-IF u05=1:q05$=smb$+"  Jupiter [5.2AE]":ENDIF
-IF u05=-1: q05$="     Jupiter [5.2AE]":ENDIF
-IF u06=1:q06$=smb$+"  Saturn [9.6AE]":ENDIF
-IF u06=-1: q06$="     Saturn [9.6AE]":ENDIF
-IF u07=1:q07$=smb$+"  Uranus [19.2AE]":ENDIF
-IF u07=-1: q07$="     Uranus [19.2AE]":ENDIF
-IF u08=1:q08$=smb$+"  Neptun [30.1AE]":ENDIF
-IF u08=-1: q08$="     Neptun [30.1AE]":ENDIF
+IF u05=1:q05$=smb$+"  Jupiter ["+STR$(ROUND(d_jpt_ae,1))+"AE]":ENDIF
+IF u05=-1: q05$="     Jupiter ["+STR$(ROUND(d_jpt_ae,1))+"AE]":ENDIF
+IF u06=1:q06$=smb$+"  Saturn ["+STR$(ROUND(d_stn_ae,1))+"AE]":ENDIF
+IF u06=-1: q06$="     Saturn ["+STR$(ROUND(d_stn_ae,1))+"AE]":ENDIF
+IF u07=1:q07$=smb$+"  Uranus ["+STR$(ROUND(d_urs_ae,1))+"AE]":ENDIF
+IF u07=-1: q07$="     Uranus ["+STR$(ROUND(d_urs_ae,1))+"AE]":ENDIF
+IF u08=1:q08$=smb$+"  Neptun ["+STR$(ROUND(d_npt_ae,1))+"AE]":ENDIF
+IF u08=-1: q08$="     Neptun ["+STR$(ROUND(d_npt_ae,1))+"AE]":ENDIF
 IF u13=1:q13$=smb$+"  Kuipergürtel [~40AE]":ENDIF
 IF u13=-1: q13$="     Kuipergürtel [~40AE]":ENDIF
 IF u14=1:q14$=smb$+"  Heliosphäre [~100AE]":ENDIF
@@ -1168,144 +1197,144 @@ RETURN
 menu2:
 IF t00=1:p00$=smb$+"  Ebene an":ENDIF
 IF t00=-1: p00$="     Ebene aus":ENDIF
-IF t01=1:p01$=smb$+"  "+CHR$(945)+" Centauri [1.3pc]":ENDIF
-IF t01=-1: p01$="     "+CHR$(945)+" Centauri [1.3pc]":  ENDIF
-IF t82=1:p82$=smb$+"  Barnards Stern [1.8pc]":ENDIF
-IF t82=-1: p82$="     Barnards Stern [1.8pc]":ENDIF
-IF t05=1:p05$=smb$+"  Sirius [2.6pc]":ENDIF
-IF t05=-1: p05$="     Sirius [2.6pc]":ENDIF
-IF t35=1:p35$=smb$+"  Procyon [3.5pc]":ENDIF
-IF t35=-1: p35$="     Procyon [3.5pc]":ENDIF
-IF t08=1:p08$=smb$+"  Altair [5.1pc]":ENDIF
-IF t08=-1: p08$="     Altair [5.1pc]":ENDIF
-IF t07=1:p07$=smb$+"  Vega [7.7pc]":ENDIF
-IF t07=-1: p07$="     Vega [7.7pc]":ENDIF
-IF t36=1:p36$=smb$+"  Fomalhaut [7.7pc]":ENDIF
-IF t36=-1: p36$="     Fomalhaut [7.7pc]":ENDIF
-IF t09=1:p09$=smb$+"  Pollux [10.3pc]":ENDIF
-IF t09=-1: p09$="     Pollux [10.3pc]":ENDIF
-IF t38=1:p38$=smb$+"  Denebola [11.0pc]":ENDIF
-IF t38=-1: p38$="     Denebola [11.0pc]":ENDIF
-IF t03=1:p03$=smb$+"  Arkturus [11.3pc]":ENDIF
-IF t03=-1: p03$="     Arkturus [11.3pc]":ENDIF
-IF t11=1:p11$=smb$+"  Capella [13.2pc]":ENDIF
-IF t11=-1: p11$="     Capella [13.2pc]":ENDIF
-IF t12=1:p12$=smb$+"  Rasalhague [14.9pc]":ENDIF
-IF t12=-1: p12$="     Rasalhague [14.9pc]":ENDIF
-IF t33=1:p33$=smb$+"  Alderamin [15.0pc]":ENDIF
-IF t33=-1: p33$="     Alderamin [15.0pc]":ENDIF
-IF t10=1:p10$=smb$+"  Castor [15.6pc]":ENDIF
-IF t10=-1: p10$="     Castor [15.6pc]":ENDIF
-IF t83=1:p83$=smb$+"  Caph [16.8pc]":ENDIF
-IF t83=-1: p83$="     Caph [16.8pc]":ENDIF
-IF t02=1:p02$=smb$+"  Aldebaran [20.0pc]":ENDIF
-IF t02=-1: p02$="     Aldebaran [20.0pc]":  ENDIF
-IF t84=1:p84$=smb$+"  Hamal [20.2pc]":ENDIF
-IF t84=-1: p84$="     Hamal [20.2pc]":ENDIF
-IF t85=1:p85$=smb$+"  Unuk [22.7pc]":ENDIF
-IF t85=-1: p85$="     Unuk [22.7pc]":ENDIF
-IF t86=1:p86$=smb$+"  Alphecca [23.0pc]":ENDIF
-IF t86=-1: p86$="     Alphecca [23.0pc]":ENDIF
-IF t13=1:p13$=smb$+"  Regulus [23.8pc]":ENDIF
-IF t13=-1: p13$="     Regulus [23.8pc]":ENDIF
-IF t87=1:p87$=smb$+"  Merak [24.4pc]":ENDIF
-IF t87=-1: p87$="     Merak [24.4pc]":ENDIF
-IF t88=1:p88$=smb$+"  Ankaa [25.2pc]":ENDIF
-IF t88=-1: p88$="     Ankaa [25.2pc]":ENDIF
-IF t89=1:p89$=smb$+"  Alioth [25.3pc]":ENDIF
-IF t89=-1: p89$="     Alioth [25.3pc]":ENDIF
-IF t90=1:p90$=smb$+"  Phecda [25.5pc]":ENDIF
-IF t90=-1: p90$="     Phecda [25.5pc]":ENDIF
-IF t91=1:p91$=smb$+"  Gacrux [26.7pc]":ENDIF
-IF t91=-1: p91$="     Gacrux [26.7pc]":ENDIF
-IF t14=1:p14$=smb$+"  Algol [28.5pc]":ENDIF
-IF t14=-1: p14$="     Algol [28.5pc]":ENDIF
-IF t92=1:p92$=smb$+"  Alpheratz [29.8pc]":ENDIF
-IF t92=-1: p92$="     Alpheratz [29.8pc]":ENDIF
-IF t93=1:p93$=smb$+"  Alnair [31.0pc]":ENDIF
-IF t93=-1: p93$="     Alnair [31.0pc]":ENDIF
-IF t94=1:p94$=smb$+"  Alhena [33.4pc]":ENDIF
-IF t94=-1: p94$="     Alhena [33.4pc]":ENDIF
-IF t95=1:p95$=smb$+"  Vindemiatrix [33.7pc]":ENDIF
-IF t95=-1: p95$="     Vindemiatrix [33.7pc]":ENDIF
-IF t96=1:p96$=smb$+"  Dubhe [37.7pc]":ENDIF
-IF t96=-1: p96$="     Dubhe [37.7pc]":ENDIF
-IF t97=1:p97$=smb$+"  Algieba [39.9pc]":ENDIF
-IF t97=-1: p97$="     Algieba [39.9pc]":ENDIF
-IF t100=1:p100$=smb$+"  Kochab [40.2pc]":ENDIF
-IF t100=-1: p100$="     Kochab [40.2pc]":ENDIF
-IF t101=1:p101$=smb$+"  Markab [40.8pc]":ENDIF
-IF t101=-1: p101$="     Markab [40.8pc]":ENDIF
-IF t102=1:p102$=smb$+"  Elnath [41.1pc]":ENDIF
-IF t102=-1: p102$="     Elnath [41.1pc]":ENDIF
-IF t103=1:p103$=smb$+"  Achernar [42.6pc]":ENDIF
-IF t103=-1: p103$="     Achernar [42.6pc]":ENDIF
-IF t104=1:p104$=smb$+"  Kaus Australis [43.9pc]":ENDIF
-IF t104=-1: p104$="     Kaus Australis [43.9pc]":ENDIF
-IF t105=1:p105$=smb$+"  Eltanin [47.2pc]":ENDIF
-IF t105=-1: p105$="     Eltanin [47.2pc]":ENDIF
-IF t106=1:p106$=smb$+"  Alphard [54.3pc]":ENDIF
-IF t106=-1: p106$="     Alphard [54.3pc]":ENDIF
-IF t107=1:p107$=smb$+"  Scheat [60.1pc]":ENDIF
-IF t107=-1: p107$="     Scheat [60.1pc]":ENDIF
-IF t108=1:p108$=smb$+"  Mirach [60.4pc]":ENDIF
-IF t108=-1: p108$="     Mirach [60.4pc]":ENDIF
-IF t109=1:p109$=smb$+"  Nunki [69.9pc]":ENDIF
-IF t109=-1: p109$="     Nunki [69.9pc]":ENDIF
-IF t110=1:p110$=smb$+"  Schedar [69.9pc]":ENDIF
-IF t110=-1: p110$="     Schedar [69.9pc]":ENDIF
-IF t111=1:p111$=smb$+"  Izar [72.4pc]":ENDIF
-IF t111=-1: p111$="     Izar [72.4pc]":ENDIF
-IF t112=1:p112$=smb$+"  Menkar [76.4pc]":ENDIF
-IF t112=-1: p112$="     Menkar [76.4pc]":ENDIF
-IF t113=1:p113$=smb$+"  Bellatrix [76.7pc]":ENDIF
-IF t113=-1: p113$="     Bellatrix [76.7pc]":ENDIF
-IF t32=1:p32$=smb$+"  Spica [83.0pc]":ENDIF
-IF t32=-1: p32$="     Spica [83.0pc]":ENDIF
-IF t114=1:p114$=smb$+"  Deneb Kaitos [84.4pc]":ENDIF
-IF t114=-1: p114$="     Deneb Kaitos [84.4pc]":ENDIF
-IF t115=1:p115$=smb$+"  Canopus [95.1pc]":ENDIF
-IF t115=-1: p115$="     Canopus [95.1pc]":ENDIF
-IF t116=1:p116$=smb$+"  Acrux [98.2pc]":ENDIF
-IF t116=-1: p116$="     Acrux [98.2pc]":ENDIF
-IF t117=1:p117$=smb$+"  Hadar [98.2pc]":ENDIF
-IF t117=-1: p117$="     Hadar [98.2pc]":ENDIF
-IF t118=1:p118$=smb$+"  Polaris [122.7pc]":ENDIF
-IF t118=-1: p118$="     Polaris [122.7pc]":ENDIF
-IF t15=1:p15$=smb$+"  Mira [130.0pc]":ENDIF
-IF t15=-1: p15$="     Mira [130.0pc]":ENDIF
-IF t119=1:p119$=smb$+"  Adhara [131.9pc]":ENDIF
-IF t119=-1: p119$="     Adhara [131.9pc]":ENDIF
-IF t120=1:p120$=smb$+"  Algenib [144.2pc]":ENDIF
-IF t120=-1: p120$="     Algenib [144.2pc]":ENDIF
-IF t121=1:p121$=smb$+"  Mirfak [156.4pc]":ENDIF
-IF t121=-1: p121$="     Mirfak [156.4pc]":ENDIF
-IF t17=1:p17$=smb$+"  Antares [170.0pc]":ENDIF
-IF t17=-1: p17$="     Antares [170.0pc]":ENDIF
-IF t122=1:p122$=smb$+"  Shaula [174.8pc]":ENDIF
-IF t122=-1: p122$="     Shaula [174.8pc]":ENDIF
-IF t18=1:p18$=smb$+"  Beteigeuze [197.0pc]":ENDIF
-IF t18=-1: p18$="     Beteigeuze [197.0pc]":ENDIF
-IF t123=1:p123$=smb$+"  Saiph [199.4pc]":ENDIF
-IF t123=-1: p123$="     Saiph [199.4pc]":ENDIF
-IF t124=1:p124$=smb$+"  Enif [211.7pc]":ENDIF
-IF t124=-1: p124$="     Enif [211.7pc]":ENDIF
-IF t19=1:p19$=smb$+"  Rigel [265.0pc]":ENDIF
-IF t19=-1: p19$="     Rigel [265.0pc]":ENDIF
-IF t125=1:p125$=smb$+"  Mintaka [368.1pc]":ENDIF
-IF t125=-1: p125$="     Mintaka [368.1pc]":ENDIF
-IF t126=1:p126$=smb$+"  Alnitak [386.5pc]":ENDIF
-IF t126=-1: p126$="     Alnitak [386.5pc]":ENDIF
-IF t127=1:p127$=smb$+"  Alnilam [613.5pc]":ENDIF
-IF t127=-1: p127$="     Alnilam [613.5pc]":ENDIF
-IF t128=1:p128$=smb$+"  Arneb [674.8pc]":ENDIF
-IF t128=-1: p128$="     Arneb [674.8pc]":ENDIF
-IF t20=1:p20$=smb$+"  Deneb [0.8kpc]":ENDIF
-IF t20=-1: p20$="     Deneb [802.1pc]":ENDIF
-IF t129=1:p129$=smb$+"  RSGC2-01 [5.8kpc]":ENDIF
-IF t129=-1: p129$="     RSGC2-01 [5.8kpc]":ENDIF
-IF t130=1:p130$=smb$+"  RSGC-F01 [6.7kpc]":ENDIF
-IF t130=-1: p130$="     RSGC-F01 [6.7kpc]":ENDIF
+IF t01=1:p01$=smb$+"  "+_ga$+" Centauri ["+STR$(ROUND(s_d01,1))+"pc]":ENDIF
+IF t01=-1: p01$="     "+_ga$+" Centauri ["+STR$(ROUND(s_d01,1))+"pc]":  ENDIF
+IF t82=1:p82$=smb$+"  Barnards Stern ["+STR$(ROUND(s_d02,1))+"pc]":ENDIF
+IF t82=-1: p82$="     Barnards Stern ["+STR$(ROUND(s_d02,1))+"pc]":ENDIF
+IF t05=1:p05$=smb$+"  Sirius ["+STR$(ROUND(s_d03,1))+"pc]":ENDIF
+IF t05=-1: p05$="     Sirius ["+STR$(ROUND(s_d03,1))+"pc]":ENDIF
+IF t35=1:p35$=smb$+"  Procyon ["+STR$(ROUND(s_d04,1))+"pc]":ENDIF
+IF t35=-1: p35$="     Procyon ["+STR$(ROUND(s_d04,1))+"pc]":ENDIF
+IF t08=1:p08$=smb$+"  Altair ["+STR$(ROUND(s_d05,1))+"pc]":ENDIF
+IF t08=-1: p08$="     Altair ["+STR$(ROUND(s_d05,1))+"pc]":ENDIF
+IF t07=1:p07$=smb$+"  Vega ["+STR$(ROUND(s_d06,1))+"pc]":ENDIF
+IF t07=-1: p07$="     Vega ["+STR$(ROUND(s_d06,1))+"pc]":ENDIF
+IF t36=1:p36$=smb$+"  Fomalhaut ["+STR$(ROUND(s_d07,1))+"pc]":ENDIF
+IF t36=-1: p36$="     Fomalhaut ["+STR$(ROUND(s_d07,1))+"pc]":ENDIF
+IF t09=1:p09$=smb$+"  Pollux ["+STR$(ROUND(s_d08,1))+"pc]":ENDIF
+IF t09=-1: p09$="     Pollux ["+STR$(ROUND(s_d08,1))+"pc]":ENDIF
+IF t38=1:p38$=smb$+"  Denebola ["+STR$(ROUND(s_d09,1))+"pc]":ENDIF
+IF t38=-1: p38$="     Denebola ["+STR$(ROUND(s_d09,1))+"pc]":ENDIF
+IF t03=1:p03$=smb$+"  Arkturus ["+STR$(ROUND(s_d10,1))+"pc]":ENDIF
+IF t03=-1: p03$="     Arkturus ["+STR$(ROUND(s_d10,1))+"pc]":ENDIF
+IF t11=1:p11$=smb$+"  Capella ["+STR$(ROUND(s_d11,1))+"pc]":ENDIF
+IF t11=-1: p11$="     Capella ["+STR$(ROUND(s_d11,1))+"pc]":ENDIF
+IF t12=1:p12$=smb$+"  Rasalhague ["+STR$(ROUND(s_d12,1))+"pc]":ENDIF
+IF t12=-1: p12$="     Rasalhague ["+STR$(ROUND(s_d12,1))+"pc]":ENDIF
+IF t33=1:p33$=smb$+"  Alderamin ["+STR$(ROUND(s_d13,1))+"pc]":ENDIF
+IF t33=-1: p33$="     Alderamin ["+STR$(ROUND(s_d13,1))+"pc]":ENDIF
+IF t10=1:p10$=smb$+"  Castor ["+STR$(ROUND(s_d14,1))+"pc]":ENDIF
+IF t10=-1: p10$="     Castor ["+STR$(ROUND(s_d14,1))+"pc]":ENDIF
+IF t83=1:p83$=smb$+"  Caph ["+STR$(ROUND(s_d15,1))+"pc]":ENDIF
+IF t83=-1: p83$="     Caph ["+STR$(ROUND(s_d15,1))+"pc]":ENDIF
+IF t02=1:p02$=smb$+"  Aldebaran ["+STR$(ROUND(s_d16,1))+"pc]":ENDIF
+IF t02=-1: p02$="     Aldebaran ["+STR$(ROUND(s_d16,1))+"pc]":  ENDIF
+IF t84=1:p84$=smb$+"  Hamal ["+STR$(ROUND(s_d17,1))+"pc]":ENDIF
+IF t84=-1: p84$="     Hamal ["+STR$(ROUND(s_d17,1))+"pc]":ENDIF
+IF t85=1:p85$=smb$+"  Unuk ["+STR$(ROUND(s_d18,1))+"pc]":ENDIF
+IF t85=-1: p85$="     Unuk ["+STR$(ROUND(s_d18,1))+"pc]":ENDIF
+IF t86=1:p86$=smb$+"  Alphecca ["+STR$(ROUND(s_d19,1))+"pc]":ENDIF
+IF t86=-1: p86$="     Alphecca ["+STR$(ROUND(s_d19,1))+"pc]":ENDIF
+IF t13=1:p13$=smb$+"  Regulus ["+STR$(ROUND(s_d20,1))+"pc]":ENDIF
+IF t13=-1: p13$="     Regulus ["+STR$(ROUND(s_d20,1))+"pc]":ENDIF
+IF t87=1:p87$=smb$+"  Merak ["+STR$(ROUND(s_d21,1))+"pc]":ENDIF
+IF t87=-1: p87$="     Merak ["+STR$(ROUND(s_d21,1))+"pc]":ENDIF
+IF t88=1:p88$=smb$+"  Ankaa ["+STR$(ROUND(s_d22,1))+"pc]":ENDIF
+IF t88=-1: p88$="     Ankaa ["+STR$(ROUND(s_d22,1))+"pc]":ENDIF
+IF t89=1:p89$=smb$+"  Alioth ["+STR$(ROUND(s_d23,1))+"pc]":ENDIF
+IF t89=-1: p89$="     Alioth ["+STR$(ROUND(s_d23,1))+"pc]":ENDIF
+IF t90=1:p90$=smb$+"  Phecda ["+STR$(ROUND(s_d24,1))+"pc]":ENDIF
+IF t90=-1: p90$="     Phecda ["+STR$(ROUND(s_d24,1))+"pc]":ENDIF
+IF t91=1:p91$=smb$+"  Gacrux ["+STR$(ROUND(s_d25,1))+"pc]":ENDIF
+IF t91=-1: p91$="     Gacrux ["+STR$(ROUND(s_d25,1))+"pc]":ENDIF
+IF t14=1:p14$=smb$+"  Algol ["+STR$(ROUND(s_d26,1))+"pc]":ENDIF
+IF t14=-1: p14$="     Algol ["+STR$(ROUND(s_d26,1))+"pc]":ENDIF
+IF t92=1:p92$=smb$+"  Alpheratz ["+STR$(ROUND(s_d27,1))+"pc]":ENDIF
+IF t92=-1: p92$="     Alpheratz ["+STR$(ROUND(s_d27,1))+"pc]":ENDIF
+IF t93=1:p93$=smb$+"  Alnair ["+STR$(ROUND(s_d28,1))+"pc]":ENDIF
+IF t93=-1: p93$="     Alnair ["+STR$(ROUND(s_d28,1))+"pc]":ENDIF
+IF t94=1:p94$=smb$+"  Alhena ["+STR$(ROUND(s_d29,1))+"pc]":ENDIF
+IF t94=-1: p94$="     Alhena ["+STR$(ROUND(s_d29,1))+"pc]":ENDIF
+IF t95=1:p95$=smb$+"  Vindemiatrix ["+STR$(ROUND(s_d30,1))+"pc]":ENDIF
+IF t95=-1: p95$="     Vindemiatrix ["+STR$(ROUND(s_d30,1))+"pc]":ENDIF
+IF t96=1:p96$=smb$+"  Dubhe ["+STR$(ROUND(s_d31,1))+"pc]":ENDIF
+IF t96=-1: p96$="     Dubhe ["+STR$(ROUND(s_d31,1))+"pc]":ENDIF
+IF t97=1:p97$=smb$+"  Algieba ["+STR$(ROUND(s_d32,1))+"pc]":ENDIF
+IF t97=-1: p97$="     Algieba ["+STR$(ROUND(s_d32,1))+"pc]":ENDIF
+IF t100=1:p100$=smb$+"  Kochab ["+STR$(ROUND(s_d33,1))+"pc]":ENDIF
+IF t100=-1: p100$="     Kochab ["+STR$(ROUND(s_d33,1))+"pc]":ENDIF
+IF t101=1:p101$=smb$+"  Markab ["+STR$(ROUND(s_d34,1))+"pc]":ENDIF
+IF t101=-1: p101$="     Markab ["+STR$(ROUND(s_d34,1))+"pc]":ENDIF
+IF t102=1:p102$=smb$+"  Elnath ["+STR$(ROUND(s_d35,1))+"pc]":ENDIF
+IF t102=-1: p102$="     Elnath ["+STR$(ROUND(s_d35,1))+"pc]":ENDIF
+IF t103=1:p103$=smb$+"  Achernar ["+STR$(ROUND(s_d36,1))+"pc]":ENDIF
+IF t103=-1: p103$="     Achernar ["+STR$(ROUND(s_d36,1))+"pc]":ENDIF
+IF t104=1:p104$=smb$+"  Kaus Australis ["+STR$(ROUND(s_d37,1))+"pc]":ENDIF
+IF t104=-1: p104$="     Kaus Australis ["+STR$(ROUND(s_d37,1))+"pc]":ENDIF
+IF t105=1:p105$=smb$+"  Eltanin ["+STR$(ROUND(s_d38,1))+"pc]":ENDIF
+IF t105=-1: p105$="     Eltanin ["+STR$(ROUND(s_d38,1))+"pc]":ENDIF
+IF t106=1:p106$=smb$+"  Alphard ["+STR$(ROUND(s_d39,1))+"pc]":ENDIF
+IF t106=-1: p106$="     Alphard ["+STR$(ROUND(s_d39,1))+"pc]":ENDIF
+IF t107=1:p107$=smb$+"  Scheat ["+STR$(ROUND(s_d40,1))+"pc]":ENDIF
+IF t107=-1: p107$="     Scheat ["+STR$(ROUND(s_d40,1))+"pc]":ENDIF
+IF t108=1:p108$=smb$+"  Mirach ["+STR$(ROUND(s_d41,1))+"pc]":ENDIF
+IF t108=-1: p108$="     Mirach ["+STR$(ROUND(s_d41,1))+"pc]":ENDIF
+IF t109=1:p109$=smb$+"  Nunki ["+STR$(ROUND(s_d42,1))+"pc]":ENDIF
+IF t109=-1: p109$="     Nunki ["+STR$(ROUND(s_d42,1))+"pc]":ENDIF
+IF t110=1:p110$=smb$+"  Schedar ["+STR$(ROUND(s_d43,1))+"pc]":ENDIF
+IF t110=-1: p110$="     Schedar ["+STR$(ROUND(s_d43,1))+"pc]":ENDIF
+IF t111=1:p111$=smb$+"  Izar ["+STR$(ROUND(s_d44,1))+"pc]":ENDIF
+IF t111=-1: p111$="     Izar ["+STR$(ROUND(s_d44,1))+"pc]":ENDIF
+IF t112=1:p112$=smb$+"  Menkar ["+STR$(ROUND(s_d45,1))+"pc]":ENDIF
+IF t112=-1: p112$="     Menkar ["+STR$(ROUND(s_d45,1))+"pc]":ENDIF
+IF t113=1:p113$=smb$+"  Bellatrix ["+STR$(ROUND(s_d46,1))+"pc]":ENDIF
+IF t113=-1: p113$="     Bellatrix ["+STR$(ROUND(s_d46,1))+"pc]":ENDIF
+IF t32=1:p32$=smb$+"  Spica ["+STR$(ROUND(s_d47,1))+"pc]":ENDIF
+IF t32=-1: p32$="     Spica ["+STR$(ROUND(s_d47,1))+"pc]":ENDIF
+IF t114=1:p114$=smb$+"  Deneb Kaitos ["+STR$(ROUND(s_d48,1))+"pc]":ENDIF
+IF t114=-1: p114$="     Deneb Kaitos ["+STR$(ROUND(s_d48,1))+"pc]":ENDIF
+IF t115=1:p115$=smb$+"  Canopus ["+STR$(ROUND(s_d49,1))+"pc]":ENDIF
+IF t115=-1: p115$="     Canopus ["+STR$(ROUND(s_d49,1))+"pc]":ENDIF
+IF t116=1:p116$=smb$+"  Acrux ["+STR$(ROUND(s_d50,1))+"pc]":ENDIF
+IF t116=-1: p116$="     Acrux ["+STR$(ROUND(s_d50,1))+"pc]":ENDIF
+IF t117=1:p117$=smb$+"  Hadar ["+STR$(ROUND(s_d51,1))+"pc]":ENDIF
+IF t117=-1: p117$="     Hadar ["+STR$(ROUND(s_d51,1))+"pc]":ENDIF
+IF t118=1:p118$=smb$+"  Polaris ["+STR$(ROUND(s_d52,1))+"pc]":ENDIF
+IF t118=-1: p118$="     Polaris ["+STR$(ROUND(s_d52,1))+"pc]":ENDIF
+IF t15=1:p15$=smb$+"  Mira ["+STR$(ROUND(s_d53,1))+"pc]":ENDIF
+IF t15=-1: p15$="     Mira ["+STR$(ROUND(s_d53,1))+"pc]":ENDIF
+IF t119=1:p119$=smb$+"  Adhara ["+STR$(ROUND(s_d54,1))+"pc]":ENDIF
+IF t119=-1: p119$="     Adhara ["+STR$(ROUND(s_d54,1))+"pc]":ENDIF
+IF t120=1:p120$=smb$+"  Algenib ["+STR$(ROUND(s_d55,1))+"pc]":ENDIF
+IF t120=-1: p120$="     Algenib ["+STR$(ROUND(s_d55,1))+"pc]":ENDIF
+IF t121=1:p121$=smb$+"  Mirfak ["+STR$(ROUND(s_d56,1))+"pc]":ENDIF
+IF t121=-1: p121$="     Mirfak ["+STR$(ROUND(s_d56,1))+"pc]":ENDIF
+IF t17=1:p17$=smb$+"  Antares ["+STR$(ROUND(s_d57,1))+"pc]":ENDIF
+IF t17=-1: p17$="     Antares ["+STR$(ROUND(s_d57,1))+"pc]":ENDIF
+IF t122=1:p122$=smb$+"  Shaula ["+STR$(ROUND(s_d58,1))+"pc]":ENDIF
+IF t122=-1: p122$="     Shaula ["+STR$(ROUND(s_d58,1))+"pc]":ENDIF
+IF t18=1:p18$=smb$+"  Beteigeuze ["+STR$(ROUND(s_d59,1))+"pc]":ENDIF
+IF t18=-1: p18$="     Beteigeuze ["+STR$(ROUND(s_d59,1))+"pc]":ENDIF
+IF t123=1:p123$=smb$+"  Saiph ["+STR$(ROUND(s_d60,1))+"pc]":ENDIF
+IF t123=-1: p123$="     Saiph ["+STR$(ROUND(s_d60,1))+"pc]":ENDIF
+IF t124=1:p124$=smb$+"  Enif ["+STR$(ROUND(s_d61,1))+"pc]":ENDIF
+IF t124=-1: p124$="     Enif ["+STR$(ROUND(s_d61,1))+"pc]":ENDIF
+IF t19=1:p19$=smb$+"  Rigel ["+STR$(ROUND(s_d62,1))+"pc]":ENDIF
+IF t19=-1: p19$="     Rigel ["+STR$(ROUND(s_d62,1))+"pc]":ENDIF
+IF t125=1:p125$=smb$+"  Mintaka ["+STR$(ROUND(s_d63,1))+"pc]":ENDIF
+IF t125=-1: p125$="     Mintaka ["+STR$(ROUND(s_d63,1))+"pc]":ENDIF
+IF t126=1:p126$=smb$+"  Alnitak ["+STR$(ROUND(s_d64,1))+"pc]":ENDIF
+IF t126=-1: p126$="     Alnitak ["+STR$(ROUND(s_d64,1))+"pc]":ENDIF
+IF t127=1:p127$=smb$+"  Alnilam ["+STR$(ROUND(s_d65,1))+"pc]":ENDIF
+IF t127=-1: p127$="     Alnilam ["+STR$(ROUND(s_d65,1))+"pc]":ENDIF
+IF t128=1:p128$=smb$+"  Arneb ["+STR$(ROUND(s_d66,1))+"pc]":ENDIF
+IF t128=-1: p128$="     Arneb ["+STR$(ROUND(s_d66,1))+"pc]":ENDIF
+IF t20=1:p20$=smb$+"  Deneb ["+STR$(ROUND(s_d67/1000,1))+"kpc]":ENDIF
+IF t20=-1: p20$="     Deneb ["+STR$(ROUND(s_d67,1))+"pc]":ENDIF
+IF t129=1:p129$=smb$+"  RSGC2-01 ["+STR$(ROUND(s_d68/1000,1))+"kpc]":ENDIF
+IF t129=-1: p129$="     RSGC2-01 ["+STR$(ROUND(s_d68/1000,1))+"kpc]":ENDIF
+IF t130=1:p130$=smb$+"  RSGC-F01 ["+STR$(ROUND(s_d69/1000,1))+"kpc]":ENDIF
+IF t130=-1: p130$="     RSGC-F01 ["+STR$(ROUND(s_d69/1000,1))+"kpc]":ENDIF
 !!
  IF t__=1:p__$=smb$+"  __ [__pc]":ENDIF
  IF t__=-1: p__$="     __ [__pc]":ENDIF
@@ -1548,7 +1577,7 @@ RETURN
 dialog4:
 GOSUB menu4
 std4:
-ARRAY.LOAD sel4$[],st00$,st01$,st14$,st02$,st03$,st04$,st05$,st06$,st15$,st16$,st17$,st18$,st19$,st07$,st08$,st20$,st21$,st22$,st23$,st24$,st25$,st26$,st28$,st27$,st29$,st30$,st31$,st32$,st09$,st33$,st34$,st35$,st36$,st10$,st37$,st38$,st39$,st40$,st41$,st11$,st42$,st43$,st44$,st45$,st46$,st47$,st48$,st49$,st50$,st51$,st52$,st53$,st54$,st55$,st12$,st56$,st13$,st57$,st99$,st60$,"Ok"
+ARRAY.LOAD sel4$[],st00$,st01$,st14$,st02$,st03$,st04$,st05$,st06$,st15$,st16$,st17$,st18$,st19$,st07$,st08$,st20$,st21$,st22$,st23$,st24$,st25$,st26$,st27$,st28$,st29$,st30$,st31$,st32$,st09$,st33$,st34$,st35$,st36$,st10$,st37$,st38$,st39$,st40$,st41$,st11$,st42$,st43$,st44$,st45$,st46$,st47$,st48$,st49$,st50$,st51$,st52$,st53$,st54$,st55$,st12$,st56$,st13$,st57$,st99$,st60$,"Ok"
 DIALOG.SELECT sel4, sel4$[],"Offene Sternhaufen und Kugelsternhaufen: Darstellung/Projektion:"
 IF sel4=1:st00=st00*-1:ENDIF
 IF sel4=2:st01=st01*-1:ENDIF
@@ -1572,8 +1601,8 @@ IF sel4=19:st23=st23*-1:ENDIF
 IF sel4=20:st24=st24*-1:ENDIF
 IF sel4=21:st25=st25*-1:ENDIF
 IF sel4=22:st26=st26*-1:ENDIF
-IF sel4=23:st28=st28*-1:ENDIF
-IF sel4=24:st27=st27*-1:ENDIF
+IF sel4=23:st27=st27*-1:ENDIF
+IF sel4=24:st28=st28*-1:ENDIF
 IF sel4=25:st29=st29*-1:ENDIF
 IF sel4=26:st30=st30*-1:ENDIF
 IF sel4=27:st31=st31*-1:ENDIF
@@ -1606,8 +1635,8 @@ IF sel4=53:st54=st54*-1:ENDIF
 IF sel4=54:st55=st55*-1:ENDIF
 IF sel4=55:st12=st12*-1:ENDIF
 IF sel4=56:st56=st56*-1:ENDIF
-IF sel4=57:st13=st13*-1:ENDIF
-IF sel4=58:st57=st57*-1:ENDIF
+IF sel4=57:st57=st57*-1:ENDIF
+IF sel4=58:st13=st13*-1:ENDIF
 !!
  IF sel4=_:st__=st__*-1:ENDIF
 !!
@@ -1621,120 +1650,120 @@ RETURN
 menu4:
 IF st00=1:st00$=smb$+"  Ebene an":ENDIF
 IF st00=-1: st00$="     Ebene aus":ENDIF
-IF st01=1:st01$=smb$+"  Plejaden [136.2pc]":ENDIF
-IF st01=-1: st01$="     Plejaden [136.2pc]":ENDIF
-IF st14=1:st14$=smb$+"  Winnecke 4 [144.2pc]":ENDIF
-IF st14=-1: st14$="     Winnecke 4 [144.2pc]":ENDIF
-IF st02=1:st02$=smb$+"  Praesepe [177pc]":ENDIF
-IF st02=-1: st02$="     Praesepe [177pc]":ENDIF
-IF st03=1:st03$=smb$+"  Ptolemaeus [245pc]":ENDIF
-IF st03=-1: st03$="     Ptolemaeus [245pc]":ENDIF
-IF st04=1:st04$=smb$+"  M39 [253pc]":ENDIF
-IF st04=-1: st04$="     M39 [253pc]":ENDIF
-IF st05=1:st05$=smb$+"  M34 [460pc]":ENDIF
-IF st05=-1: st05$="     M34 [460pc]":ENDIF
-IF st06=1:st06$=smb$+"  M6 [488pc]":ENDIF
-IF st06=-1: st06$="     M6 [488pc]":ENDIF
-IF st15=1:st15$=smb$+"  M47 [490.8pc]":ENDIF
-IF st15=-1: st15$="     M47 [490.8pc]":ENDIF
-IF st16=1:st16$=smb$+"  M23 [628.8pc]":ENDIF
-IF st16=-1: st16$="     M23 [628.8pc]":ENDIF
-IF st17=1:st17$=smb$+"  M25 [644.2pc]":ENDIF
-IF st17=-1: st17$="     M25 [644.2pc]":ENDIF
-IF st18=1:st18$=smb$+"  M41 [705.5pc]":ENDIF
-IF st18=-1: st18$="     M41 [705.5pc]":ENDIF
-IF st19=1:st19$=smb$+"  M73 [705.5pc]":ENDIF
-IF st19=-1: st19$="     M73 [705.5pc]":ENDIF
-IF st07=1:st07$=smb$+"  M48 [767pc]":ENDIF
-IF st07=-1: st07$="     M48 [767pc]":ENDIF
-IF st08=1:st08$=smb$+"  M67 [828pc]":ENDIF
-IF st08=-1: st08$="     M67 [828pc]":ENDIF
-IF st20=1:st20$=smb$+"  M50 [880.4pc]":ENDIF
-IF st20=-1: st20$="     M50 [880.4pc]":ENDIF
-IF st21=1:st21$=smb$+"  M35 [911.0pc]":ENDIF
-IF st21=-1: st21$="     M35 [911.0pc]":ENDIF
-IF st22=1:st22$=smb$+"  M93 [1.0kpc]":ENDIF
-IF st22=-1: st22$="     M93 [1.0kpc]":ENDIF
-IF st23=1:st23$=smb$+"  M38 [1.1kpc]":ENDIF
-IF st23=-1: st23$="     M38 [1.1kpc]":ENDIF
-IF st24=1:st24$=smb$+"  M29 [1.1kpc]":ENDIF
-IF st24=-1: st24$="     M29 [1.1kpc]":ENDIF
-IF st25=1:st25$=smb$+"  M36 [1.3kpc]":ENDIF
-IF st25=-1: st25$="     M36 [1.3kpc]":ENDIF
-IF st26=1:st26$=smb$+"  M18 [1.3kpc]":ENDIF
-IF st26=-1: st26$="     M18 [1.3kpc]":ENDIF
-IF st27=1:st27$=smb$+"  M37 [1.4kpc]":ENDIF
-IF st27=-1: st27$="     M37 [1.4kpc]":ENDIF
-IF st28=1:st28$=smb$+"  M21 [1.3kpc]":ENDIF
-IF st28=-1: st28$="     M21 [1.3kpc]":ENDIF
-IF st29=1:st29$=smb$+"  M52 [1.4kpc]":ENDIF
-IF st29=-1: st29$="     M52 [1.4kpc]":ENDIF
-IF st30=1:st30$=smb$+"  M46 [1.5kpc]":ENDIF
-IF st30=-1: st30$="     M46 [1.5kpc]":ENDIF
-IF st31=1:st31$=smb$+"  M26 [1.6kpc]":ENDIF
-IF st31=-1: st31$="     M26 [1.6kpc]":ENDIF
-IF st32=1:st32$=smb$+"  Wildenten [1.9kpc]":ENDIF
-IF st32=-1: st32$="     Wildenten [1.9kpc]":ENDIF
-IF st09=1:st09$=smb$+"  M4 [2.2kpc]":ENDIF
-IF st09=-1: st09$="     M4 [2.2kpc]":ENDIF
-IF st33=1:st33$=smb$+"  M103 [2.6kpc]":ENDIF
-IF st33=-1: st33$="     M103 [2.6kpc]":ENDIF
-IF st34=1:st34$=smb$+"  M22 [3.2kpc]":ENDIF
-IF st34=-1: st34$="     M22 [3.2kpc]":ENDIF
-IF st35=1:st35$=smb$+"  M71 [4.0kpc]":ENDIF
-IF st35=-1: st35$="     M71 [4.0kpc]":ENDIF
-IF st36=1:st36$=smb$+"  M10 [4.4kpc]":ENDIF
-IF st36=-1: st36$="     M10 [4.4kpc]":ENDIF
-IF st10=1:st10$=smb$+"  "+CHR$(969)+" Haufen [4.8kpc]":ENDIF
-IF st10=-1: st10$="     "+CHR$(969)+" Haufen [4.8kpc]":ENDIF
-IF st37=1:st37$=smb$+"  M12 [5.0kpc]":ENDIF
-IF st37=-1: st37$="     M12 [5.0kpc]":ENDIF
-IF st38=1:st38$=smb$+"  M55 [5.4kpc]":ENDIF
-IF st38=-1: st38$="     M55 [5.4kpc]":ENDIF
-IF st39=1:st39$=smb$+"  M28 [5.4kpc]":ENDIF
-IF st39=-1: st39$="     M28 [5.4kpc]":ENDIF
-IF st40=1:st40$=smb$+"  M107 [6.4kpc]":ENDIF
-IF st40=-1: st40$="     M107 [6.4kpc]":ENDIF
-IF st41=1:st41$=smb$+"  M62 [6.6kpc]":ENDIF
-IF st41=-1: st41$="     M62 [6.6kpc]":ENDIF
-IF st11=1:st11$=smb$+"  M13 [6.8kpc]":ENDIF
-IF st11=-1: st11$="     M13 [6.8kpc]":ENDIF
-IF st42=1:st42$=smb$+"  M5 [7.5kpc]":ENDIF
-IF st42=-1: st42$="     M5 [7.5kpc]":ENDIF
-IF st43=1:st43$=smb$+"  M9 [7.9kpc]":ENDIF
-IF st43=-1: st43$="     M9 [7.9kpc]":ENDIF
-IF st44=1:st44$=smb$+"  M92 [8.2kpc]":ENDIF
-IF st44=-1: st44$="     M92 [8.2kpc]":ENDIF
-IF st45=1:st45$=smb$+"  M30 [8.3kpc]":ENDIF
-IF st45=-1: st45$="     M30 [8.3kpc]":ENDIF
-IF st46=1:st46$=smb$+"  M19 [8.8kpc]":ENDIF
-IF st46=-1: st46$="     M19 [8.8kpc]":ENDIF
-IF st47=1:st47$=smb$+"  M69 [8.9kpc]":ENDIF
-IF st47=-1: st47$="     M69 [8.9kpc]":ENDIF
-IF st48=1:st48$=smb$+"  M70 [9.0kpc]":ENDIF
-IF st48=-1: st48$="     M70 [9.0kpc]":ENDIF
-IF st49=1:st49$=smb$+"  M14 [9.3kpc]":ENDIF
-IF st49=-1: st49$="     M14 [9.3kpc]":ENDIF
-IF st50=1:st50$=smb$+"  M80 [9.8kpc]":ENDIF
-IF st50=-1: st50$="     M80 [9.8kpc]":ENDIF
-IF st51=1:st51$=smb$+"  M56 [10.1kpc]":ENDIF
-IF st51=-1: st51$="     M56 [10.1kpc]":ENDIF
-IF st52=1:st52$=smb$+"  M2 [10.1kpc]":ENDIF
-IF st52=-1: st52$="     M2 [10.1kpc]":ENDIF
-IF st53=1:st53$=smb$+"  M68 [10.3kpc]":ENDIF
-IF st53=-1: st53$="     M68 [10.3kpc]":ENDIF
-IF st54=1:st54$=smb$+"  M3 [10.4kpc]":ENDIF
-IF st54=-1: st54$="     M3 [10.4kpc]":ENDIF
-IF st55=1:st55$=smb$+"  M15 [10.9kpc]":ENDIF
-IF st55=-1: st55$="     M15 [10.9kpc]":ENDIF
-IF st12=1:st12$=smb$+"  M79 [12.6kpc]":ENDIF
-IF st12=-1: st12$="     M79 [12.6kpc]":ENDIF
-IF st56=1:st56$=smb$+"  M72 [16.8kpc]":ENDIF
-IF st56=-1: st56$="     M72 [16.8kpc]":ENDIF
-IF st13=1:st13$=smb$+"  M53 [17.8kpc]":ENDIF
-IF st13=-1: st13$="     M53 [17.8kpc]":ENDIF
-IF st57=1:st57$=smb$+"  M75 [20.9kpc]":ENDIF
-IF st57=-1: st57$="     M75 [20.9kpc]":ENDIF
+IF st01=1:st01$=smb$+"  Plejaden ["+STR$(ROUND(st_d01,1))+"pc]":ENDIF
+IF st01=-1: st01$="     Plejaden ["+STR$(ROUND(st_d01,1))+"pc]":ENDIF
+IF st14=1:st14$=smb$+"  Winnecke 4 ["+STR$(ROUND(st_d02,1))+"pc]":ENDIF
+IF st14=-1: st14$="     Winnecke 4 ["+STR$(ROUND(st_d02,1))+"pc]":ENDIF
+IF st02=1:st02$=smb$+"  Praesepe ["+STR$(ROUND(st_d03,1))+"pc]":ENDIF
+IF st02=-1: st02$="     Praesepe ["+STR$(ROUND(st_d03,1))+"pc]":ENDIF
+IF st03=1:st03$=smb$+"  Ptolemaeus ["+STR$(ROUND(st_d04,1))+"pc]":ENDIF
+IF st03=-1: st03$="     Ptolemaeus ["+STR$(ROUND(st_d04,1))+"pc]":ENDIF
+IF st04=1:st04$=smb$+"  M39 ["+STR$(ROUND(st_d05,1))+"pc]":ENDIF
+IF st04=-1: st04$="     M39 ["+STR$(ROUND(st_d05,1))+"pc]":ENDIF
+IF st05=1:st05$=smb$+"  M34 ["+STR$(ROUND(st_d06,1))+"pc]":ENDIF
+IF st05=-1: st05$="     M34 ["+STR$(ROUND(st_d06,1))+"pc]":ENDIF
+IF st06=1:st06$=smb$+"  M6 ["+STR$(ROUND(st_d07,1))+"pc]":ENDIF
+IF st06=-1: st06$="     M6 ["+STR$(ROUND(st_d07,1))+"pc]":ENDIF
+IF st15=1:st15$=smb$+"  M47 ["+STR$(ROUND(st_d08,1))+"pc]":ENDIF
+IF st15=-1: st15$="     M47 ["+STR$(ROUND(st_d08,1))+"pc]":ENDIF
+IF st16=1:st16$=smb$+"  M23 ["+STR$(ROUND(st_d09,1))+"pc]":ENDIF
+IF st16=-1: st16$="     M23 ["+STR$(ROUND(st_d09,1))+"pc]":ENDIF
+IF st17=1:st17$=smb$+"  M25 ["+STR$(ROUND(st_d10,1))+"pc]":ENDIF
+IF st17=-1: st17$="     M25 ["+STR$(ROUND(st_d10,1))+"pc]":ENDIF
+IF st18=1:st18$=smb$+"  M41 ["+STR$(ROUND(st_d11,1))+"pc]":ENDIF
+IF st18=-1: st18$="     M41 ["+STR$(ROUND(st_d11,1))+"pc]":ENDIF
+IF st19=1:st19$=smb$+"  M73 ["+STR$(ROUND(st_d12,1))+"pc]":ENDIF
+IF st19=-1: st19$="     M73 ["+STR$(ROUND(st_d12,1))+"pc]":ENDIF
+IF st07=1:st07$=smb$+"  M48 ["+STR$(ROUND(st_d13,1))+"pc]":ENDIF
+IF st07=-1: st07$="     M48 ["+STR$(ROUND(st_d13,1))+"pc]":ENDIF
+IF st08=1:st08$=smb$+"  M67 ["+STR$(ROUND(st_d14,1))+"pc]":ENDIF
+IF st08=-1: st08$="     M67 ["+STR$(ROUND(st_d14,1))+"pc]":ENDIF
+IF st20=1:st20$=smb$+"  M50 ["+STR$(ROUND(st_d15,1))+"pc]":ENDIF
+IF st20=-1: st20$="     M50 ["+STR$(ROUND(st_d15,1))+"pc]":ENDIF
+IF st21=1:st21$=smb$+"  M35 ["+STR$(ROUND(st_d16,1))+"pc]":ENDIF
+IF st21=-1: st21$="     M35 ["+STR$(ROUND(st_d16,1))+"pc]":ENDIF
+IF st22=1:st22$=smb$+"  M93 ["+STR$(ROUND(st_d17/10^3,1))+"kpc]":ENDIF
+IF st22=-1: st22$="     M93 ["+STR$(ROUND(st_d17/10^3,1))+"kpc]":ENDIF
+IF st23=1:st23$=smb$+"  M38 ["+STR$(ROUND(st_d18/10^3,1))+"kpc]":ENDIF
+IF st23=-1: st23$="     M38 ["+STR$(ROUND(st_d18/10^3,1))+"kpc]":ENDIF
+IF st24=1:st24$=smb$+"  M29 ["+STR$(ROUND(st_d19/10^3,1))+"kpc]":ENDIF
+IF st24=-1: st24$="     M29 ["+STR$(ROUND(st_d19/10^3,1))+"kpc]":ENDIF
+IF st25=1:st25$=smb$+"  M36 ["+STR$(ROUND(st_d20/10^3,1))+"kpc]":ENDIF
+IF st25=-1: st25$="     M36 ["+STR$(ROUND(st_d20/10^3,1))+"kpc]":ENDIF
+IF st26=1:st26$=smb$+"  M18 ["+STR$(ROUND(st_d21/10^3,1))+"kpc]":ENDIF
+IF st26=-1: st26$="     M18 ["+STR$(ROUND(st_d21/10^3,1))+"kpc]":ENDIF
+IF st28=1:st28$=smb$+"  M21 ["+STR$(ROUND(st_d23/10^3,1))+"kpc]":ENDIF
+IF st28=-1: st28$="     M21 ["+STR$(ROUND(st_d23/10^3,1))+"kpc]":ENDIF
+IF st27=1:st27$=smb$+"  M37 ["+STR$(ROUND(st_d22/10^3,1))+"kpc]":ENDIF
+IF st27=-1: st27$="     M37 ["+STR$(ROUND(st_d22/10^3,1))+"kpc]":ENDIF
+IF st29=1:st29$=smb$+"  M52 ["+STR$(ROUND(st_d24/10^3,1))+"kpc]":ENDIF
+IF st29=-1: st29$="     M52 ["+STR$(ROUND(st_d24/10^3,1))+"kpc]":ENDIF
+IF st30=1:st30$=smb$+"  M46 ["+STR$(ROUND(st_d25/10^3,1))+"kpc]":ENDIF
+IF st30=-1: st30$="     M46 ["+STR$(ROUND(st_d25/10^3,1))+"kpc]":ENDIF
+IF st31=1:st31$=smb$+"  M26 ["+STR$(ROUND(st_d26/10^3,1))+"kpc]":ENDIF
+IF st31=-1: st31$="     M26 ["+STR$(ROUND(st_d26/10^3,1))+"kpc]":ENDIF
+IF st32=1:st32$=smb$+"  Wildenten ["+STR$(ROUND(st_d27/10^3,1))+"kpc]":ENDIF
+IF st32=-1: st32$="     Wildenten ["+STR$(ROUND(st_d27/10^3,1))+"kpc]":ENDIF
+IF st09=1:st09$=smb$+"  M4 ["+STR$(ROUND(st_d28/10^3,1))+"kpc]":ENDIF
+IF st09=-1: st09$="     M4 ["+STR$(ROUND(st_d28/10^3,1))+"kpc]":ENDIF
+IF st33=1:st33$=smb$+"  M103 ["+STR$(ROUND(st_d29/10^3,1))+"kpc]":ENDIF
+IF st33=-1: st33$="     M103 ["+STR$(ROUND(st_d29/10^3,1))+"kpc]":ENDIF
+IF st34=1:st34$=smb$+"  M22 ["+STR$(ROUND(st_d30/10^3,1))+"kpc]":ENDIF
+IF st34=-1: st34$="     M22 ["+STR$(ROUND(st_d30/10^3,1))+"kpc]":ENDIF
+IF st35=1:st35$=smb$+"  M71 ["+STR$(ROUND(st_d31/10^3,1))+"kpc]":ENDIF
+IF st35=-1: st35$="     M71 ["+STR$(ROUND(st_d31/10^3,1))+"kpc]":ENDIF
+IF st36=1:st36$=smb$+"  M10 ["+STR$(ROUND(st_d32/10^3,1))+"kpc]":ENDIF
+IF st36=-1: st36$="     M10 ["+STR$(ROUND(st_d32/10^3,1))+"kpc]":ENDIF
+IF st10=1:st10$=smb$+"  "+_go$+" Haufen ["+STR$(ROUND(st_d33/10^3,1))+"kpc]":ENDIF
+IF st10=-1: st10$="     "+_go$+" Haufen ["+STR$(ROUND(st_d33/10^3,1))+"kpc]":ENDIF
+IF st37=1:st37$=smb$+"  M12 ["+STR$(ROUND(st_d34/10^3,1))+"kpc]":ENDIF
+IF st37=-1: st37$="     M12 ["+STR$(ROUND(st_d34/10^3,1))+"kpc]":ENDIF
+IF st38=1:st38$=smb$+"  M55 ["+STR$(ROUND(st_d35/10^3,1))+"kpc]":ENDIF
+IF st38=-1: st38$="     M55 ["+STR$(ROUND(st_d35/10^3,1))+"kpc]":ENDIF
+IF st39=1:st39$=smb$+"  M28 ["+STR$(ROUND(st_d36/10^3,1))+"kpc]":ENDIF
+IF st39=-1: st39$="     M28 ["+STR$(ROUND(st_d36/10^3,1))+"kpc]":ENDIF
+IF st40=1:st40$=smb$+"  M107 ["+STR$(ROUND(st_d37/10^3,1))+"kpc]":ENDIF
+IF st40=-1: st40$="     M107 ["+STR$(ROUND(st_d37/10^3,1))+"kpc]":ENDIF
+IF st41=1:st41$=smb$+"  M62 ["+STR$(ROUND(st_d38/10^3,1))+"kpc]":ENDIF
+IF st41=-1: st41$="     M62 ["+STR$(ROUND(st_d38/10^3,1))+"kpc]":ENDIF
+IF st11=1:st11$=smb$+"  M13 ["+STR$(ROUND(st_d39/10^3,1))+"kpc]":ENDIF
+IF st11=-1: st11$="     M13 ["+STR$(ROUND(st_d39/10^3,1))+"kpc]":ENDIF
+IF st42=1:st42$=smb$+"  M5 ["+STR$(ROUND(st_d40/10^3,1))+"kpc]":ENDIF
+IF st42=-1: st42$="     M5 ["+STR$(ROUND(st_d40/10^3,1))+"kpc]":ENDIF
+IF st43=1:st43$=smb$+"  M9 ["+STR$(ROUND(st_d41/10^3,1))+"kpc]":ENDIF
+IF st43=-1: st43$="     M9 ["+STR$(ROUND(st_d41/10^3,1))+"kpc]":ENDIF
+IF st44=1:st44$=smb$+"  M92 ["+STR$(ROUND(st_d42/10^3,1))+"kpc]":ENDIF
+IF st44=-1: st44$="     M92 ["+STR$(ROUND(st_d42/10^3,1))+"kpc]":ENDIF
+IF st45=1:st45$=smb$+"  M30 ["+STR$(ROUND(st_d43/10^3,1))+"kpc]":ENDIF
+IF st45=-1: st45$="     M30 ["+STR$(ROUND(st_d43/10^3,1))+"kpc]":ENDIF
+IF st46=1:st46$=smb$+"  M19 ["+STR$(ROUND(st_d44/10^3,1))+"kpc]":ENDIF
+IF st46=-1: st46$="     M19 ["+STR$(ROUND(st_d44/10^3,1))+"kpc]":ENDIF
+IF st47=1:st47$=smb$+"  M69 ["+STR$(ROUND(st_d45/10^3,1))+"kpc]":ENDIF
+IF st47=-1: st47$="     M69 ["+STR$(ROUND(st_d45/10^3,1))+"kpc]":ENDIF
+IF st48=1:st48$=smb$+"  M70 ["+STR$(ROUND(st_d46/10^3,1))+"kpc]":ENDIF
+IF st48=-1: st48$="     M70 ["+STR$(ROUND(st_d46/10^3,1))+"kpc]":ENDIF
+IF st49=1:st49$=smb$+"  M14 ["+STR$(ROUND(st_d47/10^3,1))+"kpc]":ENDIF
+IF st49=-1: st49$="     M14 ["+STR$(ROUND(st_d47/10^3,1))+"kpc]":ENDIF
+IF st50=1:st50$=smb$+"  M80 ["+STR$(ROUND(st_d48/10^3,1))+"kpc]":ENDIF
+IF st50=-1: st50$="     M80 ["+STR$(ROUND(st_d48/10^3,1))+"kpc]":ENDIF
+IF st51=1:st51$=smb$+"  M56 ["+STR$(ROUND(st_d49/10^3,1))+"kpc]":ENDIF
+IF st51=-1: st51$="     M56 ["+STR$(ROUND(st_d49/10^3,1))+"kpc]":ENDIF
+IF st52=1:st52$=smb$+"  M2 ["+STR$(ROUND(st_d50/10^3,1))+"kpc]":ENDIF
+IF st52=-1: st52$="     M2 ["+STR$(ROUND(st_d50/10^3,1))+"kpc]":ENDIF
+IF st53=1:st53$=smb$+"  M68 ["+STR$(ROUND(st_d51/10^3,1))+"kpc]":ENDIF
+IF st53=-1: st53$="     M68 ["+STR$(ROUND(st_d51/10^3,1))+"kpc]":ENDIF
+IF st54=1:st54$=smb$+"  M3 ["+STR$(ROUND(st_d52/10^3,1))+"kpc]":ENDIF
+IF st54=-1: st54$="     M3 ["+STR$(ROUND(st_d52/10^3,1))+"kpc]":ENDIF
+IF st55=1:st55$=smb$+"  M15 ["+STR$(ROUND(st_d53/10^3,1))+"kpc]":ENDIF
+IF st55=-1: st55$="     M15 ["+STR$(ROUND(st_d53/10^3,1))+"kpc]":ENDIF
+IF st12=1:st12$=smb$+"  M79 ["+STR$(ROUND(st_d54/10^3,1))+"kpc]":ENDIF
+IF st12=-1: st12$="     M79 ["+STR$(ROUND(st_d54/10^3,1))+"kpc]":ENDIF
+IF st56=1:st56$=smb$+"  M72 ["+STR$(ROUND(st_d55/10^3,1))+"kpc]":ENDIF
+IF st56=-1: st56$="     M72 ["+STR$(ROUND(st_d55/10^3,1))+"kpc]":ENDIF
+IF st57=1:st57$=smb$+"  M75 ["+STR$(ROUND(st_d57/10^3,1))+"kpc]":ENDIF
+IF st57=-1: st57$="     M75 ["+STR$(ROUND(st_d57/10^3,1))+"kpc]":ENDIF
+IF st13=1:st13$=smb$+"  M53 ["+STR$(ROUND(st_d56/10^3,1))+"kpc]":ENDIF
+IF st13=-1: st13$="     M53 ["+STR$(ROUND(st_d56/10^3,1))+"kpc]":ENDIF
 !!
  IF st__=1:st__$=smb$+"  __ [__pc]":ENDIF
  IF st__=-1: st__$="     __ [__pc]":ENDIF
@@ -1920,32 +1949,32 @@ RETURN
 menu5:
 IF nb00=1:nb00$=smb$+"  Ebene an":ENDIF
 IF nb00=-1: nb00$="     Ebene aus":ENDIF
-IF nb15=1:nb15$=smb$+"  Hantelnebel [400pc]":ENDIF
-IF nb15=-1: nb15$="     Hantelnebel [400pc]":ENDIF
-IF nb01=1:nb01$=smb$+"  Orionnebel [412pc]":ENDIF
-IF nb01=-1: nb01$="     Orionnebel [412pc]":ENDIF
-IF nb16=1:nb16$=smb$+"  M78 [490.8pc]":ENDIF
-IF nb16=-1: nb16$="     M78 [490.8pc]":ENDIF
-IF nb17=1:nb17$=smb$+"  Eulennebel [622.7pc]":ENDIF
-IF nb17=-1: nb17$="     Eulennebel [622.7pc]":ENDIF
-IF nb18=1:nb18$=smb$+"  M76 [766.9pc]":ENDIF
-IF nb18=-1: nb18$="     M76 [766.9pc]":ENDIF
-IF nb19=1:nb19$=smb$+"  Ringnebel [787.4pc]":ENDIF
-IF nb19=-1: nb19$="     Ringnebel [787.4pc]":ENDIF
-IF nb20=1:nb20$=smb$+"  Lagunennebel [1.3kpc]":ENDIF
-IF nb20=-1: nb20$="     Lagunennebel [1.3kpc]":ENDIF
-IF nb21=1:nb21$=smb$+"  Trifidnebel [1.6kpc]":ENDIF
-IF nb21=-1: nb21$="     Trifidnebel [1.6kpc]":ENDIF
-IF nb22=1:nb22$=smb$+"  Omeganebel [1.7kpc]":ENDIF
-IF nb22=-1: nb22$="     Omeganebel [1.7kpc]":ENDIF
-IF nb10=1:nb10$=smb$+"  Krebsnebel [2.0kpc]":ENDIF
-IF nb10=-1: nb10$="     Krebsnebel [2.0kpc]":ENDIF
-IF nb11=1:nb11$=smb$+"  Adlernebel [2.1kpc]":ENDIF
-IF nb11=-1: nb11$="     Adlernebel [2.1kpc]":ENDIF
-IF nb12=1:nb12$=smb$+"  Stundenglasnebel [2.5kpc]":ENDIF
-IF nb12=-1: nb12$="     Stundenglasnebel [2.5kpc]":ENDIF
-IF nb14=1:nb14$=smb$+"  V838 [6.1kpc]":ENDIF
-IF nb14=-1: nb14$="     V838 [6.1kpc]":ENDIF
+IF nb15=1:nb15$=smb$+"  Hantelnebel ["+STR$(ROUND(nb_d01,1))+"pc]":ENDIF
+IF nb15=-1: nb15$="     Hantelnebel ["+STR$(ROUND(nb_d01,1))+"pc]":ENDIF
+IF nb01=1:nb01$=smb$+"  Orionnebel ["+STR$(ROUND(nb_d02,1))+"pc]":ENDIF
+IF nb01=-1: nb01$="     Orionnebel ["+STR$(ROUND(nb_d02,1))+"pc]":ENDIF
+IF nb16=1:nb16$=smb$+"  M78 ["+STR$(ROUND(nb_d03,1))+"pc]":ENDIF
+IF nb16=-1: nb16$="     M78 ["+STR$(ROUND(nb_d03,1))+"pc]":ENDIF
+IF nb17=1:nb17$=smb$+"  Eulennebel ["+STR$(ROUND(nb_d04,1))+"pc]":ENDIF
+IF nb17=-1: nb17$="     Eulennebel ["+STR$(ROUND(nb_d04,1))+"pc]":ENDIF
+IF nb18=1:nb18$=smb$+"  M76 ["+STR$(ROUND(nb_d05,1))+"pc]":ENDIF
+IF nb18=-1: nb18$="     M76 ["+STR$(ROUND(nb_d05,1))+"pc]":ENDIF
+IF nb19=1:nb19$=smb$+"  Ringnebel ["+STR$(ROUND(nb_d06,1))+"pc]":ENDIF
+IF nb19=-1: nb19$="     Ringnebel ["+STR$(ROUND(nb_d06,1))+"pc]":ENDIF
+IF nb20=1:nb20$=smb$+"  Lagunennebel ["+STR$(ROUND(nb_d07/1000,1))+"kpc]":ENDIF
+IF nb20=-1: nb20$="     Lagunennebel ["+STR$(ROUND(nb_d07/1000,1))+"kpc]":ENDIF
+IF nb21=1:nb21$=smb$+"  Trifidnebel ["+STR$(ROUND(nb_d08/1000,1))+"kpc]":ENDIF
+IF nb21=-1: nb21$="     Trifidnebel ["+STR$(ROUND(nb_d08/1000,1))+"kpc]":ENDIF
+IF nb22=1:nb22$=smb$+"  Omeganebel ["+STR$(ROUND(nb_d09/1000,1))+"kpc]":ENDIF
+IF nb22=-1: nb22$="     Omeganebel ["+STR$(ROUND(nb_d09/1000,1))+"kpc]":ENDIF
+IF nb10=1:nb10$=smb$+"  Krebsnebel ["+STR$(ROUND(nb_d10/1000,1))+"kpc]":ENDIF
+IF nb10=-1: nb10$="     Krebsnebel ["+STR$(ROUND(nb_d10/1000,1))+"kpc]":ENDIF
+IF nb11=1:nb11$=smb$+"  Adlernebel ["+STR$(ROUND(nb_d11/1000,1))+"kpc]":ENDIF
+IF nb11=-1: nb11$="     Adlernebel ["+STR$(ROUND(nb_d11/1000,1))+"kpc]":ENDIF
+IF nb12=1:nb12$=smb$+"  Stundenglasnebel ["+STR$(ROUND(nb_d12/1000,1))+"kpc]":ENDIF
+IF nb12=-1: nb12$="     Stundenglasnebel ["+STR$(ROUND(nb_d12/1000,1))+"kpc]":ENDIF
+IF nb14=1:nb14$=smb$+"  V838 ["+STR$(ROUND(nb_d13/1000,1))+"kpc]":ENDIF
+IF nb14=-1: nb14$="     V838 ["+STR$(ROUND(nb_d13/1000,1))+"kpc]":ENDIF
 !!
  IF nb__=1:nb__$=smb$+"   __ [__pc]":ENDIF
  IF nb__=-1: nb__$="      __ [__pc]":ENDIF
@@ -2008,15 +2037,15 @@ RETURN
 dialog6:
 GOSUB menu6
 std6:
-ARRAY.LOAD sel6$[],gm00$,gm05$,gm06$,gm01$,gm02$,gm03$,gm04$,gm99$,gm30$,"Ok"
+ARRAY.LOAD sel6$[],gm00$,gm05$,gm06$,gm01$,gm02$,gm04$,gm03$,gm99$,gm30$,"Ok"
 DIALOG.SELECT sel6, sel6$[],"Milchstraßen Objekte: Darstellung/Projektion:"
 IF sel6=1:gm00=gm00*-1:ENDIF
 IF sel6=2:gm05=gm05*-1:ENDIF
 IF sel6=3:gm06=gm06*-1:ENDIF
 IF sel6=4:gm01=gm01*-1:ENDIF
 IF sel6=5:gm02=gm02*-1:ENDIF
-IF sel6=6:gm03=gm03*-1:ENDIF
-IF sel6=7:gm04=gm04*-1:ENDIF
+IF sel6=6:gm04=gm04*-1:ENDIF
+IF sel6=7:gm03=gm03*-1:ENDIF
 !!
  IF sel6=__:gm__=gm__*-1:ENDIF
 !!
@@ -2030,18 +2059,18 @@ RETURN
 menu6:
 IF gm00=1:gm00$=smb$+"  Ebene an":ENDIF
 IF gm00=-1: gm00$="     Ebene aus":ENDIF
-IF gm05=1:gm05$=smb$+"   Sagittarius Wolke [3.8kpc]":ENDIF
-IF gm05=-1: gm05$="      Sagittarius Wolke [3.8kpc]":ENDIF
-IF gm06=1:gm06$=smb$+"   Zentrum [4.6kpc]":ENDIF
-IF gm06=-1: gm06$="      Zentrum [4.6kpc]":ENDIF
-IF gm01=1:gm01$=smb$+"   Sag DEG [22.0kpc]":ENDIF
-IF gm01=-1: gm01$="      Sag DEG [22.0kpc]":ENDIF
-IF gm02=1:gm02$=smb$+"   M54 [26.8kpc]":ENDIF
-IF gm02=-1: gm02$="      M54 [26.8kpc]":ENDIF
-IF gm03=1:gm03$=smb$+"   Große Wolke [50.0kpc]":ENDIF
-IF gm03=-1: gm03$="      Große Wolke [50.0kpc]":ENDIF
-IF gm04=1:gm04$=smb$+"   Kleine Wolke [64.1kpc]":ENDIF
-IF gm04=-1: gm04$="      Kleine Wolke [64.1kpc]":ENDIF
+IF gm05=1:gm05$=smb$+"   Sagittarius Wolke ["+STR$(ROUND(gm_d02/1000,1))+"kpc]":ENDIF
+IF gm05=-1: gm05$="      Sagittarius Wolke ["+STR$(ROUND(gm_d02/1000,1))+"kpc]":ENDIF
+IF gm06=1:gm06$=smb$+"   Zentrum ["+STR$(ROUND(gm_d01/1000,1))+"kpc]":ENDIF
+IF gm06=-1: gm06$="      Zentrum ["+STR$(ROUND(gm_d01/1000,1))+"kpc]":ENDIF
+IF gm01=1:gm01$=smb$+"   Sag DEG ["+STR$(ROUND(gm_d03/1000,1))+"kpc]":ENDIF
+IF gm01=-1: gm01$="      Sag DEG ["+STR$(ROUND(gm_d03/1000,1))+"kpc]":ENDIF
+IF gm02=1:gm02$=smb$+"   M54 ["+STR$(ROUND(gm_d04/1000,1))+"kpc]":ENDIF
+IF gm02=-1: gm02$="      M54 ["+STR$(ROUND(gm_d04/1000,1))+"kpc]":ENDIF
+IF gm03=1:gm03$=smb$+"   Große Wolke ["+STR$(ROUND(gm_d05/1000,1))+"kpc]":ENDIF
+IF gm03=-1: gm03$="      Große Wolke ["+STR$(ROUND(gm_d05/1000,1))+"kpc]":ENDIF
+IF gm04=1:gm04$=smb$+"   Kleine Wolke ["+STR$(ROUND(gm_d06/1000,1))+"kpc]":ENDIF
+IF gm04=-1: gm04$="      Kleine Wolke ["+STR$(ROUND(gm_d06/1000,1))+"kpc]":ENDIF
 !!
  IF gm__=1:gm__$=smb$+"   __ [__kpc]":ENDIF
  IF gm__=-1: gm__$="      __ [__kpc]":ENDIF
@@ -2103,8 +2132,6 @@ gx28=-1
 gx29=-1
 gx30=-1
 gx31=-1
-gx32=-1
-gx33=-1
 gx99=-1
 t06gx=1
 !!
@@ -2115,7 +2142,7 @@ RETURN
 dialog7:
 GOSUB menu7
 std7:
-ARRAY.LOAD sel7$[],gx00$,gx01$,gx05$,gx11$,gx12$,gx20$,gx13$,gx02$,gx27$,gx03$,gx21$,gx04$,gx32$,gx10$,gx22$,gx33$,gx29$,gx28$,gx14$,gx23$,gx31$,gx15$,gx26$,gx30$,gx07$,gx17$,gx19$,gx06$,gx16$,gx09$,gx08$,gx25$,gx18$,gx24$,gx99$,gx40$,"Ok"
+ARRAY.LOAD sel7$[],gx00$,gx01$,gx05$,gx11$,gx12$,gx20$,gx13$,gx02$,gx27$,gx03$,gx21$,gx04$,gx10$,gx29$,gx22$,gx28$,gx14$,gx23$,gx31$,gx15$,gx26$,gx30$,gx17$,gx19$,gx07$,gx06$,gx16$,gx09$,gx08$,gx25$,gx18$,gx24$,gx99$,gx40$,"Ok"
 DIALOG.SELECT sel7, sel7$[],"Galaxien: Darstellung/Projektion:"
 IF sel7=1:gx00=gx00*-1:ENDIF
 IF sel7=2:gx01=gx01*-1:ENDIF
@@ -2129,34 +2156,32 @@ IF sel7=9:gx27=gx27*-1:ENDIF
 IF sel7=10:gx03=gx03*-1:ENDIF
 IF sel7=11:gx21=gx21*-1:ENDIF
 IF sel7=12:gx04=gx04*-1:ENDIF
-IF sel7=13:gx32=gx32*-1:ENDIF
-IF sel7=14:gx10=gx10*-1:ENDIF
+IF sel7=13:gx10=gx10*-1:ENDIF
+IF sel7=14:gx29=gx29*-1:ENDIF
 IF sel7=15:gx22=gx22*-1:ENDIF
-IF sel7=16:gx33=gx33*-1:ENDIF
-IF sel7=17:gx29=gx29*-1:ENDIF
-IF sel7=18:gx28=gx28*-1:ENDIF
-IF sel7=19:gx14=gx14*-1:ENDIF
-IF sel7=20:gx23=gx23*-1:ENDIF
-IF sel7=21:gx31=gx31*-1:ENDIF
-IF sel7=22:gx15=gx15*-1:ENDIF
-IF sel7=23:gx26=gx26*-1:ENDIF
-IF sel7=24:gx30=gx30*-1:ENDIF
+IF sel7=16:gx28=gx28*-1:ENDIF
+IF sel7=17:gx14=gx14*-1:ENDIF
+IF sel7=18:gx23=gx23*-1:ENDIF
+IF sel7=19:gx31=gx31*-1:ENDIF
+IF sel7=20:gx15=gx15*-1:ENDIF
+IF sel7=21:gx26=gx26*-1:ENDIF
+IF sel7=22:gx30=gx30*-1:ENDIF
+IF sel7=23:gx17=gx17*-1:ENDIF
+IF sel7=24:gx19=gx19*-1:ENDIF
 IF sel7=25:gx07=gx07*-1:ENDIF
-IF sel7=26:gx17=gx17*-1:ENDIF
-IF sel7=27:gx19=gx19*-1:ENDIF
-IF sel7=28:gx06=gx06*-1:ENDIF
-IF sel7=29:gx16=gx16*-1:ENDIF
-IF sel7=30:gx09=gx09*-1:ENDIF
-IF sel7=31:gx08=gx08*-1:ENDIF
-IF sel7=32:gx25=gx25*-1:ENDIF
-IF sel7=33:gx18=gx18*-1:ENDIF
-IF sel7=34:gx24=gx24*-1:ENDIF
+IF sel7=26:gx06=gx06*-1:ENDIF
+IF sel7=27:gx16=gx16*-1:ENDIF
+IF sel7=28:gx09=gx09*-1:ENDIF
+IF sel7=29:gx08=gx08*-1:ENDIF
+IF sel7=30:gx25=gx25*-1:ENDIF
+IF sel7=31:gx18=gx18*-1:ENDIF
+IF sel7=32:gx24=gx24*-1:ENDIF
 !!
  IF sel7=__:gx__=gx__*-1:ENDIF
 !!
-IF sel7=35:GOSUB gxreset: gx99=gx99*-1:ENDIF
-IF sel7=36:t06gx=t06gx*-1:ENDIF
-IF sel7=37:RETURN:ENDIF
+IF sel7=33:GOSUB gxreset: gx99=gx99*-1:ENDIF
+IF sel7=34:t06gx=t06gx*-1:ENDIF
+IF sel7=35:RETURN:ENDIF
 GOSUB menu7
 GOTO std7
 RETURN 
@@ -2164,72 +2189,68 @@ RETURN
 menu7:
 IF gx00=1:gx00$=smb$+"  Ebene an":ENDIF
 IF gx00=-1: gx00$="     Ebene aus":ENDIF
-IF gx01=1:gx01$=smb$+"  Andromeda [0.8Mpc]":ENDIF
-IF gx01=-1: gx01$="     Andromeda [777.8kpc]":  ENDIF
-IF gx05=1:gx05$=smb$+"  Triangulum [0.9Mpc]":ENDIF
-IF gx05=-1: gx05$="     Triangulum [981.6kpc]":ENDIF
-IF gx11=1:gx11$=smb$+"  M81 [3.6Mpc]":ENDIF
-IF gx11=-1: gx11$="     M81 [3.6Mpc]":ENDIF
-IF gx12=1:gx12$=smb$+"  M82 [4.3Mpc]":ENDIF
-IF gx12=-1: gx12$="     M82 [4.3Mpc]":ENDIF
-IF gx20=1:gx20$=smb$+"  M94 [5Mpc]":ENDIF
-IF gx20=-1: gx20$="     M94 [5Mpc]":ENDIF
-IF gx13=1:gx13$=smb$+"  M83 [5.2Mpc]":ENDIF
-IF gx13=-1: gx13$="     M83 [5.2Mpc]":ENDIF
-IF gx02=1:gx02$=smb$+"  M101 [6.4Mpc]":ENDIF
-IF gx02=-1: gx02$="     M101 [6.4Mpc]":ENDIF
-IF gx27=1:gx27$=smb$+"  M106 [7Mpc]":ENDIF
-IF gx27=-1: gx27$="     M106 [7Mpc]":ENDIF
-IF gx03=1:gx03$=smb$+"  M51 [7.1Mpc]":ENDIF
-IF gx03=-1: gx03$="     M51 [7.1Mpc]":ENDIF
-IF gx21=1:gx21$=smb$+"  M95 [9Mpc]":ENDIF
-IF gx21=-1: gx21$="     M95 [9Mpc]":ENDIF
-IF gx04=1:gx04$=smb$+"  M104 [9Mpc]":ENDIF
-IF gx04=-1: gx04$="     M104 [9Mpc]":ENDIF
-IF gx32=1:gx32$=smb$+"  M51 [10Mpc]":ENDIF
-IF gx32=-1: gx32$="     M51 [10Mpc]":ENDIF
-IF gx10=1:gx10$=smb$+"  M74 [10Mpc]":ENDIF
-IF gx10=-1: gx10$="     M74 [10Mpc]":ENDIF
-IF gx22=1:gx22$=smb$+"  M96 [10Mpc]":ENDIF
-IF gx22=-1: gx22$="     M96 [10Mpc]":ENDIF
-IF gx33=1:gx33$=smb$+"  M104 [10Mpc]":ENDIF
-IF gx33=-1: gx33$="     M104 [10Mpc]":ENDIF
-IF gx29=1:gx29$=smb$+"  M108 [10Mpc]":ENDIF
-IF gx29=-1: gx29$="     M108 [10Mpc]":ENDIF
-IF gx28=1:gx28$=smb$+"  M105 [11Mpc]":ENDIF
-IF gx28=-1: gx28$="     M105 [11Mpc]":ENDIF
-IF gx14=1:gx14$=smb$+"  M84 [13Mpc]":ENDIF
-IF gx14=-1: gx14$="     M84 [13Mpc]":ENDIF
-IF gx23=1:gx23$=smb$+"  M98 [14Mpc]":ENDIF
-IF gx23=-1: gx23$="     M98 [14Mpc]":ENDIF
-IF gx31=1:gx31$=smb$+"  M77 [14.4Mpc]":ENDIF
-IF gx31=-1: gx31$="     M77 [14.4Mpc]":ENDIF
-IF gx15=1:gx15$=smb$+"  M85 [15Mpc]":ENDIF
-IF gx15=-1: gx15$="     M85 [15Mpc]":ENDIF
-IF gx26=1:gx26$=smb$+"  M102 [15Mpc]":ENDIF
-IF gx26=-1: gx26$="     M102 [15Mpc]":ENDIF
-IF gx30=1:gx30$=smb$+"  M109 [15Mpc]":ENDIF
-IF gx30=-1: gx30$="     M109 [15Mpc]":ENDIF
-IF gx07=1:gx07$=smb$+"  M49 [17Mpc]":ENDIF
-IF gx07=-1: gx07$="     M49 [17Mpc]":ENDIF
-IF gx17=1:gx17$=smb$+"  M87 [17Mpc]":ENDIF
-IF gx17=-1: gx17$="     M87 [17Mpc]":ENDIF
-IF gx19=1:gx19$=smb$+"  M89 [17Mpc]":ENDIF
-IF gx19=-1: gx19$="     M89 [17Mpc]":ENDIF
-IF gx06=1:gx06$=smb$+"  M90 [18Mpc]":ENDIF
-IF gx06=-1: gx06$="     M90 [18Mpc]":ENDIF
-IF gx16=1:gx16$=smb$+"  M86 [19Mpc]":ENDIF
-IF gx16=-1: gx16$="     M86 [19Mpc]":ENDIF
-IF gx09=1:gx09$=smb$+"  M91 [19Mpc]":ENDIF
-IF gx09=-1: gx09$="     M91 [19Mpc]":ENDIF
-IF gx08=1:gx08$=smb$+"  M58 [21Mpc]":ENDIF
-IF gx08=-1: gx08$="     M58 [21Mpc]":ENDIF
-IF gx25=1:gx25$=smb$+"  M100 [21Mpc]":ENDIF
-IF gx25=-1: gx25$="     M100 [21Mpc]":ENDIF
-IF gx18=1:gx18$=smb$+"  M88 [25Mpc]":ENDIF
-IF gx18=-1: gx18$="     M88 [25Mpc]":ENDIF
-IF gx24=1:gx24$=smb$+"  M99 [32Mpc]":ENDIF
-IF gx24=-1: gx24$="     M99 [32Mpc]":ENDIF
+IF gx01=1:gx01$=smb$+"  Andromeda ["+STR$(ROUND(gx_d01/10^6,1))+"Mpc]":ENDIF
+IF gx01=-1: gx01$="     Andromeda ["+STR$(ROUND(gx_d01/10^3,1))+"kpc]":  ENDIF
+IF gx05=1:gx05$=smb$+"  Triangulum ["+STR$(ROUND(gx_d02/10^6,1))+"Mpc]":ENDIF
+IF gx05=-1: gx05$="     Triangulum ["+STR$(ROUND(gx_d02/10^3,1))+"kpc]":ENDIF
+IF gx11=1:gx11$=smb$+"  M81 ["+STR$(ROUND(gx_d03/10^6,1))+"Mpc]":ENDIF
+IF gx11=-1: gx11$="     M81 ["+STR$(ROUND(gx_d03/10^6,1))+"Mpc]":ENDIF
+IF gx12=1:gx12$=smb$+"  M82 ["+STR$(ROUND(gx_d04/10^6,1))+"Mpc]":ENDIF
+IF gx12=-1: gx12$="     M82 ["+STR$(ROUND(gx_d04/10^6,1))+"Mpc]":ENDIF
+IF gx20=1:gx20$=smb$+"  M94 ["+STR$(ROUND(gx_d05/10^6,1))+"Mpc]":ENDIF
+IF gx20=-1: gx20$="     M94 ["+STR$(ROUND(gx_d05/10^6,1))+"Mpc]":ENDIF
+IF gx13=1:gx13$=smb$+"  M83 ["+STR$(ROUND(gx_d06/10^6,1))+"Mpc]":ENDIF
+IF gx13=-1: gx13$="     M83 ["+STR$(ROUND(gx_d06/10^6,1))+"Mpc]":ENDIF
+IF gx02=1:gx02$=smb$+"  M101 ["+STR$(ROUND(gx_d07/10^6,1))+"Mpc]":ENDIF
+IF gx02=-1: gx02$="     M101 ["+STR$(ROUND(gx_d07/10^6,1))+"Mpc]":ENDIF
+IF gx27=1:gx27$=smb$+"  M106 ["+STR$(ROUND(gx_d08/10^6,1))+"Mpc]":ENDIF
+IF gx27=-1: gx27$="     M106 ["+STR$(ROUND(gx_d08/10^6,1))+"Mpc]":ENDIF
+IF gx21=1:gx21$=smb$+"  M95 ["+STR$(ROUND(gx_d10/10^6,1))+"Mpc]":ENDIF
+IF gx21=-1: gx21$="     M95 ["+STR$(ROUND(gx_d10/10^6,1))+"Mpc]":ENDIF
+IF gx03=1:gx03$=smb$+"  M51 ["+STR$(ROUND(gx_d09/10^6,1))+"Mpc]":ENDIF
+IF gx03=-1: gx03$="     M51 ["+STR$(ROUND(gx_d09/10^6,1))+"Mpc]":ENDIF
+IF gx04=1:gx04$=smb$+"  M104 ["+STR$(ROUND(gx_d11/10^6,1))+"Mpc]":ENDIF
+IF gx04=-1: gx04$="     M104 ["+STR$(ROUND(gx_d11/10^6,1))+"Mpc]":ENDIF
+IF gx10=1:gx10$=smb$+"  M74 ["+STR$(ROUND(gx_d13/10^6,1))+"Mpc]":ENDIF
+IF gx10=-1: gx10$="     M74 ["+STR$(ROUND(gx_d13/10^6,1))+"Mpc]":ENDIF
+IF gx29=1:gx29$=smb$+"  M108 ["+STR$(ROUND(gx_d16/10^6,1))+"Mpc]":ENDIF
+IF gx29=-1: gx29$="     M108 ["+STR$(ROUND(gx_d16/10^6,1))+"Mpc]":ENDIF
+IF gx22=1:gx22$=smb$+"  M96 ["+STR$(ROUND(gx_d14/10^6,1))+"Mpc]":ENDIF
+IF gx22=-1: gx22$="     M96 ["+STR$(ROUND(gx_d14/10^6,1))+"Mpc]":ENDIF
+IF gx28=1:gx28$=smb$+"  M105 ["+STR$(ROUND(gx_d17/10^6,1))+"Mpc]":ENDIF
+IF gx28=-1: gx28$="     M105 ["+STR$(ROUND(gx_d17/10^6,1))+"Mpc]":ENDIF
+IF gx14=1:gx14$=smb$+"  M84 ["+STR$(ROUND(gx_d18/10^6,1))+"Mpc]":ENDIF
+IF gx14=-1: gx14$="     M84 ["+STR$(ROUND(gx_d18/10^6,1))+"Mpc]":ENDIF
+IF gx23=1:gx23$=smb$+"  M98 ["+STR$(ROUND(gx_d19/10^6,1))+"Mpc]":ENDIF
+IF gx23=-1: gx23$="     M98 ["+STR$(ROUND(gx_d19/10^6,1))+"Mpc]":ENDIF
+IF gx31=1:gx31$=smb$+"  M77 ["+STR$(ROUND(gx_d20/10^6,1))+"Mpc]":ENDIF
+IF gx31=-1: gx31$="     M77 ["+STR$(ROUND(gx_d20/10^6,1))+"Mpc]":ENDIF
+IF gx15=1:gx15$=smb$+"  M85 ["+STR$(ROUND(gx_d21/10^6,1))+"Mpc]":ENDIF
+IF gx15=-1: gx15$="     M85 ["+STR$(ROUND(gx_d21/10^6,1))+"Mpc]":ENDIF
+IF gx26=1:gx26$=smb$+"  M102 ["+STR$(ROUND(gx_d22/10^6,1))+"Mpc]":ENDIF
+IF gx26=-1: gx26$="     M102 ["+STR$(ROUND(gx_d22/10^6,1))+"Mpc]":ENDIF
+IF gx30=1:gx30$=smb$+"  M109 ["+STR$(ROUND(gx_d23/10^6,1))+"Mpc]":ENDIF
+IF gx30=-1: gx30$="     M109 ["+STR$(ROUND(gx_d23/10^6,1))+"Mpc]":ENDIF
+IF gx17=1:gx17$=smb$+"  M87 ["+STR$(ROUND(gx_d33/10^6,1))+"Mpc]":ENDIF
+IF gx17=-1: gx17$="     M87 ["+STR$(ROUND(gx_d33/10^6,1))+"Mpc]":ENDIF
+IF gx19=1:gx19$=smb$+"  M89 ["+STR$(ROUND(gx_d24/10^6,1))+"Mpc]":ENDIF
+IF gx19=-1: gx19$="     M89 ["+STR$(ROUND(gx_d24/10^6,1))+"Mpc]":ENDIF
+IF gx07=1:gx07$=smb$+"  M49 ["+STR$(ROUND(gx_d25/10^6,1))+"Mpc]":ENDIF
+IF gx07=-1: gx07$="     M49 ["+STR$(ROUND(gx_d25/10^6,1))+"Mpc]":ENDIF
+IF gx06=1:gx06$=smb$+"  M90 ["+STR$(ROUND(gx_d26/10^6,1))+"Mpc]":ENDIF
+IF gx06=-1: gx06$="     M90 ["+STR$(ROUND(gx_d26/10^6,1))+"Mpc]":ENDIF
+IF gx16=1:gx16$=smb$+"  M86 ["+STR$(ROUND(gx_d27/10^6,1))+"Mpc]":ENDIF
+IF gx16=-1: gx16$="     M86 ["+STR$(ROUND(gx_d27/10^6,1))+"Mpc]":ENDIF
+IF gx09=1:gx09$=smb$+"  M91 ["+STR$(ROUND(gx_d28/10^6,1))+"Mpc]":ENDIF
+IF gx09=-1: gx09$="     M91 ["+STR$(ROUND(gx_d28/10^6,1))+"Mpc]":ENDIF
+IF gx08=1:gx08$=smb$+"  M58 ["+STR$(ROUND(gx_d29/10^6,1))+"Mpc]":ENDIF
+IF gx08=-1: gx08$="     M58 ["+STR$(ROUND(gx_d29/10^6,1))+"Mpc]":ENDIF
+IF gx25=1:gx25$=smb$+"  M100 ["+STR$(ROUND(gx_d30/10^6,1))+"Mpc]":ENDIF
+IF gx25=-1: gx25$="     M100 ["+STR$(ROUND(gx_d30/10^6,1))+"Mpc]":ENDIF
+IF gx18=1:gx18$=smb$+"  M88 ["+STR$(ROUND(gx_d31/10^6,1))+"Mpc]":ENDIF
+IF gx18=-1: gx18$="     M88 ["+STR$(ROUND(gx_d31/10^6,1))+"Mpc]":ENDIF
+IF gx24=1:gx24$=smb$+"  M99 ["+STR$(ROUND(gx_d32/10^6,1))+"Mpc]":ENDIF
+IF gx24=-1: gx24$="     M99 ["+STR$(ROUND(gx_d32/10^6,1))+"Mpc]":ENDIF
 !!
  IF gx__=1:gx__$=smb$+"  ___ [Mpc]":ENDIF
  IF gx__=-1: gx__$="     ___ [Mpc]":ENDIF
@@ -2338,7 +2359,7 @@ RETURN
 dialog8:
 GOSUB menu8
 std8:
-ARRAY.LOAD sel8$[],gh00$,gh01$,gh03$,gh04$,gh06$,gh09$,gh02$,gh04$,gh10$,gh11$,gh05$,gh12$,gh13$,gh14$,gh15$,gh08$,gh99$,gh30$,"Ok"
+ARRAY.LOAD sel8$[],gh00$,gh01$,gh03$,gh04$,gh06$,gh09$,gh02$,gh07$,gh10$,gh11$,gh05$,gh12$,gh13$,gh14$,gh15$,gh08$,gh99$,gh30$,"Ok"
 DIALOG.SELECT sel8, sel8$[],"Galaxien Haufen und Superhaufen: Darstellung/Projektion:"
 IF sel8=1:gh00=gh00*-1:ENDIF
 IF sel8=2:gh01=gh01*-1:ENDIF
@@ -2347,7 +2368,7 @@ IF sel8=4:gh04=gh04*-1:ENDIF
 IF sel8=5:gh06=gh06*-1:ENDIF
 IF sel8=6:gh09=gh09*-1:ENDIF
 IF sel8=7:gh02=gh02*-1:ENDIF
-IF sel8=8:gh04=gh04*-1:ENDIF
+IF sel8=8:gh07=gh07*-1:ENDIF
 IF sel8=9:gh10=gh10*-1:ENDIF
 IF sel8=10:gh11=gh11*-1:ENDIF
 IF sel8=11:gh05=gh05*-1:ENDIF
@@ -2369,36 +2390,36 @@ RETURN
 menu8:
 IF gh00=1:gh00$=smb$+"  Ebene an":ENDIF
 IF gh00=-1: gh00$="     Ebene aus":ENDIF
-IF gh01=1:gh01$=smb$+"  Virgo  [16.5Mpc]":ENDIF
-IF gh01=-1: gh01$="     Virgo  [16.5Mpc]":ENDIF
-IF gh03=1:gh03$=smb$+"  Fornax [19.0Mpc]":ENDIF
-IF gh03=-1: gh03$="     Fornax [19.0Mpc]":ENDIF
-IF gh04=1:gh04$=smb$+"  Fornax II [23.0Mpc]":ENDIF
-IF gh04=-1: gh04$="     Eridanus [23.0Mpc]":ENDIF
-IF gh06=1:gh06$=smb$+"  Antila [40.7Mpc]":ENDIF
-IF gh06=-1: gh06$="     Antila [40.7Mpc]":ENDIF
-IF gh09=1:gh09$=smb$+"  Hydra [49.1Mpc]":ENDIF
-IF gh09=-1: gh09$="     Hydra [49.1Mpc]":ENDIF
-IF gh02=1:gh02$=smb$+"  Norma [67.8Mpc]":ENDIF
-IF gh02=-1: gh02$="     Norma [67.8Mpc]":ENDIF
-IF gh07=1:gh07$=smb$+"  Laniakea S. [76.7Mpc]":ENDIF
-IF gh07=-1: gh07$="     Großer Attraktor [76.7Mpc]":ENDIF
-IF gh10=1:gh10$=smb$+"  Perseus-Pi. S. [76.7Mpc]":ENDIF
-IF gh10=-1: gh10$="     Perseus-Pi. S. [76.7Mpc]":ENDIF
-IF gh11=1:gh11$=smb$+"  Coma S. [92.0Mpc]":ENDIF
-IF gh11=-1: gh11$="     Coma S. [92.0Mpc]":ENDIF
-IF gh05=1:gh05$=smb$+"  Coma [103.0Mpc]":ENDIF
-IF gh05=-1: gh05$="     Große Wand [103.0Mpc]":ENDIF
-IF gh12=1:gh12$=smb$+"  Ophiuchus S. [113.5Mpc]":ENDIF
-IF gh12=-1: gh12$="     Ophiuchus S. [113.5Mpc]":ENDIF
-IF gh13=1:gh13$=smb$+"  Leo S. [135.0Mpc]":ENDIF
-IF gh13=-1: gh13$="     Leo S. [135.0Mpc]":ENDIF
-IF gh14=1:gh14$=smb$+"  Herkules S. [135.3Mpc]":ENDIF
-IF gh14=-1: gh14$="     Herkules S. [135.3Mpc]":ENDIF
-IF gh15=1:gh15$=smb$+"  Shapley S. [199.4Mpc]":ENDIF
-IF gh15=-1: gh15$="     Shapley S. [199.4Mpc]":ENDIF
-IF gh08=1:gh08$=smb$+"  Geschoß [1.0Gpc]":ENDIF
-IF gh08=-1: gh08$="     Geschoß [1042.9Mpc]":ENDIF
+IF gh01=1:gh01$=smb$+"  Virgo  ["+STR$(ROUND(gh_d01/10^6,1))+"Mpc]":ENDIF
+IF gh01=-1: gh01$="     Virgo  ["+STR$(ROUND(gh_d01/10^6,1))+"Mpc]":ENDIF
+IF gh03=1:gh03$=smb$+"  Fornax ["+STR$(ROUND(gh_d02/10^6,1))+"Mpc]":ENDIF
+IF gh03=-1: gh03$="     Fornax ["+STR$(ROUND(gh_d02/10^6,1))+"Mpc]":ENDIF
+IF gh04=1:gh04$=smb$+"  Fornax II ["+STR$(ROUND(gh_d03/10^6,1))+"Mpc]":ENDIF
+IF gh04=-1: gh04$="     Eridanus ["+STR$(ROUND(gh_d03/10^6,1))+"Mpc]":ENDIF
+IF gh06=1:gh06$=smb$+"  Antila ["+STR$(ROUND(gh_d04/10^6,1))+"Mpc]":ENDIF
+IF gh06=-1: gh06$="     Antila ["+STR$(ROUND(gh_d04/10^6,1))+"Mpc]":ENDIF
+IF gh09=1:gh09$=smb$+"  Hydra ["+STR$(ROUND(gh_d05/10^6,1))+"Mpc]":ENDIF
+IF gh09=-1: gh09$="     Hydra ["+STR$(ROUND(gh_d05/10^6,1))+"Mpc]":ENDIF
+IF gh02=1:gh02$=smb$+"  Norma ["+STR$(ROUND(gh_d06/10^6,1))+"Mpc]":ENDIF
+IF gh02=-1: gh02$="     Norma ["+STR$(ROUND(gh_d06/10^6,1))+"Mpc]":ENDIF
+IF gh07=1:gh07$=smb$+"  Laniakea S. ["+STR$(ROUND(gh_d07/10^6,1))+"Mpc]":ENDIF
+IF gh07=-1: gh07$="     Großer Attraktor ["+STR$(ROUND(gh_d07/10^6,1))+"Mpc]":ENDIF
+IF gh10=1:gh10$=smb$+"  Perseus-Pi. S. ["+STR$(ROUND(gh_d08/10^6,1))+"Mpc]":ENDIF
+IF gh10=-1: gh10$="     Perseus-Pi. S. ["+STR$(ROUND(gh_d08/10^6,1))+"Mpc]":ENDIF
+IF gh11=1:gh11$=smb$+"  Coma S. ["+STR$(ROUND(gh_d09/10^6,1))+"Mpc]":ENDIF
+IF gh11=-1: gh11$="     Coma S. ["+STR$(ROUND(gh_d09/10^6,1))+"Mpc]":ENDIF
+IF gh05=1:gh05$=smb$+"  Coma ["+STR$(ROUND(gh_d10/10^6,1))+"Mpc]":ENDIF
+IF gh05=-1: gh05$="     Große Wand ["+STR$(ROUND(gh_d10/10^6,1))+"Mpc]":ENDIF
+IF gh12=1:gh12$=smb$+"  Ophiuchus S. ["+STR$(ROUND(gh_d11/10^6,1))+"Mpc]":ENDIF
+IF gh12=-1: gh12$="     Ophiuchus S. ["+STR$(ROUND(gh_d11/10^6,1))+"Mpc]":ENDIF
+IF gh13=1:gh13$=smb$+"  Leo S. ["+STR$(ROUND(gh_d12/10^6,1))+"Mpc]":ENDIF
+IF gh13=-1: gh13$="     Leo S. ["+STR$(ROUND(gh_d12/10^6,1))+"Mpc]":ENDIF
+IF gh14=1:gh14$=smb$+"  Herkules S. ["+STR$(ROUND(gh_d13/10^6,1))+"Mpc]":ENDIF
+IF gh14=-1: gh14$="     Herkules S. ["+STR$(ROUND(gh_d13/10^6,1))+"Mpc]":ENDIF
+IF gh15=1:gh15$=smb$+"  Shapley S. ["+STR$(ROUND(gh_d14/10^6,1))+"Mpc]":ENDIF
+IF gh15=-1: gh15$="     Shapley S. ["+STR$(ROUND(gh_d14/10^6,1))+"Mpc]":ENDIF
+IF gh08=1:gh08$=smb$+"  Geschoß ["+STR$(ROUND(gh_d15/10^9,1))+"Gpc]":ENDIF
+IF gh08=-1: gh08$="     Geschoß ["+STR$(ROUND(gh_d15/10^6,1))+"Mpc]":ENDIF
 !!
  IF gh__=1:gh__$=smb$+"  ___ [Mpc]":ENDIF
  IF gh__=-1: gh__$="     ___ [Mpc]":ENDIF
@@ -2510,40 +2531,40 @@ RETURN
 menu9:
 IF gq00=1:gq00$=smb$+"  Ebene an":ENDIF
 IF gq00=-1: gq00$="     Ebene aus":ENDIF
-IF gq01=1:gq01$=smb$+"  UGC 8085 [178Mpc]":ENDIF
-IF gq01=-1: gq01$="     UGC 8085 [178Mpc]":ENDIF
-IF gq13=1:gq13$=smb$+"  J1430+1339 [306.8Mpc]":ENDIF
-IF gq13=-1: gq13$="     J1430+1339 [306.8Mpc]":ENDIF
-IF gq03=1:gq03$=smb$+"  3C 273 [736Mpc]":ENDIF
-IF gq03=-1: gq03$="     3C 273 [736Mpc]":ENDIF
-IF gq14=1:gq14$=smb$+"  CID-42 [1.2Gpc]":ENDIF
-IF gq14=-1: gq14$="     CID-42 [1.2Gpc]":ENDIF
-IF gq04=1:gq04$=smb$+"  3C 48 [1.22Gpc]":ENDIF
-IF gq04=-1: gq04$="     3C 48 [1.22Gpc]":ENDIF
-IF gq20=1:gq20$=smb$+"  3C 47 [1.3Gpc]":ENDIF
-IF gq20=-1: gq20$="     3C 47 [1.3Gpc]":ENDIF
-IF gq15=1:gq15$=smb$+"  3C 279 [1.5Gpc]":ENDIF
-IF gq15=-1: gq15$="     3C 279 [1.5Gpc]":ENDIF
-IF gq05=1:gq05$=smb$+"  3C 147 [1.56Gpc]":ENDIF
-IF gq05=-1: gq05$="     3C 147 [1.56Gpc]":ENDIF
-IF gq06=1:gq06$=smb$+"  CTA-102 [2.45Gpc]":ENDIF
-IF gq06=-1: gq06$="     CTA-102 [2.45Gpc]":ENDIF
-IF gq16=1:gq16$=smb$+"  Einstein Cross [2.5Gpc]":ENDIF
-IF gq16=-1: gq16$="     Einstein Cross [2.5Gpc]":ENDIF
-IF gq07=1:gq07$=smb$+"  QSO 0957+561 [2.7Gpc]":ENDIF
-IF gq07=-1: gq07$="     QSO 0957+561 [2.7Gpc]":ENDIF
-IF gq09=1:gq09$=smb$+"  Huge-LQG [2.8Gpc]":ENDIF
-IF gq09=-1: gq09$="     Huge-LQG [2.8Gpc]":ENDIF
-IF gq08=1:gq08$=smb$+"  3C 9 [3.1Gpc]":ENDIF
-IF gq08=-1: gq08$="     3C 9 [3.1Gpc]":ENDIF
-IF gq17=1:gq17$=smb$+"  TON 618 [3.3Gpc]":ENDIF
-IF gq17=-1: gq17$="     TON 618 [3.3Gpc]":ENDIF
-IF gq18=1:gq18$=smb$+"  H1413+117 [3.4Gpc]":ENDIF
-IF gq18=-1: gq18$="     H1413+117 [3.4Gpc]":ENDIF
-IF gq19=1:gq19$=smb$+"  APM 08279+5255 [7.2Gpc]":ENDIF
-IF gq19=-1: gq19$="     APM 08279+5255 [7.2Gpc]":ENDIF
-IF gq02=1:gq02$=smb$+"  QSO J0313-1806 [9Gpc]":ENDIF
-IF gq02=-1: gq02$="     QSO J0313-1806 [9Gpc]":ENDIF
+IF gq01=1:gq01$=smb$+"  UGC 8085 ["+STR$(ROUND(gq_d01/10^6,1))+"Mpc]":ENDIF
+IF gq01=-1: gq01$="     UGC 8085 ["+STR$(ROUND(gq_d01/10^6,1))+"Mpc]":ENDIF
+IF gq13=1:gq13$=smb$+"  J1430+1339 ["+STR$(ROUND(gq_d02/10^6,1))+"Mpc]":ENDIF
+IF gq13=-1: gq13$="     J1430+1339 ["+STR$(ROUND(gq_d02/10^6,1))+"Mpc]":ENDIF
+IF gq03=1:gq03$=smb$+"  3C 273 ["+STR$(ROUND(gq_d03/10^6,1))+"Mpc]":ENDIF
+IF gq03=-1: gq03$="     3C 273 ["+STR$(ROUND(gq_d03/10^6,1))+"Mpc]":ENDIF
+IF gq14=1:gq14$=smb$+"  CID-42 ["+STR$(ROUND(gq_d04/10^9,1))+"Gpc]":ENDIF
+IF gq14=-1: gq14$="     CID-42 ["+STR$(ROUND(gq_d04/10^9,1))+"Gpc]":ENDIF
+IF gq04=1:gq04$=smb$+"  3C 48 ["+STR$(ROUND(gq_d05/10^9,1))+"Gpc]":ENDIF
+IF gq04=-1: gq04$="     3C 48 ["+STR$(ROUND(gq_d05/10^9,1))+"Gpc]":ENDIF
+IF gq20=1:gq20$=smb$+"  3C 47 ["+STR$(ROUND(gq_d06/10^9,1))+"Gpc]":ENDIF
+IF gq20=-1: gq20$="     3C 47 ["+STR$(ROUND(gq_d06/10^9,1))+"Gpc]":ENDIF
+IF gq15=1:gq15$=smb$+"  3C 279 ["+STR$(ROUND(gq_d07/10^9,1))+"Gpc]":ENDIF
+IF gq15=-1: gq15$="     3C 279 ["+STR$(ROUND(gq_d07/10^9,1))+"Gpc]":ENDIF
+IF gq05=1:gq05$=smb$+"  3C 147 ["+STR$(ROUND(gq_d08/10^9,1))+"Gpc]":ENDIF
+IF gq05=-1: gq05$="     3C 147 ["+STR$(ROUND(gq_d08/10^9,1))+"Gpc]":ENDIF
+IF gq06=1:gq06$=smb$+"  CTA-102 ["+STR$(ROUND(gq_d09/10^9,1))+"Gpc]":ENDIF
+IF gq06=-1: gq06$="     CTA-102 ["+STR$(ROUND(gq_d09/10^9,1))+"Gpc]":ENDIF
+IF gq16=1:gq16$=smb$+"  Einstein Cross ["+STR$(ROUND(gq_d10/10^9,1))+"Gpc]":ENDIF
+IF gq16=-1: gq16$="     Einstein Cross ["+STR$(ROUND(gq_d10/10^9,1))+"Gpc]":ENDIF
+IF gq07=1:gq07$=smb$+"  QSO 0957+561 ["+STR$(ROUND(gq_d11/10^9,1))+"Gpc]":ENDIF
+IF gq07=-1: gq07$="     QSO 0957+561 ["+STR$(ROUND(gq_d11/10^9,1))+"Gpc]":ENDIF
+IF gq09=1:gq09$=smb$+"  Huge-LQG ["+STR$(ROUND(gq_d12/10^9,1))+"Gpc]":ENDIF
+IF gq09=-1: gq09$="     Huge-LQG ["+STR$(ROUND(gq_d12/10^9,1))+"Gpc]":ENDIF
+IF gq08=1:gq08$=smb$+"  3C 9 ["+STR$(ROUND(gq_d13/10^9,1))+"Gpc]":ENDIF
+IF gq08=-1: gq08$="     3C 9 ["+STR$(ROUND(gq_d13/10^9,1))+"Gpc]":ENDIF
+IF gq17=1:gq17$=smb$+"  TON 618 ["+STR$(ROUND(gq_d14/10^9,1))+"Gpc]":ENDIF
+IF gq17=-1: gq17$="     TON 618 ["+STR$(ROUND(gq_d14/10^9,1))+"Gpc]":ENDIF
+IF gq18=1:gq18$=smb$+"  H1413+117 ["+STR$(ROUND(gq_d15/10^9,1))+"Gpc]":ENDIF
+IF gq18=-1: gq18$="     H1413+117 ["+STR$(ROUND(gq_d15/10^9,1))+"Gpc]":ENDIF
+IF gq19=1:gq19$=smb$+"  APM 08279+5255 ["+STR$(ROUND(gq_d16/10^9,1))+"Gpc]":ENDIF
+IF gq19=-1: gq19$="     APM 08279+5255 ["+STR$(ROUND(gq_d16/10^9,1))+"Gpc]":ENDIF
+IF gq02=1:gq02$=smb$+"  QSO J0313-1806 ["+STR$(ROUND(gq_d17/10^9,1))+"Gpc]":ENDIF
+IF gq02=-1: gq02$="     QSO J0313-1806 ["+STR$(ROUND(gq_d17/10^9,1))+"Gpc]":ENDIF
 !!
  IF gq__=1:gq__$=smb$+"  __ [__pc]":ENDIF
  IF gq__=-1: gq__$="     __ [__pc]":ENDIF
@@ -2552,62 +2573,186 @@ gq99$=smq$+"  Projektion an/aus"
 IF t06gq=1:gq30$=smb$+"  Text":ENDIF
 IF t06gq=-1:gq30$="     Text aus":ENDIF
 RETURN
-! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-gqreset:
-IF gq99=1
- gq01=-1
- gq02=-1
- gq03=-1
- gq04=-1
- gq05=-1
- gq06=-1
- gq07=-1
- gq08=-1
- gq09=-1
- gq10=-1
- gq11=-1
- gq12=-1
- gq13=-1
- gq14=-1
- gq15=-1
- gq16=-1
- gq17=-1
- gq18=-1
- gq19=-1
- gq20=-1
+
+! %, Eingabedatei für weitere Objekte %%%%%%%%%%%%%%%%%%%%
+objdatei:
+DIM inp$[100]
+FILE.DIR pth$, inp$[] 
+SELECT ninp, inp$[], _name$+" Objekt Definitionsdatei... ", "Select File" 
+gwf$=inp$[ninp] 
+ARRAY.DELETE inp$[]
+RETURN 
+! % Weitere Objekte ini %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+weitere_ini:                           % Objekte einlesen
+DIM gw$[1000]
+DIM gw_p[1000] 
+DIM gw_r[1000]
+DIM gw_d[1000] 
+DIM gwdg[1000]
+DIM gwdm[1000]
+DIM gwds[1000]
+DIM gwh_[1000]
+DIM gwm_[1000]
+DIM gws_[1000]
+DIM gw_t[1000]
+DIM gw_cl[1000]
+FOR i_gw=1 TO 1000
+ gw_p[i_gw]=-1                    %Projektionsvariable ini
+NEXT                              %Objektdatei
+GOSUB weitere_in
+! % Weitere Objekte %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+RETURN
+weitere_in: 
+n_gw=0
+FILE.EXISTS fw, gwf$
+IF fw
+ TEXT.OPEN r, fw, gwf$
+ DO
+  TEXT.READLN fw, gwf_$:n_gw=n_gw+1           %Anzahl n_gw
+ UNTIL gwf_$="EOF"
+ TEXT.CLOSE fw
+ n_gw=(n_gw-1)/12 %Anzahl der Optionen
+ TEXT.OPEN r, fw, gwf$                        %Einlesen
+ FOR i_gw=1 TO n_gw
+  TEXT.READLN fw, gwf_$                       % Nr
+  TEXT.READLN fw, gwf_$:gw$[i_gw]=gwf_$       % Name
+  TEXT.READLN fw, gwf_$:gw_r[i_gw]=VAL(gwf_$) % r Lj
+  IF gw_r[i_gw]=-1 THEN gw_r[i_gw]=gr_0       % Obj. Gr.
+  TEXT.READLN fw, gwf_$:gw_d[i_gw]=VAL(gwf_$) % d Lj
+  TEXT.READLN fw, gwf_$:gwdg[i_gw]=VAL(gwf_$) % dek g
+  TEXT.READLN fw, gwf_$:gwdm[i_gw]=VAL(gwf_$) % dek m
+  TEXT.READLN fw, gwf_$:gwds[i_gw]=VAL(gwf_$) % dek s
+  TEXT.READLN fw, gwf_$:gwh_[i_gw]=VAL(gwf_$) % ra h
+  TEXT.READLN fw, gwf_$:gwm_[i_gw]=VAL(gwf_$) % ra m
+  TEXT.READLN fw, gwf_$:gws_[i_gw]=VAL(gwf_$) % ra s
+  TEXT.READLN fw, gwf_$:gw_t[i_gw]=VAL(gwf_$) % typ
+  TEXT.READLN fw, gwf_$:gw_cl[i_gw]=VAL(gwf_$) % typfarbe
+ NEXT
+ TEXT.CLOSE fw
 ELSE
- gq01=1
- gq02=1
- gq03=1
- gq04=1
- gq05=1
- gq06=1
- gq07=1
- gq08=1
- gq09=1
- gq10=1
- gq11=1
- gq12=1
- gq13=1
- gq14=1
- gq15=1
- gq16=1
- gq17=1
- gq18=1
- gq19=1
- gq20=1
+ TEXT.OPEN w, fw1, "ssr_gw.dat"   %wenn keine Objektdatei                                
+ENDIF
+RETURN
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+weitere_out:                      % Objekte ausgeben
+DIALOG.MESSAGE "Weitere Objekte:","Astronomische Objekte...",selob,"Anlegen","Löschen","Abbrechen"
+IF selob=1
+ n_gw=n_gw+1
+ INPUT"Objektname…",gw_name$,"Objekt"+INT$(n_gw)
+ INPUT"Radius in Lj[-1:Stern]…",gw_r_,-1
+ gw_ty_=gw_r_:IF gw_r_>-1 THEN gw_ty_=0
+ INPUT"Distanz in Lj…",gw_d_,15000
+ INPUT"Rek. Stunde…",gw_rh_,0
+ INPUT"Rek. Minute…",gw_rm_,0
+ INPUT"Rek. Sekunde …",gw_rs_,0
+ INPUT"Dekl. Grad…",gw_dg_,0
+ INPUT"Dekl. Minute…",gw_dm_,0
+ INPUT"Dekl. Sekunde …",gw_ds_,0
+ % Typus und Farbe %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ ARRAY.LOAD seltp_$[],"Stern Gr1","Stern Gr2","Stern Gr3","Roter Riese","Blauer Riese","Nova/Supernova","Sternhaufen","Nebel","Milchstraßenwolke","Galaxie","Haufen","Superhaufen","Quasar","Symbolisch"
+ DIALOG.SELECT seltp, seltp_$[],"Weitere Objekte: Typ:"
+ DIALOG.MESSAGE "Weitere Objekte:","Neues astronomisches Objekt anlegen?",wrtout,"Speichern","Abbrechen"
+ IF wrtout=1
+  obnrdat$="&"+FORMAT$("0%%",n_gw)+"["+d$+"/"+m$+"/"+y$+"]"
+  TEXT.OPEN a, fw, gwf$                %Ausgabe
+  TEXT.WRITELN fw, obnrdat$            % Nummer, Datum
+  TEXT.WRITELN fw, gw_name$            % Name
+  TEXT.WRITELN fw, gw_r_               % r Lj
+  TEXT.WRITELN fw, gw_d_               % d Lj
+  TEXT.WRITELN fw, gw_dg_              % Dekl Grad
+  TEXT.WRITELN fw, gw_dm_              % Dekl Minute
+  TEXT.WRITELN fw, gw_ds_              % Dekl Sekunde
+  TEXT.WRITELN fw, gw_rh_              % Rekt Stunde
+  TEXT.WRITELN fw, gw_rm_              % Rekt Minute
+  TEXT.WRITELN fw, gw_rs_              % Rekt Sekunde
+  TEXT.WRITELN fw, gw_ty_              % Typ
+  TEXT.WRITELN fw, seltp               % Typfarbe
+  TEXT.CLOSE fw
+ ENDIF
+ENDIF
+IF selob=2                             % Alle Löschen
+ DIALOG.MESSAGE "Weitere Objekte:","Alle weiteren astronomischen Objekte löschen?",selob0,"Löschen","Abbrechen"
+ IF selob0=1
+  TEXT.OPEN w, fw, gwf$      
+  TEXT.CLOSE fw      
+ ENDIF            
+ENDIF
+RETURN
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+! % Dialog Weitere Objekte %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+dialog11prm:
+gw00=1
+gw99=-1
+t06gw=1
+RETURN
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+dialog11:
+GOSUB weitere_in
+GOSUB menu11
+std11:
+DIM sel11$[n_gw+6]
+!
+sel11$[1]=gw00$
+sel11$[2]=smq$+"  Datei: "+gwf$
+FOR i_gw=1 TO n_gw
+ sel11$[i_gw+2]=gwmn$[i_gw]
+NEXT
+sel11$[n_gw+3]=smq$+"  Objekt anlegen/löschen"
+sel11$[n_gw+4]=gw99$
+sel11$[n_gw+5]=gw30$
+sel11$[n_gw+6]="Ok"
+!
+DIALOG.SELECT sel11, sel11$[],"Weitere Objekte: Darstellung/Projektion:"
+IF sel11=1:gw00=gw00*-1:ENDIF         % Objekt Datei
+IF sel11=2:GOSUB objdatei:GOSUB weitere_in:ENDIF       
+FOR i_gw=1 TO n_gw                    % Weitere Objekte
+ IF sel11=i_gw+2:gw_p[i_gw]=gw_p[i_gw]*-1:ENDIF
+NEXT
+IF sel11=n_gw+3:GOSUB weitere_out:GOSUB weitere_in:ENDIF
+IF sel11=n_gw+4:GOSUB gwreset: gw99=gw99*-1:ENDIF
+IF sel11=n_gw+5:t06gw=t06gw*-1:ENDIF
+IF sel11=n_gw+6:RETURN:ENDIF
+!
+GOSUB menu11
+GOTO std11
+RETURN 
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+menu11:
+IF n_gw>0 THEN DIM gwmn$[n_gw]
+IF gw00=1:gw00$=smb$+"  Ebene an":ENDIF
+IF gw00=-1: gw00$="     Ebene aus":ENDIF
+FOR i_gw=1 TO n_gw                    % Weitere Objekte
+ IF gw_p[i_gw]=1:  gwmn$[i_gw]=smb$+"  "+gw$[i_gw]:ENDIF
+ IF gw_p[i_gw]=-1: gwmn$[i_gw]="     "+gw$[i_gw]:ENDIF
+NEXT
+gw99$=smq$+"  Projektion an/aus"
+IF t06gw=1:gw30$=smb$+"  Text":ENDIF
+IF t06gw=-1:gw30$="     Text aus":ENDIF
+RETURN
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+gwreset:
+IF gw99=1
+ FOR i_gw=1 TO n_gw
+  gw_p[i_gw]=-1
+ NEXT
+ENDIF
+IF gw99=-1
+ FOR i_gw=1 TO n_gw
+  gw_p[i_gw]=1
+ NEXT
 ENDIF
 RETURN
 ! % Dialog Größenvergleich %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 menuvgl:
-vg01$="Beteigeuze [3.55AE]"
-vg02$="Orionnebel [12Lj]"
-vg03$="Aldebaran [0.20AE]"
-vg04$= CHR$(945)+" Centauri A [0.006AE]"
-vg05$= "Sirius [0.008AE]"
-vg06$= "RSGC2-01 [10.75AE]"
+vg01$="Beteigeuze ["+STR$(ROUND( r_btg_ae,2))+"AE]"
+vg02$="Orionnebel ["+STR$(ROUND( r_orn_ae/Lj_,2))+"Lj]"
+vg03$="Aldebaran ["+STR$(ROUND( r_adb_ae,2))+"AE]"
+vg04$= _ga$+" Centauri A ["+STR$(ROUND( r_acn_ae,3))+"AE]"
+vg05$= "Sirius ["+STR$(ROUND( r_srs_ae,3))+"AE]"
+vg06$= "RSGC2-01 ["+STR$(ROUND( r_rsg_ae,2))+"AE]"
 ARRAY.LOAD vgl$[],vg04$,vg05$,vg03$,vg01$,vg06$,vg02$
 DIALOG.SELECT vglst, vgl$[],"Größenvergleich:"
+objv$=vgl$[vglst]
 RETURN 
 ! % Dialog Skalen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dialog10prm:
@@ -2627,7 +2772,7 @@ RETURN
 dialog10:
 GOSUB menu10
 std10:
-ARRAY.LOAD sel10$[],sk01$,sk02$,sk03$,sk06$,sk04$,o01$,o02$,o03$,o04$,o08$,sk05$,o09$,"Ok"
+ARRAY.LOAD sel10$[],sk01$,sk02$,sk03$,sk06$,sk04$,o01$,o02$,o03$,o04$,o08$,sk05$,o09$,o10$,"Ok"
 DIALOG.SELECT sel10, sel10$[],"Skalen:"
 IF sel10=1:s10=s10*-1:ENDIF
 IF sel10=2:t31=t31*-1
@@ -2635,9 +2780,9 @@ IF sel10=2:t31=t31*-1
   INPUT"Stunde h=…",h_,0
   INPUT"Minute min=…",m_,0
   INPUT"Sekunde sec=…",s_,0
-  rk$=" "+INT$(h_)+CHR$(688)
+  rk$=" "+INT$(h_)+_rh$
   rk$= rk$+INT$(m_)+"'"
-  rk$= rk$+INT$(s_)+CHR$(34)
+  rk$= rk$+INT$(s_)+_rsc$
  ENDIF
  IF t31=-1 THEN t39=-1
 ENDIF
@@ -2649,7 +2794,7 @@ IF sel10=3:t39=t39*-1
   INPUT"Sekunde sec=…",ds_,0
   dkl$=" "+INT$(dg_)+"°"
   dkl$= dkl$+INT$(dm_)+"'"
-  dkl$= dkl$+INT$(ds_)+CHR$(34)
+  dkl$= dkl$+INT$(ds_)+_rsc$
  ENDIF
 ENDIF
 IF sel10=4:t99=t99*-1:ENDIF 
@@ -2668,11 +2813,12 @@ IF sel10=10:s08=s08*-1
  IF s08=1 THEN GOSUB dialogk
 ENDIF
 IF sel10=11
- t37=t37*-1
- IF t37=1 THEN GOSUB menuvgl
+ swvgl=swvgl*-1
+ IF swvgl=1 THEN GOSUB menuvgl
 ENDIF
 IF sel10=12:t98=t98*-1:ENDIF
-IF sel10=13:RETURN:ENDIF
+IF sel10=13:GOSUB lbrte:ENDIF
+IF sel10=14:RETURN:ENDIF
 GOSUB menu10
 GOTO std10
 RETURN
@@ -2697,10 +2843,16 @@ IF s04=1:o04$=smb$+"  Erdprojektion":ENDIF
 IF s04=-1: o04$="     Erdprojektion aus":ENDIF
 IF s08=1:o08$=smb$+"  Kompass "+kp$:ENDIF
 IF s08=-1:o08$="     Kompass aus":ENDIF
-IF t37=1:sk05$=smb$+"  = "+vgl$[vglst]:ENDIF
-IF t37=-1: sk05$="     Größenvergleich aus":ENDIF
+IF swvgl=1:sk05$=smb$+"  = "+objv$:ENDIF
+IF swvgl=-1: sk05$="     Größenvergleich aus":ENDIF
 IF t98=1:o09$=smb$+"  Historie ":ENDIF
 IF t98=-1:o09$="     Historie aus":ENDIF
+o10$=smq$+"  Linienbreite: "+INT$(skl)
+RETURN
+! % Dialog Linienbreite %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+lbrte:
+ARRAY.LOAD selbr$[],"1 [sehr schmal]","2 [schmal]","3 [normal]","4 [breit]","5 [sehr breit]"
+DIALOG.SELECT skl, selbr$[],"Linienbreite:"
 RETURN
 ! % Dialog Modus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dialog3:
@@ -2712,10 +2864,14 @@ r05$="i Information"
 ARRAY.LOAD sel3$[],r03$,r02$,r01$,r04$,r05$
 DIALOG.SELECT sel3, sel3$[],"Modus:"
 IF sel3=1
- INPUT"Zeitrafferfaktor ve=…",vse,1.05:s07=1
- IF vse<=1 THEN vse=1.05
+ INPUT"Zeitrafferfaktor ve[0,1]=…",vse,0.05:s07=1
+ vse=vse+1
+ IF vse<=1 THEN vse=1.001
+ IF vse>2 THEN vse=2
 ENDIF
-IF sel3=2: INPUT"Beschleunigungsfaktor vsmn=…",vsmn,0.1:v=0.1:s07=-1:ENDIF
+IF sel3=2: INPUT"Beschleunigungsfaktor vsmn[-1,1]=…",vsmn,0.1
+ IF ABS(vsmn)>1 THEN vsmn=1
+v=0.1:s07=-1:ENDIF
 IF sel3=3
  INPUT"Minimaldistanz in AE=…",vsm_mn,0.02
  IF vsm_mn<0.01 THEN vsm_mn=0.01
@@ -2723,17 +2879,25 @@ IF sel3=3
  INPUT"Maximaldistanz in pc=…",vsm_mx,2.5*10^8
  IF vsm_mx<1 THEN vsm_mx=1
  IF vsm_mx>14.25*10^9 THEN vsm_mx=14.25*10^9
- INPUT"Zeitrafferfaktor vs=…",vsm,1.05:s07=0
- IF vsm<=1 THEN vsm=1.05
+ INPUT"Zeitrafferfaktor vs[0,1]=…",vsm,0.05:s07=0
+ vsm=vsm+1
+ IF vsm<=1 THEN vsm=1.001
+ IF vsm>2 THEN vsm=2
 ENDIF
 IF sel3=4                  %in AE
  ARRAY.LOAD selae0$[],"Astronomische Einheit AE","Lichtjahr Lj","Parsec pc"
- DIALOG.SELECT selae0, selae0$[],"Anfangsentfernung, Einheit [ 1Lj=63241.1AE | 1pc=206264.8AE ]:"
- IF selae0=1:INPUT"Anfangsentfernung AEo=…",aed,1:ENDIF
- IF selae0=2:INPUT"Anfangsentfernung Ljo=…",aed,1
+ DIALOG.SELECT selae0, selae0$[],"Anfangsentfernung, Einheit [Lj="+INT$(Lj_)+"AE|pc="+INT$(pc_)+"AE]:"
+ IF selae0=1:INPUT"Anfangsentfernung AE0=…",aed,1
+  IF aed>14.25*10^9*pc_ THEN aed=14.25*10^9*pc_
+ ENDIF
+ IF selae0=2:INPUT"Anfangsentfernung Lj0=…",aed,1
+  IF aed>14.25*3.26*10^9 THEN aed=14.25*3.26*10^9
  aed=aed*Lj_:ENDIF
- IF selae0=3:INPUT"Anfangsentfernung pco=…",aed,1
- aed=aed*pc_:ENDIF
+ IF selae0=3:INPUT"Anfangsentfernung pc0=…",aed,1
+  IF aed>14.25*10^9 THEN aed=14.25*10^9
+  aed=aed*pc_
+ ENDIF
+ IF aed<=0 THEN aed=1
  ed=(sx/2.9)/aed           %Anfangsentfernungsfaktor ed
  GOSUB anfangsentfernung
 ENDIF
@@ -2785,7 +2949,7 @@ x01$="Ja"
 x02$="Nein"
 ARRAY.LOAD sel4$[],x01$,x02$
 DIALOG.SELECT sel4, sel4$[],"Uhrzeit und Kalenderskala:"
-IF sel4=1:swu=1:ur$=CHR$(8986):ENDIF
+IF sel4=1:swu=1:ur$=_ur$:ENDIF
 IF sel4=2:swu=-1:ur$="":ENDIF
 RETURN
 ! % Dialog Kompass %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2795,636 +2959,33 @@ k02$="Position"
 k03$="Kompass und Position"
 ARRAY.LOAD sel5$[],k01$,k02$,k03$
 DIALOG.SELECT sel5, sel5$[],"Kompassoptionen:"
-IF sel5=1:swk=1:kp$=CHR$(8251):ENDIF
-IF sel5=2:swk=-1:kp$=CHR$(8663):ENDIF
-IF sel5=3:swk=0:kp$=CHR$(8251)+CHR$(8663):ENDIF
+IF sel5=1:swk=1:kp$=_kp1$:ENDIF
+IF sel5=2:swk=-1:kp$=_kp2$:ENDIF
+IF sel5=3:swk=0:kp$=_kp3$:ENDIF
 RETURN
-! % Einstellungen Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-einstellungen:
-FILE.EXISTS fx, "ssr.ini"
-IF fx
- TEXT.OPEN r, fsr, "ssr.ini"
- TEXT.READLN fsr, ini$:s00=VAL(ini$)
- TEXT.READLN fsr, ini$:s01=VAL(ini$)
- TEXT.READLN fsr, ini$:s02=VAL(ini$)
- TEXT.READLN fsr, ini$:s03=VAL(ini$)
- TEXT.READLN fsr, ini$:s04=VAL(ini$)
- TEXT.READLN fsr, ini$:u00=VAL(ini$)
- TEXT.READLN fsr, ini$:t00=VAL(ini$)
- TEXT.READLN fsr, ini$:s07=VAL(ini$)
- TEXT.READLN fsr, ini$:s08=VAL(ini$)
- TEXT.READLN fsr, ini$:s09=VAL(ini$)
- TEXT.READLN fsr, ini$:s10=VAL(ini$)
- TEXT.READLN fsr, ini$:s11=VAL(ini$)
- TEXT.READLN fsr, ini$:st00=VAL(ini$)
- TEXT.READLN fsr, ini$:nb00=VAL(ini$)
- TEXT.READLN fsr, ini$:gm00=VAL(ini$)
- TEXT.READLN fsr, ini$:gx00=VAL(ini$)
- TEXT.READLN fsr, ini$:gq00=VAL(ini$)
- TEXT.READLN fsr, ini$:gh00=VAL(ini$)
- TEXT.READLN fsr, ini$:t98=VAL(ini$)
- TEXT.READLN fsr, ini$:t99=VAL(ini$)
- TEXT.READLN fsr, ini$:t01=VAL(ini$)
- TEXT.READLN fsr, ini$:t02=VAL(ini$)
- TEXT.READLN fsr, ini$:t03=VAL(ini$)
- TEXT.READLN fsr, ini$:gx01=VAL(ini$)
- TEXT.READLN fsr, ini$:t05=VAL(ini$)
- TEXT.READLN fsr, ini$:t06=VAL(ini$)
- TEXT.READLN fsr, ini$:t06s=VAL(ini$)
- TEXT.READLN fsr, ini$:t06st=VAL(ini$)
- TEXT.READLN fsr, ini$:t06nb=VAL(ini$)
- TEXT.READLN fsr, ini$:t06gm=VAL(ini$)
- TEXT.READLN fsr, ini$:t06gx=VAL(ini$)
- TEXT.READLN fsr, ini$:t06gh=VAL(ini$)
- TEXT.READLN fsr, ini$:t06gq=VAL(ini$)
- TEXT.READLN fsr, ini$:s99=VAL(ini$)
- TEXT.READLN fsr, ini$:st99=VAL(ini$)
- TEXT.READLN fsr, ini$:nb99=VAL(ini$)
- TEXT.READLN fsr, ini$:gm99=VAL(ini$)
- TEXT.READLN fsr, ini$:gx99=VAL(ini$)
- TEXT.READLN fsr, ini$:gh99=VAL(ini$)
- TEXT.READLN fsr, ini$:gq99=VAL(ini$)
- TEXT.READLN fsr, ini$:t07=VAL(ini$)
- TEXT.READLN fsr, ini$:t08=VAL(ini$)
- TEXT.READLN fsr, ini$:t09=VAL(ini$)
- TEXT.READLN fsr, ini$:t10=VAL(ini$)
- TEXT.READLN fsr, ini$:t11=VAL(ini$)
- TEXT.READLN fsr, ini$:t12=VAL(ini$)
- TEXT.READLN fsr, ini$:t13=VAL(ini$)
- TEXT.READLN fsr, ini$:t14=VAL(ini$)
- TEXT.READLN fsr, ini$:t15=VAL(ini$)
- TEXT.READLN fsr, ini$:st01=VAL(ini$)
- TEXT.READLN fsr, ini$:st02=VAL(ini$)
- TEXT.READLN fsr, ini$:st03=VAL(ini$)
- TEXT.READLN fsr, ini$:st04=VAL(ini$)
- TEXT.READLN fsr, ini$:st05=VAL(ini$)
- TEXT.READLN fsr, ini$:st06=VAL(ini$)
- TEXT.READLN fsr, ini$:st07=VAL(ini$)
- TEXT.READLN fsr, ini$:st08=VAL(ini$)
- TEXT.READLN fsr, ini$:st09=VAL(ini$)
- TEXT.READLN fsr, ini$:st10=VAL(ini$)
- TEXT.READLN fsr, ini$:st11=VAL(ini$)
- TEXT.READLN fsr, ini$:st12=VAL(ini$)
- TEXT.READLN fsr, ini$:st13=VAL(ini$)
- TEXT.READLN fsr, ini$:st14=VAL(ini$)
- TEXT.READLN fsr, ini$:st15=VAL(ini$)
- TEXT.READLN fsr, ini$:st16=VAL(ini$)
- TEXT.READLN fsr, ini$:st17=VAL(ini$)
- TEXT.READLN fsr, ini$:st18=VAL(ini$)
- TEXT.READLN fsr, ini$:st19=VAL(ini$)
- TEXT.READLN fsr, ini$:st20=VAL(ini$)
- TEXT.READLN fsr, ini$:st21=VAL(ini$)
- TEXT.READLN fsr, ini$:st22=VAL(ini$)
- TEXT.READLN fsr, ini$:st23=VAL(ini$)
- TEXT.READLN fsr, ini$:st24=VAL(ini$)
- TEXT.READLN fsr, ini$:st25=VAL(ini$)
- TEXT.READLN fsr, ini$:st26=VAL(ini$)
- TEXT.READLN fsr, ini$:st27=VAL(ini$)
- TEXT.READLN fsr, ini$:st28=VAL(ini$)
- TEXT.READLN fsr, ini$:st29=VAL(ini$)
- TEXT.READLN fsr, ini$:st30=VAL(ini$)
- TEXT.READLN fsr, ini$:st31=VAL(ini$)
- TEXT.READLN fsr, ini$:st32=VAL(ini$)
- TEXT.READLN fsr, ini$:st33=VAL(ini$)
- TEXT.READLN fsr, ini$:st34=VAL(ini$)
- TEXT.READLN fsr, ini$:st35=VAL(ini$)
- TEXT.READLN fsr, ini$:st36=VAL(ini$)
- TEXT.READLN fsr, ini$:st37=VAL(ini$)
- TEXT.READLN fsr, ini$:st38=VAL(ini$)
- TEXT.READLN fsr, ini$:st39=VAL(ini$)
- TEXT.READLN fsr, ini$:st40=VAL(ini$)
- TEXT.READLN fsr, ini$:st41=VAL(ini$)
- TEXT.READLN fsr, ini$:st42=VAL(ini$)
- TEXT.READLN fsr, ini$:st43=VAL(ini$)
- TEXT.READLN fsr, ini$:st44=VAL(ini$)
- TEXT.READLN fsr, ini$:st45=VAL(ini$)
- TEXT.READLN fsr, ini$:st46=VAL(ini$)
- TEXT.READLN fsr, ini$:st47=VAL(ini$)
- TEXT.READLN fsr, ini$:st48=VAL(ini$)
- TEXT.READLN fsr, ini$:st49=VAL(ini$)
- TEXT.READLN fsr, ini$:st50=VAL(ini$)
- TEXT.READLN fsr, ini$:st51=VAL(ini$)
- TEXT.READLN fsr, ini$:st52=VAL(ini$)
- TEXT.READLN fsr, ini$:st53=VAL(ini$)
- TEXT.READLN fsr, ini$:st54=VAL(ini$)
- TEXT.READLN fsr, ini$:st55=VAL(ini$)
- TEXT.READLN fsr, ini$:st56=VAL(ini$)
- TEXT.READLN fsr, ini$:st57=VAL(ini$)
- TEXT.READLN fsr, ini$:t17=VAL(ini$)
- TEXT.READLN fsr, ini$:t18=VAL(ini$)
- TEXT.READLN fsr, ini$:t19=VAL(ini$)
- TEXT.READLN fsr, ini$:t20=VAL(ini$)
- TEXT.READLN fsr, ini$:nb10=VAL(ini$)
- TEXT.READLN fsr, ini$:nb11=VAL(ini$)
- TEXT.READLN fsr, ini$:nb12=VAL(ini$)
- TEXT.READLN fsr, ini$:nb14=VAL(ini$)
- TEXT.READLN fsr, ini$:nb15=VAL(ini$)
- TEXT.READLN fsr, ini$:nb16=VAL(ini$)
- TEXT.READLN fsr, ini$:nb17=VAL(ini$)
- TEXT.READLN fsr, ini$:nb18=VAL(ini$)
- TEXT.READLN fsr, ini$:nb19=VAL(ini$)
- TEXT.READLN fsr, ini$:nb20=VAL(ini$)
- TEXT.READLN fsr, ini$:nb21=VAL(ini$)
- TEXT.READLN fsr, ini$:nb22=VAL(ini$)
- TEXT.READLN fsr, ini$:gm01=VAL(ini$)
- TEXT.READLN fsr, ini$:gm02=VAL(ini$)
- TEXT.READLN fsr, ini$:gm03=VAL(ini$)
- TEXT.READLN fsr, ini$:gm04=VAL(ini$)
- TEXT.READLN fsr, ini$:gm05=VAL(ini$)
- TEXT.READLN fsr, ini$:gm06=VAL(ini$)
- TEXT.READLN fsr, ini$:gx02=VAL(ini$)
- TEXT.READLN fsr, ini$:gx03=VAL(ini$)
- TEXT.READLN fsr, ini$:gx04=VAL(ini$)
- TEXT.READLN fsr, ini$:gx05=VAL(ini$)
- TEXT.READLN fsr, ini$:gx06=VAL(ini$)
- TEXT.READLN fsr, ini$:gx07=VAL(ini$)
- TEXT.READLN fsr, ini$:gx08=VAL(ini$)
- TEXT.READLN fsr, ini$:gx09=VAL(ini$)
- TEXT.READLN fsr, ini$:gx10=VAL(ini$)
- TEXT.READLN fsr, ini$:gx11=VAL(ini$)
- TEXT.READLN fsr, ini$:gx12=VAL(ini$)
- TEXT.READLN fsr, ini$:gx13=VAL(ini$)
- TEXT.READLN fsr, ini$:gx14=VAL(ini$)
- TEXT.READLN fsr, ini$:gx15=VAL(ini$)
- TEXT.READLN fsr, ini$:gx16=VAL(ini$)
- TEXT.READLN fsr, ini$:gx17=VAL(ini$)
- TEXT.READLN fsr, ini$:gx18=VAL(ini$)
- TEXT.READLN fsr, ini$:gx19=VAL(ini$)
- TEXT.READLN fsr, ini$:gx20=VAL(ini$)
- TEXT.READLN fsr, ini$:gx21=VAL(ini$)
- TEXT.READLN fsr, ini$:gx22=VAL(ini$)
- TEXT.READLN fsr, ini$:gx23=VAL(ini$)
- TEXT.READLN fsr, ini$:gx24=VAL(ini$)
- TEXT.READLN fsr, ini$:gx25=VAL(ini$)
- TEXT.READLN fsr, ini$:gx26=VAL(ini$)
- TEXT.READLN fsr, ini$:gx27=VAL(ini$)
- TEXT.READLN fsr, ini$:gx28=VAL(ini$)
- TEXT.READLN fsr, ini$:gx29=VAL(ini$)
- TEXT.READLN fsr, ini$:gx30=VAL(ini$)
- TEXT.READLN fsr, ini$:gx31=VAL(ini$)
- TEXT.READLN fsr, ini$:gx32=VAL(ini$)
- TEXT.READLN fsr, ini$:gx33=VAL(ini$)
- TEXT.READLN fsr, ini$:gh01=VAL(ini$)
- TEXT.READLN fsr, ini$:gh02=VAL(ini$)
- TEXT.READLN fsr, ini$:gh03=VAL(ini$)
- TEXT.READLN fsr, ini$:gh04=VAL(ini$)
- TEXT.READLN fsr, ini$:gh05=VAL(ini$)
- TEXT.READLN fsr, ini$:gh06=VAL(ini$)
- TEXT.READLN fsr, ini$:gh07=VAL(ini$)
- TEXT.READLN fsr, ini$:gh08=VAL(ini$)
- TEXT.READLN fsr, ini$:gh09=VAL(ini$)
- TEXT.READLN fsr, ini$:gh10=VAL(ini$)
- TEXT.READLN fsr, ini$:gh11=VAL(ini$)
- TEXT.READLN fsr, ini$:gh12=VAL(ini$)
- TEXT.READLN fsr, ini$:gh13=VAL(ini$)
- TEXT.READLN fsr, ini$:gh14=VAL(ini$)
- TEXT.READLN fsr, ini$:gh15=VAL(ini$)
- TEXT.READLN fsr, ini$:t31=VAL(ini$)
- TEXT.READLN fsr, ini$:t32=VAL(ini$)
- TEXT.READLN fsr, ini$:t33=VAL(ini$)
- TEXT.READLN fsr, ini$:t34=VAL(ini$)
- TEXT.READLN fsr, ini$:t35=VAL(ini$)
- TEXT.READLN fsr, ini$:t36=VAL(ini$)
- TEXT.READLN fsr, ini$:t37=VAL(ini$)
- TEXT.READLN fsr, ini$:t38=VAL(ini$)
- TEXT.READLN fsr, ini$:t82=VAL(ini$)
- TEXT.READLN fsr, ini$:t83=VAL(ini$)
- TEXT.READLN fsr, ini$:t84=VAL(ini$)
- TEXT.READLN fsr, ini$:t85=VAL(ini$)
- TEXT.READLN fsr, ini$:t86=VAL(ini$)
- TEXT.READLN fsr, ini$:t87=VAL(ini$)
- TEXT.READLN fsr, ini$:t88=VAL(ini$)
- TEXT.READLN fsr, ini$:t89=VAL(ini$)
- TEXT.READLN fsr, ini$:t90=VAL(ini$)
- TEXT.READLN fsr, ini$:t91=VAL(ini$)
- TEXT.READLN fsr, ini$:t92=VAL(ini$)
- TEXT.READLN fsr, ini$:t93=VAL(ini$)
- TEXT.READLN fsr, ini$:t94=VAL(ini$)
- TEXT.READLN fsr, ini$:t95=VAL(ini$)
- TEXT.READLN fsr, ini$:t96=VAL(ini$)
- TEXT.READLN fsr, ini$:t97=VAL(ini$)
- TEXT.READLN fsr, ini$:t100=VAL(ini$)
- TEXT.READLN fsr, ini$:t101=VAL(ini$)
- TEXT.READLN fsr, ini$:t102=VAL(ini$)
- TEXT.READLN fsr, ini$:t103=VAL(ini$)
- TEXT.READLN fsr, ini$:t104=VAL(ini$)
- TEXT.READLN fsr, ini$:t105=VAL(ini$)
- TEXT.READLN fsr, ini$:t106=VAL(ini$)
- TEXT.READLN fsr, ini$:t107=VAL(ini$)
- TEXT.READLN fsr, ini$:t108=VAL(ini$)
- TEXT.READLN fsr, ini$:t109=VAL(ini$)
- TEXT.READLN fsr, ini$:t110=VAL(ini$)
- TEXT.READLN fsr, ini$:t111=VAL(ini$)
- TEXT.READLN fsr, ini$:t112=VAL(ini$)
- TEXT.READLN fsr, ini$:t113=VAL(ini$)
- TEXT.READLN fsr, ini$:t114=VAL(ini$)
- TEXT.READLN fsr, ini$:t115=VAL(ini$)
- TEXT.READLN fsr, ini$:t116=VAL(ini$)
- TEXT.READLN fsr, ini$:t117=VAL(ini$)
- TEXT.READLN fsr, ini$:t118=VAL(ini$)
- TEXT.READLN fsr, ini$:t119=VAL(ini$)
- TEXT.READLN fsr, ini$:t120=VAL(ini$)
- TEXT.READLN fsr, ini$:t121=VAL(ini$)
- TEXT.READLN fsr, ini$:t122=VAL(ini$)
- TEXT.READLN fsr, ini$:t123=VAL(ini$)
- TEXT.READLN fsr, ini$:t124=VAL(ini$)
- TEXT.READLN fsr, ini$:t125=VAL(ini$)
- TEXT.READLN fsr, ini$:t126=VAL(ini$)
- TEXT.READLN fsr, ini$:t127=VAL(ini$)
- TEXT.READLN fsr, ini$:t128=VAL(ini$)
- TEXT.READLN fsr, ini$:t129=VAL(ini$)
- TEXT.READLN fsr, ini$:t130=VAL(ini$)
- TEXT.READLN fsr, ini$:nb01=VAL(ini$)
- TEXT.READLN fsr, ini$:t39=VAL(ini$)
- TEXT.READLN fsr, ini$:gq01=VAL(ini$)
- TEXT.READLN fsr, ini$:gq02=VAL(ini$)
- TEXT.READLN fsr, ini$:gq03=VAL(ini$)
- TEXT.READLN fsr, ini$:gq04=VAL(ini$)
- TEXT.READLN fsr, ini$:gq05=VAL(ini$)
- TEXT.READLN fsr, ini$:gq06=VAL(ini$)
- TEXT.READLN fsr, ini$:gq07=VAL(ini$)
- TEXT.READLN fsr, ini$:gq08=VAL(ini$)
- TEXT.READLN fsr, ini$:gq09=VAL(ini$)
- TEXT.READLN fsr, ini$:gq10=VAL(ini$)
- TEXT.READLN fsr, ini$:gq11=VAL(ini$)
- TEXT.READLN fsr, ini$:gq12=VAL(ini$)
- TEXT.READLN fsr, ini$:gq13=VAL(ini$)
- TEXT.READLN fsr, ini$:gq14=VAL(ini$)
- TEXT.READLN fsr, ini$:gq15=VAL(ini$)
- TEXT.READLN fsr, ini$:gq16=VAL(ini$)
- TEXT.READLN fsr, ini$:gq17=VAL(ini$)
- TEXT.READLN fsr, ini$:gq18=VAL(ini$)
- TEXT.READLN fsr, ini$:gq19=VAL(ini$)
- TEXT.READLN fsr, ini$:gq20=VAL(ini$)
- TEXT.READLN fsr, ini$:u01=VAL(ini$)
- TEXT.READLN fsr, ini$:u02=VAL(ini$)
- TEXT.READLN fsr, ini$:u03=VAL(ini$)
- TEXT.READLN fsr, ini$:u04=VAL(ini$)
- TEXT.READLN fsr, ini$:u05=VAL(ini$)
- TEXT.READLN fsr, ini$:u06=VAL(ini$)
- TEXT.READLN fsr, ini$:u07=VAL(ini$)
- TEXT.READLN fsr, ini$:u08=VAL(ini$)
- TEXT.READLN fsr, ini$:u09=VAL(ini$)
- TEXT.READLN fsr, ini$:u10=VAL(ini$)
- TEXT.READLN fsr, ini$:u11=VAL(ini$)
- TEXT.READLN fsr, ini$:u13=VAL(ini$)
- TEXT.READLN fsr, ini$:u14=VAL(ini$)
- TEXT.READLN fsr, ini$:u15=VAL(ini$)
- TEXT.READLN fsr, ini$:aed=VAL(ini$)
- TEXT.READLN fsr, ini$:aed$=ini$
- TEXT.READLN fsr, ini$:ed=VAL(ini$) %%%
- TEXT.READLN fsr, ini$:swu=VAL(ini$)
- TEXT.READLN fsr, ini$:swk=VAL(ini$)
- TEXT.READLN fsr, ini$:inf=VAL(ini$)
- TEXT.READLN fsr, ini$:vsm_mn=VAL(ini$)
- TEXT.READLN fsr, ini$:vsm_mx=VAL(ini$)
- TEXT.READLN fsr, ini$:vsm=VAL(ini$)
- TEXT.READLN fsr, ini$:vsmn=VAL(ini$)
- TEXT.READLN fsr, ini$:vse=VAL(ini$)
- TEXT.READLN fsr, ini$:ae1=VAL(ini$)
- TEXT.READLN fsr, ini$:v=VAL(ini$)
- TEXT.READLN fsr, ini$:sw=VAL(ini$)
- TEXT.READLN fsr, ini$:sec1=VAL(ini$)
- TEXT.READLN fsr, ini$:h_=VAL(ini$)
- TEXT.READLN fsr, ini$:m_=VAL(ini$)
- TEXT.READLN fsr, ini$:s_=VAL(ini$)
- TEXT.READLN fsr, ini$:dg_=VAL(ini$)
- TEXT.READLN fsr, ini$:dm_=VAL(ini$)
- TEXT.READLN fsr, ini$:ds_=VAL(ini$)
- TEXT.READLN fsr, ini$:rk$=ini$
- TEXT.READLN fsr, ini$:dkl$=ini$
- TEXT.READLN fsr, ini$:ur$=ini$
- TEXT.READLN fsr, ini$:kp$=ini$
- TEXT.CLOSE fsr
-ELSE                % Voreinstellung
- GOSUB dialogprm
- GOSUB dialog1prm
- GOSUB dialog2prm
- GOSUB dialog4prm
- GOSUB dialog5prm
- GOSUB dialog6prm
- GOSUB dialog7prm
- GOSUB dialog8prm
- GOSUB dialog9prm
- GOSUB dialog10prm
- aed=1              % Entfernung
- aed$=" 1.0AE"
- ed=sx/2.9 %%%%%%%% % Vergrösserungsfaktor
- inf=1              % Startinfofensterschalter
- swu=-1             % Uhrzeit- und Kalenderskala
- ur$=""
- swk=0              % Kompassoption
- kp$=""
- vse=1.05           % Geschwindigkeit 
- vsmn=0.1           % Beschleunigung Simulation
- vsm_mn=0.02        % Minimaldistanz bei Vollsimulation
- vsm_mx=2.5*10^8    % Maximaldistanz bei Vollsimulation
- vsm=1.05           % Geschwindigkeit Vollsimulation
- v=0.1              % Umlaufgeschwindigkeit bei Simulation
- sw=1               % Vollsimulation Schalter
- sec1=-1            %
-ENDIF
+source_:
+GR.TEXT.SIZE txzi/2
+GR.TEXT.ALIGN 3
+GR.TEXT.DRAW tx,sx,40,"IAU[2023]"
+GR.TEXT.ALIGN 1
+GR.TEXT.SIZE txzi
+RETURN
+sourceg1:
+GR.TEXT.SIZE txzi/2
+GR.TEXT.ALIGN 3
+GR.TEXT.DRAW tx,sx,40,"NASA["+_g1_mon$+"/"+_g1_jar$+"]"
+GR.TEXT.ALIGN 1
+GR.TEXT.SIZE txzi
+RETURN
+sourceg2:
+GR.TEXT.SIZE txzi/2
+GR.TEXT.ALIGN 3
+GR.TEXT.DRAW tx,sx,40,"CDS["+_g2_mon$+"/"+_g2_jar$+"]"
+GR.TEXT.ALIGN 1
+GR.TEXT.SIZE txzi
 RETURN
 ! % Einstellungen Ende %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-fin:
-TEXT.OPEN w, fsr, "ssr.ini"
-TEXT.WRITELN fsr, s00
-TEXT.WRITELN fsr, s01
-TEXT.WRITELN fsr, s02
-TEXT.WRITELN fsr, s03
-TEXT.WRITELN fsr, s04
-TEXT.WRITELN fsr, u00
-TEXT.WRITELN fsr, t00
-TEXT.WRITELN fsr, s07
-TEXT.WRITELN fsr, s08
-TEXT.WRITELN fsr, s09
-TEXT.WRITELN fsr, s10
-TEXT.WRITELN fsr, s11
-TEXT.WRITELN fsr, st00
-TEXT.WRITELN fsr, nb00
-TEXT.WRITELN fsr, gm00
-TEXT.WRITELN fsr, gx00
-TEXT.WRITELN fsr, gq00
-TEXT.WRITELN fsr, gh00
-TEXT.WRITELN fsr, t98
-TEXT.WRITELN fsr, t99
-TEXT.WRITELN fsr, t01
-TEXT.WRITELN fsr, t02
-TEXT.WRITELN fsr, t03
-TEXT.WRITELN fsr, gx01
-TEXT.WRITELN fsr, t05
-TEXT.WRITELN fsr, t06
-TEXT.WRITELN fsr, t06s
-TEXT.WRITELN fsr, t06st
-TEXT.WRITELN fsr, t06nb
-TEXT.WRITELN fsr, t06gm
-TEXT.WRITELN fsr, t06gx
-TEXT.WRITELN fsr, t06gh
-TEXT.WRITELN fsr, t06gq
-TEXT.WRITELN fsr, s99
-TEXT.WRITELN fsr, st99
-TEXT.WRITELN fsr, nb99
-TEXT.WRITELN fsr, gm99
-TEXT.WRITELN fsr, gx99
-TEXT.WRITELN fsr, gh99
-TEXT.WRITELN fsr, gq99
-TEXT.WRITELN fsr, t07
-TEXT.WRITELN fsr, t08
-TEXT.WRITELN fsr, t09
-TEXT.WRITELN fsr, t10
-TEXT.WRITELN fsr, t11
-TEXT.WRITELN fsr, t12
-TEXT.WRITELN fsr, t13
-TEXT.WRITELN fsr, t14
-TEXT.WRITELN fsr, t15
-TEXT.WRITELN fsr, st01
-TEXT.WRITELN fsr, st02
-TEXT.WRITELN fsr, st03
-TEXT.WRITELN fsr, st04
-TEXT.WRITELN fsr, st05
-TEXT.WRITELN fsr, st06
-TEXT.WRITELN fsr, st07
-TEXT.WRITELN fsr, st08
-TEXT.WRITELN fsr, st09
-TEXT.WRITELN fsr, st10
-TEXT.WRITELN fsr, st11
-TEXT.WRITELN fsr, st12
-TEXT.WRITELN fsr, st13
-TEXT.WRITELN fsr, st14
-TEXT.WRITELN fsr, st15
-TEXT.WRITELN fsr, st16
-TEXT.WRITELN fsr, st17
-TEXT.WRITELN fsr, st18
-TEXT.WRITELN fsr, st19
-TEXT.WRITELN fsr, st20
-TEXT.WRITELN fsr, st21
-TEXT.WRITELN fsr, st22
-TEXT.WRITELN fsr, st23
-TEXT.WRITELN fsr, st24
-TEXT.WRITELN fsr, st25
-TEXT.WRITELN fsr, st26
-TEXT.WRITELN fsr, st27
-TEXT.WRITELN fsr, st28
-TEXT.WRITELN fsr, st29
-TEXT.WRITELN fsr, st30
-TEXT.WRITELN fsr, st31
-TEXT.WRITELN fsr, st32
-TEXT.WRITELN fsr, st33
-TEXT.WRITELN fsr, st34
-TEXT.WRITELN fsr, st35
-TEXT.WRITELN fsr, st36
-TEXT.WRITELN fsr, st37
-TEXT.WRITELN fsr, st38
-TEXT.WRITELN fsr, st39
-TEXT.WRITELN fsr, st40
-TEXT.WRITELN fsr, st41
-TEXT.WRITELN fsr, st42
-TEXT.WRITELN fsr, st43
-TEXT.WRITELN fsr, st44
-TEXT.WRITELN fsr, st45
-TEXT.WRITELN fsr, st46
-TEXT.WRITELN fsr, st47
-TEXT.WRITELN fsr, st48
-TEXT.WRITELN fsr, st49
-TEXT.WRITELN fsr, st50
-TEXT.WRITELN fsr, st51
-TEXT.WRITELN fsr, st52
-TEXT.WRITELN fsr, st53
-TEXT.WRITELN fsr, st54
-TEXT.WRITELN fsr, st55
-TEXT.WRITELN fsr, st56
-TEXT.WRITELN fsr, st57
-TEXT.WRITELN fsr, t17
-TEXT.WRITELN fsr, t18
-TEXT.WRITELN fsr, t19
-TEXT.WRITELN fsr, t20
-TEXT.WRITELN fsr, nb10
-TEXT.WRITELN fsr, nb11
-TEXT.WRITELN fsr, nb12
-TEXT.WRITELN fsr, nb14
-TEXT.WRITELN fsr, nb15
-TEXT.WRITELN fsr, nb16
-TEXT.WRITELN fsr, nb17
-TEXT.WRITELN fsr, nb18
-TEXT.WRITELN fsr, nb19
-TEXT.WRITELN fsr, nb20
-TEXT.WRITELN fsr, nb21
-TEXT.WRITELN fsr, nb22
-TEXT.WRITELN fsr, gm01
-TEXT.WRITELN fsr, gm02
-TEXT.WRITELN fsr, gm03
-TEXT.WRITELN fsr, gm04
-TEXT.WRITELN fsr, gm05
-TEXT.WRITELN fsr, gm06
-TEXT.WRITELN fsr, gx02
-TEXT.WRITELN fsr, gx03
-TEXT.WRITELN fsr, gx04
-TEXT.WRITELN fsr, gx05
-TEXT.WRITELN fsr, gx06
-TEXT.WRITELN fsr, gx07
-TEXT.WRITELN fsr, gx08
-TEXT.WRITELN fsr, gx09
-TEXT.WRITELN fsr, gx10
-TEXT.WRITELN fsr, gx11
-TEXT.WRITELN fsr, gx12
-TEXT.WRITELN fsr, gx13
-TEXT.WRITELN fsr, gx14
-TEXT.WRITELN fsr, gx15
-TEXT.WRITELN fsr, gx16
-TEXT.WRITELN fsr, gx17
-TEXT.WRITELN fsr, gx18
-TEXT.WRITELN fsr, gx19
-TEXT.WRITELN fsr, gx20
-TEXT.WRITELN fsr, gx21
-TEXT.WRITELN fsr, gx22
-TEXT.WRITELN fsr, gx23
-TEXT.WRITELN fsr, gx24
-TEXT.WRITELN fsr, gx25
-TEXT.WRITELN fsr, gx26
-TEXT.WRITELN fsr, gx27
-TEXT.WRITELN fsr, gx28
-TEXT.WRITELN fsr, gx29
-TEXT.WRITELN fsr, gx30
-TEXT.WRITELN fsr, gx31
-TEXT.WRITELN fsr, gx32
-TEXT.WRITELN fsr, gx33
-TEXT.WRITELN fsr, gh01
-TEXT.WRITELN fsr, gh02
-TEXT.WRITELN fsr, gh03
-TEXT.WRITELN fsr, gh04
-TEXT.WRITELN fsr, gh05
-TEXT.WRITELN fsr, gh06
-TEXT.WRITELN fsr, gh07
-TEXT.WRITELN fsr, gh08
-TEXT.WRITELN fsr, gh09
-TEXT.WRITELN fsr, gh10
-TEXT.WRITELN fsr, gh11
-TEXT.WRITELN fsr, gh12
-TEXT.WRITELN fsr, gh13
-TEXT.WRITELN fsr, gh14
-TEXT.WRITELN fsr, gh14
-TEXT.WRITELN fsr, t31
-TEXT.WRITELN fsr, t32
-TEXT.WRITELN fsr, t33
-TEXT.WRITELN fsr, t34
-TEXT.WRITELN fsr, t35
-TEXT.WRITELN fsr, t36
-TEXT.WRITELN fsr, t37
-TEXT.WRITELN fsr, t38
-TEXT.WRITELN fsr, t82
-TEXT.WRITELN fsr, t83
-TEXT.WRITELN fsr, t84
-TEXT.WRITELN fsr, t85
-TEXT.WRITELN fsr, t86
-TEXT.WRITELN fsr, t87
-TEXT.WRITELN fsr, t88
-TEXT.WRITELN fsr, t89
-TEXT.WRITELN fsr, t90
-TEXT.WRITELN fsr, t91
-TEXT.WRITELN fsr, t92
-TEXT.WRITELN fsr, t93
-TEXT.WRITELN fsr, t94
-TEXT.WRITELN fsr, t95
-TEXT.WRITELN fsr, t96
-TEXT.WRITELN fsr, t97
-TEXT.WRITELN fsr, t100
-TEXT.WRITELN fsr, t101
-TEXT.WRITELN fsr, t102
-TEXT.WRITELN fsr, t103
-TEXT.WRITELN fsr, t104
-TEXT.WRITELN fsr, t105
-TEXT.WRITELN fsr, t106
-TEXT.WRITELN fsr, t107
-TEXT.WRITELN fsr, t108
-TEXT.WRITELN fsr, t109
-TEXT.WRITELN fsr, t110
-TEXT.WRITELN fsr, t111
-TEXT.WRITELN fsr, t112
-TEXT.WRITELN fsr, t113
-TEXT.WRITELN fsr, t114
-TEXT.WRITELN fsr, t115
-TEXT.WRITELN fsr, t116
-TEXT.WRITELN fsr, t117
-TEXT.WRITELN fsr, t118
-TEXT.WRITELN fsr, t119
-TEXT.WRITELN fsr, t120
-TEXT.WRITELN fsr, t121
-TEXT.WRITELN fsr, t122
-TEXT.WRITELN fsr, t123
-TEXT.WRITELN fsr, t124
-TEXT.WRITELN fsr, t125
-TEXT.WRITELN fsr, t126
-TEXT.WRITELN fsr, t127
-TEXT.WRITELN fsr, t128
-TEXT.WRITELN fsr, t129
-TEXT.WRITELN fsr, t130
-TEXT.WRITELN fsr, nb01
-TEXT.WRITELN fsr, t39
-TEXT.WRITELN fsr, gq01
-TEXT.WRITELN fsr, gq02
-TEXT.WRITELN fsr, gq03
-TEXT.WRITELN fsr, gq04
-TEXT.WRITELN fsr, gq05
-TEXT.WRITELN fsr, gq06
-TEXT.WRITELN fsr, gq07
-TEXT.WRITELN fsr, gq08
-TEXT.WRITELN fsr, gq09
-TEXT.WRITELN fsr, gq10
-TEXT.WRITELN fsr, gq11
-TEXT.WRITELN fsr, gq12
-TEXT.WRITELN fsr, gq13
-TEXT.WRITELN fsr, gq14
-TEXT.WRITELN fsr, gq15
-TEXT.WRITELN fsr, gq16
-TEXT.WRITELN fsr, gq17
-TEXT.WRITELN fsr, gq18
-TEXT.WRITELN fsr, gq19
-TEXT.WRITELN fsr, gq20
-TEXT.WRITELN fsr, u01
-TEXT.WRITELN fsr, u02
-TEXT.WRITELN fsr, u03
-TEXT.WRITELN fsr, u04
-TEXT.WRITELN fsr, u05
-TEXT.WRITELN fsr, u06
-TEXT.WRITELN fsr, u07
-TEXT.WRITELN fsr, u08
-TEXT.WRITELN fsr, u09
-TEXT.WRITELN fsr, u10
-TEXT.WRITELN fsr, u11
-TEXT.WRITELN fsr, u13
-TEXT.WRITELN fsr, u14
-TEXT.WRITELN fsr, u15
-TEXT.WRITELN fsr, aed
-TEXT.WRITELN fsr, aed$
-TEXT.WRITELN fsr, ed
-TEXT.WRITELN fsr, swu
-TEXT.WRITELN fsr, swk
-TEXT.WRITELN fsr, inf
-TEXT.WRITELN fsr, vsm_mn
-TEXT.WRITELN fsr, vsm_mx
-TEXT.WRITELN fsr, vsm
-TEXT.WRITELN fsr, vsmn
-TEXT.WRITELN fsr, vse
-TEXT.WRITELN fsr, ae1
-TEXT.WRITELN fsr, v
-TEXT.WRITELN fsr, sw
-TEXT.WRITELN fsr, sec1
-TEXT.WRITELN fsr, h_
-TEXT.WRITELN fsr, m_
-TEXT.WRITELN fsr, s_
-TEXT.WRITELN fsr, dg_
-TEXT.WRITELN fsr, dm_
-TEXT.WRITELN fsr, ds_
-TEXT.WRITELN fsr, rk$
-TEXT.WRITELN fsr, dkl$
-TEXT.WRITELN fsr, ur$
-TEXT.WRITELN fsr, kp$
-TEXT.CLOSE fsr
-CONSOLE.TITLE _name$
-PRINT _name$+" SONNENSYSTEMROTATION "+_ver$
-PRINT"Copyright "+_cr$+" 2023 by Dietmar Gerald SCHRAUSSER"
-PRINT"https://github.com/Schrausser/SSR"
-RETURN
+fin::INCLUDE ssr_fin.bas:RETURN
 ! % ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
