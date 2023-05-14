@@ -57,7 +57,7 @@ DO                                    %Start
   GR.COLOR c,60,60,c,1                  %Erde
   GR.CIRCLE cl,mx, my-198+(1*2.5*ed04),ed04*2*(r_erd_km/ds)
   GR.COLOR 100,c,c,c,1                  %Mond  
-  GR.CIRCLE cl,mx-2*((d_mnd_m*1000)/ds)*ed04, my-198+(1*2.5*ed04),ed04*2*((r_mnd_km*3)/ds)
+  GR.CIRCLE cl,mx-2*((d_mnd_m/1000)/ds)*ed04, my-198+(1*2.5*ed04),ed04*2*((r_mnd_km)/ds)
   IF ed04>139
    GR.COLOR c/2,c,c,c,1
    GR.TEXT.ALIGN 1
