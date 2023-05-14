@@ -714,9 +714,11 @@ References:
  ENDIF
 UNTIL 0
 !
+!!
 ONERROR:
 GOSUB fin
 END
+!!
 ONMENUKEY:
 GOSUB dialog
 MENUKEY.RESUME
@@ -2629,8 +2631,8 @@ IF fw
   TEXT.READLN fw, gwf_$:gw_cl[i_gw]=VAL(gwf_$) % typfarbe
  NEXT
  TEXT.CLOSE fw
-ELSE
- TEXT.OPEN w, fw1, "ssr_gw.dat"   %wenn keine Objektdatei                                
+ELSE 
+ INCLUDE ssr_weitere_ini.bas      %wenn keine Objektdatei               
 ENDIF
 RETURN
 ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
