@@ -714,11 +714,9 @@ References:
  ENDIF
 UNTIL 0
 !
-!!
 ONERROR:
 GOSUB fin
 END
-!!
 ONMENUKEY:
 GOSUB dialog
 MENUKEY.RESUME
