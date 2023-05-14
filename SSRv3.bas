@@ -2573,7 +2573,52 @@ gq99$=smq$+"  Projektion an/aus"
 IF t06gq=1:gq30$=smb$+"  Text":ENDIF
 IF t06gq=-1:gq30$="     Text aus":ENDIF
 RETURN
-
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+gqreset:
+IF gq99=1
+ gq01=-1
+ gq02=-1
+ gq03=-1
+ gq04=-1
+ gq05=-1
+ gq06=-1
+ gq07=-1
+ gq08=-1
+ gq09=-1
+ gq10=-1
+ gq11=-1
+ gq12=-1
+ gq13=-1
+ gq14=-1
+ gq15=-1
+ gq16=-1
+ gq17=-1
+ gq18=-1
+ gq19=-1
+ gq20=-1
+ELSE
+ gq01=1
+ gq02=1
+ gq03=1
+ gq04=1
+ gq05=1
+ gq06=1
+ gq07=1
+ gq08=1
+ gq09=1
+ gq10=1
+ gq11=1
+ gq12=1
+ gq13=1
+ gq14=1
+ gq15=1
+ gq16=1
+ gq17=1
+ gq18=1
+ gq19=1
+ gq20=1
+ENDIF
+RETURN
 ! %, Eingabedatei für weitere Objekte %%%%%%%%%%%%%%%%%%%%
 objdatei:
 DIM inp$[100]
@@ -2649,8 +2694,8 @@ IF selob=1
  INPUT"Dekl. Minute…",gw_dm_,0
  INPUT"Dekl. Sekunde …",gw_ds_,0
  % Typus und Farbe %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- ARRAY.LOAD seltp_$[],"Stern Gr1","Stern Gr2","Stern Gr3","Roter Riese","Blauer Riese","Nova/Supernova","Sternhaufen","Nebel","Milchstraßenwolke","Galaxie","Haufen","Superhaufen","Quasar","Symbolisch"
- DIALOG.SELECT seltp, seltp_$[],"Weitere Objekte: Typ:"
+ ARRAY.LOAD seltp_$[],"Stern Gr1","Stern Gr2","Stern Gr3","Roter Riese","Blauer Riese","Nova/Supernova","Sternhaufen","Nebel","Planetarer Nebel","Milchstraßenwolke","Galaxie","Haufen","Superhaufen","Quasar","Symbolisch"
+ DIALOG.SELECT seltp, seltp_$[],"Weitere Objekte: Typ..."
  DIALOG.MESSAGE "Weitere Objekte:","Neues astronomisches Objekt anlegen?",wrtout,"Speichern","Abbrechen"
  IF wrtout=1
   obnrdat$="&"+FORMAT$("0%%",n_gw)+"["+d$+"/"+m$+"/"+y$+"]"
