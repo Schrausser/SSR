@@ -150,7 +150,7 @@ GR.COLOR cc-120,cc,cc,cc,1
 otype=-1:GOSUB objdarst:otype=0
 ! % Capella %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="Capella"                   %Name
-pro_=t05                             %Projektionsvariable
+pro_=t11                             %Projektionsvariable
 rds=gr_0                             %Objektradius Lj 
 d= 42.92
 s_d12=d/pcl_
