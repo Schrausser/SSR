@@ -61,7 +61,11 @@ Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac 
 ### References
 Brown, N. J., Waagen, E. O., Scovil, C., Nelson, P., Oksanen, A., Solonen, J., & Price, A. (2002). Peculiar variable in Monoceros. *International Astronomical Union Circular, 7785*, 1. [ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)
 
+Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society, 49*, 1-237. [https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D), [archive.org/download/newgeneralcatalo00dreyrich/](https://archive.org/download/newgeneralcatalo00dreyrich/newgeneralcatalo00dreyrich.pdf])
+
 Ferguson, H. (1996). *The Hubble Deep Field – field selection*. Space Telescope Science Institute.
+
+Herschel, W. (1786). Catalogue of One Thousand New Nebulae and Clusters of Stars. *Philosophical Transactions of the Royal Society of London, 76*, 457-499. [doi:10.1098/rstl.1786.0027](https://doi.org/10.1098%2Frstl.1786.0027)
 
 Hills, J. G. (1981). Comet showers and the steady-state infall of comets from the Oort Cloud. *Astronomical Journal, 86*, 1730–1740. [DOI:10.1086%2F113058](https://doi.org/10.1086%2F113058)
 
