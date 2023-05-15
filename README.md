@@ -21,42 +21,43 @@ Inner Solar System with orbits, current rotation position of the Earth with time
 Surrounding stars at $r=194.2pc$ and their relative positions to Earth, artificial horizon facing south:
 
 ![figure.\label{pic5}](pic5.jpg)
-
 ![figure.\label{pic6}](pic6.jpg)
 
 The Milky Way at $r=19kpc$ with Magellanic Clouds, Sagittarius Dwarf Elliptical Galaxy Sag DEG (Ibata et al., 1994) and V838 Monocerotis (Brown et al., 2002):
 
 ![figure.\label{pic7}](pic7.jpg)
 
-Closer stars with their relative historical position and representation, from $r=14.6pc$ before the year 1976:
+Closer stars with their relative historical position and representation, from $r=14.5pc$ before the year 1976:
 
 ![figure.\label{pic8}](pic8.jpg)
 
 Interactive simulation to display distances between Earth, Moon and Sun with corresponding perspective projection lines:
 
 ![figure.\label{pic9}](pic9.jpg)
+![figure.\label{pic10}](pic10.jpg)
+![figure.\label{pic11}](pic11.jpg)
 
 Interactive simulation to compare sizes of stars:
 
-![figure.\label{pic10}](pic10.jpg)
-
-![figure.\label{pic11}](pic11.jpg)
-
-Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, 1996):
-
 ![figure.\label{pic12}](pic12.jpg)
-
-Towards the HDF from a distance of $r=151Mpc$ within the surrounding galaxy clusters and Laniakea supercluster (Tully et al., 2014) with relative historical positions:
 
 ![figure.\label{pic13}](pic13.jpg)
 
-Most distant quasars on the edge of the observable Universe at $r>9Gpc$ (see e.g. Wang et al., 2021):
+Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, 1996):
 
 ![figure.\label{pic14}](pic14.jpg)
 
-Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac and surrounding nebulae seen from a distance of $r=3kpc$:
+Towards the HDF from a distance of $r=151Mpc$ within the surrounding galaxy clusters and Laniakea supercluster (Tully et al., 2014) with relative historical positions:
 
 ![figure.\label{pic15}](pic15.jpg)
+
+Most distant quasars on the edge of the observable Universe at $r>9Gpc$ (see e.g. Wang et al., 2021):
+
+![figure.\label{pic16}](pic16.jpg)
+
+Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac and surrounding nebulae seen from a distance of $r=3kpc$:
+
+![figure.\label{pic17}](pic17.jpg)
 
 ### References
 Brown, N. J., Waagen, E. O., Scovil, C., Nelson, P., Oksanen, A., Solonen, J., & Price, A. (2002). Peculiar variable in Monoceros. *International Astronomical Union Circular, 7785*, 1. [ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)
