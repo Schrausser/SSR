@@ -1,6 +1,7 @@
 # SSR
 Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with Zodiac signs and timepiece covering the Solar System in the entire observable Universe up to $r=14.25Gpc.$  
-Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), Inner Cloud (Hills, 1981), Oort Cloud (Oort, 1950) and more.  
+Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), Inner Cloud (Hills, 1981), Oort Cloud (Oort, 1950) and more. 
+Further astronomical objects can be implemented by means of external definition files. Parts of the Caldwell Catalog (Moore & Pepin, 1995) are included in `ssr_Caldwell.dat`  
 Solar System parameters of the Sun, planets and Moon are based on the current NASA Planetary Fact Sheets (Williams, 2023). Positions, distances and sizes of further objects are from Wikipedia sources (Wikipedia contributors, 2023), which can be traced back primarily to the `SIMBAD` astronomical database (Strasbourg astronomical Data Center, 2023).
 
 
@@ -65,6 +66,8 @@ Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac 
 
 ### References
 Brown, N. J., Waagen, E. O., Scovil, C., Nelson, P., Oksanen, A., Solonen, J., & Price, A. (2002). Peculiar variable in Monoceros. *International Astronomical Union Circular*. 7785,1. [ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)
+
+Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope* Vol. 90, Cambridge, MA. [www.messier.seds.org/xtra/similar/caldwell.html](http://www.messier.seds.org/xtra/similar/caldwell.html)
 
 Ferguson, H. (1996). *The Hubble Deep Field – field selection*. Space Telescope Science Institute.
 
