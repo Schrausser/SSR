@@ -544,10 +544,10 @@ References:
  ! % Simulation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  jc=i-(j*360)
  IF jc>=360-135+10
-  j=j+1:jx=jx+1:nt=1
+  j=j+1:jx=jx+1:nt=1.25
  ENDIF
- IF nt<0
-  j=j-1:jx=jx-1:nt=a_
+ IF nt<1
+  j=j-1:jx=jx-1:nt=a_-0.25
  ENDIF
  ! % Textoutput %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  GR.COLOR 80,cc,cc,cc,0
