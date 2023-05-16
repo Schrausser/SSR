@@ -8,7 +8,7 @@
            © 2020-23 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.0"
+_ver$="v3.7.4"
 INCLUDE strg.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
@@ -107,12 +107,12 @@ DO
   d=1500                    %AE
   gr1=ed*d
   IF u15=1 & ed<5000 & AE<1000000 %
-   GR.COLOR 35,20,30,30,1
+   IF u10=1:GR.COLOR 35,20,30,30,1
+  ELSE:    GR.COLOR 75,20,30,30,1: ENDIF
    GR.CIRCLE sn,mx,my,ed*d*c145
-   IF 1 
-    GR.COLOR cc,10,10,10,1
-    GR.CIRCLE sn,mx,my,ed*d/4
-   ENDIF
+   IF u10=1:GR.COLOR cc,10,10,10,1
+  ELSE:    GR.COLOR cc,0,0,0,1: ENDIF
+   GR.CIRCLE sn,mx,my,ed*d/4
    IF u11=1&ae>300&ae<30000
     GR.TEXT.ALIGN 2
     GR.COLOR cc,60,60,60,1
@@ -543,11 +543,13 @@ References:
  !
  ! % Simulation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  jc=i-(j*360)
- IF jc>=360-135+10
-  j=j+1:jx=jx+1:nt=1.25
+ IF jc>=360-135+10          % Vor
+  j=j+1:jx=jx+1:nt=1.25     %%%%%
+  !TONE 11500,55
  ENDIF
- IF nt<1
-  j=j-1:jx=jx-1:nt=a_-0.25
+ IF nt<1                    % Zurück
+  j=j-1:jx=jx-1:nt=a_-0.25  %%%%%%%%
+  !TONE 11500,55
  ENDIF
  ! % Textoutput %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  GR.COLOR 80,cc,cc,cc,0
