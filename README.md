@@ -21,6 +21,7 @@ Inner Solar System with orbits, current rotation position of the Earth with time
 Surrounding stars at $r=194.2pc$ and their relative positions to Earth, artificial horizon facing south:
 
 ![figure.\label{pic5}](pic5.jpg)
+
 ![figure.\label{pic6}](pic6.jpg)
 
 The Milky Way at $r=19kpc$ with Magellanic Clouds, Sagittarius Dwarf Elliptical Galaxy Sag DEG (Ibata et al., 1994) and V838 Monocerotis (Brown et al., 2002):
@@ -34,7 +35,9 @@ Closer stars with their relative historical position and representation, from $r
 Interactive simulation to display distances between Earth, Moon and Sun with corresponding perspective projection lines:
 
 ![figure.\label{pic9}](pic9.jpg)
+
 ![figure.\label{pic10}](pic10.jpg)
+
 ![figure.\label{pic11}](pic11.jpg)
 
 Interactive simulation to compare sizes of stars:
