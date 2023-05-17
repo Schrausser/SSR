@@ -8,7 +8,7 @@
            © 2020-23 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.4"
+_ver$="v3.7.5"
 INCLUDE strg.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
@@ -230,7 +230,7 @@ DO
     GR.COLOR 80, cc,cc,0, 1
     GR.TEXT.SIZE txz5
     GR.TEXT.ALIGN 2
-    GR.TEXT.DRAW tx,mx,sy/20,dkl$
+    GR.TEXT.DRAW tx,mx,sy/4.5,_gd$+dkl$
     GR.COLOR 80, cc,cc,0, 0
    ENDIF 
    ! % Positionszeiger %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -245,7 +245,7 @@ DO
    GR.COLOR 80, cc,cc,0, 1
    GR.TEXT.SIZE txz5
    GR.TEXT.ALIGN 2
-   GR.TEXT.DRAW tx,mx,dtx2,rk$
+   GR.TEXT.DRAW tx,mx,sy/5,_ga$+rk$
   ENDIF
  ENDIF
  ! % Monate %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2819,10 +2819,11 @@ RETURN
 dialog10:
 GOSUB menu10
 std10:
-ARRAY.LOAD sel10$[],sk01$,sk02$,sk03$,sk06$,sk04$,o01$,o02$,o03$,o04$,o08$,sk05$,o09$,o10$,"Ok"
+ARRAY.LOAD sel10$[],o11$,sk01$,sk02$,sk03$,sk06$,sk04$,o01$,o02$,o03$,o04$,o08$,sk05$,o09$,o10$,"Ok"
 DIALOG.SELECT sel10, sel10$[],"Skalen:"
-IF sel10=1:s10=s10*-1:ENDIF
-IF sel10=2:t31=t31*-1
+IF sel10=1:GOSUB calc:ENDIF
+IF sel10=2:s10=s10*-1:ENDIF
+IF sel10=3:t31=t31*-1
  IF t31=1
   INPUT"Stunde h=…",h_,0
   INPUT"Minute min=…",m_,0
@@ -2833,7 +2834,7 @@ IF sel10=2:t31=t31*-1
  ENDIF
  IF t31=-1 THEN t39=-1
 ENDIF
-IF sel10=3:t39=t39*-1
+IF sel10=4:t39=t39*-1
  IF t31=-1 THEN t39=-1
  IF t39=1
   INPUT"Grad °=…",dg_,0
@@ -2844,38 +2845,39 @@ IF sel10=3:t39=t39*-1
   dkl$= dkl$+INT$(ds_)+_rsc$
  ENDIF
 ENDIF
-IF sel10=4:t99=t99*-1:ENDIF 
-IF sel10=5:t34=t34*-1:ENDIF 
-IF sel10=6:s01=s01*-1:ENDIF
-IF sel10=7:s02=s02*-1:ENDIF
-IF sel10=8
+IF sel10=5:t99=t99*-1:ENDIF 
+IF sel10=6:t34=t34*-1:ENDIF 
+IF sel10=7:s01=s01*-1:ENDIF
+IF sel10=8:s02=s02*-1:ENDIF
+IF sel10=9
  s03=s03*-1
  swu=-1:ur$=""
  IF s07=1 & s03=1
   GOSUB dialogu
  ENDIF
 ENDIF
-IF sel10=9:s04=s04*-1:ENDIF
-IF sel10=10:s08=s08*-1
+IF sel10=10:s04=s04*-1:ENDIF
+IF sel10=11:s08=s08*-1
  IF s08=1 THEN GOSUB dialogk
 ENDIF
-IF sel10=11
+IF sel10=12
  swvgl=swvgl*-1
  IF swvgl=1 THEN GOSUB menuvgl
 ENDIF
-IF sel10=12:t98=t98*-1:ENDIF
-IF sel10=13:GOSUB lbrte:ENDIF
-IF sel10=14:RETURN:ENDIF
+IF sel10=13:t98=t98*-1:ENDIF
+IF sel10=14:GOSUB lbrte:ENDIF
+IF sel10=15:RETURN:ENDIF
 GOSUB menu10
 GOTO std10
 RETURN
 menu10:
+o11$=smq$+"  Berechnungen..." %+cpb$
 IF s10=1:sk01$=smb$+"  Entfernung und Zeit":ENDIF
 IF s10=-1: sk01$="     Entfernung und Zeit aus":ENDIF
-IF t31=1:sk02$=smb$+"  Rektaszension"+rk$:ENDIF
-IF t31=-1: sk02$="     Rektaszension":ENDIF
-IF t39=1:sk03$=smb$+"  Deklination"+dkl$:ENDIF
-IF t39=-1: sk03$="     Deklination":ENDIF
+IF t31=1:sk02$=smb$+"  Rektaszension "+_ga$+rk$:ENDIF
+IF t31=-1: sk02$="     Rektaszension "+_ga$:ENDIF
+IF t39=1:sk03$=smb$+"  Deklination "+_gd$+dkl$:ENDIF
+IF t39=-1: sk03$="     Deklination "+_gd$:ENDIF
 IF t99=1:sk06$=smb$+"  Tierkreis":ENDIF
 IF t99=-1: sk06$="     Tierkreis aus":ENDIF
 IF t34=1:sk04$=smb$+"  Himmelsgewölbe":ENDIF
@@ -2895,6 +2897,69 @@ IF swvgl=-1: sk05$="     Größenvergleich aus":ENDIF
 IF t98=1:o09$=smb$+"  Historie ":ENDIF
 IF t98=-1:o09$="     Historie aus":ENDIF
 o10$=smq$+"  Linienbreite: "+INT$(skl)
+RETURN
+! Berechnungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+calc::calcst:
+DIM sel$[5]
+sel$[1]="Hexagesimal [°/h:min:sec] zu Dezimal"+eq1$
+sel$[2]="Winkelgrad [°] zu Bogenmaß [rad]"+eq2$
+sel$[3]="Winkelausdehnung V[°] bei Dist. d zu Radius r"+eq3$
+sel$[4]="=[ "+cpb$+" ]"
+!
+sel$[5]="Ok"
+DIALOG.SELECT sel, sel$[],"Berechnungen:
+IF sel=1 % hex in dez
+ CLIPBOARD.GET cpb$
+ INPUT "°/h...",u_gh,0
+ INPUT "min '...",u_min,0
+ INPUT "sec ''...",u_sec,0
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_dez=u_gh+u_min/60+u_sec/(60^2)
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_dez$=STR$(ROUND(u_dez,9))
+ u_dez0$=STR$(ROUND(u_dez,4))
+ CLIPBOARD.PUT u_dez$
+ u_dlgm$=""
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_gh,2))+"°/h "
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_min,2))+"' "
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_sec,4))+"'' = "
+ u_dlgm$=u_dlgm$+u_dez0$+"°/h"
+ DIALOG.MESSAGE sel$[2]+", wobei dx° = hx°+(hx'/60)+(hx''/3600):",u_dlgm$,u_msg
+ eq1$="=":eq2$="":eq3$=""
+ENDIF 
+IF sel=2 % grad in rad
+ INPUT "Winkelgrad a°...",u_wkg,45
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_rad=u_wkg/180*PI()
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_rad$=STR$(ROUND(u_rad,14))
+ u_rad0$=STR$(ROUND(u_rad,5))
+ CLIPBOARD.PUT u_rad$
+ u_dlgm$=""
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_wkg,2))+"° = "
+ u_dlgm$=u_dlgm$+u_rad$+"rad"
+ DIALOG.MESSAGE sel$[1]+", wobei rad = (a°/180) pi: ",u_dlgm$,u_msg
+ eq1$="":eq2$="=":eq3$=""
+ENDIF 
+IF sel=3 % V in r
+ CLIPBOARD.GET cpb$
+ INPUT "V°...",u_V,VAL(cpb$)
+ INPUT "d...",u_d,100
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_Vr=u_v/180*PI() % zu rad
+ u_r=u_d*TAN(u_Vr/2)
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ CLIPBOARD.PUT STR$(u_r)
+ u_dlgm$="V="
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_v,4))+"° bei d="
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_d,2))+" : r="
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_r,4))
+ DIALOG.MESSAGE sel$[3]+", wobei r = d tan(V[rad]/2): ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="="
+ENDIF 
+IF sel=5:CLIPBOARD.GET cpb$:RETURN:ENDIF 
+CLIPBOARD.GET cpb$
+GOTO calcst
 RETURN
 ! % Dialog Linienbreite %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 lbrte:
