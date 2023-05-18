@@ -22,7 +22,7 @@ FOR igw=1 TO n_gw
  ds_x=gwds[igw]                   %Sekunde                    
  GOSUB dekl
  ! %                              %Rekta Position
- h_x=gwh_[igw]                    %Stunde                      
+ h_x=gwh_[igw]                    %Sunde                      
  m_x=gwm_[igw]                    %Minute
  s_x=gws_[igw]                    %Sekunde            
  GOSUB r_pos
@@ -43,7 +43,7 @@ FOR igw=1 TO n_gw
    GR.COLOR cc-35,cc/2,cc/2,cc/1.2,1   %Blauer Riese
    SW.BREAK
   SW.CASE 6
-   GR.COLOR cc/2,cc,40,40,1            %Nova/Supernova
+   GR.COLOR cc/4,cc,40,40,1            %Nova/Supernova
    SW.BREAK
   SW.CASE 7
    GR.COLOR cc/4,cc/2,cc/2,cc,1        %Sternhaufen
@@ -52,22 +52,25 @@ FOR igw=1 TO n_gw
    GR.COLOR cc/3,cc,cc/3,cc/2,1        %Nebel
    SW.BREAK
   SW.CASE 9
-   GR.COLOR cc/9,cc,cc,cc,1            %Milchstraße
+   GR.COLOR cc/3,cc,cc/1.5,cc/1.5,1    %Planetare Nebel
    SW.BREAK
   SW.CASE 10
-   GR.COLOR cc/6,cc,cc,cc,1            %Galaxien
+   GR.COLOR cc/8,cc,cc,cc,1            %Kugelsternhaufen
    SW.BREAK
   SW.CASE 11
-   GR.COLOR cc/15,cc,cc,cc,1           %Haufen
+   GR.COLOR cc/9,cc,cc,cc,1            %Milchstraße
    SW.BREAK
   SW.CASE 12
-   GR.COLOR cc/20,cc,cc,cc,1           %Superhaufen
+   GR.COLOR cc/6,cc,cc,cc,1            %Galaxien
    SW.BREAK
   SW.CASE 13
-   GR.COLOR cc/6,cc/3,cc,cc/2,1        %Quasar
+   GR.COLOR cc/15,cc,cc,cc,1           %Haufen
    SW.BREAK
   SW.CASE 14
-   GR.COLOR cc/6,cc/3,cc,cc/2,1        %Symbol
+   GR.COLOR cc/20,cc,cc,cc,1           %Superhaufen
+   SW.BREAK
+  SW.CASE 15
+   GR.COLOR cc/6,cc/3,cc,cc/2,1        %Quasar
    SW.BREAK
  SW.END
  otype=gw_t[igw]

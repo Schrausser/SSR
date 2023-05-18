@@ -1116,7 +1116,7 @@ GOSUB menu2
 std2:
 ARRAY.LOAD sel2$[],p00$,p01$,p82$,p05$,p35$,p08$,p07$,p36$,p09$,p38$,p03$,p11$,p12$,p33$,p10$,p83$,p02$,p84$,p85$,p86$,p13$,p87$,p88$,p89$,p90$,p91$,p14$,p92$,p93$,p94$,p95$,p96$,p97$,p100$,p101$,p102$,p103$,p104$,p105$,p106$,p107$,p108$,p109$,p110$,p111$,p112$,p113$,p32$,p114$,p115$,p116$,p117$,p118$,p15$,p119$,p120$,p121$,p17$,p122$,p18$,p123$,p124$,p19$,p125$,p126$,p127$,p128$,p20$,p129$,p130$,s99$,p06$,"Ok"
 DIALOG.SELECT sel2, sel2$[],"Sterne: Darstellung/Projektion:"
-IF sel2=1:t00=t00*-1:ENDIF
+IF sel2=1:t00=t00*-1:IF t00=-1 THEN RETURN:ENDIF
 IF sel2=2:t01=t01*-1:ENDIF
 IF sel2=3:t82=t82*-1:ENDIF
 IF sel2=4:t05=t05*-1:ENDIF
@@ -1581,7 +1581,7 @@ GOSUB menu4
 std4:
 ARRAY.LOAD sel4$[],st00$,st01$,st14$,st02$,st03$,st04$,st05$,st06$,st15$,st16$,st17$,st18$,st19$,st07$,st08$,st20$,st21$,st22$,st23$,st24$,st25$,st26$,st27$,st28$,st29$,st30$,st31$,st32$,st09$,st33$,st34$,st35$,st36$,st10$,st37$,st38$,st39$,st40$,st41$,st11$,st42$,st43$,st44$,st45$,st46$,st47$,st48$,st49$,st50$,st51$,st52$,st53$,st54$,st55$,st12$,st56$,st13$,st57$,st99$,st60$,"Ok"
 DIALOG.SELECT sel4, sel4$[],"Offene Sternhaufen und Kugelsternhaufen: Darstellung/Projektion:"
-IF sel4=1:st00=st00*-1:ENDIF
+IF sel4=1:st00=st00*-1:IF st00=-1 THEN RETURN:ENDIF
 IF sel4=2:st01=st01*-1:ENDIF
 IF sel4=3:st14=st14*-1:ENDIF
 IF sel4=4:st02=st02*-1:ENDIF
@@ -1924,7 +1924,7 @@ GOSUB menu5
 std5:
 ARRAY.LOAD sel5$[],nb00$,nb15$,nb01$,nb16$,nb17$,nb18$, nb19$,nb20$,nb21$,nb22$,nb10$,nb11$,nb12$,nb14$,nb99$,nb23$,"Ok"
 DIALOG.SELECT sel5, sel5$[],"Nebel, Planetare Nebel und Supernovae: Darstellung/Projektion:"
-IF sel5=1:nb00=nb00*-1:ENDIF
+IF sel5=1:nb00=nb00*-1:IF nb00=-1 THEN RETURN:ENDIF
 IF sel5=2:nb15=nb15*-1:ENDIF
 IF sel5=3:nb01=nb01*-1:ENDIF
 IF sel5=4:nb16=nb16*-1:ENDIF
@@ -2041,7 +2041,7 @@ GOSUB menu6
 std6:
 ARRAY.LOAD sel6$[],gm00$,gm05$,gm06$,gm01$,gm02$,gm04$,gm03$,gm99$,gm30$,"Ok"
 DIALOG.SELECT sel6, sel6$[],"Milchstraßen Objekte: Darstellung/Projektion:"
-IF sel6=1:gm00=gm00*-1:ENDIF
+IF sel6=1:gm00=gm00*-1:IF gm00=-1 THEN RETURN:ENDIF
 IF sel6=2:gm05=gm05*-1:ENDIF
 IF sel6=3:gm06=gm06*-1:ENDIF
 IF sel6=4:gm01=gm01*-1:ENDIF
@@ -2146,7 +2146,7 @@ GOSUB menu7
 std7:
 ARRAY.LOAD sel7$[],gx00$,gx01$,gx05$,gx11$,gx12$,gx20$,gx13$,gx02$,gx27$,gx03$,gx21$,gx04$,gx10$,gx29$,gx22$,gx28$,gx14$,gx23$,gx31$,gx15$,gx26$,gx30$,gx17$,gx19$,gx07$,gx06$,gx16$,gx09$,gx08$,gx25$,gx18$,gx24$,gx99$,gx40$,"Ok"
 DIALOG.SELECT sel7, sel7$[],"Galaxien: Darstellung/Projektion:"
-IF sel7=1:gx00=gx00*-1:ENDIF
+IF sel7=1:gx00=gx00*-1:IF gx00=-1 THEN RETURN:ENDIF
 IF sel7=2:gx01=gx01*-1:ENDIF
 IF sel7=3:gx05=gx05*-1:ENDIF
 IF sel7=4:gx11=gx11*-1:ENDIF
@@ -2363,7 +2363,7 @@ GOSUB menu8
 std8:
 ARRAY.LOAD sel8$[],gh00$,gh01$,gh03$,gh04$,gh06$,gh09$,gh02$,gh07$,gh10$,gh11$,gh05$,gh12$,gh13$,gh14$,gh15$,gh08$,gh99$,gh30$,"Ok"
 DIALOG.SELECT sel8, sel8$[],"Galaxien Haufen und Superhaufen: Darstellung/Projektion:"
-IF sel8=1:gh00=gh00*-1:ENDIF
+IF sel8=1:gh00=gh00*-1:IF gh00=-1 THEN RETURN:ENDIF
 IF sel8=2:gh01=gh01*-1:ENDIF
 IF sel8=3:gh03=gh03*-1:ENDIF
 IF sel8=4:gh04=gh04*-1:ENDIF
@@ -2502,7 +2502,7 @@ GOSUB menu9
 std9:
 ARRAY.LOAD sel9$[],gq00$,gq01$,gq13$,gq03$,gq14$,gq04$,gq20$,gq15$,gq05$,gq06$,gq16$,gq07$,gq09$,gq08$,gq17$,gq18$,gq19$,gq02$,gq99$,gq30$,"Ok"
 DIALOG.SELECT sel9, sel9$[],"Quasare: Darstellung/Projektion:"
-IF sel9=1:gq00=gq00*-1:ENDIF
+IF sel9=1:gq00=gq00*-1:IF gq00=-1 THEN RETURN:ENDIF
 IF sel9=2:gq01=gq01*-1:ENDIF
 IF sel9=3:gq13=gq13*-1:ENDIF
 IF sel9=4:gq03=gq03*-1:ENDIF
@@ -2696,11 +2696,11 @@ IF selob=1
  INPUT"Dekl. Minute…",gw_dm_,0
  INPUT"Dekl. Sekunde …",gw_ds_,0
  % Typus und Farbe %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- ARRAY.LOAD seltp_$[],"Stern Gr1","Stern Gr2","Stern Gr3","Roter Riese","Blauer Riese","Nova/Supernova","Sternhaufen","Nebel","Planetarer Nebel","Milchstraßenwolke","Galaxie","Haufen","Superhaufen","Quasar","Symbolisch"
+ ARRAY.LOAD seltp_$[],"Stern Gr1","Stern Gr2","Stern Gr3","Roter Riese","Blauer Riese","Nova/Supernova","Sternhaufen","Nebel","Planetarer Nebel","Kugelsternhaufen","Milchstraßenwolke","Galaxie","Haufen","Superhaufen","Quasar"
  DIALOG.SELECT seltp, seltp_$[],"Weitere Objekte: Typ..."
  DIALOG.MESSAGE "Weitere Objekte:","Neues astronomisches Objekt anlegen?",wrtout,"Speichern","Abbrechen"
  IF wrtout=1
-  obnrdat$="&"+FORMAT$("0%%",n_gw)+"["+d$+"/"+m$+"/"+y$+"]"
+  obnrdat$="&"+FORMAT$("0%%%%",n_gw)+"["+d$+"/"+m$+"/"+y$+"]"
   TEXT.OPEN a, fw, gwf$                %Ausgabe
   TEXT.WRITELN fw, obnrdat$            % Nummer, Datum
   TEXT.WRITELN fw, gw_name$            % Name
@@ -2750,7 +2750,7 @@ sel11$[n_gw+5]=gw30$
 sel11$[n_gw+6]="Ok"
 !
 DIALOG.SELECT sel11, sel11$[],"Weitere Objekte: Darstellung/Projektion:"
-IF sel11=1:gw00=gw00*-1:ENDIF         % Objekt Datei
+IF sel11=1:gw00=gw00*-1:IF gw00=-1 THEN RETURN:ENDIF
 IF sel11=2:GOSUB objdatei:GOSUB weitere_in:ENDIF       
 FOR i_gw=1 TO n_gw                    % Weitere Objekte
  IF sel11=i_gw+2:gw_p[i_gw]=gw_p[i_gw]*-1:ENDIF
@@ -2871,44 +2871,95 @@ GOSUB menu10
 GOTO std10
 RETURN
 menu10:
-o11$=smq$+"  Berechnungen..." %+cpb$
+o11$=_clc$+"  Berechnungen..." %+cpb$
 IF s10=1:sk01$=smb$+"  Entfernung und Zeit":ENDIF
 IF s10=-1: sk01$="     Entfernung und Zeit aus":ENDIF
 IF t31=1:sk02$=smb$+"  Rektaszension "+_ga$+rk$:ENDIF
 IF t31=-1: sk02$="     Rektaszension "+_ga$:ENDIF
 IF t39=1:sk03$=smb$+"  Deklination "+_gd$+dkl$:ENDIF
 IF t39=-1: sk03$="     Deklination "+_gd$:ENDIF
-IF t99=1:sk06$=smb$+"  Tierkreis":ENDIF
+IF t99=1:sk06$=smb$+"  Tierkreis "+_tkz$:ENDIF
 IF t99=-1: sk06$="     Tierkreis aus":ENDIF
-IF t34=1:sk04$=smb$+"  Himmelsgewölbe":ENDIF
+IF t34=1:sk04$=smb$+"  Himmelsgewölbe "+_hgw$:ENDIF
 IF t34=-1: sk04$="     Himmelsgewölbe aus":ENDIF
-IF s01=1:o01$=smb$+"  Jahreszeiten":ENDIF
+IF s01=1:o01$=smb$+"  Jahreszeiten "+_jzt$:ENDIF
 IF s01=-1: o01$="     Jahreszeiten aus":ENDIF
-IF s02=1:o02$=smb$+"  Monate":ENDIF
+IF s02=1:o02$=smb$+"  Monate "+_mnte$:ENDIF
 IF s02=-1: o02$="     Monate aus":ENDIF
 IF s03=1:o03$=smb$+"  Horizont "+ur$:ENDIF
 IF s03=-1: o03$="     Horizont aus":ENDIF
-IF s04=1:o04$=smb$+"  Erdprojektion":ENDIF
+IF s04=1:o04$=smb$+"  Erdprojektion "+_epr$:ENDIF
 IF s04=-1: o04$="     Erdprojektion aus":ENDIF
 IF s08=1:o08$=smb$+"  Kompass "+kp$:ENDIF
 IF s08=-1:o08$="     Kompass aus":ENDIF
 IF swvgl=1:sk05$=smb$+"  = "+objv$:ENDIF
 IF swvgl=-1: sk05$="     Größenvergleich aus":ENDIF
-IF t98=1:o09$=smb$+"  Historie ":ENDIF
+IF t98=1:o09$=smb$+"  Historie "+_hist$:ENDIF
 IF t98=-1:o09$="     Historie aus":ENDIF
 o10$=smq$+"  Linienbreite: "+INT$(skl)
 RETURN
 ! Berechnungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 calc::calcst:
-DIM sel$[5]
-sel$[1]="Hexagesimal [°/h:min:sec] zu Dezimal"+eq1$
-sel$[2]="Winkelgrad [°] zu Bogenmaß [rad]"+eq2$
-sel$[3]="Winkelausdehnung V[°] bei Dist. d zu Radius r"+eq3$
-sel$[4]="=[ "+cpb$+" ]"
+calcn=8:DIM sel$[calcn]:DIM sel0$[calcn-2]
+sel0$[1]="Faktor x zu Lichtgeschwindigkeit c[m/s]"
+sel0$[2]="Faktor x zu Astronomischer Einheit AE[km]"
+sel0$[3]="Parsec pc zu Lichtjahr Lj"
+sel0$[4]="Hexagesimal [°/h:min:sec] zu Dezimal"
+sel0$[5]="Winkelgrad [°] zu Bogenmaß [rad]"
+sel0$[6]="Winkelausdehnung V[°] bei Dist. d zu Radius r"
+sel$[1]=sel0$[1]+eq1$
+sel$[2]=sel0$[2]+eq2$
+sel$[3]=sel0$[3]+eq3$
+sel$[4]=sel0$[4]+eq4$
+sel$[5]=sel0$[5]+eq5$
+sel$[6]=sel0$[6]+eq6$
+sel$[7]="=[ "+cpb$+" ]"
 !
-sel$[5]="Ok"
-DIALOG.SELECT sel, sel$[],"Berechnungen:
-IF sel=1 % hex in dez
+sel$[8]="Ok"
+DIALOG.SELECT sel, sel$[],_clc$+" Berechnungen:
+IF sel=1 % Faktor c
+ INPUT "Faktor x...",u_fx,1
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_xc=u_fx*c_m
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_xc$=STR$(ROUND(u_xc,9))
+ u_xc0$=STR$(ROUND(u_xc,4))
+ CLIPBOARD.PUT u_xc$
+ u_dlgm$=""
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_fx,2))+"x = "
+ u_dlgm$=u_dlgm$+u_xc0$+"m/s"
+ DIALOG.MESSAGE sel0$[1]+", wobei xc = x*c[m/s]:",u_dlgm$,u_msg
+ eq1$="=":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="" 
+ENDIF
+IF sel=2 % Faktor AE
+ INPUT "Faktor x...",u_fx,1
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_xa=u_fx*au_
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_xa$=STR$(ROUND(u_xa,9))
+ u_xa0$=STR$(ROUND(u_xa,4))
+ CLIPBOARD.PUT u_xa$
+ u_dlgm$=""
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_fx,2))+"x = "
+ u_dlgm$=u_dlgm$+u_xa0$+"km"
+ DIALOG.MESSAGE sel0$[2]+", wobei xAE = x*AE[km]:",u_dlgm$,u_msg
+ eq1$="":eq2$="=":eq3$="":eq4$="":eq5$="":eq6$="" 
+ENDIF
+IF sel=3 % Pc zu Lj
+ INPUT "Parsec pc...",u_pc,1
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_lj=u_pc*pcm_/Lj_m
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_lj$=STR$(ROUND(u_lj,9))
+ u_lj0$=STR$(ROUND(u_lj,4))
+ CLIPBOARD.PUT u_lj$
+ u_dlgm$=""
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_pc,4))+"pc = "
+ u_dlgm$=u_dlgm$+u_lj0$+"Lj"
+ DIALOG.MESSAGE sel0$[3]+", wobei Lj = pc*3.26156:",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="=":eq4$="":eq5$="":eq6$="" 
+ENDIF
+IF sel=4 % hex in dez
  CLIPBOARD.GET cpb$
  INPUT "°/h...",u_gh,0
  INPUT "min '...",u_min,0
@@ -2924,10 +2975,10 @@ IF sel=1 % hex in dez
  u_dlgm$=u_dlgm$+STR$(ROUND(u_min,2))+"' "
  u_dlgm$=u_dlgm$+STR$(ROUND(u_sec,4))+"'' = "
  u_dlgm$=u_dlgm$+u_dez0$+"°/h"
- DIALOG.MESSAGE sel$[2]+", wobei dx° = hx°+(hx'/60)+(hx''/3600):",u_dlgm$,u_msg
- eq1$="=":eq2$="":eq3$=""
+ DIALOG.MESSAGE sel0$[4]+", wobei dx° = hx°+(hx'/60)+(hx''/3600):",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="=":eq5$="":eq6$="" 
 ENDIF 
-IF sel=2 % grad in rad
+IF sel=5 % grad in rad
  INPUT "Winkelgrad a°...",u_wkg,45
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  u_rad=u_wkg/180*PI()
@@ -2938,10 +2989,10 @@ IF sel=2 % grad in rad
  u_dlgm$=""
  u_dlgm$=u_dlgm$+STR$(ROUND(u_wkg,2))+"° = "
  u_dlgm$=u_dlgm$+u_rad$+"rad"
- DIALOG.MESSAGE sel$[1]+", wobei rad = (a°/180) pi: ",u_dlgm$,u_msg
- eq1$="":eq2$="=":eq3$=""
+ DIALOG.MESSAGE sel0$[5]+", wobei rad = (a°/180) pi: ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="=":eq6$=""  
 ENDIF 
-IF sel=3 % V in r
+IF sel=6 % V in r
  CLIPBOARD.GET cpb$
  INPUT "V°...",u_V,VAL(cpb$)
  INPUT "d...",u_d,100
@@ -2954,10 +3005,10 @@ IF sel=3 % V in r
  u_dlgm$=u_dlgm$+STR$(ROUND(u_v,4))+"° bei d="
  u_dlgm$=u_dlgm$+STR$(ROUND(u_d,2))+" : r="
  u_dlgm$=u_dlgm$+STR$(ROUND(u_r,4))
- DIALOG.MESSAGE sel$[3]+", wobei r = d tan(V[rad]/2): ",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="="
+ DIALOG.MESSAGE sel$[6]+", wobei r = d tan(V[rad]/2): ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="="  
 ENDIF 
-IF sel=5:CLIPBOARD.GET cpb$:RETURN:ENDIF 
+IF sel=8:CLIPBOARD.GET cpb$:RETURN:ENDIF 
 CLIPBOARD.GET cpb$
 GOTO calcst
 RETURN

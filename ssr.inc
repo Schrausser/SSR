@@ -15,6 +15,7 @@ _tz11$=CHR$(9806) %
 _tz12$=CHR$(9805) %
 REM //
 _ga$=CHR$(945) %a
+_gd$=CHR$(948) %d
 _go$=CHR$(969) %o
 REM //
 _rh$=CHR$(688) %
@@ -24,4 +25,11 @@ _ur$=CHR$(8986) %
 _kp1$=CHR$(8251) %
 _kp2$=CHR$(8663) %
 _kp3$=CHR$(8251)+CHR$(8663) %
+_tkz$=CHR$(10024) %
+_hgw$=CHR$(9784 ) %
+_jzt$=CHR$(9728) %
+_mnte$=CHR$(9925) %
+_clc$=CHR$(8737) %
+_epr$=CHR$(11610) %
+_hist$=CHR$(10064) %
 REM // END
