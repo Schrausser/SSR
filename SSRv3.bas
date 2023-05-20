@@ -772,6 +772,7 @@ pl06=sx/800             % Größe Pluto
 gr_0=sx/400             % allg. Objekt Größe 
 swvgl=-1                % sw Grössenvergleich
 !ed=ed/aed              % Anfangsentfernung
+CLIPBOARD.PUT "0"       % Berechnungen                                                           
 RETURN
 ! Bei Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 astroparameter:
