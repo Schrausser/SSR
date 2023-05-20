@@ -79,7 +79,7 @@ Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissan
 
 Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope* Vol. 90, Cambridge, MA. [www.messier.seds.org/xtra/similar/caldwell.html](http://www.messier.seds.org/xtra/similar/caldwell.html)
 
-Ochsenbein, F., Bauer, P., & Marcout, J. (2000). The VizieR database of astronomical catalogues. *Astronomy and Astrophysics Supplement Series, 143*, 23–32. [DOI:10.1051/aas:2000169. S2CID 17377096.](https://doi.org/10.1051%2Faas%3A2000169)
+Ochsenbein, F., Bauer, P., & Marcout, J. (2000). The VizieR database of astronomical catalogues. *Astronomy and Astrophysics Supplement Series, 143*, 23–32. [DOI:10.1051/aas:2000169. S2CID 17377096](https://doi.org/10.1051%2Faas%3A2000169)
 
 Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. *Bulletin of the Astronomical Institutes of the Netherlands, 11*, 91-110. [ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract](https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract)
 
