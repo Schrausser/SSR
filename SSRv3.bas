@@ -2935,7 +2935,7 @@ ENDIF
 IF sel=2 % Faktor AE
  INPUT "Faktor x...",u_fx,1
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- u_xa=u_fx*au_
+ u_xa=u_fx*au_/1000
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  u_xa$=STR$(ROUND(u_xa,9))
  u_xa0$=STR$(ROUND(u_xa,4))
