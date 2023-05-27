@@ -64,7 +64,7 @@ Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac 
 
 ### Acknowledgement
 
-This research has made use of the NASA/IPAC Extragalactic Database (NED), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology.
+This research has made use of the NASA/IPAC Extragalactic Database (NED), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology. [ned.ipac.caltech.edu/](http://ned.ipac.caltech.edu/)
 
 ### References
 Brown, N. J., Waagen, E. O., Scovil, C., Nelson, P., Oksanen, A., Solonen, J., & Price, A. (2002). Peculiar variable in Monoceros. *International Astronomical Union Circular, 7785*, 1. [ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)
