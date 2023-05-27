@@ -64,12 +64,12 @@ Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac 
 
 ### Acknowledgement
 
-This research has made use of the NASA/IPAC Extragalactic Database (NED), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology. [ned.ipac.caltech.edu/](http://ned.ipac.caltech.edu/)
+This research has made use of the NASA/IPAC Extragalactic Database (NED), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology. [ned.ipac.caltech.edu](http://ned.ipac.caltech.edu/)
 
 ### References
 Brown, N. J., Waagen, E. O., Scovil, C., Nelson, P., Oksanen, A., Solonen, J., & Price, A. (2002). Peculiar variable in Monoceros. *International Astronomical Union Circular, 7785*, 1. [ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)
 
-Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society, 49*, 1-237. [https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D), [archive.org/download/newgeneralcatalo00dreyrich/](https://archive.org/download/newgeneralcatalo00dreyrich/newgeneralcatalo00dreyrich.pdf])
+Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society, 49*, 1-237. [https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D), [archive.org/download/newgeneralcatalo00dreyrich](https://archive.org/download/newgeneralcatalo00dreyrich/newgeneralcatalo00dreyrich.pdf])
 
 Ferguson, H. (1996). *The Hubble Deep Field – field selection*. Space Telescope Science Institute.
 
