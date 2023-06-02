@@ -7,7 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             © 2023 by Dietmar Gerald Schrausser
 !!
-t06=t06gq
+t06=t06gq                           %Projektion
+vgr=vgr_gq                          %Vergrößerung
+symsw=gq101                         %Symbol
 ! % Markarian 231 UGC 8085 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="Markarian 231"            %Name
 pro_=gq01                           %Projektionsvariable
@@ -212,6 +214,8 @@ h_x=3:m_x=13:s_x=43.84              %Rekta Position
 GOSUB r_pos
 GR.COLOR cc/6,cc/3,cc,cc/2,1
 otype=-1:GOSUB objdarst:otype=0
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+vgr=1:symsw=1
 !!
 ! % Neue Quasare hier einfügen %%%%%%%%%%%%%%%%%%%%%%%%%%%
 ! % ___ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

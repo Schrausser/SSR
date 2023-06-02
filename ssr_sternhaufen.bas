@@ -7,7 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             © 2023 by Dietmar Gerald Schrausser
 !!
-t06=t06st
+t06=t06st                             %Symbol
+vgr=vgr_st                            %Vergrößerung
+symsw=st101                           %Symbol
 ! % Plejaden M45 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="Plejaden"                   %Name
 pro_=st01                             %Projektionsvariable
@@ -703,6 +705,8 @@ h_x=20:m_x=6:s_x=4.85                 %Position
 GOSUB r_pos
 GR.COLOR cc/8,cc,cc,cc,1
 GOSUB objdarst
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+vgr=1:symsw=1
 !!
 ! % Neue Sternhaufen hier einfügen %%%%%%%%%%%%%%%%%%%%%%%
 ! % ___ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

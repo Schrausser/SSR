@@ -277,6 +277,7 @@ TEXT.WRITELN fsr, u11
 TEXT.WRITELN fsr, u13
 TEXT.WRITELN fsr, u14
 TEXT.WRITELN fsr, u15
+TEXT.WRITELN fsr, u16
 TEXT.WRITELN fsr, aed
 TEXT.WRITELN fsr, aed$
 TEXT.WRITELN fsr, ed
@@ -304,14 +305,34 @@ TEXT.WRITELN fsr, ur$
 TEXT.WRITELN fsr, kp$
 TEXT.WRITELN fsr, gwf$
 TEXT.WRITELN fsr, skl
+TEXT.WRITELN fsr, vgr
+TEXT.WRITELN fsr, vgr_s
+TEXT.WRITELN fsr, vgr_st
+TEXT.WRITELN fsr, vgr_nb
+TEXT.WRITELN fsr, vgr_gm
+TEXT.WRITELN fsr, vgr_gx
+TEXT.WRITELN fsr, vgr_gh
+TEXT.WRITELN fsr, vgr_gq
+TEXT.WRITELN fsr, vgr_w1
+TEXT.WRITELN fsr, vgr_p
+TEXT.WRITELN fsr, s101
+TEXT.WRITELN fsr, st101
+TEXT.WRITELN fsr, nb101
+TEXT.WRITELN fsr, gx101
+TEXT.WRITELN fsr, gq101
+TEXT.WRITELN fsr, gw101
 TEXT.CLOSE fsr
 CONSOLE.TITLE _name$
 PRINT _name$+" SONNENSYSTEMROTATION "+_ver$
 PRINT"Copyright "+_cr$+" 2023 by Dietmar Gerald SCHRAUSSER"
 PRINT"https://github.com/Schrausser/SSR"
-!PRINT "Sources:
+!PRINT " "
+PRINT "Astronomische Datenquellen:
 PRINT "NASA Planetary Fact Sheet ["+_g1_mon$+"/"+_g1_jar$+"]"
 !PRINT "https://nssdc.gsfc.nasa.gov/planetary/factsheet"
 PRINT "CDS SIMBAD ["+_g2_mon$+"/"+_g2_jar$+"]"
 !PRINT "https://cdsweb.u-strasbg.fr/Simbad.html"
+PRINT "NED* ["+_g2_mon$+"/"+_g2_jar$+"]"
+!PRINT" "
+PRINT "*) The NASA/IPAC Extragalactic Database (NED) is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology."
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

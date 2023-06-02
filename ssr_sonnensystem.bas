@@ -17,10 +17,13 @@ IF ae/Lj_<200000
   GR.COLOR cc,cc,cc,cc,1
  ENDIF
 ENDIF
-gr=(ed*r_sne_ae)*c145                  %Sonnenradius AE
+IF u16=1  THEN gr=(ed*r_sne_ae)        % Sonnenradius AE
+IF u16=-1 THEN gr=gr_0                 % Symbol
 IF gr<gr_0 THEN gr=gr_0
-GR.CIRCLE sn,mx,my,gr
-IF t06s=1 & ae/Lj_<=5                  %Text
+!
+GR.CIRCLE sn,mx,my,gr*vgr_p            % Darstellung
+!
+IF t06s=1 & ae/Lj_<=5                  % Text
  GR.COLOR cc,cc,cc,cc,1
  IF ae<=60:GR.COLOR cc,cc,cc,0,1:ENDIF
  GR.TEXT.ALIGN 2
@@ -46,8 +49,15 @@ IF s00=1 & AE<10000                    % Umlaufbahn
 ENDIF
 IF AE<2000                             % Darstellung
  GR.COLOR 150,100,cc,0,1
+ IF u16=1
+  gr=(ed*((r_mkr_km*1000)/au_))        % Merkurradius AE
+  gr=gr*vgrp0
+ ENDIF
+ IF u16=-1 THEN gr=gr_0                % Symbol
  GR.ROTATE.START pos-i/uf,mx-xcr,my-ycr
- GR.CIRCLE cl,(mx-xcr)-ed*d,(my-ycr)-ed*d,pl01
+ !
+ GR.CIRCLE cl,(mx-xcr)-ed*d,(my-ycr)-ed*d,gr*vgr_p
+ !
  IF u11=1 & ae<=2.5                    % Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,(mx-xcr)-ed*d,(my-ycr)-ed*d
@@ -81,8 +91,15 @@ IF s00=1 & AE<10000                    % Umlaufbahn
 ENDIF
 IF AE<2000                             % Darstellung
  GR.COLOR 250,cc,cc,cc,1
+ IF u16=1
+  gr=(ed*((r_vns_km*1000)/au_))        % Venusradius AE
+  gr=gr*vgrp0
+ ENDIF
+ IF u16=-1 THEN gr=gr_0                % Symbol
  GR.ROTATE.START pos-i/uf,mx,my
- GR.CIRCLE cl,mx-ed*d,my-ed*d,pl02 
+ !
+ GR.CIRCLE cl,mx-ed*d,my-ed*d,gr*vgr_p
+ !
  IF u11=1 & ae<=2.5                    % Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
@@ -121,7 +138,14 @@ ENDIF
 GR.ROTATE.START -i,mx,my
 IF AE<2000                             % Darstellung
  GR.COLOR cc,100,100,cc,1
- GR.CIRCLE cl,mx-ed,my-ed,pl03
+ IF u16=1
+  gr=(ed*((r_erd_km*1000)/au_))        % Erdradius AE
+  gr=gr*vgrp0
+ ENDIF
+ IF u16=-1 THEN gr=gr_0                % Symbol
+ !
+ GR.CIRCLE cl,mx-ed,my-ed,gr*vgr_p
+ !
  IF u11=1 & ae<=2.5                    % // Text //
   pot= 0
   GR.TEXT.ALIGN 2
@@ -208,8 +232,15 @@ IF s00=1 & AE<10000                    % Umlaufbahn
 ENDIF
 IF AE<2000                             % Darstellung
  GR.COLOR cc,cc,100,100,1
+ IF u16=1
+  gr=(ed*((r_mrs_km*1000)/au_))        % Marsradius AE
+  gr=gr*vgrp0
+ ENDIF
+ IF u16=-1 THEN gr=gr_0                % Symbol
  GR.ROTATE.START pos-i/uf,mx+xcr,my-ycr
- GR.CIRCLE cl,(mx+xcr)-ed*d,(my-ycr)-ed*d,pl04
+ !
+ GR.CIRCLE cl,(mx+xcr)-ed*d,(my-ycr)-ed*d,gr*vgr_p
+ !
  IF u11=1 & ae<=2.5                    % Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,(mx+xcr)-ed*d,(my-ycr)-ed*d
@@ -244,8 +275,15 @@ IF s00=1 & ed<sy/10 & AE<3000          % Umlaufbahn
 ENDIF
 IF AE<1000                             % Darstellung
  GR.COLOR 150,cc,cc,100,1
+ IF u16=1
+  gr=(ed*((r_jpt_km*1000)/au_))        % Jupiterradius AE
+  gr=gr*vgrp0
+ ENDIF
+ IF u16=-1 THEN gr=gr_0                % Symbol
  GR.ROTATE.START pos-i/uf,mx,my-ycr
- GR.CIRCLE cl,mx-ed*d,(my-ycr)-ed*d,gr_0
+ !
+ GR.CIRCLE cl,mx-ed*d,(my-ycr)-ed*d,gr*vgr_p
+ !
  IF u11=1 & ae<40                      % Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,mx-ed*d,(my-ycr)-ed*d
@@ -280,9 +318,16 @@ IF s00=1 & ed<sy/10 & AE<3000          % Umlaufbahn
 ENDIF
 IF AE<1000                             % Darstellung
  GR.COLOR 150,cc,cc,cc,1
+ IF u16=1
+  gr=(ed*((r_stn_km*1000)/au_))        % Saturnradius AE
+  gr=gr*vgrp0
+ ENDIF
+ IF u16=-1 THEN gr=gr_0                % Symbol
  GR.ROTATE.START pos-i/uf,mx-xcr,my
- GR.CIRCLE cl,(mx-xcr)-ed*d,my-ed*d,gr_0
- GR.LINE ln,(mx-xcr)-ed*d-c10/2,my-ed*d, (mx-xcr)-ed*d+c10/2, my-ed*d
+ !
+ GR.CIRCLE cl,(mx-xcr)-ed*d,my-ed*d,gr*vgr_p
+ !
+ !GR.LINE ln,(mx-xcr)-ed*d-c10/2,my-ed*d, (mx-xcr)-ed*d+c10/2, my-ed*d
  IF u11=1 & ae<=90                     % Text
   pot= -pos
   GR.ROTATE.START pot+i/uf,(mx-xcr)-ed*d,my-ed*d
@@ -318,8 +363,15 @@ IF ed<sy/20
  ENDIF
  IF AE<2000                            % Darstellung
   GR.COLOR 150,100,100,cc,1
+  IF u16=1
+   gr=(ed*((r_urs_km*1000)/au_))        % Uranusradius AE
+   gr=gr*vgrp0
+  ENDIF
+  IF u16=-1 THEN gr=gr_0                % Symbol
   GR.ROTATE.START pos-i/uf,mx,(my-ycr)
-  GR.CIRCLE cl,mx-ed*d,(my-ycr)-ed*d,pl05
+  !
+  GR.CIRCLE cl,mx-ed*d,(my-ycr)-ed*d,gr*vgr_p
+  !
   IF u11=1 & ae<=125                   % Text
    pot= -pos
    GR.ROTATE.START pot+i/uf,mx-ed*d,(my-ycr)-ed*d
@@ -355,8 +407,15 @@ IF ed<sy/20
  ENDIF
  IF AE<2000                            % Darstellung
   GR.COLOR 100,200,200,cc,1
+  IF u16=1
+   gr=(ed*((r_npt_km*1000)/au_))        % Neptunradius AE
+   gr=gr*vgrp0
+  ENDIF
+  IF u16=-1 THEN gr=gr_0                % Symbol
   GR.ROTATE.START pos-i/uf,mx,my
-  GR.CIRCLE cl,mx-ed*d,my-ed*d,pl05
+  !
+  GR.CIRCLE cl,mx-ed*d,my-ed*d,gr*vgr_p
+  !
   IF u11=1 & ae<=185                   % Text
    pot=-pos
    GR.ROTATE.START pot+i/uf,mx-ed*d,my-ed*d
@@ -394,12 +453,18 @@ IF ed<sy/20
  ENDIF
  IF AE<2000                            % Darstellung
   GR.COLOR 80,200,200,0,1
+  IF u16=1
+   gr=(ed*((r_plt_km*1000)/au_))        % Plutoradius AE
+   gr=gr*vgrp0
+  ENDIF
+  IF u16=-1 THEN gr=gr_0                % Symbol
   GR.ROTATE.START pos-i/uf,mx-xcr,my-ycr
-  GR.CIRCLE cl,(mx-xcr)-ed*d,(my-ycr)-ed*d,pl06
+  !
+  GR.CIRCLE cl,(mx-xcr)-ed*d,(my-ycr)-ed*d,gr*vgr_p
+  !
   IF u11=1 & ae<=220                   % Text
    pot= -pos
    GR.ROTATE.START pot+i/uf,(mx-xcr)-ed*d,(my-ycr)-ed*d
-   ! GR.TEXT.BOLD 0
    GR.TEXT.ALIGN 2
    GR.TEXT.SIZE txz1                   % 11
    IF t99=1

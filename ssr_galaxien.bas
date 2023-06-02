@@ -7,7 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             © 2023 by Dietmar Gerald Schrausser
 !!
-t06=t06gx
+t06=t06gx                           %Projektion
+vgr=vgr_gx                          %Vergrößerung
+symsw=gx101                         %Symbol
 ! % Andromeda M31 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="Andromeda"                %Name
 pro_=gx01                           %Projektionsvariable
@@ -399,6 +401,8 @@ h_x=12:m_x=18:s_x=49.6              %Rekta Position
 GOSUB r_pos
 GR.COLOR cc/6,cc,cc,cc,1
 otype=-1:GOSUB objdarst:otype=0
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+vgr=1:symsw=1
 !!
 ! % Neue Galaxien hier einfügen %%%%%%%%%%%%%%%%%%%%%%%%%%
 ! % M_ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

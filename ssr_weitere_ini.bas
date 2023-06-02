@@ -8,6 +8,7 @@
             © 2023 by Dietmar Gerald Schrausser
 !!
 TEXT.OPEN w, fw1, "ssr_gw.dat"       %erstellt Objektdatei
+TEXT.WRITELN fw1, "0001"  
 TEXT.WRITELN fw1, "& 001[14/05/2023]
 TEXT.WRITELN fw1, "Hyaden
 TEXT.WRITELN fw1, "10.0

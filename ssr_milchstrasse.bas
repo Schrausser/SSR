@@ -8,6 +8,7 @@
              © 2023 by Dietmar Gerald Schrausser
 !!
 t06=t06gm
+vgr=vgr_gm
 ! % Milchstraßensystem %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dz= 26438                           %Zentrum Entfernung Lj
 gm_d01=dz/pcl_
@@ -98,6 +99,8 @@ h_x=5:m_x=24:s_x=0                  %Rekta Position
 GOSUB r_pos
 GR.COLOR cc/9,cc,cc,cc,1
 GOSUB objdarst
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+vgr=1
 !!
 ! % Neue Milchstrassenobjekte hier einfügen %%%%%%%%%%%%%%
 ! % ___ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

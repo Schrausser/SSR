@@ -8,8 +8,8 @@
            © 2020-23 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.5"
-INCLUDE strg.inc
+_ver$="v3.7.15"
+INCLUDE strg_.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
 SENSORS.OPEN 8          %
@@ -613,7 +613,7 @@ References:
    GR.TEXT.DRAW txt,dtx4,dtx1,INT$(jx)
    GR.TEXT.ALIGN 3
    GR.TEXT.DRAW txt,sx,dtx1,INT$(nt+1)+"T"
-   GR.TEXT.DRAW txt,sx,sy-dtx3,"Simulation: "+STR$(ROUND(v/0.1,3))+"x"
+   GR.TEXT.DRAW txt,sx,sy-dtx3,"Simulation: "+STR$(ROUND(v/0.1,3))+"×"
   ENDIF
   IF s07=1                     % bei Echtzeit
    GR.TEXT.ALIGN 1
@@ -763,16 +763,13 @@ c01=sx/1080             % 1 corr
 c02=c01*2               % 2 corr
 cc=255                  % Farbe
 dis=sy/5.372            % Tierkreis Distanz
-pl01=sx/700             % Größe Merkur
-pl02=sx/550             % Größe Venus
-pl03=sx/500             % Größe Erde
-pl04=sx/600             % Größe Mars
-pl05=sx/450             % Größe Uranus,Neptun
-pl06=sx/800             % Größe Pluto
 gr_0=sx/400             % allg. Objekt Größe 
 swvgl=-1                % sw Grössenvergleich
 !ed=ed/aed              % Anfangsentfernung
-CLIPBOARD.PUT "0"       % Berechnungen                                                           
+vgr=1                   % Vergrößerungsfaktor
+vgrp0=100               % Vergrößerungsfaktor 0 Planeten
+vgrs0=200000            % Vergrößerungsfaktor 0 Sterne
+CLIPBOARD.PUT "0"       % Berechnungen
 RETURN
 ! Bei Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 astroparameter:
@@ -854,10 +851,16 @@ weitere:: INCLUDE ssr_weitere.bas: RETURN
 objdarst: 
 GR.ROTATE.START pos,mx,my
 IF ae<200*d                        %Darstellung
- IF otype=-1 
-  GR.CIRCLE cl,mx-ed*d,my-ed*d,rds
- ELSE
-  GR.CIRCLE cl,mx-ed*d,my-ed*d,ed*rds*Lj_ 
+ IF symsw=-1 THEN symb=gr_0        %Symbol
+ IF symsw=1 THEN symb=rds          %Maßstab
+ !IF otype=-1 | symsw=-1
+ IF symsw=-1
+  GR.CIRCLE cl,mx-ed*d,my-ed*d,symb*vgr
+ ENDIF
+ !
+ !IF otype=0 & symsw=1
+ IF symsw=1
+  GR.CIRCLE cl,mx-ed*d,my-ed*d,(ed*symb*Lj_)*vgr
  ENDIF
 ENDIF
 IF t06=1 & ae<5*d                  %Text
@@ -890,7 +893,7 @@ dialog:
 GOSUB anfangsentfernung %aed$
 GOSUB menu
 std:
-ARRAY.LOAD sel$[],o05$,o06$,o12$,o13$,o14$,o15$,o17$,o16$,o18$,o10$,o09$,o07$,o11$,"Ok","exit"
+ARRAY.LOAD sel$[],o05$,o06$,o12$,o13$,o14$,o15$,o17$,o16$,o18$,o10$,o09$,o07$,o11$,"Ok",_ex$+"  Exit"
 DIALOG.SELECT sel, sel$[],_name$+" SONNENSYSTEMROTATION "+_ver$+" - Ebenen:"
 IF sel=1:GOSUB dialog1:ENDIF 
 IF sel=2:GOSUB dialog2:ENDIF 
@@ -960,12 +963,13 @@ u11=1
 u13=1
 u14=1
 u15=1
+u16=1
 RETURN
 ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dialog1:
 GOSUB menu1
 std1:
-ARRAY.LOAD sel1$[],q00$,q20$,q01$,q02$,q03$,q04$,q05$,q06$,q07$,q08$,q09$,q13$,q14$,q15$,q10$,q11$,"Ok"
+ARRAY.LOAD sel1$[],q00$,q20$,q01$,q02$,q03$,q04$,q05$,q06$,q07$,q08$,q09$,q13$,q14$,q15$,q10$,q12$,q16$,q11$,"Ok"
 DIALOG.SELECT sel1, sel1$[],"Sonnensystem: Darstellung/Projektion:"
 IF sel1=1:u00=u00*-1:ENDIF
 IF sel1=2:s00=s00*-1:ENDIF
@@ -982,8 +986,10 @@ IF sel1=12:u13=u13*-1:ENDIF
 IF sel1=13:u14=u14*-1:ENDIF
 IF sel1=14:u15=u15*-1:ENDIF
 IF sel1=15:u10=u10*-1:ENDIF
-IF sel1=16:u11=u11*-1:ENDIF
-IF sel1=17:RETURN:   ENDIF
+IF sel1=16:GOSUB dlgvgr:vgr_p=_vgr:ENDIF
+IF sel1=17:u16=u16*-1:ENDIF
+IF sel1=18:u11=u11*-1:ENDIF
+IF sel1=19:RETURN:   ENDIF
 GOSUB menu1
 GOTO std1
 RETURN
@@ -1019,6 +1025,9 @@ IF u15=1:q15$=smb$+"  Hills-Wolke [~875AE]":ENDIF
 IF u15=-1: q15$="     Hills-Wolke [~875AE]":ENDIF
 IF u10=1:q10$=smb$+"  Oortsche Wolke [~0.8Lj]":ENDIF
 IF u10=-1: q10$="     Oortsche Wolke [50000AE]":ENDIF
+q12$=smq$+"  Vergrößerung: "+INT$(vgr_p)+" ×"
+IF u16=-1:q16$=_smbl$+"    Symbol":ENDIF
+IF u16=1:q16$=_mst$+"    Maßstab × "+INT$(vgrp0):ENDIF
 IF u11=1:q11$=smb$+"  Text":ENDIF
 IF u11=-1: q11$="     Text aus":ENDIF
 RETURN
@@ -1106,6 +1115,7 @@ t128=-1
 t129=-1
 t130=-1
 s99=-1
+s101=-1
 t06s=1
 !!
  t__=-1
@@ -1115,7 +1125,7 @@ RETURN
 dialog2:
 GOSUB menu2
 std2:
-ARRAY.LOAD sel2$[],p00$,p01$,p82$,p05$,p35$,p08$,p07$,p36$,p09$,p38$,p03$,p11$,p12$,p33$,p10$,p83$,p02$,p84$,p85$,p86$,p13$,p87$,p88$,p89$,p90$,p91$,p14$,p92$,p93$,p94$,p95$,p96$,p97$,p100$,p101$,p102$,p103$,p104$,p105$,p106$,p107$,p108$,p109$,p110$,p111$,p112$,p113$,p32$,p114$,p115$,p116$,p117$,p118$,p15$,p119$,p120$,p121$,p17$,p122$,p18$,p123$,p124$,p19$,p125$,p126$,p127$,p128$,p20$,p129$,p130$,s99$,p06$,"Ok"
+ARRAY.LOAD sel2$[],p00$,p01$,p82$,p05$,p35$,p08$,p07$,p36$,p09$,p38$,p03$,p11$,p12$,p33$,p10$,p83$,p02$,p84$,p85$,p86$,p13$,p87$,p88$,p89$,p90$,p91$,p14$,p92$,p93$,p94$,p95$,p96$,p97$,p100$,p101$,p102$,p103$,p104$,p105$,p106$,p107$,p108$,p109$,p110$,p111$,p112$,p113$,p32$,p114$,p115$,p116$,p117$,p118$,p15$,p119$,p120$,p121$,p17$,p122$,p18$,p123$,p124$,p19$,p125$,p126$,p127$,p128$,p20$,p129$,p130$,s99$,s100$,s101$,p06$,"Ok"
 DIALOG.SELECT sel2, sel2$[],"Sterne: Darstellung/Projektion:"
 IF sel2=1:t00=t00*-1:IF t00=-1 THEN RETURN:ENDIF
 IF sel2=2:t01=t01*-1:ENDIF
@@ -1191,8 +1201,14 @@ IF sel2=70:t130=t130*-1:ENDIF
  IF sel2=_:t__=t__*-1:ENDIF
 !!
 IF sel2=71:GOSUB sreset: s99=s99*-1:ENDIF
-IF sel2=72:t06s=t06s*-1:ENDIF
-IF sel2=73:RETURN:   ENDIF
+IF sel2=72
+ GOSUB dlgvgr
+ vgr_s=_vgr:IF s101=1 THEN vgr_s=vgr_s
+ vgr=vgr_s
+ENDIF
+IF sel2=73:s101=s101*-1:ENDIF
+IF sel2=74:t06s=t06s*-1:ENDIF
+IF sel2=75:RETURN:   ENDIF
 GOSUB menu2
 GOTO std2
 RETURN
@@ -1343,6 +1359,9 @@ IF t130=-1: p130$="     RSGC-F01 ["+STR$(ROUND(s_d69/1000,1))+"kpc]":ENDIF
  IF t__=-1: p__$="     __ [__pc]":ENDIF
 !!
 s99$=smq$+"  Projektion an/aus"
+s100$=smq$+"  Vergrößerung: "+INT$(vgr_s)+" ×"
+IF s101=-1:s101$=_smbl$+"    Symbol":ENDIF
+IF s101=1:s101$=_mst$+"    Maßstab × "+INT$(vgrs0):ENDIF
 IF t06s=1:p06$=smb$+"  Text":ENDIF
 IF t06s=-1:p06$="     Text aus":ENDIF
 RETURN
@@ -1571,6 +1590,7 @@ st55=-1
 st56=-1
 st57=-1
 st99=-1
+st101=1 %%%
 t06st=1
 !!
  st__=-1
@@ -1580,7 +1600,7 @@ RETURN
 dialog4:
 GOSUB menu4
 std4:
-ARRAY.LOAD sel4$[],st00$,st01$,st14$,st02$,st03$,st04$,st05$,st06$,st15$,st16$,st17$,st18$,st19$,st07$,st08$,st20$,st21$,st22$,st23$,st24$,st25$,st26$,st27$,st28$,st29$,st30$,st31$,st32$,st09$,st33$,st34$,st35$,st36$,st10$,st37$,st38$,st39$,st40$,st41$,st11$,st42$,st43$,st44$,st45$,st46$,st47$,st48$,st49$,st50$,st51$,st52$,st53$,st54$,st55$,st12$,st56$,st13$,st57$,st99$,st60$,"Ok"
+ARRAY.LOAD sel4$[],st00$,st01$,st14$,st02$,st03$,st04$,st05$,st06$,st15$,st16$,st17$,st18$,st19$,st07$,st08$,st20$,st21$,st22$,st23$,st24$,st25$,st26$,st27$,st28$,st29$,st30$,st31$,st32$,st09$,st33$,st34$,st35$,st36$,st10$,st37$,st38$,st39$,st40$,st41$,st11$,st42$,st43$,st44$,st45$,st46$,st47$,st48$,st49$,st50$,st51$,st52$,st53$,st54$,st55$,st12$,st56$,st13$,st57$,st99$,st100$,st101$,st60$,"Ok"
 DIALOG.SELECT sel4, sel4$[],"Offene Sternhaufen und Kugelsternhaufen: Darstellung/Projektion:"
 IF sel4=1:st00=st00*-1:IF st00=-1 THEN RETURN:ENDIF
 IF sel4=2:st01=st01*-1:ENDIF
@@ -1644,8 +1664,13 @@ IF sel4=58:st13=st13*-1:ENDIF
  IF sel4=_:st__=st__*-1:ENDIF
 !!
 IF sel4=59:GOSUB streset: st99=st99*-1:ENDIF
-IF sel4=60:t06st=t06st*-1:ENDIF
-IF sel4=61:RETURN:ENDIF
+IF sel4=60
+ GOSUB dlgvgr
+ vgr_st=_vgr:vgr=vgr_st
+ENDIF
+IF sel4=61:st101=st101*-1:ENDIF
+IF sel4=62:t06st=t06st*-1:ENDIF
+IF sel4=63:RETURN:ENDIF
 GOSUB menu4
 GOTO std4
 RETURN 
@@ -1772,6 +1797,9 @@ IF st13=-1: st13$="     M53 ["+STR$(ROUND(st_d56/10^3,1))+"kpc]":ENDIF
  IF st__=-1: st__$="     __ [__pc]":ENDIF
 !!
 st99$=smq$+"  Projektion an/aus"
+st100$=smq$+"  Vergrößerung: "+INT$(vgr_st)+" ×"
+IF st101=-1:st101$=_smbl$+"    Symbol":ENDIF
+IF st101=1:st101$=_mst$+"    Maßstab":ENDIF
 IF t06st=1:st60$=smb$+"  Text":ENDIF
 IF t06st=-1:st60$="     Text aus":ENDIF
 RETURN
@@ -1913,6 +1941,7 @@ nb19=-1
 nb20=-1
 nb21=-1
 nb22=-1
+nb101=1 %%%%
 nb99=-1
 t06nb=1
 !!
@@ -1923,7 +1952,7 @@ RETURN
 dialog5:
 GOSUB menu5
 std5:
-ARRAY.LOAD sel5$[],nb00$,nb15$,nb01$,nb16$,nb17$,nb18$, nb19$,nb20$,nb21$,nb22$,nb10$,nb11$,nb12$,nb14$,nb99$,nb23$,"Ok"
+ARRAY.LOAD sel5$[],nb00$,nb15$,nb01$,nb16$,nb17$,nb18$, nb19$,nb20$,nb21$,nb22$,nb10$,nb11$,nb12$,nb14$,nb99$,nb100$,nb101$,nb23$,"Ok"
 DIALOG.SELECT sel5, sel5$[],"Nebel, Planetare Nebel und Supernovae: Darstellung/Projektion:"
 IF sel5=1:nb00=nb00*-1:IF nb00=-1 THEN RETURN:ENDIF
 IF sel5=2:nb15=nb15*-1:ENDIF
@@ -1943,8 +1972,13 @@ IF sel5=14:nb14=nb14*-1:ENDIF
  IF sel5=__:nb__=nb__*-1:ENDIF
 !!
 IF sel5=15:GOSUB nbreset: nb99=nb99*-1:ENDIF
-IF sel5=16:t06nb=t06nb*-1:ENDIF
-IF sel5=17:RETURN:ENDIF
+IF sel5=16
+ GOSUB dlgvgr
+ vgr_nb=_vgr:vgr=vgr_nb
+ENDIF
+IF sel5=17:nb101=nb101*-1:ENDIF
+IF sel5=18:t06nb=t06nb*-1:ENDIF
+IF sel5=19:RETURN:ENDIF
 GOSUB menu5
 GOTO std5
 RETURN 
@@ -1983,6 +2017,9 @@ IF nb14=-1: nb14$="     V838 ["+STR$(ROUND(nb_d13/1000,1))+"kpc]":ENDIF
  IF nb__=-1: nb__$="      __ [__pc]":ENDIF
 !!
 nb99$=smq$+"  Projektion an/aus"
+nb100$=smq$+"  Vergrößerung: "+INT$(vgr_nb)+" ×"
+IF nb101=-1:nb101$=_smbl$+"    Symbol":ENDIF
+IF nb101=1:nb101$=_mst$+"    Maßstab":ENDIF
 IF t06nb=1:nb23$=smb$+"  Text":ENDIF
 IF t06nb=-1:nb23$="     Text aus":ENDIF
 RETURN
@@ -2053,6 +2090,12 @@ IF sel6=7:gm03=gm03*-1:ENDIF
  IF sel6=__:gm__=gm__*-1:ENDIF
 !!
 IF sel6=8:GOSUB gmreset: gm99=gm99*-1:ENDIF
+!!
+IF sel6=9
+ GOSUB dlgvgr
+ vgr_gm=_vgr:vgr=vgr_gm
+ENDIF
+!!
 IF sel6=9:t06gm=t06gm*-1:ENDIF
 IF sel6=10:RETURN:ENDIF
 GOSUB menu6
@@ -2079,6 +2122,7 @@ IF gm04=-1: gm04$="      Kleine Wolke ["+STR$(ROUND(gm_d06/1000,1))+"kpc]":ENDIF
  IF gm__=-1: gm__$="      __ [__kpc]":ENDIF
 !!
 gm99$=smq$+"  Projektion an/aus"
+!gm100$=smq$+"  Vergrößerung: "+INT$(vgr_gm)+" ×"
 IF t06gm=1:gm30$=smb$+"  Text":ENDIF
 IF t06gm=-1:gm30$="     Text aus":ENDIF
 RETURN
@@ -2136,6 +2180,7 @@ gx29=-1
 gx30=-1
 gx31=-1
 gx99=-1
+gx101=1 %%%
 t06gx=1
 !!
  gx__=-1
@@ -2145,7 +2190,7 @@ RETURN
 dialog7:
 GOSUB menu7
 std7:
-ARRAY.LOAD sel7$[],gx00$,gx01$,gx05$,gx11$,gx12$,gx20$,gx13$,gx02$,gx27$,gx03$,gx21$,gx04$,gx10$,gx29$,gx22$,gx28$,gx14$,gx23$,gx31$,gx15$,gx26$,gx30$,gx17$,gx19$,gx07$,gx06$,gx16$,gx09$,gx08$,gx25$,gx18$,gx24$,gx99$,gx40$,"Ok"
+ARRAY.LOAD sel7$[],gx00$,gx01$,gx05$,gx11$,gx12$,gx20$,gx13$,gx02$,gx27$,gx03$,gx21$,gx04$,gx10$,gx29$,gx22$,gx28$,gx14$,gx23$,gx31$,gx15$,gx26$,gx30$,gx17$,gx19$,gx07$,gx06$,gx16$,gx09$,gx08$,gx25$,gx18$,gx24$,gx99$,gx100$,gx101$,gx40$,"Ok"
 DIALOG.SELECT sel7, sel7$[],"Galaxien: Darstellung/Projektion:"
 IF sel7=1:gx00=gx00*-1:IF gx00=-1 THEN RETURN:ENDIF
 IF sel7=2:gx01=gx01*-1:ENDIF
@@ -2183,8 +2228,13 @@ IF sel7=32:gx24=gx24*-1:ENDIF
  IF sel7=__:gx__=gx__*-1:ENDIF
 !!
 IF sel7=33:GOSUB gxreset: gx99=gx99*-1:ENDIF
-IF sel7=34:t06gx=t06gx*-1:ENDIF
-IF sel7=35:RETURN:ENDIF
+IF sel7=34
+ GOSUB dlgvgr
+ vgr_gx=_vgr:vgr=vgr_gx
+ENDIF
+IF sel7=35:gx101=gx101*-1:ENDIF
+IF sel7=36:t06gx=t06gx*-1:ENDIF
+IF sel7=37:RETURN:ENDIF
 GOSUB menu7
 GOTO std7
 RETURN 
@@ -2259,6 +2309,9 @@ IF gx24=-1: gx24$="     M99 ["+STR$(ROUND(gx_d32/10^6,1))+"Mpc]":ENDIF
  IF gx__=-1: gx__$="     ___ [Mpc]":ENDIF
 !!
 gx99$=smq$+"  Projektion an/aus"
+gx100$=smq$+"  Vergrößerung: "+INT$(vgr_gx)+" ×"
+IF gx101=-1:gx101$=_smbl$+"    Symbol":ENDIF
+IF gx101=1:gx101$=_mst$+"    Maßstab":ENDIF
 IF t06gx=1:gx40$=smb$+"  Text":ENDIF
 IF t06gx=-1:gx40$="     Text aus":ENDIF
 RETURN
@@ -2384,6 +2437,12 @@ IF sel8=16:gh08=gh08*-1:ENDIF
  IF sel8=__:gh__=gh__*-1:ENDIF
 !!
 IF sel8=17:GOSUB ghreset: gh99=gh99*-1:ENDIF
+!!
+IF sel8=18
+ GOSUB dlgvgr
+ vgr_gh=_vgr:vgr=vgr_gh
+ENDIF
+!!
 IF sel8=18:t06gh=t06gh*-1:ENDIF
 IF sel8=19:RETURN:ENDIF
 GOSUB menu8
@@ -2428,6 +2487,7 @@ IF gh08=-1: gh08$="     Geschoß ["+STR$(ROUND(gh_d15/10^6,1))+"Mpc]":ENDIF
  IF gh__=-1: gh__$="     ___ [Mpc]":ENDIF
 !!
 gh99$=smq$+"  Projektion an/aus"
+!gh100$=smq$+"  Vergrößerung: "+INT$(vgr_gh)+" ×"
 IF t06gh=1:gh30$=smb$+"  Text":ENDIF
 IF t06gh=-1:gh30$="     Text aus":ENDIF
 RETURN
@@ -2492,6 +2552,7 @@ gq18=-1
 gq19=-1
 gq20=-1
 gq99=-1
+gq101=1 %%%
 t06gq=1
 !!
  gq__=-1
@@ -2501,7 +2562,7 @@ RETURN
 dialog9:
 GOSUB menu9
 std9:
-ARRAY.LOAD sel9$[],gq00$,gq01$,gq13$,gq03$,gq14$,gq04$,gq20$,gq15$,gq05$,gq06$,gq16$,gq07$,gq09$,gq08$,gq17$,gq18$,gq19$,gq02$,gq99$,gq30$,"Ok"
+ARRAY.LOAD sel9$[],gq00$,gq01$,gq13$,gq03$,gq14$,gq04$,gq20$,gq15$,gq05$,gq06$,gq16$,gq07$,gq09$,gq08$,gq17$,gq18$,gq19$,gq02$,gq99$,gq100$,gq101$,gq30$,"Ok"
 DIALOG.SELECT sel9, sel9$[],"Quasare: Darstellung/Projektion:"
 IF sel9=1:gq00=gq00*-1:IF gq00=-1 THEN RETURN:ENDIF
 IF sel9=2:gq01=gq01*-1:ENDIF
@@ -2525,8 +2586,13 @@ IF sel9=18:gq02=gq02*-1:ENDIF
  IF sel9=_:gq__=gq__*-1:ENDIF
 !!
 IF sel9=19:GOSUB gqreset: gq99=gq99*-1:ENDIF
-IF sel9=20:t06gq=t06gq*-1:ENDIF
-IF sel9=21:RETURN:ENDIF
+IF sel9=20
+ GOSUB dlgvgr
+ vgr_gq=_vgr:vgr=vgr_gq
+ENDIF
+IF sel9=21:gq101=gq101*-1:ENDIF
+IF sel9=22:t06gq=t06gq*-1:ENDIF
+IF sel9=23:RETURN:ENDIF
 GOSUB menu9
 GOTO std9
 RETURN 
@@ -2573,6 +2639,9 @@ IF gq02=-1: gq02$="     QSO J0313-1806 ["+STR$(ROUND(gq_d17/10^9,1))+"Gpc]":ENDI
  IF gq__=-1: gq__$="     __ [__pc]":ENDIF
 !!
 gq99$=smq$+"  Projektion an/aus"
+gq100$=smq$+"  Vergrößerung: "+INT$(vgr_gq)+" ×"
+IF gq101=-1:gq101$=_smbl$+"    Symbol":ENDIF
+IF gq101=1:gq101$=_mst$+"    Maßstab":ENDIF
 IF t06gq=1:gq30$=smb$+"  Text":ENDIF
 IF t06gq=-1:gq30$="     Text aus":ENDIF
 RETURN
@@ -2731,6 +2800,7 @@ RETURN
 dialog11prm:
 gw00=1
 gw99=-1
+gw101=1
 t06gw=1
 RETURN
 ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2738,7 +2808,7 @@ dialog11:
 GOSUB weitere_in
 GOSUB menu11
 std11:
-DIM sel11$[n_gw+6]
+DIM sel11$[n_gw+8]
 !
 sel11$[1]=gw00$
 sel11$[2]=smq$+"  Datei: "+gwf$
@@ -2747,8 +2817,10 @@ FOR i_gw=1 TO n_gw
 NEXT
 sel11$[n_gw+3]=smq$+"  Objekt anlegen/löschen"
 sel11$[n_gw+4]=gw99$
-sel11$[n_gw+5]=gw30$
-sel11$[n_gw+6]="Ok"
+sel11$[n_gw+5]=gw100$
+sel11$[n_gw+6]=gw101$
+sel11$[n_gw+7]=gw30$
+sel11$[n_gw+8]="Ok"
 !
 DIALOG.SELECT sel11, sel11$[],"Weitere Objekte: Darstellung/Projektion:"
 IF sel11=1:gw00=gw00*-1:IF gw00=-1 THEN RETURN:ENDIF
@@ -2758,8 +2830,12 @@ FOR i_gw=1 TO n_gw                    % Weitere Objekte
 NEXT
 IF sel11=n_gw+3:GOSUB weitere_out:GOSUB weitere_in:ENDIF
 IF sel11=n_gw+4:GOSUB gwreset: gw99=gw99*-1:ENDIF
-IF sel11=n_gw+5:t06gw=t06gw*-1:ENDIF
-IF sel11=n_gw+6:RETURN:ENDIF
+IF sel11=n_gw+5
+ GOSUB dlgvgr:vgr_w1=_vgr:vgr=vgr_w1
+ENDIF
+IF sel11=n_gw+6:gw101=gw101*-1:ENDIF
+IF sel11=n_gw+7:t06gw=t06gw*-1:ENDIF
+IF sel11=n_gw+8:RETURN:ENDIF
 !
 GOSUB menu11
 GOTO std11
@@ -2774,6 +2850,9 @@ FOR i_gw=1 TO n_gw                    % Weitere Objekte
  IF gw_p[i_gw]=-1: gwmn$[i_gw]="     "+gw$[i_gw]:ENDIF
 NEXT
 gw99$=smq$+"  Projektion an/aus"
+gw100$=smq$+"  Vergrößerung: "+INT$(vgr_w1)+" ×"
+IF gw101=-1:gw101$=_smbl$+"    Symbol":ENDIF
+IF gw101=1:gw101$=_mst$+"    Maßstab":ENDIF
 IF t06gw=1:gw30$=smb$+"  Text":ENDIF
 IF t06gw=-1:gw30$="     Text aus":ENDIF
 RETURN
@@ -2820,7 +2899,7 @@ RETURN
 dialog10:
 GOSUB menu10
 std10:
-ARRAY.LOAD sel10$[],o11$,sk01$,sk02$,sk03$,sk06$,sk04$,o01$,o02$,o03$,o04$,o08$,sk05$,o09$,o10$,"Ok"
+ARRAY.LOAD sel10$[],o11$,sk01$,sk02$,sk03$,sk04$,sk06$,o01$,o02$,o03$,o04$,o08$,o09$,sk05$,o10$,"Ok"
 DIALOG.SELECT sel10, sel10$[],"Skalen:"
 IF sel10=1:GOSUB calc:ENDIF
 IF sel10=2:s10=s10*-1:ENDIF
@@ -2846,8 +2925,8 @@ IF sel10=4:t39=t39*-1
   dkl$= dkl$+INT$(ds_)+_rsc$
  ENDIF
 ENDIF
-IF sel10=5:t99=t99*-1:ENDIF 
-IF sel10=6:t34=t34*-1:ENDIF 
+IF sel10=5:t34=t34*-1:ENDIF 
+IF sel10=6:t99=t99*-1:ENDIF 
 IF sel10=7:s01=s01*-1:ENDIF
 IF sel10=8:s02=s02*-1:ENDIF
 IF sel10=9
@@ -2861,11 +2940,11 @@ IF sel10=10:s04=s04*-1:ENDIF
 IF sel10=11:s08=s08*-1
  IF s08=1 THEN GOSUB dialogk
 ENDIF
-IF sel10=12
+IF sel10=13
  swvgl=swvgl*-1
  IF swvgl=1 THEN GOSUB menuvgl
 ENDIF
-IF sel10=13:t98=t98*-1:ENDIF
+IF sel10=12:t98=t98*-1:ENDIF
 IF sel10=14:GOSUB lbrte:ENDIF
 IF sel10=15:RETURN:ENDIF
 GOSUB menu10
@@ -2901,22 +2980,27 @@ o10$=smq$+"  Linienbreite: "+INT$(skl)
 RETURN
 ! Berechnungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 calc::calcst:
-calcn=8:DIM sel$[calcn]:DIM sel0$[calcn-2]
+calcn=10:DIM sel$[calcn]:DIM sel0$[calcn-2]
 sel0$[1]="Faktor x zu Lichtgeschwindigkeit c[m/s]"
 sel0$[2]="Faktor x zu Astronomischer Einheit AE[km]"
-sel0$[3]="Parsec pc zu Lichtjahr Lj"
-sel0$[4]="Hexagesimal [°/h:min:sec] zu Dezimal"
-sel0$[5]="Winkelgrad [°] zu Bogenmaß [rad]"
-sel0$[6]="Winkelausdehnung V[°] bei Dist. d zu Radius r"
+sel0$[3]="Parallaxe arc[''] zu Parsec pc"
+sel0$[4]="Parsec pc zu Lichtjahr Lj"
+sel0$[5]="Hexagesimal [°/h:min:sec] zu Dezimal [°]"
+sel0$[6]="Winkelgrad [°] zu Bogenmaß [rad]"
+sel0$[7]="Winkelausdehnung V[°] bei Dist. d zu Radius r"
+sel0$[8]="Zehnerpotenz zu Einheit"
+
 sel$[1]=sel0$[1]+eq1$
 sel$[2]=sel0$[2]+eq2$
 sel$[3]=sel0$[3]+eq3$
 sel$[4]=sel0$[4]+eq4$
 sel$[5]=sel0$[5]+eq5$
 sel$[6]=sel0$[6]+eq6$
-sel$[7]="=[ "+cpb$+" ]"
+sel$[7]=sel0$[7]+eq7$
+sel$[8]=sel0$[8]+eq8$
+sel$[9]="=[ "+cpb$+" ]"
 !
-sel$[8]="Ok"
+sel$[10]="Ok"
 DIALOG.SELECT sel, sel$[],_clc$+" Berechnungen:
 IF sel=1 % Faktor c
  INPUT "Faktor x...",u_fx,1
@@ -2930,7 +3014,7 @@ IF sel=1 % Faktor c
  u_dlgm$=u_dlgm$+STR$(ROUND(u_fx,2))+"x = "
  u_dlgm$=u_dlgm$+u_xc0$+"m/s"
  DIALOG.MESSAGE sel0$[1]+", wobei xc = x*c[m/s]:",u_dlgm$,u_msg
- eq1$="=":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="" 
+ eq1$="=":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="" 
 ENDIF
 IF sel=2 % Faktor AE
  INPUT "Faktor x...",u_fx,1
@@ -2944,10 +3028,26 @@ IF sel=2 % Faktor AE
  u_dlgm$=u_dlgm$+STR$(ROUND(u_fx,2))+"x = "
  u_dlgm$=u_dlgm$+u_xa0$+"km"
  DIALOG.MESSAGE sel0$[2]+", wobei xAE = x*AE[km]:",u_dlgm$,u_msg
- eq1$="":eq2$="=":eq3$="":eq4$="":eq5$="":eq6$="" 
+ eq1$="":eq2$="=":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$=""
 ENDIF
-IF sel=3 % Pc zu Lj
- INPUT "Parsec pc...",u_pc,1
+IF sel=3 % Parallaxe zu pc
+ CLIPBOARD.GET cpb$
+ INPUT "Parallaxe arc''... [=mas/1000]",u_px,VAL(cpb$)
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_pc=1/u_px
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_pc$=STR$(ROUND(u_pc,9))
+ u_pc0$=STR$(ROUND(u_pc,4))
+ CLIPBOARD.PUT u_pc$
+ u_dlgm$=""
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_px,2))+"° = "
+ u_dlgm$=u_dlgm$+u_pc0$+"pc"
+ DIALOG.MESSAGE sel0$[3]+", wobei pc = 1/arc['']:",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="=":eq4$="":eq5$="":eq6$="":eq7$="":eq8$=""
+ENDIF
+IF sel=4 % Pc zu Lj
+ CLIPBOARD.GET cpb$
+ INPUT "Parsec pc...",u_pc,VAL(cpb$)
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  u_lj=u_pc*pcm_/Lj_m
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2957,10 +3057,10 @@ IF sel=3 % Pc zu Lj
  u_dlgm$=""
  u_dlgm$=u_dlgm$+STR$(ROUND(u_pc,4))+"pc = "
  u_dlgm$=u_dlgm$+u_lj0$+"Lj"
- DIALOG.MESSAGE sel0$[3]+", wobei Lj = pc*3.26156:",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="=":eq4$="":eq5$="":eq6$="" 
+ DIALOG.MESSAGE sel0$[4]+", wobei Lj = pc*3.26156:",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="=":eq5$="":eq6$="":eq7$="":eq8$=""
 ENDIF
-IF sel=4 % hex in dez
+IF sel=5 % hex in dez
  CLIPBOARD.GET cpb$
  INPUT "°/h...",u_gh,0
  INPUT "min '...",u_min,0
@@ -2976,10 +3076,10 @@ IF sel=4 % hex in dez
  u_dlgm$=u_dlgm$+STR$(ROUND(u_min,2))+"' "
  u_dlgm$=u_dlgm$+STR$(ROUND(u_sec,4))+"'' = "
  u_dlgm$=u_dlgm$+u_dez0$+"°/h"
- DIALOG.MESSAGE sel0$[4]+", wobei dx° = hx°+(hx'/60)+(hx''/3600):",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="":eq4$="=":eq5$="":eq6$="" 
+ DIALOG.MESSAGE sel0$[5]+", wobei dx° = hx°+(hx'/60)+(hx''/3600):",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="=":eq6$="":eq7$="":eq8$="" 
 ENDIF 
-IF sel=5 % grad in rad
+IF sel=6 % grad in rad
  INPUT "Winkelgrad a°...",u_wkg,45
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  u_rad=u_wkg/180*PI()
@@ -2990,10 +3090,10 @@ IF sel=5 % grad in rad
  u_dlgm$=""
  u_dlgm$=u_dlgm$+STR$(ROUND(u_wkg,2))+"° = "
  u_dlgm$=u_dlgm$+u_rad$+"rad"
- DIALOG.MESSAGE sel0$[5]+", wobei rad = (a°/180) pi: ",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="":eq4$="":eq5$="=":eq6$=""  
+ DIALOG.MESSAGE sel0$[6]+", wobei rad = (a°/180) pi: ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="=":eq7$="":eq8$="" 
 ENDIF 
-IF sel=6 % V in r
+IF sel=7 % V in r
  CLIPBOARD.GET cpb$
  INPUT "V°...",u_V,VAL(cpb$)
  INPUT "d...",u_d,100
@@ -3006,10 +3106,30 @@ IF sel=6 % V in r
  u_dlgm$=u_dlgm$+STR$(ROUND(u_v,4))+"° bei d="
  u_dlgm$=u_dlgm$+STR$(ROUND(u_d,2))+" : r="
  u_dlgm$=u_dlgm$+STR$(ROUND(u_r,4))
- DIALOG.MESSAGE sel$[6]+", wobei r = d tan(V[rad]/2): ",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="="  
+ DIALOG.MESSAGE sel0$[7]+", wobei r = d tan(V[rad]/2): ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="=":eq8$=""  
 ENDIF 
-IF sel=8:CLIPBOARD.GET cpb$:RETURN:ENDIF 
+IF sel=8 % 10^n in Einheit
+ CLIPBOARD.GET cpb$
+ INPUT "x ...",u_xzp,VAL(cpb$)
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ IF u_xzp>=10^3 THEN u_eh=u_xzp/10^3:u_eh$="k"
+ IF u_xzp>=10^6 THEN u_eh=u_xzp/10^6:u_eh$="M"
+ IF u_xzp>=10^9 THEN u_eh=u_xzp/10^9:u_eh$="G"
+ IF u_xzp>=10^12 THEN u_eh=u_xzp/10^12:u_eh$="T"
+ IF u_xzp>=10^15 THEN u_eh=u_xzp/10^15:u_eh$="P"
+ IF u_xzp>=10^18 THEN u_eh=u_xzp/10^18:u_eh$="E"
+ IF u_xzp>=10^21 THEN u_eh=u_xzp/10^21:u_eh$="Z"
+ IF u_xzp>=10^24 THEN u_eh=u_xzp/10^24:u_eh$="Y"
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ CLIPBOARD.PUT STR$(ROUND(u_eh,3))+u_eh$
+ u_dlgm$=""
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_xzp,4))+" = "
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_eh,1))+u_eh$
+ DIALOG.MESSAGE sel0$[8]+": ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="="  
+ENDIF 
+IF sel=10:CLIPBOARD.GET cpb$:RETURN:ENDIF 
 CLIPBOARD.GET cpb$
 GOTO calcst
 RETURN
@@ -3017,6 +3137,16 @@ RETURN
 lbrte:
 ARRAY.LOAD selbr$[],"1 [sehr schmal]","2 [schmal]","3 [normal]","4 [breit]","5 [sehr breit]"
 DIALOG.SELECT skl, selbr$[],"Linienbreite:"
+RETURN
+! % Dialog Vergrösserung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+dlgvgr:
+ARRAY.LOAD vgrf$[],"1x [Maßstab]","2x","3x","4x","5x"
+DIALOG.SELECT vgrf, vgrf$[],"Vergrößerungsfaktor:"
+IF vgrf=1 THEN _vgr=1
+IF vgrf=2 THEN _vgr=2
+IF vgrf=3 THEN _vgr=3
+IF vgrf=4 THEN _vgr=4
+IF vgrf=5 THEN _vgr=5
 RETURN
 ! % Dialog Modus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dialog3:

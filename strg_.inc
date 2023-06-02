@@ -1,5 +1,31 @@
+_lf$=CHR$(10) %
+_tb$=CHR$(9) %
+REM //
+kg$=CHR$(8806) %
+gg$=CHR$(8807) %
+ms$=CHR$(8213) %
+j$=CHR$(8747) %
+jj$=CHR$(8748) %
+f$=CHR$(8750) %
+E$=CHR$(8721) %
+P$=CHR$(8719) %
+h2$=CHR$(178) %
+t1$=CHR$(8321) %
+t2$=CHR$(8322) % 
+h4$=CHR$(8308) %
+h3$=CHR$(179) %
+h0$=CHR$(186) %
+h1$=CHR$(185) %
+hn$=CHR$(8319) %
+gd$=CHR$(176) %
+_12$=CHR$(189) %
+v$=CHR$(8730) %
+pi$=CHR$(960) %
+sg$=CHR$(962) %
+oo$=CHR$(8734) %
 smb$=CHR$(9989) %
 smq$=CHR$(9654) %
+_ex$=CHR$(10007) %
 REM //
 _tz01$=CHR$(9804) %
 _tz02$=CHR$(9803) %
@@ -25,14 +51,7 @@ _ur$=CHR$(8986) %
 _kp1$=CHR$(8251) %
 _kp2$=CHR$(8663) %
 _kp3$=CHR$(8251)+CHR$(8663) %
-_tkz$=CHR$(10024) %
-_hgw$=CHR$(9784 ) %
-_jzt$=CHR$(9728) %
-_mnte$=CHR$(9925) %
-_clc$=CHR$(8737) %
-_epr$=CHR$(11610) %
-_hist$=CHR$(10064) %
-_vg$=CHR$(125084) %
-_mst$=CHR$(8894) %
-_smbl$=CHR$(8900) %
+
+REM //Text
+_cr$=CHR$(169) %
 REM // END

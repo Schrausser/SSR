@@ -7,13 +7,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             © 2023 by Dietmar Gerald Schrausser
 !!
-t06=t06gw
+t06=t06gw                         %Projektion
+vgr=vgr_w1                        %Vergrößerung
+symsw=gw101                       %Symbol
 FOR igw=1 TO n_gw
  ! % Weitere Objekte %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  objname$=gw$[igw]                %Name
  pro_=gw_p[igw]                   %Projektionsvariable
  ! %                              %Radius 
  rds=gw_r[igw]                    %Lj
+ !if then rds=gr_0
  ! %                              %Entfernung 
  d=gw_d[igw]                      %Lj
  ! %                              %Deklination 
@@ -74,6 +77,8 @@ FOR igw=1 TO n_gw
    SW.BREAK
  SW.END
  otype=gw_t[igw]
+ !if then otype=-1
  GOSUB objdarst
 NEXT
+vgr=1:symsw=1
 ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 

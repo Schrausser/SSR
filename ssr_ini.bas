@@ -279,6 +279,7 @@ IF fx
  TEXT.READLN fsr, ini$:u13=VAL(ini$)
  TEXT.READLN fsr, ini$:u14=VAL(ini$)
  TEXT.READLN fsr, ini$:u15=VAL(ini$)
+ TEXT.READLN fsr, ini$:u16=VAL(ini$)
  TEXT.READLN fsr, ini$:aed=VAL(ini$)
  TEXT.READLN fsr, ini$:aed$=ini$
  TEXT.READLN fsr, ini$:ed=VAL(ini$) %%%
@@ -306,6 +307,22 @@ IF fx
  TEXT.READLN fsr, ini$:kp$=ini$
  TEXT.READLN fsr, ini$:gwf$=ini$
  TEXT.READLN fsr, ini$:skl=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_s=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_st=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_nb=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_gm=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_gx=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_gh=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_gq=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_w1=VAL(ini$)
+ TEXT.READLN fsr, ini$:vgr_p=VAL(ini$)
+ TEXT.READLN fsr, ini$:s101=VAL(ini$)
+ TEXT.READLN fsr, ini$:st101=VAL(ini$)
+ TEXT.READLN fsr, ini$:nb101=VAL(ini$)
+ TEXT.READLN fsr, ini$:gx101=VAL(ini$)
+ TEXT.READLN fsr, ini$:gq101=VAL(ini$)
+ TEXT.READLN fsr, ini$:gw101=VAL(ini$)
  TEXT.CLOSE fsr
 ELSE                % Voreinstellung
  gwf$="ssr_gw.dat"  % Objektdateiname
@@ -337,5 +354,15 @@ ELSE                % Voreinstellung
  sw=1               % Vollsimulation Schalter
  sec1=-1            %
  skl=3              % Linienbreite
+ vgr=1              % Vergrößerungsfaktor
+ vgr_s=1            %
+ vgr_st=1           %
+ vgr_nb=1           %
+ vgr_gm=1           %
+ vgr_gx=1           %
+ vgr_gh=1           %
+ vgr_gq=1           %
+ vgr_w1=1           %
+ vgr_p=1            %
 ENDIF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

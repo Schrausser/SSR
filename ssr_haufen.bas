@@ -8,6 +8,7 @@
             © 2023 by Dietmar Gerald Schrausser
 !!
 t06=t06gh
+vgr=vgr_gh
 ch0=20                              %Superhaufen Stil
 ! % Virgo Haufen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="Virgo"                    %Name
@@ -192,6 +193,8 @@ GOSUB objdarst:otype=0
 ! % CL J1001+0220 am weitesten entfernter Cluster %%%%%%%%
 GR.COLOR cc/9,cc,cc,cc,0
 GR.CIRCLE cl,mx,my,ed*(11.1*1.45)*10^9*Lj_
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+vgr=1
 !!
 ! % Neue Galaxienhaufen hier einfügen %%%%%%%%%%%%%%%%%%%%
 ! % ___ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

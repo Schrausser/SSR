@@ -7,7 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             © 2023 by Dietmar Gerald Schrausser
 !!
-t06=t06nb
+t06=t06nb                            %Text
+vgr=vgr_nb                           %Vergrößerung
+symsw=nb101                          %Symbol
 ! % Planetarer Nebel Hantelnebel M27 %%%%%%%%%%%%%%%%%%%%%
 objname$="M27"                       %Name
 pro_=nb15                            %Projektionsvariable
@@ -177,7 +179,7 @@ GOSUB objdarst
 ! % Monocerotis V838 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="V838"                      %Name
 pro_=nb14                            %Projektionsvariable
-rds=gr_0                             %Objektradius Lj
+rds=r_838_ae/lj_                             %Objektradius Lj
 d= 19200                             %Lichtjahre 
 nb_d13=d/pcl_
 dg_x=-3:dm_x=50:ds_x=50.53           %Deklination
@@ -185,7 +187,9 @@ GOSUB dekl
 h_x=7:m_x=4:s_x=4.822                %Position
 GOSUB r_pos   
 GR.COLOR cc/2,cc,40,40,1             %leuchtkr. rote Nova
-otype=-1:GOSUB objdarst:otype=0
+GOSUB objdarst
+! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+vgr=1:symsw=1                        %Reset
 !!
 ! % Neue Nebel hier einfügen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ! % ___ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
