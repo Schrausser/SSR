@@ -63,7 +63,7 @@ Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac 
 ![figure.\label{pic17}](pic17.jpg)
 
 Object distances $d$ in parsec $pc$ are calculated from parallax $\pi$, given in milli angle seconds $mas$ with $$pc=(\frac{\pi}{1000})^{-1}.$$
-Object radii $r$ at a given distance $d$ are calculated via angular expansion $V⁰$ where $$r=d \tan(\frac{V_{rad}}{2}); V_{rad}=\frac{V⁰}{180}\pi.$$
+Object radii $r$ at a given distance $d$ are calculated via angular expansion $V⁰$ where $$r=d⋅\tan(\frac{V_{rad}}{2}); V_{rad}=\frac{V⁰}{180}⋅\pi.$$
 
 ### Acknowledgement
 
