@@ -62,6 +62,8 @@ Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac 
 
 ![figure.\label{pic17}](pic17.jpg)
 
+Object distances in parsec $pc$ are calculated from parallax $\pi$, given in milli angle seconds $mas$ as $$pc=(\frac{\pi}{1000})^{-1}.$$
+
 ### Acknowledgement
 
 This research has made use of the NASA/IPAC Extragalactic Database (NED), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology. [ned.ipac.caltech.edu](http://ned.ipac.caltech.edu/)
