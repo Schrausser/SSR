@@ -14,7 +14,7 @@ dz= 26438                           %Zentrum Entfernung Lj
 gm_d01=dz/pcl_
 IF ae/Lj_>=300
  ! % Darstellung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- d=200000*Lj_                       %Lichtjahre in AE
+ d=175000*Lj_                       %Lichtjahre in AE
  GR.ROTATE.START -50,mx,my 
  IF ae/Lj_>=300  THEN GR.COLOR 6,cc,cc,cc,1
  IF ae/Lj_>=1500 THEN GR.COLOR cc/22,cc,cc,cc,1
