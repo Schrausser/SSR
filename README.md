@@ -1,7 +1,7 @@
 # SSR
 Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with Zodiac signs and timepiece covering the Solar System in the entire observable Universe up to $r=14.25Gpc.$  
 Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), Inner Cloud (Hills, 1981), Oort Cloud (Oort, 1950) and more.   
-Further astronomical objects can be implemented by means of external definition files. All objects of the Caldwell Catalogue (Moore & Pepin, 1995) are included as `ssr_Caldwell.dat`. For additional important astronomical catalogues see e.g. `CN` (Herschel, 1786) or `NGC` (Dreyer, 1888).  
+Further astronomical objects can be implemented by means of external definition files. All objects of the Caldwell Catalogue (Moore & Pepin, 1995) as well as parts of the Herschel 400 catalogue (Mullaney, 1976) are included as `ssr_Caldwell.dat` and `ssr_Herschel400.dat`. For additional important astronomical catalogues see e.g. `CN` (Herschel, 1786) or `NGC` (Dreyer, 1888).  
 Solar System parameters of the Sun, planets and Moon are based on the current NASA Planetary Fact Sheets (Williams, 2023). Positions, distances and sizes of further objects are from Wikipedia sources (Wikipedia contributors, 2023), which can be traced back primarily to the `SIMBAD` astronomical database (Strasbourg astronomical Data Center, 2023), the `VizieR` Catalogue Service (see Ochsenbein et al., 2000) or the NASA/IPAC Extragalactic Database `NED`. 
 
 ![figure.\label{pic1}](pic1.jpg)
@@ -85,6 +85,8 @@ Ibata, R. A., Gilmore, G., & Irwin, M. J. (1994). A dwarf satellite galaxy in Sa
 Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale, 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
 
 Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope* Vol. 90, Cambridge, MA. [www.messier.seds.org/xtra/similar/caldwell.html](http://www.messier.seds.org/xtra/similar/caldwell.html)
+
+Mullaney, J. (1976). Letter to Sky & Telescope. *Sky & Telescope*, 235. [https://web.archive.org/web/20071001004725](https://web.archive.org/web/20071001004725/https://pqasb.pqarchiver.com/skyandtelescope/access/887262721.html?dids=887262721&FMT=CITE&FMTS=CITE&date=Apr+1976&author=James+Mullaney&desc=Letter)
 
 Ochsenbein, F., Bauer, P., & Marcout, J. (2000). The VizieR database of astronomical catalogues. *Astronomy and Astrophysics Supplement Series, 143*, 23–32. [DOI:10.1051/aas:2000169. S2CID 17377096](https://doi.org/10.1051%2Faas%3A2000169)
 
