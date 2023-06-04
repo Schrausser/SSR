@@ -86,7 +86,7 @@ Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissan
 
 Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope* Vol. 90, Cambridge, MA. [www.messier.seds.org/xtra/similar/caldwell.html](http://www.messier.seds.org/xtra/similar/caldwell.html)
 
-Mullaney, J. (1976). Letter to Sky & Telescope. *Sky & Telescope*, 235. [https://web.archive.org/web/20071001004725](https://web.archive.org/web/20071001004725/https://pqasb.pqarchiver.com/skyandtelescope/access/887262721.html?dids=887262721&FMT=CITE&FMTS=CITE&date=Apr+1976&author=James+Mullaney&desc=Letter)
+Mullaney, J. (1976). Letter to Sky & Telescope. *Sky & Telescope*, 235, Cambridge, MA. [web.archive.org/web/20071001004725](https://web.archive.org/web/20071001004725/https://pqasb.pqarchiver.com/skyandtelescope/access/887262721.html?dids=887262721&FMT=CITE&FMTS=CITE&date=Apr+1976&author=James+Mullaney&desc=Letter)
 
 Ochsenbein, F., Bauer, P., & Marcout, J. (2000). The VizieR database of astronomical catalogues. *Astronomy and Astrophysics Supplement Series, 143*, 23–32. [DOI:10.1051/aas:2000169. S2CID 17377096](https://doi.org/10.1051%2Faas%3A2000169)
 
