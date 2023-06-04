@@ -8,7 +8,7 @@
            © 2020-23 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.15"
+_ver$="v3.7.17"
 INCLUDE strg_.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
@@ -2983,7 +2983,7 @@ calc::calcst:
 calcn=10:DIM sel$[calcn]:DIM sel0$[calcn-2]
 sel0$[1]="Faktor x zu Lichtgeschwindigkeit c[m/s]"
 sel0$[2]="Faktor x zu Astronomischer Einheit AE[km]"
-sel0$[3]="Parallaxe arc[''] zu Parsec pc"
+sel0$[3]="Parallaxe [mas] zu Parsec pc"
 sel0$[4]="Parsec pc zu Lichtjahr Lj"
 sel0$[5]="Hexagesimal [°/h:min:sec] zu Dezimal [°]"
 sel0$[6]="Winkelgrad [°] zu Bogenmaß [rad]"
@@ -2998,7 +2998,7 @@ sel$[5]=sel0$[5]+eq5$
 sel$[6]=sel0$[6]+eq6$
 sel$[7]=sel0$[7]+eq7$
 sel$[8]=sel0$[8]+eq8$
-sel$[9]="=[ "+cpb$+" ]"
+sel$[9]="=[ "+cpb$+u_eh$+" ]":u_eh$=""
 !
 sel$[10]="Ok"
 DIALOG.SELECT sel, sel$[],_clc$+" Berechnungen:
@@ -3032,17 +3032,17 @@ IF sel=2 % Faktor AE
 ENDIF
 IF sel=3 % Parallaxe zu pc
  CLIPBOARD.GET cpb$
- INPUT "Parallaxe arc''... [=mas/1000]",u_px,VAL(cpb$)
+ INPUT "Parallaxe mas...",u_px,VAL(cpb$)
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- u_pc=1/u_px
+ u_pc=1/(u_px/1000)
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  u_pc$=STR$(ROUND(u_pc,9))
  u_pc0$=STR$(ROUND(u_pc,4))
  CLIPBOARD.PUT u_pc$
  u_dlgm$=""
- u_dlgm$=u_dlgm$+STR$(ROUND(u_px,2))+"° = "
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_px,3))+"mas = "
  u_dlgm$=u_dlgm$+u_pc0$+"pc"
- DIALOG.MESSAGE sel0$[3]+", wobei pc = 1/arc['']:",u_dlgm$,u_msg
+ DIALOG.MESSAGE sel0$[3]+", wobei pc = 1/(mas/1000):",u_dlgm$,u_msg
  eq1$="":eq2$="":eq3$="=":eq4$="":eq5$="":eq6$="":eq7$="":eq8$=""
 ENDIF
 IF sel=4 % Pc zu Lj
@@ -3122,7 +3122,7 @@ IF sel=8 % 10^n in Einheit
  IF u_xzp>=10^21 THEN u_eh=u_xzp/10^21:u_eh$="Z"
  IF u_xzp>=10^24 THEN u_eh=u_xzp/10^24:u_eh$="Y"
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- CLIPBOARD.PUT STR$(ROUND(u_eh,3))+u_eh$
+ CLIPBOARD.PUT STR$(ROUND(u_eh,3))
  u_dlgm$=""
  u_dlgm$=u_dlgm$+STR$(ROUND(u_xzp,4))+" = "
  u_dlgm$=u_dlgm$+STR$(ROUND(u_eh,1))+u_eh$
