@@ -8,7 +8,7 @@
            © 2020-23 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.17"
+_ver$="v3.7.19"
 INCLUDE strg_.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
@@ -561,32 +561,34 @@ References:
   GR.LINE ln,mx,sy-sy/144.375,  mx,sy-sy/210 
   GR.LINE ln,mx/2,sy-sy/144.375,mx/2,sy-sy/210
   IF AE<Lj_*0.1
-   GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("#####.#",AE)+"AE"
+   GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("#####.##",AE)+"AE"
   ENDIF
   IF AE>=Lj_*0.1               % 1Lichtjahr
    GR.COLOR 30,cc,cc,cc,0
    GR.CIRCLE cl,mx,my,mx       % Skala
    GR.COLOR 80,cc,cc,cc,0
    IF AE<Lj_*pcl_
-    GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("# ######.#",ae)+"AE"
-    GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("#.#",ae/Lj_)+"Lj"
+    GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("# ######.##",ae)+"AE"
+    GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("#.##",ae/Lj_)+"Lj"
    ENDIF
   ENDIF
   IF AE>=Lj_*pcl_              % 1Parsec
-   GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("###### ###### ######.#",AE)+"AE"
+   CLIPBOARD.PUT STR$(ae/pc_)
+   GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("###### ###### ######.##",AE)+"AE"
    IF ae<Lj_*(pcl_*10^3)       %
-    GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("###.#",ae/pc_)+"pc"
+    GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("###.##",ae/pc_)+"pc"
    ENDIF
    IF ae>=Lj_*(pcl_*10^3)      %
     IF ae<Lj_*(pcl_*10^6)      %
-     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("###.#",(ae/pc_)/10^3)+"kpc"
+     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("###.##",(ae/pc_)/10^3)+"kpc"
     ENDIF
     IF ae>=Lj_*(pcl_*10^6) & ae<Lj_*(pcl_*10^9)
-     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.#",(ae/pc_)/10^6)+"Mpc"
+     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.##",(ae/pc_)/10^6)+"Mpc"
     ENDIF
     IF ae>=Lj_*(pcl_*10^9)
-     mxd=ae/pc_:IF mxd>=14.3*10^9 THEN mxd=14.3*10^9
-     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.#",mxd/10^9)+"Gpc"
+     mxd=ae/pc_:IF mxd>=14.25*10^9 THEN mxd=14.25*10^9
+     CLIPBOARD.PUT STR$(mxd)
+     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.##",mxd/10^9)+"Gpc"
     ENDIF
    ENDIF
   ENDIF
@@ -596,10 +598,10 @@ References:
    GR.TEXT.DRAW txt,sx,sy-dtx2,FORMAT$("# ###### ###### ######",v_c)+"c"
   ENDIF
   IF s07=1                     % bei Echtzeit
-   GR.TEXT.DRAW txt,sx,sy-dtx2,INT$(VAL(y$)-AE/Lj_+1)
+   GR.TEXT.DRAW txt,sx,sy-dtx2,FORMAT$("## ###### ######",VAL(y$)-AE/Lj_+1)
   ENDIF
   IF s07=-1                    % bei Simulation
-   GR.TEXT.DRAW txt,sx,sy-dtx2,INT$(jx-AE/Lj_+1)
+   GR.TEXT.DRAW txt,sx,sy-dtx2,FORMAT$("## ###### ######",jx-AE/Lj_+1)
   ENDIF
  ENDIF
  IF s09=1 % Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2258,10 +2260,10 @@ IF gx02=1:gx02$=smb$+"  M101 ["+STR$(ROUND(gx_d07/10^6,1))+"Mpc]":ENDIF
 IF gx02=-1: gx02$="     M101 ["+STR$(ROUND(gx_d07/10^6,1))+"Mpc]":ENDIF
 IF gx27=1:gx27$=smb$+"  M106 ["+STR$(ROUND(gx_d08/10^6,1))+"Mpc]":ENDIF
 IF gx27=-1: gx27$="     M106 ["+STR$(ROUND(gx_d08/10^6,1))+"Mpc]":ENDIF
-IF gx21=1:gx21$=smb$+"  M95 ["+STR$(ROUND(gx_d10/10^6,1))+"Mpc]":ENDIF
-IF gx21=-1: gx21$="     M95 ["+STR$(ROUND(gx_d10/10^6,1))+"Mpc]":ENDIF
-IF gx03=1:gx03$=smb$+"  M51 ["+STR$(ROUND(gx_d09/10^6,1))+"Mpc]":ENDIF
-IF gx03=-1: gx03$="     M51 ["+STR$(ROUND(gx_d09/10^6,1))+"Mpc]":ENDIF
+IF gx21=1:gx21$=smb$+"  M95 ["+STR$(ROUND(gx_d09/10^6,1))+"Mpc]":ENDIF
+IF gx21=-1: gx21$="     M95 ["+STR$(ROUND(gx_d09/10^6,1))+"Mpc]":ENDIF
+IF gx03=1:gx03$=smb$+"  M51 ["+STR$(ROUND(gx_d10/10^6,1))+"Mpc]":ENDIF
+IF gx03=-1: gx03$="     M51 ["+STR$(ROUND(gx_d10/10^6,1))+"Mpc]":ENDIF
 IF gx04=1:gx04$=smb$+"  M104 ["+STR$(ROUND(gx_d11/10^6,1))+"Mpc]":ENDIF
 IF gx04=-1: gx04$="     M104 ["+STR$(ROUND(gx_d11/10^6,1))+"Mpc]":ENDIF
 IF gx10=1:gx10$=smb$+"  M74 ["+STR$(ROUND(gx_d13/10^6,1))+"Mpc]":ENDIF
@@ -2979,7 +2981,7 @@ IF t98=-1:o09$="     Historie aus":ENDIF
 o10$=smq$+"  Linienbreite: "+INT$(skl)
 RETURN
 ! Berechnungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-calc::calcst:
+calc::calcst::CLIPBOARD.GET cpb$
 calcn=10:DIM sel$[calcn]:DIM sel0$[calcn-2]
 sel0$[1]="Faktor x zu Lichtgeschwindigkeit c[m/s]"
 sel0$[2]="Faktor x zu Astronomischer Einheit AE[km]"
@@ -3031,7 +3033,7 @@ IF sel=2 % Faktor AE
  eq1$="":eq2$="=":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$=""
 ENDIF
 IF sel=3 % Parallaxe zu pc
- CLIPBOARD.GET cpb$
+ !CLIPBOARD.GET cpb$
  INPUT "Parallaxe mas...",u_px,VAL(cpb$)
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  u_pc=1/(u_px/1000)
@@ -3061,7 +3063,7 @@ IF sel=4 % Pc zu Lj
  eq1$="":eq2$="":eq3$="":eq4$="=":eq5$="":eq6$="":eq7$="":eq8$=""
 ENDIF
 IF sel=5 % hex in dez
- CLIPBOARD.GET cpb$
+ !CLIPBOARD.GET cpb$
  INPUT "°/h...",u_gh,0
  INPUT "min '...",u_min,0
  INPUT "sec ''...",u_sec,0
@@ -3094,7 +3096,7 @@ IF sel=6 % grad in rad
  eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="=":eq7$="":eq8$="" 
 ENDIF 
 IF sel=7 % V in r
- CLIPBOARD.GET cpb$
+ !CLIPBOARD.GET cpb$
  INPUT "V°...",u_V,VAL(cpb$)
  INPUT "d...",u_d,100
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3110,7 +3112,7 @@ IF sel=7 % V in r
  eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="=":eq8$=""  
 ENDIF 
 IF sel=8 % 10^n in Einheit
- CLIPBOARD.GET cpb$
+ !CLIPBOARD.GET cpb$
  INPUT "x ...",u_xzp,VAL(cpb$)
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  IF u_xzp>=10^3 THEN u_eh=u_xzp/10^3:u_eh$="k"
@@ -3130,7 +3132,7 @@ IF sel=8 % 10^n in Einheit
  eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="="  
 ENDIF 
 IF sel=10:CLIPBOARD.GET cpb$:RETURN:ENDIF 
-CLIPBOARD.GET cpb$
+!CLIPBOARD.GET cpb$
 GOTO calcst
 RETURN
 ! % Dialog Linienbreite %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3140,13 +3142,15 @@ DIALOG.SELECT skl, selbr$[],"Linienbreite:"
 RETURN
 ! % Dialog Vergrösserung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dlgvgr:
-ARRAY.LOAD vgrf$[],"1x [Maßstab]","2x","3x","4x","5x"
+ARRAY.LOAD vgrf$[],"1 × [Maßstab]","2 ×","3 ×","4 ×","5 ×","10 ×","20 ×"
 DIALOG.SELECT vgrf, vgrf$[],"Vergrößerungsfaktor:"
 IF vgrf=1 THEN _vgr=1
 IF vgrf=2 THEN _vgr=2
 IF vgrf=3 THEN _vgr=3
 IF vgrf=4 THEN _vgr=4
 IF vgrf=5 THEN _vgr=5
+IF vgrf=6 THEN _vgr=10
+IF vgrf=7 THEN _vgr=20
 RETURN
 ! % Dialog Modus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dialog3:
@@ -3201,19 +3205,19 @@ ENDIF
 IF s07<>1 THEN ur$=""
 RETURN
 anfangsentfernung:
-IF aed<Lj_:aed$=FORMAT$("#####.#",aed)+"AE":ENDIF
+IF aed<Lj_:aed$=FORMAT$("#####.##",aed)+"AE":ENDIF
 IF aed>=Lj_
  Ljd=aed/Lj_
- IF Ljd<=pcl_:aed$=FORMAT$("#.#",Ljd)+"Lj":ENDIF
+ IF Ljd<=pcl_:aed$=FORMAT$("#.##",Ljd)+"Lj":ENDIF
  IF Ljd>pcl_
   IF Ljd < pcl_*10^3
-  aed$= FORMAT$("###.#",Ljd/pcl_)+"pc":ENDIF
+  aed$= FORMAT$("###.##",Ljd/pcl_)+"pc":ENDIF
   IF Ljd >= pcl_*10^3 & Ljd< pcl_*10^6
-  aed$= FORMAT$("###.#",Ljd/(pcl_*10^3))+"kpc":ENDIF
+  aed$= FORMAT$("###.##",Ljd/(pcl_*10^3))+"kpc":ENDIF
   IF Ljd >= pcl_*10^6 & Ljd< pcl_*10^9
-  aed$= FORMAT$("###.#",Ljd/(pcl_*10^6))+"Mpc":ENDIF
+  aed$= FORMAT$("###.##",Ljd/(pcl_*10^6))+"Mpc":ENDIF
   IF Ljd >= pcl_*10^9
-  aed$= FORMAT$("###.#",Ljd/(pcl_*10^9))+"Gpc":ENDIF
+  aed$= FORMAT$("###.##",Ljd/(pcl_*10^9))+"Gpc":ENDIF
  ENDIF
 ENDIF
 RETURN 
