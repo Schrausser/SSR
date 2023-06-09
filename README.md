@@ -77,13 +77,13 @@ For more on photometry see e.g. Miles (2006) or Milone (2011).
 This research has made use of the NASA/IPAC Extragalactic Database (NED), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology. [ned.ipac.caltech.edu](http://ned.ipac.caltech.edu/)
 
 ### References
-Brown, N. J., Waagen, E. O., Scovil, C., Nelson, P., Oksanen, A., Solonen, J., & Price, A. (2002). Peculiar variable in Monoceros. *International Astronomical Union Circular, 7785*, 1. [ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B](https://ui.adsabs.harvard.edu/full/2002IAUC.7785....1B)
+Brown, N. J., Waagen, E. O., Scovil, C., Nelson, P., Oksanen, A., Solonen, J., & Price, A. (2002). Peculiar variable in Monoceros. *International Astronomical Union Circular, 7785*, 1. [ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)
 
-Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society, 49*, 1-237. [https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D), [archive.org/download/newgeneralcatalo00dreyrich](https://archive.org/download/newgeneralcatalo00dreyrich/newgeneralcatalo00dreyrich.pdf])
+Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society, 49*, 1-237. [ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D), [archive.org/download/newgeneralcatalo00dreyrich](https://archive.org/download/newgeneralcatalo00dreyrich/newgeneralcatalo00dreyrich.pdf])
 
 Ferguson, H. (1996). *The Hubble Deep Field – field selection*. Space Telescope Science Institute.
 
-Herschel, W. (1786). Catalogue of One Thousand New Nebulae and Clusters of Stars. *Philosophical Transactions of the Royal Society of London, 76*, 457-499. [doi:10.1098/rstl.1786.0027](https://doi.org/10.1098%2Frstl.1786.0027)
+Herschel, W. (1786). Catalogue of One Thousand New Nebulae and Clusters of Stars. *Philosophical Transactions of the Royal Society of London, 76*, 457-499. [DOI:10.1098/rstl.1786.0027](https://doi.org/10.1098%2Frstl.1786.0027)
 
 Hills, J. G. (1981). Comet showers and the steady-state infall of comets from the Oort Cloud. *Astronomical Journal, 86*, 1730–1740. [DOI:10.1086%2F113058](https://doi.org/10.1086%2F113058)
 
@@ -91,9 +91,9 @@ Ibata, R. A., Gilmore, G., & Irwin, M. J. (1994). A dwarf satellite galaxy in Sa
 
 Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale, 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
 
-Miles, R. (2006). A light history of photometry: from Hipparchus to the Hubble Space Telescope. *Journal of the British Astronomical Association, 117*(4), 172—186. [https://ui.adsabs.harvard.edu/full/2007JBAA..117..172M](https://adsabs.harvard.edu/full/2007JBAA..117..172M)
+Miles, R. (2006). A light history of photometry: from Hipparchus to the Hubble Space Telescope. *Journal of the British Astronomical Association, 117*(4), 172—186. [ui.adsabs.harvard.edu/full/2007JBAA..117..172M](https://adsabs.harvard.edu/full/2007JBAA..117..172M)
 
-Milone, E. F. (2011). *Astronomical Photometry: Past, Present and Future.* New York: Springer. [https://archive.org/details/astronomicalphot00milo](https://archive.org/details/astronomicalphot00milo)
+Milone, E. F. (2011). *Astronomical Photometry: Past, Present and Future.* New York: Springer. [archive.org/details/astronomicalphot00milo](https://archive.org/details/astronomicalphot00milo)
 
 Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope* Vol. 90, Cambridge, MA. [www.messier.seds.org/xtra/similar/caldwell.html](http://www.messier.seds.org/xtra/similar/caldwell.html)
 
