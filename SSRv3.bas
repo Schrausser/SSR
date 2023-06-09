@@ -8,7 +8,7 @@
            © 2020-23 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.19"
+_ver$="v3.7.20"
 INCLUDE strg_.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
@@ -2982,16 +2982,17 @@ o10$=smq$+"  Linienbreite: "+INT$(skl)
 RETURN
 ! Berechnungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 calc::calcst::CLIPBOARD.GET cpb$
-calcn=10:DIM sel$[calcn]:DIM sel0$[calcn-2]
+calcn=11:DIM sel$[calcn]:DIM sel0$[calcn-2]
 sel0$[1]="Faktor x zu Lichtgeschwindigkeit c[m/s]"
 sel0$[2]="Faktor x zu Astronomischer Einheit AE[km]"
-sel0$[3]="Parallaxe [mas] zu Parsec pc"
-sel0$[4]="Parsec pc zu Lichtjahr Lj"
-sel0$[5]="Hexagesimal [°/h:min:sec] zu Dezimal [°]"
-sel0$[6]="Winkelgrad [°] zu Bogenmaß [rad]"
-sel0$[7]="Winkelausdehnung V[°] bei Dist. d zu Radius r"
-sel0$[8]="Zehnerpotenz zu Einheit"
-
+sel0$[3]="Parallaxe pi[mas] zu Parsec pc"
+sel0$[4]="Modulus mu[mag] zu Parsec pc"
+sel0$[5]="Parsec pc zu Lichtjahr Lj"
+sel0$[6]="Hexagesimal [°/h:min:sec] zu Dezimal [°]"
+sel0$[7]="Winkelgrad [°] zu Bogenmaß [rad]"
+sel0$[8]="Winkelausdehnung V[°] bei Dist. d zu Radius r"
+sel0$[9]="Zehnerpotenz zu Einheit"
+!
 sel$[1]=sel0$[1]+eq1$
 sel$[2]=sel0$[2]+eq2$
 sel$[3]=sel0$[3]+eq3$
@@ -3000,9 +3001,10 @@ sel$[5]=sel0$[5]+eq5$
 sel$[6]=sel0$[6]+eq6$
 sel$[7]=sel0$[7]+eq7$
 sel$[8]=sel0$[8]+eq8$
-sel$[9]="=[ "+cpb$+u_eh$+" ]":u_eh$=""
+sel$[9]=sel0$[9]+eq9$
+sel$[10]="=[ "+cpb$+u_eh$+" ]":u_eh$=""
 !
-sel$[10]="Ok"
+sel$[11]="Ok"
 DIALOG.SELECT sel, sel$[],_clc$+" Berechnungen:
 IF sel=1 % Faktor c
  INPUT "Faktor x...",u_fx,1
@@ -3016,7 +3018,7 @@ IF sel=1 % Faktor c
  u_dlgm$=u_dlgm$+STR$(ROUND(u_fx,2))+"x = "
  u_dlgm$=u_dlgm$+u_xc0$+"m/s"
  DIALOG.MESSAGE sel0$[1]+", wobei xc = x*c[m/s]:",u_dlgm$,u_msg
- eq1$="=":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="" 
+ eq1$="=":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="":eq9$="" 
 ENDIF
 IF sel=2 % Faktor AE
  INPUT "Faktor x...",u_fx,1
@@ -3030,7 +3032,7 @@ IF sel=2 % Faktor AE
  u_dlgm$=u_dlgm$+STR$(ROUND(u_fx,2))+"x = "
  u_dlgm$=u_dlgm$+u_xa0$+"km"
  DIALOG.MESSAGE sel0$[2]+", wobei xAE = x*AE[km]:",u_dlgm$,u_msg
- eq1$="":eq2$="=":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$=""
+ eq1$="":eq2$="=":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="":eq9$=""
 ENDIF
 IF sel=3 % Parallaxe zu pc
  !CLIPBOARD.GET cpb$
@@ -3045,9 +3047,24 @@ IF sel=3 % Parallaxe zu pc
  u_dlgm$=u_dlgm$+STR$(ROUND(u_px,3))+"mas = "
  u_dlgm$=u_dlgm$+u_pc0$+"pc"
  DIALOG.MESSAGE sel0$[3]+", wobei pc = 1/(mas/1000):",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="=":eq4$="":eq5$="":eq6$="":eq7$="":eq8$=""
+ eq1$="":eq2$="":eq3$="=":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="":eq9$=""
 ENDIF
-IF sel=4 % Pc zu Lj
+IF sel=4 % Modulus mu=m-M zu pc
+ !CLIPBOARD.GET cpb$
+ INPUT "Modulus mag...",u_mu,10
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_pc=10^((u_mu/5)+1)
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ u_pc$=STR$(ROUND(u_pc,9))
+ u_pc0$=STR$(ROUND(u_pc,4))
+ CLIPBOARD.PUT u_pc$
+ u_dlgm$=""
+ u_dlgm$=u_dlgm$+STR$(ROUND(u_mu,3))+"mag = "
+ u_dlgm$=u_dlgm$+u_pc0$+"pc"
+ DIALOG.MESSAGE sel0$[4]+", wobei pc = 10^((mag/5)+1):",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="=":eq5$="":eq6$="":eq7$="":eq8$="":eq9$=""
+ENDIF
+IF sel=5 % Pc zu Lj
  CLIPBOARD.GET cpb$
  INPUT "Parsec pc...",u_pc,VAL(cpb$)
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3059,10 +3076,10 @@ IF sel=4 % Pc zu Lj
  u_dlgm$=""
  u_dlgm$=u_dlgm$+STR$(ROUND(u_pc,4))+"pc = "
  u_dlgm$=u_dlgm$+u_lj0$+"Lj"
- DIALOG.MESSAGE sel0$[4]+", wobei Lj = pc*3.26156:",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="":eq4$="=":eq5$="":eq6$="":eq7$="":eq8$=""
+ DIALOG.MESSAGE sel0$[5]+", wobei Lj = pc*3.26156:",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="=":eq6$="":eq7$="":eq8$="":eq9$=""
 ENDIF
-IF sel=5 % hex in dez
+IF sel=6 % hex in dez
  !CLIPBOARD.GET cpb$
  INPUT "°/h...",u_gh,0
  INPUT "min '...",u_min,0
@@ -3078,10 +3095,10 @@ IF sel=5 % hex in dez
  u_dlgm$=u_dlgm$+STR$(ROUND(u_min,2))+"' "
  u_dlgm$=u_dlgm$+STR$(ROUND(u_sec,4))+"'' = "
  u_dlgm$=u_dlgm$+u_dez0$+"°/h"
- DIALOG.MESSAGE sel0$[5]+", wobei dx° = hx°+(hx'/60)+(hx''/3600):",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="":eq4$="":eq5$="=":eq6$="":eq7$="":eq8$="" 
+ DIALOG.MESSAGE sel0$[6]+", wobei dx° = hx°+(hx'/60)+(hx''/3600):",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="=":eq7$="":eq8$="":eq9$="" 
 ENDIF 
-IF sel=6 % grad in rad
+IF sel=7 % grad in rad
  INPUT "Winkelgrad a°...",u_wkg,45
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  u_rad=u_wkg/180*PI()
@@ -3092,10 +3109,10 @@ IF sel=6 % grad in rad
  u_dlgm$=""
  u_dlgm$=u_dlgm$+STR$(ROUND(u_wkg,2))+"° = "
  u_dlgm$=u_dlgm$+u_rad$+"rad"
- DIALOG.MESSAGE sel0$[6]+", wobei rad = (a°/180) pi: ",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="=":eq7$="":eq8$="" 
+ DIALOG.MESSAGE sel0$[7]+", wobei rad = (a°/180) pi: ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="=":eq8$="":eq9$="" 
 ENDIF 
-IF sel=7 % V in r
+IF sel=8 % V in r
  !CLIPBOARD.GET cpb$
  INPUT "V°...",u_V,VAL(cpb$)
  INPUT "d...",u_d,100
@@ -3108,10 +3125,10 @@ IF sel=7 % V in r
  u_dlgm$=u_dlgm$+STR$(ROUND(u_v,4))+"° bei d="
  u_dlgm$=u_dlgm$+STR$(ROUND(u_d,2))+" : r="
  u_dlgm$=u_dlgm$+STR$(ROUND(u_r,4))
- DIALOG.MESSAGE sel0$[7]+", wobei r = d tan(V[rad]/2): ",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="=":eq8$=""  
+ DIALOG.MESSAGE sel0$[8]+", wobei r = d tan(V[rad]/2): ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="=":eq9$=""  
 ENDIF 
-IF sel=8 % 10^n in Einheit
+IF sel=9 % 10^n in Einheit
  !CLIPBOARD.GET cpb$
  INPUT "x ...",u_xzp,VAL(cpb$)
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3128,10 +3145,10 @@ IF sel=8 % 10^n in Einheit
  u_dlgm$=""
  u_dlgm$=u_dlgm$+STR$(ROUND(u_xzp,4))+" = "
  u_dlgm$=u_dlgm$+STR$(ROUND(u_eh,1))+u_eh$
- DIALOG.MESSAGE sel0$[8]+": ",u_dlgm$,u_msg
- eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="="  
+ DIALOG.MESSAGE sel0$[9]+": ",u_dlgm$,u_msg
+ eq1$="":eq2$="":eq3$="":eq4$="":eq5$="":eq6$="":eq7$="":eq8$="":eq9$="="  
 ENDIF 
-IF sel=10:CLIPBOARD.GET cpb$:RETURN:ENDIF 
+IF sel=11:CLIPBOARD.GET cpb$:RETURN:ENDIF 
 !CLIPBOARD.GET cpb$
 GOTO calcst
 RETURN
