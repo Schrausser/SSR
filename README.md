@@ -70,6 +70,7 @@ $$r = 10^{\frac{\mu}{5}+1}$$
 with distance modulus $\mu$, defined by the difference between apparent magnitude $m$ and absolute magnitude $M$ as
 $$\mu = m-M.$$
 Object radii $r_{O}$ at a given distance $r$ are calculated via angular diameter $V⁰$ where $$r_{O}=r⋅\tan(\frac{V}{2}); V=\frac{V⁰}{180}⋅\pi.$$
+For more on photometry see e.g. Miles (2006) or Milone (2011).
 
 ### Acknowledgement
 
@@ -89,6 +90,10 @@ Hills, J. G. (1981). Comet showers and the steady-state infall of comets from th
 Ibata, R. A., Gilmore, G., & Irwin, M. J. (1994). A dwarf satellite galaxy in Sagittarius. *Nature, 370*, 194-196. [DOI:10.1038%2F370194a0](https://doi.org/10.1038%2F370194a0)
 
 Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l'année bissextile 1784*. Paris, Imprimerie royale, 1781, p. 227-267. [www.messier-objects.com](https://www.messier-objects.com)
+
+Miles, R. (2006). A light history of photometry: from Hipparchus to the Hubble Space Telescope. *Journal of the British Astronomical Association, 117*(4), 172—186. [https://ui.adsabs.harvard.edu/abs/2007JBAA..117..172M](https://ui.adsabs.harvard.edu/abs/2007JBAA..117..172M)
+
+Milone, E. F. (2011). *Astronomical Photometry: Past, Present and Future.* New York: Springer. [https://archive.org/details/astronomicalphot00milo](https://archive.org/details/astronomicalphot00milo)
 
 Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope* Vol. 90, Cambridge, MA. [www.messier.seds.org/xtra/similar/caldwell.html](http://www.messier.seds.org/xtra/similar/caldwell.html)
 
