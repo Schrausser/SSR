@@ -72,6 +72,8 @@ $$\mu = m-M.$$
 Object radii $r_{O}$ at a given distance $r$ are calculated via angular diameter $V⁰$ where $$r_{O}=r⋅\tan(\frac{V}{2}); V=\frac{V⁰}{180}⋅\pi.$$
 For more on photometry see e.g. Miles (2006) or Milone (2011).
 
+![figure.\label{anim01}](anim01.gif)
+
 ### Acknowledgement
 
 This research has made use of the NASA/IPAC Extragalactic Database (NED), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology. [ned.ipac.caltech.edu](http://ned.ipac.caltech.edu/)
