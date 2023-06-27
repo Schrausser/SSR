@@ -35,11 +35,11 @@ IF t06s=1 & ae/Lj_<=5                  % Text
  ENDIF
 ENDIF
 ! % Merkur %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=347                                % Position
+pos=0                                % Position
 d=d_mkr_ae
 uf=uf_mkr_j
-xcr=0.111*ed
-ycr=0.1*ed
+xcr=0.097*ed
+ycr=0.03*ed
 mkrd=TORADIANS(((pos-i/uf)-45))
 mkx=mx-ed*(d*1.42)*SIN(-mkrd)          % Merkurkoordinaten
 mky=my-ed*(d*1.42)*COS(mkrd)           %
