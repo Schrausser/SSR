@@ -349,7 +349,7 @@ IF u06=1
  GR.LINE ln, ssx-xcr,ssy,ex,ey
 ENDIF
 ! % Uranus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=188                                % Position
+pos=170                                % Position
 d=d_urs_ae
 uf=uf_urs_j
 ycr=-0.6406*ed
@@ -394,7 +394,7 @@ IF u07=1
  GR.LINE ln, usx,usy-ycr,ex,ey
 ENDIF
 ! % Neptun %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=234                                % Position
+pos=228                                % Position
 d=d_npt_ae
 uf=uf_npt_j
 nrd=TORADIANS(((pos-i/uf)-45))
