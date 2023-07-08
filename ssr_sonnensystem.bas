@@ -79,7 +79,7 @@ IF u01=1
  GR.LINE ln, mkx-xcr,mky-ycr,ex,ey
 ENDIF
 ! % Venus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=65                                 % Position
+pos=62                                 % Position
 d=d_vns_ae
 uf=uf_vns_j
 vrd=TORADIANS(((pos-i/uf)-45))
@@ -218,7 +218,7 @@ IF s07=1 & swu=1                       % Zeit, Kalendersk.
  NEXT
 ENDIF
 ! % Mars %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=74                                 % Position
+pos=80                                 % Position
 d=d_mrs_ae
 uf=uf_mrs_j
 xcr=0.1216*ed
@@ -262,7 +262,7 @@ IF u03=1
  GR.LINE ln, msx+xcr,msy-ycr,ex,ey
 ENDIF
 ! % Jupiter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=210                                % Position
+pos=219                               % Position
 d=d_jpt_ae                             % AE Entfernung
 uf=uf_jpt_j                            % J Umlauf
 ycr=0.325*ed

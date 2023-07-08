@@ -8,7 +8,7 @@
            © 2020-23 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.20"
+_ver$="v3.7.25"
 INCLUDE strg_.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
@@ -561,40 +561,40 @@ References:
   GR.LINE ln,mx,sy-sy/144.375,  mx,sy-sy/210 
   GR.LINE ln,mx/2,sy-sy/144.375,mx/2,sy-sy/210
   IF AE<Lj_*0.1
-   GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("#####.##",AE)+"AE"
+   GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("#####.##",AE)+" AE"
   ENDIF
   IF AE>=Lj_*0.1               % 1Lichtjahr
    GR.COLOR 30,cc,cc,cc,0
    GR.CIRCLE cl,mx,my,mx       % Skala
    GR.COLOR 80,cc,cc,cc,0
    IF AE<Lj_*pcl_
-    GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("# ######.##",ae)+"AE"
-    GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("#.##",ae/Lj_)+"Lj"
+    GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("# ######.##",ae)+" AE"
+    GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("#.##",ae/Lj_)+" Lj"
    ENDIF
   ENDIF
   IF AE>=Lj_*pcl_              % 1Parsec
    CLIPBOARD.PUT STR$(ae/pc_)
-   GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("###### ###### ######.##",AE)+"AE"
+   GR.TEXT.DRAW txt,mx,sy-dtx3,FORMAT$("###### ###### ######.##",AE)+" AE"
    IF ae<Lj_*(pcl_*10^3)       %
     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("###.##",ae/pc_)+"pc"
    ENDIF
    IF ae>=Lj_*(pcl_*10^3)      %
     IF ae<Lj_*(pcl_*10^6)      %
-     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("###.##",(ae/pc_)/10^3)+"kpc"
+     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("###.##",(ae/pc_)/10^3)+" kpc"
     ENDIF
     IF ae>=Lj_*(pcl_*10^6) & ae<Lj_*(pcl_*10^9)
-     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.##",(ae/pc_)/10^6)+"Mpc"
+     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.##",(ae/pc_)/10^6)+" Mpc"
     ENDIF
     IF ae>=Lj_*(pcl_*10^9)
      mxd=ae/pc_:IF mxd>=14.25*10^9 THEN mxd=14.25*10^9
      CLIPBOARD.PUT STR$(mxd)
-     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.##",mxd/10^9)+"Gpc"
+     GR.TEXT.DRAW txt,mx,sy-dtx2,FORMAT$("# ###### ######.##",mxd/10^9)+" Gpc"
     ENDIF
    ENDIF
   ENDIF
   GR.TEXT.ALIGN 3
   IF s07=0                     % bei Vollsimulation
-   GR.TEXT.DRAW txt,sx,sy-dtx3,FORMAT$("# ###### ###### ###### ######",v_)+"AE/h"
+   GR.TEXT.DRAW txt,sx,sy-dtx3,FORMAT$("# ###### ###### ###### ######",v_)+" AE/h"
    GR.TEXT.DRAW txt,sx,sy-dtx2,FORMAT$("# ###### ###### ######",v_c)+"c"
   ENDIF
   IF s07=1                     % bei Echtzeit
@@ -3222,19 +3222,19 @@ ENDIF
 IF s07<>1 THEN ur$=""
 RETURN
 anfangsentfernung:
-IF aed<Lj_:aed$=FORMAT$("#####.##",aed)+"AE":ENDIF
+IF aed<Lj_:aed$=FORMAT$("#####.##",aed)+" AE":ENDIF
 IF aed>=Lj_
  Ljd=aed/Lj_
- IF Ljd<=pcl_:aed$=FORMAT$("#.##",Ljd)+"Lj":ENDIF
+ IF Ljd<=pcl_:aed$=FORMAT$("#.##",Ljd)+" Lj":ENDIF
  IF Ljd>pcl_
   IF Ljd < pcl_*10^3
   aed$= FORMAT$("###.##",Ljd/pcl_)+"pc":ENDIF
   IF Ljd >= pcl_*10^3 & Ljd< pcl_*10^6
-  aed$= FORMAT$("###.##",Ljd/(pcl_*10^3))+"kpc":ENDIF
+  aed$= FORMAT$("###.##",Ljd/(pcl_*10^3))+" kpc":ENDIF
   IF Ljd >= pcl_*10^6 & Ljd< pcl_*10^9
-  aed$= FORMAT$("###.##",Ljd/(pcl_*10^6))+"Mpc":ENDIF
+  aed$= FORMAT$("###.##",Ljd/(pcl_*10^6))+" Mpc":ENDIF
   IF Ljd >= pcl_*10^9
-  aed$= FORMAT$("###.##",Ljd/(pcl_*10^9))+"Gpc":ENDIF
+  aed$= FORMAT$("###.##",Ljd/(pcl_*10^9))+" Gpc":ENDIF
  ENDIF
 ENDIF
 RETURN 
