@@ -218,7 +218,7 @@ IF s07=1 & swu=1                       % Zeit, Kalendersk.
  NEXT
 ENDIF
 ! % Mars %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=82 %80                                 % Position
+pos=82.6 %80                                 % Position
 d=d_mrs_ae
 uf=uf_mrs_j
 xcr=0.1216*ed
