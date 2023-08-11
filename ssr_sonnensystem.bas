@@ -35,7 +35,7 @@ IF t06s=1 & ae/Lj_<=5                  % Text
  ENDIF
 ENDIF
 ! % Merkur %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=-13 %0                                % Position
+pos=0 %-13 %0                                % Position
 d=d_mkr_ae
 uf=uf_mkr_j
 xcr=0.097*ed
