@@ -326,6 +326,7 @@ CONSOLE.TITLE _name$
 PRINT _name$+" SONNENSYSTEMROTATION "+_ver$
 PRINT"Copyright "+_cr$+" 2023 by Dietmar Gerald SCHRAUSSER"
 PRINT"https://github.com/Schrausser/SSR"
+PRINT "DOI:10.5281/zenodo.8240203"
 !PRINT " "
 PRINT "Astronomische Datenquellen:
 PRINT "NASA Planetary Fact Sheet ["+_g1_mon$+"/"+_g1_jar$+"]"
