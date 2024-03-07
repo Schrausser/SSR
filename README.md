@@ -95,7 +95,7 @@ Messier, C. (1784). *Cataloque des nébuleuses et amas d'étoiles, La Connaissan
 
 Miles, R. (2006). A light history of photometry: from Hipparchus to the Hubble Space Telescope. *Journal of the British Astronomical Association, 117*(4), 172—186. [ui.adsabs.harvard.edu/full/2007JBAA..117..172M](https://adsabs.harvard.edu/full/2007JBAA..117..172M)
 
-Milone, E. F. (2011). *Astronomical Photometry: Past, Present and Future.* New York: Springer. [archive.org/details/astronomicalphot00milo](https://archive.org/details/astronomicalphot00milo)
+Milone, E. F. (2011). *Astronomical Photometry: Past, Present and Future.* New York: Springer. [books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC](https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC)
 
 Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope* Vol. 90, Cambridge, MA. [www.messier.seds.org/xtra/similar/caldwell.html](http://www.messier.seds.org/xtra/similar/caldwell.html)
 
