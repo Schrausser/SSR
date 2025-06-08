@@ -69,7 +69,7 @@ GOSUB objdarst:otype=0
 objname$="M82"                      %Name
 pro_=gx12                           %Projektionsvariable
 rds=20000                           %Objektradius Lj
-d= 14000000                         %Lichtjahre Entfernung
+d= 11400000                         %Lichtjahre Entfernung
 gx_d04=d/pcl_
 dg_x=69:dm_x=40:ds_x=46             %Deklination
 GOSUB dekl
