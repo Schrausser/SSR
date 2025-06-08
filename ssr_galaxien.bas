@@ -5,7 +5,7 @@
                 Subroutine ssr_galaxien.bas
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            © 2023 by Dietmar Gerald Schrausser
+            © 2025 by Dietmar Gerald Schrausser
 !!
 t06=t06gx                           %Projektion
 vgr=vgr_gx                          %Vergrößerung
@@ -13,7 +13,7 @@ symsw=gx101                         %Symbol
 ! % Andromeda M31 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="Andromeda"                %Name
 pro_=gx01                           %Projektionsvariable
-rds=20000                           %Objektradius Lj
+rds=30000                           %Objektradius Lj
 d= 2500000                          %Lichtjahre Entfernung
 gx_d01=d/pcl_
 dg_x=41:dm_x=16:ds_x=9              %Deklination
@@ -56,7 +56,7 @@ GOSUB objdarst:otype=0
 ! % M81 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="M81"                      %Name
 pro_=gx11                           %Projektionsvariable
-rds=89000/2                         %Objektradius Lj
+rds=96000/2                         %Objektradius Lj
 d= 11700000                         %Lichtjahre Entfernung
 gx_d03=d/pcl_
 dg_x=69:dm_x=3:ds_x=55              %Deklination
@@ -104,7 +104,7 @@ GOSUB objdarst:otype=0
 ! % M101 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="M101"                     %Name
 pro_=gx02                           %Projektionsvariable
-rds=170000/2                        %Objektradius Lj
+rds=77310/2                        %Objektradius Lj
 d=20870000                          %Lichtjahre
 gx_d07=d/pcl_
 dg_x=54:dm_x=20:ds_x=57             %Deklination
@@ -141,7 +141,7 @@ GOSUB objdarst:otype=0
 objname$="M51"                      %Name
 pro_=gx03                           %Projektionsvariable
 rds=80000/2                         %Objektradius Lj
-d=31000000                          %Lichtjahre
+d=24000000                          %Lichtjahre
 gx_d10=d/pcl_
 dg_x=47:dm_x=11:ds_x=43             %Deklination
 GOSUB dekl
