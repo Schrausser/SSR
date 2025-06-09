@@ -22,7 +22,7 @@ h_x=0:m_x=42:s_x=44.3               %Rekta Position
 GOSUB r_pos
 GR.COLOR cc/9,cc,cc,cc,1
 GOSUB objdarst:otype=0
-rds=100000                          %Objektradius Lj
+rds=152000/2                        %Objektradius Lj
 d= 2500000                          %Lichtjahre Entfernung
 dg_x=41:dm_x=16:ds_x=9              %Deklination
 GOSUB dekl
