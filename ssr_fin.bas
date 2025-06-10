@@ -5,7 +5,7 @@
              Einstellungen ausgeben ssr_fin.bas
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            © 2023 by Dietmar Gerald Schrausser
+            © 2025 by Dietmar Gerald Schrausser
 !!
 TEXT.OPEN w, fsr, "ssr.ini"
 TEXT.WRITELN fsr, s00
