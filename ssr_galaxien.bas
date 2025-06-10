@@ -247,7 +247,7 @@ GR.COLOR cc/6,cc,cc,cc,1
 GOSUB objdarst:otype=0
 ! % M85 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="M85"                      %Name
-pro_=gx15                            %Projektionsvariable
+pro_=gx15                           %Projektionsvariable
 rds= 61959                          %Objektradius Lj
 d= 60000000                         %Lichtjahre Entfernung
 gx_d21=d/pcl_
