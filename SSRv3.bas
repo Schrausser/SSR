@@ -5,14 +5,14 @@
                    + semper ubique sum +
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-           © 2020-23 by Dietmar Gerald Schrausser
+           © 2020-25 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.25"
+_ver$="v3.7.26"
 INCLUDE strg_.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
-SENSORS.OPEN 8          %
+SENSORS.OPEN 8          % Light sw SCRS
 GR.OPEN 255,0,0,0,0,-1  %
 GR.SCREEN sx,sy
 GOSUB global            % Globale Variablen
