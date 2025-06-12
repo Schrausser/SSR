@@ -44,7 +44,7 @@ GOSUB objdarst:otype=0
 ! % Triangulum M33 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="Triangulum"               %Name
 pro_=gx05                           %Projektionsvariable
-rds=55000/2                         %Objektradius Lj
+rds=61120/2                         %Objektradius Lj
 d= 3200000                          %Lichtjahre Entfernung
 gx_d02=d/pcl_
 dg_x=13:dm_x=9:ds_x=50.02           %Deklination
@@ -57,7 +57,7 @@ GOSUB objdarst:otype=0
 objname$="M81"                      %Name
 pro_=gx11                           %Projektionsvariable
 rds=96000/2                         %Objektradius Lj
-d= 11700000                         %Lichtjahre Entfernung
+d= 11800000                         %Lichtjahre Entfernung
 gx_d03=d/pcl_
 dg_x=69:dm_x=3:ds_x=55              %Deklination
 GOSUB dekl
@@ -68,7 +68,7 @@ GOSUB objdarst:otype=0
 ! % M82 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="M82"                      %Name
 pro_=gx12                           %Projektionsvariable
-rds=20000                           %Objektradius Lj
+rds=40800/2                         %Objektradius Lj
 d= 11400000                         %Lichtjahre Entfernung
 gx_d04=d/pcl_
 dg_x=69:dm_x=40:ds_x=46             %Deklination
@@ -104,8 +104,8 @@ GOSUB objdarst:otype=0
 ! % M101 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 objname$="M101"                     %Name
 pro_=gx02                           %Projektionsvariable
-rds=77310/2                         %Objektradius Lj
-d=20870000                          %Lichtjahre
+rds=252000/2                        %Objektradius Lj
+d=21600000                          %Lichtjahre
 gx_d07=d/pcl_
 dg_x=54:dm_x=20:ds_x=57             %Deklination
 GOSUB dekl
