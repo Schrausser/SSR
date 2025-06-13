@@ -46,7 +46,7 @@ v_erd_km3=  1.083 *10^12          % Volumen in km3
 d_erd_ae=d_erd_m/au_              % mittlere Distanz in AE
 % Mond %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 r_mnd_km=   3475 /2               % Radius in km 
-d_mnd_m=    3844 *10^6            % mittlere Erd Dis. in m 
+d_mnd_m=    384.4 *10^6           % mittlere Erd Dis. in m 
 uf_mnd_t=   655.72 /24            % Erdumlaufzeit in T
 m_mnd_kg=   0.07346 *10^24        % Masse in kg
 g_mnd_ms2=  1.62                  % Gravitation in m/s2
