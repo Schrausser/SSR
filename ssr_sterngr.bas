@@ -5,7 +5,7 @@
                Info Subroutine ssr_sterngr.bas
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            © 2023 by Dietmar Gerald Schrausser
+            © 2025 by Dietmar Gerald Schrausser
 !!
 c=cc
 ed04=sx/4                             %Anfagsvergrösserung
@@ -160,7 +160,7 @@ DO                                    %Start
   GR.TEXT.SIZE (11/2.6)*ed04
   GR.TEXT.DRAW tx, sx-20,my-200+ ((5.15*d*ed04)*((a5/a0)/dsx)) ,"r="+INT$(r_adb_km)+"km"
  ENDIF
- dsx=15.2                              %Abstandsfaktor
+ dsx=14                               %Abstandsfaktor
  GR.COLOR 255,20,20,c,1
  IF ed04<60
   GR.CIRCLE cl,mx,my-200+((6*d*ed04)*((a6/a0)/dsx)),a6*ed04
@@ -170,7 +170,7 @@ DO                                    %Start
   GR.TEXT.SIZE (11/1)*ed04
   GR.TEXT.DRAW tx, sx-20,my-200+ ((6.24*d*ed04)*((a6/a0)/dsx)) ,"r="+INT$(r_rgl_km)+"km"
  ENDIF
- dsx=20                                %Abstandsfaktor
+ dsx=12                               %Abstandsfaktor
  GR.COLOR 150,20,20,c,1
  IF ed04<120
   GR.CIRCLE cl,mx,my-200+((7*d*ed04)*((a7/a0)/dsx)),a7*ed04
@@ -196,7 +196,7 @@ DO                                    %Start
   GR.TEXT.SIZE (11/0.25)*ed04
   GR.TEXT.DRAW tx, sx-20,my-200+ ((8.24*d*ed04)*((a8/a0)/dsx)) ,"r="+INT$(r_838_km)+"km"
  ENDIF 
- dsx=19.4                              %Abstandsfaktor
+ dsx=18.4                              %Abstandsfaktor
  GR.COLOR 120,c,150,0,1
  IF ed04<180
   GR.CIRCLE cl,mx,my-200+((9*d*ed04)*((a9/a0)/dsx)),a9*ed04
@@ -206,7 +206,7 @@ DO                                    %Start
   GR.TEXT.SIZE (11/0.1)*ed04
   GR.TEXT.DRAW tx, sx-20,my-200+ ((9.35*d*ed04)*((a9/a0)/dsx)) ,"r="+INT$(r_anr_km)+"km"
  ENDIF 
- dsx=30.7                              %Abstandsfaktor
+ dsx=21                            %Abstandsfaktor
  GR.COLOR 100,c,0,0,1
  IF ed04<200
   GR.CIRCLE cl,mx,my-200+((10*d*ed04)*((a10/a0)/dsx)),a10*ed04
