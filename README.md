@@ -3,7 +3,7 @@
 
 Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with Zodiac signs and timepiece covering the Solar System in the entire observable universe up to $r=14.25Gpc.$  
 
-Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), Inner Cloud (Hills, 1981), Oort Cloud (Oort, 1950) and more.  
+Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters (c.f. `galaxies_tab.md`) as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects (Messier, 1784), Inner Cloud (Hills, 1981), Oort Cloud (Oort, 1950) and more.  
 
 Further astronomical objects can be implemented by means of external definition files. All objects of the Caldwell catalogue (Moore & Pepin, 1995) as well as parts of the Herschel 400 catalogue (Mullaney, 1976) are included as `ssr_Caldwell.dat` and `ssr_Herschel400.dat`. For additional important astronomical catalogues see e.g. `CN` (Herschel, 1786) or `NGC` (Dreyer, 1888).  
 
