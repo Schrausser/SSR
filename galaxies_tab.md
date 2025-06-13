@@ -8,7 +8,7 @@ group		M	NGC	CGCG	PGC	C	object			°		'		kly	10^15 km	Mly	10^18 km
 local							Milky Way						87,4	827		
 		31	224	535-17	2557		Andromeda		3,2	1,0			152,0	1438		2,5	24
 		33	598	502-110	5818		Triangulum				70,8	41,7	61,1	578		3,2	30
-Maffei				305-002	13826	5	"Hidden Galaxy"				21,4	20,9	150,0	1419		10,7	101
+IC342/Maffei			305-002	13826	5	"Hidden Galaxy"				21,4	20,9	150,0	1419		10,7	101
 Sculptor		300		3238	70	Sculptor Pinwheel			21,9	15,5	55,2	522		6,1	57
 					1014	72	String of Pearls			32,4	5,6	68,5	648		6,5	61
 			253		2789	65	Sculptor				27,5	6,8	120,5	1140		11,4	108
