@@ -8,7 +8,7 @@
            © 2020-25 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.26"
+_ver$="v3.7.28"
 INCLUDE strg_.inc
 INCLUDE ssr.inc
 SENSORS.OPEN 3          %
