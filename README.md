@@ -67,13 +67,13 @@ Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac 
 
 ![figure.\label{pic17}](pic17.jpg)
 
-Object distances $r$ in parsec $pc$ are calculated from parallax $\pi_{O}$, given in milliarcseconds $mas$ with 
+Object distances $r$ in parsec $pc$ are Object distances $r$ in parsec $pc$ are calculated from parallax $\pi_{O}$, given in milliarcseconds $mas$ with 
 
-$$r=(\frac{\pi_{O}}{1000})^{-1}.$$
+$$r=(\frac{\pi_{O}}{1000})^{-1}, \pi_{O}=1000\cdot r^{-1}.$$
 
 The *luminosity* distance $r=d_l$ in parsec $pc$ is given by
 
-$$r = 10^{\frac{\mu}{5}+1}$$
+$$r = 10^{\frac{\mu}{5}+1}, \mu=\frac{5\cdot\log(r)-5\cdot\log(10)}{\log(10)}$$
 
 with distance modulus $\mu$, defined by the difference between apparent magnitude $m$ and absolute magnitude $M$ as
 
@@ -81,7 +81,11 @@ $$\mu = m-M.$$
 
 Object radii $r_{O}$ at a given distance $r$ are calculated via angular diameter $V⁰$ where 
 
-$$r_{O}=r⋅\tan(\frac{V}{2}); V=\frac{V⁰}{180}⋅\pi.$$
+$$r_{O}=r\cdot\tan\frac{V}{2},r=r_{O}\cdot(\tan{\frac{V}{2}})^{-1},V=2\cdot\tan^{-1}\frac{r_{O}}{r}$$
+
+with
+
+$$V=\frac{V⁰}{180}\cdot\pi, V°=\frac{180\cdot V}{\pi}.$$
 
 For more on photometry see e.g. Miles ([2006](https://adsabs.harvard.edu/full/2007JBAA..117..172M)) or Milone ([2011](https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC)).
 
