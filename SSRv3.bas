@@ -8,11 +8,11 @@
            © 2020-25 by Dietmar Gerald Schrausser
 !!
 _name$="SSR"
-_ver$="v3.7.28"
+_ver$="v3.7.28"         %
 INCLUDE strg_.inc
 INCLUDE ssr.inc
-SENSORS.OPEN 3          %
-SENSORS.OPEN 8          % Light sw SCRS
+SENSORS.OPEN 3:0        %
+SENSORS.OPEN 8:0        % SCRS
 GR.OPEN 255,0,0,0,0,-1  %
 GR.SCREEN sx,sy
 GOSUB global            % Globale Variablen
