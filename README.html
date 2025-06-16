@@ -44,14 +44,16 @@
 <p>Local star cluster within Orion–Cygnus Arm containing the signs of the Zodiac and surrounding nebulae seen from a distance of $r=3kpc$:</p>
 <p><img src="pic17.jpg" alt="figure.\label{pic17}" /></p>
 <p>Object distances $r$ in parsec $pc$ are calculated from parallax $\pi_{O}$, given in milliarcseconds $mas$ with</p>
-<p>$$r=(\frac{\pi_{O}}{1000})^{-1}.$$</p>
+<p>$$r=(\frac{\pi_{O}}{1000})^{-1}, \pi_{O}=1000\cdot r^{-1}.$$</p>
 <p>The <em>luminosity</em> distance $r=d_l$ in parsec $pc$ is given by</p>
-<p>$$r = 10^{\frac{\mu}{5}+1}$$</p>
+<p>$$r = 10^{\frac{\mu}{5}+1}, \mu=\frac{5\cdot\log(r)-5\cdot\log(10)}{\log(10)}$$</p>
 <p>with distance modulus $\mu$, defined by the difference between apparent magnitude $m$ and absolute magnitude $M$ as</p>
 <p>$$\mu = m-M.$$</p>
-<p>Object radii $r_{O}$ at a given distance $r$ are calculated via angular diameter $V⁰$ where</p>
-<p>$$r_{O}=r⋅\tan(\frac{V}{2}); V=\frac{V⁰}{180}⋅\pi.$$</p>
-<p>For more on photometry see e.g. Miles (<a href="https://adsabs.harvard.edu/full/2007JBAA..117..172M">2006</a>) or Milone (<a href="https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC">2011</a>).</p>
+<p>Object radii $r_{O}$ at a given distance $r$ are calculated via angular diameter $V°$ where</p>
+<p>$$r_{O}=r\cdot\tan\frac{V}{2},r=r_{O}\cdot(\tan{\frac{V}{2}})^{-1},V=2\cdot\tan^{-1}\frac{r_{O}}{r}$$</p>
+<p>with</p>
+<p>$$V=\frac{V°}{180}\cdot\pi, V°=\frac{180\cdot V}{\pi}.$$</p>
+<p>For more on photometry see e.g. Miles (<a href="https://adsabs.harvard.edu/full/2007JBAA..117..172M">2006</a>) or Milone (<a href="https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC">2011</a>), c.f. also Schrausser (<a href="https://doi.org/10.5281/zenodo.14721085">2025</a>).</p>
 <p><img src="anim01.gif" alt="figure.\label{anim01}" /></p>
 <h3 id="acknowledgement">Acknowledgement</h3>
 <p>This research has made use of the NASA/IPAC Extragalactic Database (<a href="http://ned.ipac.caltech.edu/">NED</a>), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology. <a href="http://ned.ipac.caltech.edu/">ned.ipac.caltech.edu</a></p>
@@ -70,6 +72,7 @@
 <p>Ochsenbein, F., Bauer, P., &amp; Marcout, J. (2000). The VizieR database of astronomical catalogues. <em>Astronomy and Astrophysics Supplement Series, 143</em>, 23–32. <a href="https://doi.org/10.1051%2Faas%3A2000169">DOI:10.1051/aas:2000169. S2CID 17377096</a></p>
 <p>Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. <em>Bulletin of the Astronomical Institutes of the Netherlands, 11</em>, 91-110. <a href="https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract">ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract</a></p>
 <p>Paturel, G., Fouque, P., Bottinelli, L., &amp; Gouguenheim, L. (1989). An Extragalactic Database. I. The Catalogue of Principal Galaxies. <em>Astronomy and Astrophysics, Suppl. Ser., 80</em> (November): 299–315. <a href="https://ui.adsabs.harvard.edu/abs/1989A&amp;AS...80..299P">https://ui.adsabs.harvard.edu/abs/1989A&amp;AS...80..299P</a></p>
+<p>Schrausser, D. G. (2025). Schrausser/HP_Prime_MATH: --version--. <em>Zenodo. --Month-- 2025</em>. <a href="https://doi.org/10.5281/zenodo.14721085">https://doi.org/10.5281/zenodo.14721085</a></p>
 <p>Strasbourg astronomical Data Center. (2025). <em>SIMBAD, Set of Identifications, Measurements and Bibliography for Astronomical Data</em>. CDS. STRASBOURG, France. <a href="http://cdsweb.u-strasbg.fr/Simbad.html">cdsweb.u-strasbg.fr/Simbad.html</a></p>
 <p>Tully, R. B., Courtois, H., Hoffman, Y., &amp; Pomarède, D. (2014). The Laniakea supercluster of galaxies. <em>Nature, 513</em>, 71-73. <a href="https://doi.org/10.1038/nature13674">DOI:10.1038/nature13674</a></p>
 <p>Wang, F., et al. (2021). A Luminous Quasar at Redshift 7.642. <em>The Astrophysical Journal, 907</em>(1), L1. <a href="https://doi.org/10.3847%2F2041-8213%2Fabd8c6">DOI:10.3847%2F2041-8213%2Fabd8c6</a></p>
@@ -88,4 +91,4 @@
 
 
 </body>
-</html>
+</html> 
