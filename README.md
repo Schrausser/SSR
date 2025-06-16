@@ -79,13 +79,13 @@ with distance modulus $\mu$, defined by the difference between apparent magnitud
 
 $$\mu = m-M.$$
 
-Object radii $r_{O}$ at a given distance $r$ are calculated via angular diameter $V⁰$ where 
+Object radii $r_{O}$ at a given distance $r$ are calculated via angular diameter $V°$ where 
 
 $$r_{O}=r\cdot\tan\frac{V}{2},r=r_{O}\cdot(\tan{\frac{V}{2}})^{-1},V=2\cdot\tan^{-1}\frac{r_{O}}{r}$$
 
 with
 
-$$V=\frac{V⁰}{180}\cdot\pi, V°=\frac{180\cdot V}{\pi}.$$
+$$V=\frac{V°}{180}\cdot\pi, V°=\frac{180\cdot V}{\pi}.$$
 
 For more on photometry see e.g. Miles ([2006](https://adsabs.harvard.edu/full/2007JBAA..117..172M)) or Milone ([2011](https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC)).
 
