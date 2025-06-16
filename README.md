@@ -125,6 +125,8 @@ Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar S
 
 Paturel, G., Fouque, P., Bottinelli, L., & Gouguenheim, L. (1989). An Extragalactic Database. I. The Catalogue of Principal Galaxies. *Astronomy and Astrophysics, Suppl. Ser., 80* (November): 299–315. [https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)
 
+Schrausser, D. G. (2025). Schrausser/HP_Prime_MATH: --version--. *Zenodo. --Month-- 2025*. [https://doi.org/10.5281/zenodo.14721085](https://doi.org/10.5281/zenodo.14721085)
+
 Strasbourg astronomical Data Center. (2025). *SIMBAD, Set of Identifications, Measurements and Bibliography for Astronomical Data*. CDS. STRASBOURG, France. [cdsweb.u-strasbg.fr/Simbad.html](http://cdsweb.u-strasbg.fr/Simbad.html)
 
 Tully, R. B., Courtois, H., Hoffman, Y., & Pomarède, D. (2014). The Laniakea supercluster of galaxies. *Nature, 513*, 71-73. [DOI:10.1038/nature13674](https://doi.org/10.1038/nature13674)
