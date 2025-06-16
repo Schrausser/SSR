@@ -87,7 +87,7 @@ with
 
 $$V=\frac{V°}{180}\cdot\pi, V°=\frac{180\cdot V}{\pi}.$$
 
-For more on photometry see e.g. Miles ([2006](https://adsabs.harvard.edu/full/2007JBAA..117..172M)) or Milone ([2011](https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC)).
+For more on photometry see e.g. Miles ([2006](https://adsabs.harvard.edu/full/2007JBAA..117..172M)) or Milone ([2011](https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC)), c.f. also Schrausser ([2025](https://doi.org/10.5281/zenodo.14721085)).
 
 ![figure.\label{anim01}](anim01.gif)
 
