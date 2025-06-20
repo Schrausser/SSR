@@ -1,7 +1,7 @@
 # SSR
 [Demo movie](https://m.youtube.com/watch?v=0ZJIYpcy1vM)
 
-Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with Zodiac signs and timepiece covering the Solar System in the entire observable universe up to $r=14.25Gpc$.  
+Solar System Simulation `SSR`. Android globus coelestis (celestial globe) and interactive calendar with Zodiac signs and timepiece covering the Solar System in the entire observable universe up to $r=14.25Gpc$ (c.f. `the_great_debate.md`).  
 
 Contains $n=69$ stars, $n=70$ nebulae and star clusters, most important Milky Way objects, $n=48$ galaxies and galaxy clusters (c.f. `galaxies_tab.md`) as well as the most well-known quasars. Full implementation of all $n=110$ Messier objects `M` (Messier, [1784](https://www.messier-objects.com)), Inner Cloud (Hills, [1981](https://doi.org/10.1086%2F113058)), Oort Cloud (Oort, [1950](https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract)) and more.  
 
