@@ -5,7 +5,7 @@ Table 1. *Wavelength* $\lambda$ in meters $m$ and *frequency* bands $f$ in hertz
 			f			l			(1)				abr	l			(2)
 			from	to		from	to							from	to		
 
-Sound/			3	Hz										3		km	Infrasound
+Sound/				3	Hz									3		km	Infrasound
 Long waves		3	30	Hz	100	10	Mm	Extremely low frequency		ELF				
 			30	300	Hz	10	1	Mm	Super low frequency		SLF	21		m	((Sound))
 			300	3000	Hz	1000	100	km	Ultra low frequency		ULF				
