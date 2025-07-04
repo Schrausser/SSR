@@ -25,17 +25,22 @@ Canes Venatici I	94	4736		43495							11,2	9,1	45,0	426		16,0	151
 
 M101			101	5457	272-021	50063		Pinwheel				28,8	26,9	252,0	2384		21,6	204
 
-Canes Venatici II	106	4258		39600							18,6	7,2	151,7	1435		23,7	224
+Canes Venatici II	106³	4258		39600							18,6	7,2	151,7	1435		23,7	224
 
 Virgo						62836	101	Pavo					20,0	12,9	171,8	1625		23,6	224
 						65001	12	Fireworks				16,0	11,2	87,3	826		25,2	238
 
-NGC5866				5907	274-038	54470		Splinter				12,7	1,4	173,4	1640		46,6	440
+NGC5866				5907	274-038	54470		Splinter⁴				12,7	1,4	173,4	1640		46,6	440
 ~~~
-¹) c.f. Brunthaler et al., [2005](https://doi.org/10.1126/science.1108342)  
-²) c.f. Karachentsev et al., [2020](https://doi.org/10.1051/0004-6361/202037993)  
+¹) c.f. Brunthaler et al., ([2005](https://doi.org/10.1126/science.1108342)).  
+²) c.f. Karachentsev et al., ([2020](https://doi.org/10.1051/0004-6361/202037993)).  
+³) For its active *Type 2 Seyfert* nucleus and central supermassive *black hole* c.f. Miyoshi et al. ([1995](https://doi.org/10.1038/373127a0)), Jang et al. ([2021](https://doi.org/10.3847/1538-4357/abc8e9)) or Baan et al. ([2022](https://doi.org/10.1038/s41550-022-01706-y)).  
+⁴) For its *stellar stream* and *X-ray source* c.f. Israel et al. ([2017](https://doi.org/10.1126/science.aai8635)).  
+
 
 ## References
+
+Baan, W. A., An, T., Henkel, C., Imai, H., Kostenko, V., & Sobolev, A. (2022). H2O MegaMaser Emission in NGC 4258 Indicative of a Periodic Disc Instability. *Nature Astronomy 6* (8): 976–83. [https://doi.org/10.1038/s41550-022-01706-y](https://doi.org/10.1038/s41550-022-01706-y)
 
 Brunthaler, A., Reid, M. J., Falcke, H., Greenhill, L. J., & Henkel, C. (2005). The Geometric Distance and Proper Motion of the Triangulum Galaxy (M33). *Science 307* (5714): 1440–43. [https://doi.org/10.1126/science.1108342](https://doi.org/10.1126/science.1108342)
 
@@ -43,9 +48,15 @@ Chamba, N. (2020). Historical Perspectives on the Concept of Galaxy Size. *Resea
 
 Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society 49*: 1—237. [https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D)
 
+Israel, G. L., Belfiore, A., Stella, L., Esposito, P., Casella, P., De Luca, A., Marelli M., Papitto, A., Perri, M., Puccetti, S., Castillo, G., Salvetti, D., Tiengo, A., Zampieri, L., D’Agostino, D., Greiner, J., Haberl, F., Novara, G., Salvaterra, R., Turolla, R., Watson, M., Wilms, J., & Wolter, A. (2017). An Accreting Pulsar with Extreme Properties Drives an Ultraluminous x-Ray Source in NGC 5907. *Science 355* (6327): 817–19. [https://doi.org/10.1126/science.aai8635](https://doi.org/10.1126/science.aai8635)
+
+Jang, I. S., Hoyt, T. J., Beaton, R. L., Freedman, W. L., Madore, B. F., Lee, M. G., Neeley, J. R., Monson, A. J., Rich, J. A., & Seibert, M. (2021). The Carnegie–Chicago Hubble Program. IX. Calibration of the Tip of the Red Giant Branch Method in the Megamaser Host Galaxy, NGC 4258 (M106)*. *The Astrophysical Journal 906* (2): 125. [https://doi.org/10.3847/1538-4357/abc8e9](https://doi.org/10.3847/1538-4357/abc8e9)
+
 Karachentsev, I. D., Makarova, L. N., Brent T. R., Anand, G. S., Rizzi, L., Shaya, E. J., & Afanasiev, V. L. (2020). KKH 22, the First Dwarf Spheroidal Satellite of IC 342⋆. *Astronomy & Astrophysics (A&A) 638*: A111. [https://doi.org/10.1051/0004-6361/202037993](https://doi.org/10.1051/0004-6361/202037993)
 
 Messier, C. (1784). *Cataloque des nébuleuses et amas d’étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l’année bissextile 1784*. Paris, Imprimerie royale, 1781. [https://www.messier-objects.com](https://www.messier-objects.com)
+
+Miyoshi, M., Moran, J., Herrnstein, J., Greenhill, L., Nakai, N., Diamond, P., & Inoue, M. (1995). Evidence for a Black Hole from High Rotation Velocities in a Sub-Parsec Region of NGC4258. *Nature 373* (6510): 127–29. [https://doi.org/10.1038/373127a0](https://doi.org/10.1038/373127a0)
 
 Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope 90*. [https://www.messier.seds.org/xtra/similar/caldwell.html](https://www.messier.seds.org/xtra/similar/caldwell.html)
 
