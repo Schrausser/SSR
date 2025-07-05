@@ -1,6 +1,6 @@
 # galaxies_tab.md
 
-Table 1. *Local* galaxies (c.f. Sandage et al., [1975](https://ned.ipac.caltech.edu/level5/Dev2/frames.html)), by group, designation `M` (Messier, [1784](https://www.messier-objects.com)), `NGC` (Dreyer, [1888](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D)), `CGCG` (Zwicky et al., [1961](https://authors.library.caltech.edu/records/5mzw0-jg109)), `PGC` (Paturel et al., [1989](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)), `C` (Moore and Pepin, [1995](https://www.messier.seds.org/xtra/similar/caldwell.html)) with corresponding *angular* diameters $V$ and *isophotal* diameters (c.f. Chamba, [2020](https://doi.org/10.3847/2515-5172/aba951)) as well as distances in light-years $ly$ and kilometers $km$.
+Table 1. *Local* galaxies (c.f. Sandage et al., [1975](https://ned.ipac.caltech.edu/level5/Dev2/frames.html)), by *group*, *designation* `M` (Messier, [1784](https://www.messier-objects.com)), `NGC` (Dreyer, [1888](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D)), `CGCG` (Zwicky et al., [1961](https://authors.library.caltech.edu/records/5mzw0-jg109)), `PGC` (Paturel et al., [1989](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)), `C` (Moore and Pepin, [1995](https://www.messier.seds.org/xtra/similar/caldwell.html)) and *type* (de Vaucouleurs et al., [1991a](https://link.springer.com/book/9780387975498), [b](https://doi.org/10.1007/978-1-4757-4360-9), [c](https://doi.org/10.1007/978-1-4757-4363-0), res.) with corresponding *angular diameters* $V$ and *isophotal diameters* (c.f. Chamba, [2020](https://doi.org/10.3847/2515-5172/aba951)) as well as *distances* in light-years $ly$ and kilometers $km$.
 ~~~					
 			designation									angular diameter V		isophotal diameter	distance	
 group			M	NGC	CGCG	PGC	C	object			type		°		'		kly	10^15 km	Mly	10^18 km
@@ -48,6 +48,12 @@ Baan, W. A., An, T., Henkel, C., Imai, H., Kostenko, V., & Sobolev, A. (2022). H
 Brunthaler, A., Reid, M. J., Falcke, H., Greenhill, L. J., & Henkel, C. (2005). The Geometric Distance and Proper Motion of the Triangulum Galaxy (M33). *Science 307* (5714): 1440–43. [https://doi.org/10.1126/science.1108342](https://doi.org/10.1126/science.1108342)
 
 Chamba, N. (2020). Historical Perspectives on the Concept of Galaxy Size. *Research Notes of the AAS 4* (7): 117. [https://doi.org/10.3847/2515-5172/aba951](https://doi.org/10.3847/2515-5172/aba951)
+
+de Vaucouleurs, G., de Vaucouleurs, A., Corwin, Jr., H. G., Buta, R. J., Paturel, G. & Fouque, P. (1991a). *Third Reference Catalogue of Bright Galaxies*. 1st ed. Vol. I. New York, NY: Springer. [https://link.springer.com/book/9780387975498](https://link.springer.com/book/9780387975498)
+
+———. (1991b). *Third Reference Catalogue of Bright Galaxies*. 1st ed. Vol. II. New York, NY: Springer. [https://doi.org/10.1007/978-1-4757-4360-9](https://doi.org/10.1007/978-1-4757-4360-9)
+
+———. (1991c). *Third Reference Catalogue of Bright Galaxies*. 1st ed. Vol. III. New York, NY: Springer. [https://doi.org/10.1007/978-1-4757-4363-0](https://doi.org/10.1007/978-1-4757-4363-0)
 
 Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society 49*: 1—237. [https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D)
 
