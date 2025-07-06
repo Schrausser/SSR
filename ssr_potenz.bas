@@ -77,7 +77,7 @@ DO
  GR.TEXT.DRAW tx, a_07,(s1_07+s2_07*15)-h_07, "  24
  GR.TEXT.DRAW tx, a_07,(s1_07+s2_07*16),"1 000000 000000 000000 000000 000000"
  IF sw_07=-1
-  GR.TEXT.DRAW tx, a_07,(s1_07+s2_07*17), "10  Q (Quetta) "
+  GR.TEXT.DRAW tx, a_07,(s1_07+s2_07*17), "10   Q (Quetta) "
  ELSE
   GR.TEXT.DRAW tx, a_07,(s1_07+s2_07*17), "10   Quintillion Q (Quetta)"
  ENDIF
