@@ -58,16 +58,16 @@ factor							m				m/Hz
 100						1E-02	c	centi		1E+02	h	hecto
 						
 1 000 						1E-03	m	milli		1E+03	k	kilo
-1 000 000 					1E-06	m	micro		1E+06	M	mega
-1 000 000 000 					1E-09	n	nano		1E+09	G	giga
-1 000 000 000 000 				1E-12	p	pico		1E+12	T	tera
-1 000 000 000 000 000 				1E-15	f	femto		1E+15	P	peta
-1 000 000 000 000 000 000 			1E-18	a	atto		1E+18	E	exa
+1 000 000 					1E-06	m	micro		1E+06	M	Mega
+1 000 000 000 					1E-09	n	nano		1E+09	G	Giga
+1 000 000 000 000 				1E-12	p	pico		1E+12	T	Tera
+1 000 000 000 000 000 				1E-15	f	femto		1E+15	P	Peta
+1 000 000 000 000 000 000 			1E-18	a	atto		1E+18	E	Exa
 						
-1 000 000 000 000 000 000 000 			1E-21	z	zepto		1E+21	Z	zetta
-1 000 000 000 000 000 000 000 000 		1E-24	y	yotta		1E+24	Y	yocto
-1 000 000 000 000 000 000 000 000 000 		1E-27	r	ronna		1E+27	R	ronto
-1 000 000 000 000 000 000 000 000 000 000 	1E-30	q	quetta		1E+30	Q	quecto
+1 000 000 000 000 000 000 000 			1E-21	z	zepto		1E+21	Z	Zetta
+1 000 000 000 000 000 000 000 000 		1E-24	y	yocto		1E+24	Y	Yotta
+1 000 000 000 000 000 000 000 000 000 		1E-27	r	ronto		1E+27	R	Ronna
+1 000 000 000 000 000 000 000 000 000 000 	1E-30	q	quecto		1E+30	Q	Quetta
 
 ~~~
 
