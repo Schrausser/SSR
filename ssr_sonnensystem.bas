@@ -5,7 +5,7 @@
                Subroutine ssr_sonnensystem.bas
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            © 2023 by Dietmar Gerald Schrausser
+            © 2025 by Dietmar Gerald Schrausser
 !!
 ! % Sonne %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 IF ae/Lj_>=200000
@@ -79,7 +79,7 @@ IF u01=1
  GR.LINE ln, mkx-xcr,mky-ycr,ex,ey
 ENDIF
 ! % Venus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=-26 %62                            % Position
+pos=-27.5 %62                          % Position
 d=d_vns_ae
 uf=uf_vns_j
 vrd=TORADIANS(((pos-i/uf)-45))
