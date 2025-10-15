@@ -2673,7 +2673,7 @@ ELSE
  gq20=1
 ENDIF
 RETURN
-! %, Eingabedatei für weitere Objekte %%%%%%%%%%%%%%%%%%%%
+! % Eingabedatei für weitere Objekte %%%%%%%%%%%%%%%%%%%%
 objdatei:
 DIM inp$[100]
 FILE.DIR pth$, inp$[] 
