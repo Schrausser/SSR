@@ -35,8 +35,8 @@ Virgo						62836	101	Pavo			SAB(r)bc, AGN			20,0	12,9	171,8	1625		23,6	224
 
 NGC5866				5907	274-038	54470		Splinter⁴		SA(s)c, ULX			12,7	1,4	173,4	1640		46,6	440
 ~~~
-¹) c.f. Brunthaler et al., ([2005](https://doi.org/10.1126/science.1108342)).  
-²) c.f. Karachentsev et al., ([2020](https://doi.org/10.1051/0004-6361/202037993)).  
+¹) c.f. Brunthaler et al. ([2005](https://doi.org/10.1126/science.1108342)).  
+²) c.f. Karachentsev et al. ([2020](https://doi.org/10.1051/0004-6361/202037993)).  
 ³) For its active *Type 2 Seyfert* nucleus and central supermassive *black hole* c.f. Miyoshi et al. ([1995](https://doi.org/10.1038/373127a0)), Jang et al. ([2021](https://doi.org/10.3847/1538-4357/abc8e9)) or Baan et al. ([2022](https://doi.org/10.1038/s41550-022-01706-y)).  
 ⁴) For its *stellar stream* and *X-ray source* c.f. Israel et al. ([2017](https://doi.org/10.1126/science.aai8635)).  
 
