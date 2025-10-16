@@ -59,9 +59,9 @@ Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Star
 
 Israel, G. L., Belfiore, A., Stella, L., Esposito, P., Casella, P., De Luca, A., Marelli M., Papitto, A., Perri, M., Puccetti, S., Castillo, G., Salvetti, D., Tiengo, A., Zampieri, L., D’Agostino, D., Greiner, J., Haberl, F., Novara, G., Salvaterra, R., Turolla, R., Watson, M., Wilms, J., & Wolter, A. (2017). An Accreting Pulsar with Extreme Properties Drives an Ultraluminous x-Ray Source in NGC 5907. *Science 355* (6327): 817–19. [https://doi.org/10.1126/science.aai8635](https://doi.org/10.1126/science.aai8635)
 
-Jang, I. S., Hoyt, T. J., Beaton, R. L., Freedman, W. L., Madore, B. F., Lee, M. G., Neeley, J. R., Monson, A. J., Rich, J. A., & Seibert, M. (2021). The Carnegie–Chicago Hubble Program. IX. Calibration of the Tip of the Red Giant Branch Method in the Megamaser Host Galaxy, NGC 4258 (M106)*. *The Astrophysical Journal 906* (2): 125. [https://doi.org/10.3847/1538-4357/abc8e9](https://doi.org/10.3847/1538-4357/abc8e9)
+Jang, I. S., Hoyt, T. J., Beaton, R. L., Freedman, W. L., Madore, B. F., Lee, M. G., Neeley, J. R., Monson, A. J., Rich, J. A., & Seibert, M. (2021). The Carnegie–Chicago Hubble Program. IX. Calibration of the Tip of the Red Giant Branch Method in the Megamaser Host Galaxy, NGC 4258 (M106). *The Astrophysical Journal 906* (2): 125. [https://doi.org/10.3847/1538-4357/abc8e9](https://doi.org/10.3847/1538-4357/abc8e9)
 
-Karachentsev, I. D., Makarova, L. N., Brent T. R., Anand, G. S., Rizzi, L., Shaya, E. J., & Afanasiev, V. L. (2020). KKH 22, the First Dwarf Spheroidal Satellite of IC 342⋆. *Astronomy & Astrophysics (A&A) 638*: A111. [https://doi.org/10.1051/0004-6361/202037993](https://doi.org/10.1051/0004-6361/202037993)
+Karachentsev, I. D., Makarova, L. N., Brent T. R., Anand, G. S., Rizzi, L., Shaya, E. J., & Afanasiev, V. L. (2020). KKH 22, the First Dwarf Spheroidal Satellite of IC 342. *Astronomy & Astrophysics (A&A) 638*: A111. [https://doi.org/10.1051/0004-6361/202037993](https://doi.org/10.1051/0004-6361/202037993)
 
 Messier, C. (1784). *Cataloque des nébuleuses et amas d’étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l’année bissextile 1784*. Paris, Imprimerie royale, 1781. [https://www.messier-objects.com](https://www.messier-objects.com)
 
