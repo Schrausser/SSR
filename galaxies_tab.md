@@ -69,7 +69,7 @@ Miyoshi, M., Moran, J., Herrnstein, J., Greenhill, L., Nakai, N., Diamond, P., &
 
 Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope 90*. [https://www.messier.seds.org/xtra/similar/caldwell.html](https://www.messier.seds.org/xtra/similar/caldwell.html)
 
-Paturel, G., Fouque, P., Bottinelli, L., & Gouguenheim, L. (1989). An Extragalactic Database. I. The Catalogue of Principal Galaxies. *Astronomy and Astrophysics, Suppl. Ser., 80* (November): 299–315. [https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)
+Paturel, G., Fouque, P., Bottinelli, L., & Gouguenheim, L. (1989). An Extragalactic Database. I. The Catalogue of Principal Galaxies. *Astronomy and Astrophysics, Suppl. Ser. 80* (November): 299–315. [https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)
 
 Sandage, A., Sandage, M., & Kristian, J. (1975). Nearby Groups of Galaxies. *Galaxies and the Universe*. [https://ned.ipac.caltech.edu/level5/Dev2/frames.html](https://ned.ipac.caltech.edu/level5/Dev2/frames.html)
 
