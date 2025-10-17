@@ -43,11 +43,11 @@ NGC5866				5907	274-038	54470		Splinter⁴		SA(s)c, ULX			12,7	1,4	173,4	1640		4
 
 ## References
 
-Baan, W. A., An, T., Henkel, C., Imai, H., Kostenko, V., & Sobolev, A. (2022). H2O MegaMaser Emission in NGC 4258 Indicative of a Periodic Disc Instability. *Nature Astronomy 6* (8): 976–83. [https://doi.org/10.1038/s41550-022-01706-y](https://doi.org/10.1038/s41550-022-01706-y)
+Baan, W. A., An, T., Henkel, C., Imai, H., Kostenko, V., & Sobolev, A. (2022). H2O MegaMaser Emission in NGC 4258 Indicative of a Periodic Disc Instability. *Nature Astronomy, 6*(8), 976–83. [https://doi.org/10.1038/s41550-022-01706-y](https://doi.org/10.1038/s41550-022-01706-y)
 
-Brunthaler, A., Reid, M. J., Falcke, H., Greenhill, L. J., & Henkel, C. (2005). The Geometric Distance and Proper Motion of the Triangulum Galaxy (M33). *Science 307* (5714): 1440–43. [https://doi.org/10.1126/science.1108342](https://doi.org/10.1126/science.1108342)
+Brunthaler, A., Reid, M. J., Falcke, H., Greenhill, L. J., & Henkel, C. (2005). The Geometric Distance and Proper Motion of the Triangulum Galaxy (M33). *Science, 307*(5714), 1440–43. [https://doi.org/10.1126/science.1108342](https://doi.org/10.1126/science.1108342)
 
-Chamba, N. (2020). Historical Perspectives on the Concept of Galaxy Size. *Research Notes of the AAS 4* (7): 117. [https://doi.org/10.3847/2515-5172/aba951](https://doi.org/10.3847/2515-5172/aba951)
+Chamba, N. (2020). Historical Perspectives on the Concept of Galaxy Size. *Research Notes of the AAS, 4*(7), 117. [https://doi.org/10.3847/2515-5172/aba951](https://doi.org/10.3847/2515-5172/aba951)
 
 de Vaucouleurs, G., de Vaucouleurs, A., Corwin, Jr., H. G., Buta, R. J., Paturel, G. & Fouque, P. (1991a). *Third Reference Catalogue of Bright Galaxies*. 1st ed. Vol. I. New York, NY: Springer. [https://link.springer.com/book/9780387975498](https://link.springer.com/book/9780387975498)
 
@@ -55,21 +55,21 @@ de Vaucouleurs, G., de Vaucouleurs, A., Corwin, Jr., H. G., Buta, R. J., Paturel
 
 ———. (1991c). *Third Reference Catalogue of Bright Galaxies*. 1st ed. Vol. III. New York, NY: Springer. [https://doi.org/10.1007/978-1-4757-4363-0](https://doi.org/10.1007/978-1-4757-4363-0)
 
-Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society 49*: 1—237. [https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D)
+Dreyer, J. L. E. (1888). A New General Catalogue of Nebulae and Clusters of Stars, being the Catalogue of the late Sir John F. W. Herschel, Bart., revised, corrected, and enlarged. *Memoirs of the Royal Astronomical Society, 49*, 1—237. [https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D)
 
-Israel, G. L., Belfiore, A., Stella, L., Esposito, P., Casella, P., De Luca, A., Marelli M., Papitto, A., Perri, M., Puccetti, S., Castillo, G., Salvetti, D., Tiengo, A., Zampieri, L., D’Agostino, D., Greiner, J., Haberl, F., Novara, G., Salvaterra, R., Turolla, R., Watson, M., Wilms, J., & Wolter, A. (2017). An Accreting Pulsar with Extreme Properties Drives an Ultraluminous x-Ray Source in NGC 5907. *Science 355* (6327): 817–19. [https://doi.org/10.1126/science.aai8635](https://doi.org/10.1126/science.aai8635)
+Israel, G. L., Belfiore, A., Stella, L., Esposito, P., Casella, P., De Luca, A., Marelli M., Papitto, A., Perri, M., Puccetti, S., Castillo, G., Salvetti, D., Tiengo, A., Zampieri, L., D’Agostino, D., Greiner, J., Haberl, F., Novara, G., Salvaterra, R., Turolla, R., Watson, M., Wilms, J., & Wolter, A. (2017). An Accreting Pulsar with Extreme Properties Drives an Ultraluminous x-Ray Source in NGC 5907. *Science, 355*(6327), 817–19. [https://doi.org/10.1126/science.aai8635](https://doi.org/10.1126/science.aai8635)
 
-Jang, I. S., Hoyt, T. J., Beaton, R. L., Freedman, W. L., Madore, B. F., Lee, M. G., Neeley, J. R., Monson, A. J., Rich, J. A., & Seibert, M. (2021). The Carnegie–Chicago Hubble Program. IX. Calibration of the Tip of the Red Giant Branch Method in the Megamaser Host Galaxy, NGC 4258 (M106). *The Astrophysical Journal 906* (2): 125. [https://doi.org/10.3847/1538-4357/abc8e9](https://doi.org/10.3847/1538-4357/abc8e9)
+Jang, I. S., Hoyt, T. J., Beaton, R. L., Freedman, W. L., Madore, B. F., Lee, M. G., Neeley, J. R., Monson, A. J., Rich, J. A., & Seibert, M. (2021). The Carnegie–Chicago Hubble Program. IX. Calibration of the Tip of the Red Giant Branch Method in the Megamaser Host Galaxy, NGC 4258 (M106). *The Astrophysical Journal, 906*(2), 125. [https://doi.org/10.3847/1538-4357/abc8e9](https://doi.org/10.3847/1538-4357/abc8e9)
 
-Karachentsev, I. D., Makarova, L. N., Brent T. R., Anand, G. S., Rizzi, L., Shaya, E. J., & Afanasiev, V. L. (2020). KKH 22, the First Dwarf Spheroidal Satellite of IC 342. *Astronomy & Astrophysics (A&A) 638*: A111. [https://doi.org/10.1051/0004-6361/202037993](https://doi.org/10.1051/0004-6361/202037993)
+Karachentsev, I. D., Makarova, L. N., Brent T. R., Anand, G. S., Rizzi, L., Shaya, E. J., & Afanasiev, V. L. (2020). KKH 22, the First Dwarf Spheroidal Satellite of IC 342. *Astronomy & Astrophysics (A&A), 638*, A111. [https://doi.org/10.1051/0004-6361/202037993](https://doi.org/10.1051/0004-6361/202037993)
 
 Messier, C. (1784). *Cataloque des nébuleuses et amas d’étoiles, La Connaissance des temps, ou connaissance des mouvements célestes, pour l’année bissextile 1784*. Paris, Imprimerie royale, 1781. [https://www.messier-objects.com](https://www.messier-objects.com)
 
-Miyoshi, M., Moran, J., Herrnstein, J., Greenhill, L., Nakai, N., Diamond, P., & Inoue, M. (1995). Evidence for a Black Hole from High Rotation Velocities in a Sub-Parsec Region of NGC4258. *Nature 373* (6510): 127–29. [https://doi.org/10.1038/373127a0](https://doi.org/10.1038/373127a0)
+Miyoshi, M., Moran, J., Herrnstein, J., Greenhill, L., Nakai, N., Diamond, P., & Inoue, M. (1995). Evidence for a Black Hole from High Rotation Velocities in a Sub-Parsec Region of NGC4258. *Nature, 373*(6510), 127–29. [https://doi.org/10.1038/373127a0](https://doi.org/10.1038/373127a0)
 
-Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope 90*. [https://www.messier.seds.org/xtra/similar/caldwell.html](https://www.messier.seds.org/xtra/similar/caldwell.html)
+Moore, P., & Pepin, M. B. (1995). Beyond Messier: The Caldwell Catalogue. *Sky and Telescope, 90*. [https://www.messier.seds.org/xtra/similar/caldwell.html](https://www.messier.seds.org/xtra/similar/caldwell.html)
 
-Paturel, G., Fouque, P., Bottinelli, L., & Gouguenheim, L. (1989). An Extragalactic Database. I. The Catalogue of Principal Galaxies. *Astronomy and Astrophysics, Suppl. Ser. 80* (November): 299–315. [https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)
+Paturel, G., Fouque, P., Bottinelli, L., & Gouguenheim, L. (1989). An Extragalactic Database. I. The Catalogue of Principal Galaxies. *Astronomy and Astrophysics, Suppl. Ser., 80*(November), 299–315. [https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)
 
 Sandage, A., Sandage, M., & Kristian, J. (1975). Nearby Groups of Galaxies. *Galaxies and the Universe*. [https://ned.ipac.caltech.edu/level5/Dev2/frames.html](https://ned.ipac.caltech.edu/level5/Dev2/frames.html)
 
