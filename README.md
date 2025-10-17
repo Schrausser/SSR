@@ -123,7 +123,7 @@ Ochsenbein, F., Bauer, P., & Marcout, J. (2000). The VizieR database of astronom
 
 Oort, J. H. (1950). The Structure of the Cloud of Comets Surrounding the Solar System and a Hypothesis Concerning its Origin. *Bulletin of the Astronomical Institutes of the Netherlands, 11*, 91-110. [ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract](https://ui.adsabs.harvard.edu/abs/1950BAN....11...91O/abstract)
 
-Paturel, G., Fouque, P., Bottinelli, L., & Gouguenheim, L. (1989). An Extragalactic Database. I. The Catalogue of Principal Galaxies. *Astronomy and Astrophysics, Suppl. Ser., 80*(November): 299–315. [https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)
+Paturel, G., Fouque, P., Bottinelli, L., & Gouguenheim, L. (1989). An Extragalactic Database. I. The Catalogue of Principal Galaxies. *Astronomy and Astrophysics, Suppl. Ser., 80*(November), 299–315. [https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)
 
 Schrausser, D. G. (2025). Schrausser/HP_Prime_MATH: 3.0. *Zenodo. June 2025*. [https://doi.org/10.5281/zenodo.14721085](https://doi.org/10.5281/zenodo.14721085)
 
