@@ -69,7 +69,7 @@ Figure 12. Local *star cluster* within Orion–Cygnus Arm containing the signs o
 
 Object distances $r$ in parsec $pc$ are calculated from parallax $\pi_{O}$, given in milliarcseconds $mas$ with 
 
-$$r=(\frac{\pi_{O}}{1000})^{-1}, \pi_{O}=1000\cdot r^{-1}.$$
+$$r=(\frac{\pi_{O}}{1000})^{-1}, \pi_{O}=1000\cdot r^{-1}.\tag{(1)}$$
 
 The *luminosity* distance $r=d_l$ in parsec $pc$ is given by
 
@@ -88,6 +88,8 @@ with
 $$V=\frac{V°}{180}\cdot\pi, V°=\frac{180\cdot V}{\pi}.$$
 
 For more on photometry see e.g. Miles ([2006](https://adsabs.harvard.edu/full/2007JBAA..117..172M)) or Milone ([2011](https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC)), c.f. also Schrausser ([2025](https://doi.org/10.5281/zenodo.14721085)) and `EM_field`.
+
+In addition, the following calculations can be performed: Given value $x$ to (a) speed of light $c$ in $frac{m}{s}$ and to (b) astronomical unit $AU$ in $km$. Furthermore, parallax $\pi_O$ in $mas$ (1) to parsecs $pc$, Modulus $\mu$ (3) in $mag$ to parsecs $pc$, and parsecs $pc$ to light-years $ly$. Conversions can be performed for (a) hexagesimal degrees ° or hour $h$, $min$, $sec$ to decimal degrees °, (b) angular degrees ° to radians $rad$, and (c) angular diameter $V$ (4) in degrees ° for a given distance $d$ to radius $r$.
 
 ![figure.\label{anim01}](anim01.gif)
 
