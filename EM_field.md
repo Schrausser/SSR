@@ -1,6 +1,6 @@
 # EM_field.md
 
-Table 1. *Wavelength* $\lambda$ in meters $m$ and *frequency* bands $f$ in hertz $Hz$ (cycle per second $s$), where $f=\frac{v}{\lambda}$ of (1) *electromagnetic radiation* EMR[^1], with $v_e=c=299792458 \frac{m}{s}$ in the *electromagnetic field* EMF[^2] and (2) *sound*[^3], with $v_s=340.3 \frac{m}{s}$ in comparison.
+Table 1. *Wavelength* $\lambda$ in meters $m$ and *frequency* bands $f$ in hertz $Hz$ (cycle per second $s$), where $f=\frac{v}{\lambda}$ of (1) *electromagnetic radiation* EMR[^1], with $v_e=c=299792458 \frac{m}{s}$ of the *electromagnetic field* EMF[^2] and (2) *sound*[^3], with $v_s=340.3 \frac{m}{s}$ in comparison.
 ~~~
 			f			l			(1)				abr	l			(2)
 			from	to		from	to							from	to		
