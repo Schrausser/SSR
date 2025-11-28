@@ -9,35 +9,37 @@ Further astronomical objects can be implemented by means of external definition 
 
 Solar System parameters of the Sun, planets and Moon are based on the current NASA Planetary Fact Sheets (Williams, [2025](nssdc.gsfc.nasa.gov/planetary/factsheet)). Positions, distances and sizes of further objects are from Wikipedia sources (Wikipedia contributors, [2025](https://www.wikipedia.org)), which can be traced back primarily to the `SIMBAD` astronomical database (Strasbourg astronomical Data Center, [2025](http://cdsweb.u-strasbg.fr/Simbad.html)), the `VizieR` Catalogue Service (see Ochsenbein et al., [2000](https://doi.org/10.1051%2Faas%3A2000169)) or the NASA/IPAC Extragalactic Database [NED](http://ned.ipac.caltech.edu/). 
 
+**Figure 1**. SSR menu.
+
 ![figure.\label{pic1}](pic1.jpg)
 
-Figure 1. The Sun at $r=0.1au$ astronomical units:
+**Figure 2**. The Sun at $r=0.1au$ astronomical units.
 
 ![figure.\label{pic2}](pic2.jpg)
 
-Figure 2. Solar System with Asteroid and Kuiper Belts as well as Heliosphere at $r=58.6au$:
+**Figure 3**. Solar System with Asteroid and Kuiper Belts as well as Heliosphere at $r=58.6au$.
 
 ![figure.\label{pic3}](pic3.jpg)
 
-Figure 3. Inner Solar System with orbits, current rotation position of the Earth with time and position representation, as well as projection lines to the neighboring planets at $r=1.4au$:
+**Figure 4**. Inner Solar System with orbits, current rotation position of the Earth with time and position representation, as well as projection lines to the neighboring planets at $r=1.4au$.
 
 ![figure.\label{pic4}](pic4.jpg)
 
-Figure 4. Surrounding stars at $r=194.2pc$ and their relative positions to Earth, artificial horizon facing south:
+**Figure 5**. Surrounding stars at $r=194.2pc$ and their relative positions to Earth, artificial horizon facing south.
 
 ![figure.\label{pic5}](pic5.jpg)
 
 ![figure.\label{pic6}](pic6.jpg)
 
-Figure 5. The Milky Way at $r=19kpc$ with Magellanic Clouds, Sagittarius Dwarf Elliptical Galaxy Sag DEG (Ibata et al., [1994](https://doi.org/10.1038%2F370194a0)) and V838 Monocerotis (Brown et al., [2002](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)):
+**Figure 6**. The Milky Way at $r=19kpc$ with Magellanic Clouds, Sagittarius Dwarf Elliptical Galaxy Sag DEG (Ibata et al., [1994](https://doi.org/10.1038%2F370194a0)) and V838 Monocerotis (Brown et al., [2002](https://ui.adsabs.harvard.edu/abs/2002IAUC.7785....1B)).
 
 ![figure.\label{pic7}](pic7.jpg)
 
-Figure 6. Closer stars with their relative historical position and representation, from $r=14.5pc$ before the year 1976:
+**Figure 7**. Closer stars with their relative historical position and representation, from $r=14.5pc$ before the year 1976.
 
 ![figure.\label{pic8}](pic8.jpg)
 
-Figure 7. Interactive simulation to display distances between Earth, Moon and Sun with corresponding perspective projection lines:
+**Figure 8**. Interactive simulation to display distances between Earth, Moon and Sun with corresponding perspective projection lines.
 
 ![figure.\label{pic9}](pic9.jpg)
 
@@ -45,25 +47,25 @@ Figure 7. Interactive simulation to display distances between Earth, Moon and Su
 
 ![figure.\label{pic11}](pic11.jpg)
 
-Figure 8. Interactive simulation to compare sizes of stars:
+**Figure 9**. Interactive simulation to compare sizes of stars.
 
 ![figure.\label{pic12}](pic12.jpg)
 
 ![figure.\label{pic13}](pic13.jpg)
 
-Figure 9. Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, [1996]()):
+**Figure 10**. Hubble deep field (HDF) located at a right ascension of 12h 36m 49s and a declination of +62° 12′ 58″ (see Ferguson, [1996]()).
 
 ![figure.\label{pic14}](pic14.jpg)
 
-Figure 10. Towards the HDF from a distance of $r=151Mpc$ within the surrounding galaxy clusters and Laniakea supercluster (Tully et al., [2014](https://doi.org/10.1038/nature13674)) with relative historical positions:
+**Figure 11**. Towards the HDF from a distance of $r=151Mpc$ within the surrounding galaxy clusters and Laniakea supercluster (Tully et al., [2014](https://doi.org/10.1038/nature13674)) with relative historical positions.
 
 ![figure.\label{pic15}](pic15.jpg)
 
-Figure 11. Most distant quasars on the edge of the observable universe at $r>9Gpc$ (see e.g. Wang et al., [2021](https://doi.org/10.3847%2F2041-8213%2Fabd8c6)):
+**Figure 12**. Most distant quasars on the edge of the observable universe at $r>9Gpc$ (see e.g. Wang et al., [2021](https://doi.org/10.3847%2F2041-8213%2Fabd8c6)).
 
 ![figure.\label{pic16}](pic16.jpg)
 
-Figure 12. Local *star cluster* within Orion–Cygnus Arm containing the signs of the Zodiac and surrounding nebulae seen from a distance of $r=3kpc$:
+**Figure 13**. Local *star cluster* within Orion–Cygnus Arm containing the signs of the Zodiac and surrounding nebulae seen from a distance of $r=3kpc$.
 
 ![figure.\label{pic17}](pic17.jpg)
 
@@ -90,6 +92,8 @@ $$V=\frac{V°}{180}\cdot\pi, V°=\frac{180\cdot V}{\pi}.(5)$$
 In addition, the following calculations can be performed: Given value $x$ to (a) speed of light $c$ in $\frac{m}{s}$ and to (b) astronomical unit $AU$ in $km$. Furthermore, parallax $\pi_O$ in $mas$ (1) to parsecs $pc$, Modulus $\mu$ (3) in $mag$ to parsecs $pc$ and parsecs $pc$ to light-years $ly$. Conversions can be performed for (a) hexagesimal degrees ° or hour $h$, $min$, $sec$ to decimal degrees °, (b) angular degrees ° to radians $rad$ and (c) angular diameter $V$ (4) in degrees ° for a given distance $d$ to radius $r$.
 
 For more on photometry see e.g. Miles ([2006](https://adsabs.harvard.edu/full/2007JBAA..117..172M)) or Milone ([2011](https://books.google.com/books/about/Astronomical_Photometry.html?id=Ps_6zjUCR3wC)), c.f. also Schrausser ([2025](https://doi.org/10.5281/zenodo.14721085)) and `EM_field`.
+
+**Figure 14**. SSR animation.
 
 ![figure.\label{anim01}](anim01.gif)
 
