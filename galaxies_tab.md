@@ -1,39 +1,39 @@
 # galaxies_tab.md
 
-Table 1. *Local* galaxies (c.f. Sandage et al., [1975](https://ned.ipac.caltech.edu/level5/Dev2/frames.html)), by *group*, *designation* `M` (Messier, [1784](https://www.messier-objects.com)), `NGC` (Dreyer, [1888](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D)), `CGCG` (Zwicky et al., [1961](https://authors.library.caltech.edu/records/5mzw0-jg109)), `PGC` (Paturel et al., [1989](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)), `C` (Moore & Pepin, [1995](https://www.messier.seds.org/xtra/similar/caldwell.html)) and *type* (de Vaucouleurs et al., [1991a](https://link.springer.com/book/9780387975498), [b](https://doi.org/10.1007/978-1-4757-4360-9), [c](https://doi.org/10.1007/978-1-4757-4363-0), res.) with corresponding *angular diameters* $V$ and *isophotal diameters* (c.f. Chamba, [2020](https://doi.org/10.3847/2515-5172/aba951)) as well as *distances* in light-years $ly$ and kilometers $km$.
+**Table 1**. *Local* galaxies (c.f. Sandage et al., [1975](https://ned.ipac.caltech.edu/level5/Dev2/frames.html)), by *group*, *designation* `M` (Messier, [1784](https://www.messier-objects.com)), `NGC` (Dreyer, [1888](https://ui.adsabs.harvard.edu/abs/1888MmRAS..49....1D)), `CGCG` (Zwicky et al., [1961](https://authors.library.caltech.edu/records/5mzw0-jg109)), `PGC` (Paturel et al., [1989](https://ui.adsabs.harvard.edu/abs/1989A&AS...80..299P)), `C` (Moore & Pepin, [1995](https://www.messier.seds.org/xtra/similar/caldwell.html)) and *type* (de Vaucouleurs et al., [1991a](https://link.springer.com/book/9780387975498), [b](https://doi.org/10.1007/978-1-4757-4360-9), [c](https://doi.org/10.1007/978-1-4757-4363-0), res.) with corresponding *angular diameters* $V$ and *isophotal diameters* (c.f. Chamba, [2020](https://doi.org/10.3847/2515-5172/aba951)) as well as *distances* in light-years $ly$ and kilometers $km$.
 ~~~					
-			designation									angular diameter V		isophotal diameter	distance	
-group			M	NGC	CGCG	PGC	C	object			type		°		'		kly	10^15 km	Mly	10^18 km
+						designation																angular diameter V				isophotal diameter	distance	
+group					M		NGC		CGCG		PGC		C	object				type		°				'				kly		10^15 km	Mly		10^18 km
 
-local								Milky Way		SB(rs)bc					87,4	827		
-			31	224	535-17	2557		Andromeda		SA(s)b		3,2	1,0			152,0	1438		2,5	24
-			33	598	502-110	5818		Triangulum¹		SA(s)cd				70,8	41,7	61,1	578		3,2	30
+local															Milky Way			SB(rs)bc									87,4	827		
+						31		224		535-17		2557		Andromeda			SA(s)b		3,2		1,0						152,0	1438		2,5		24
+						33		598		502-110		5818		Triangulum¹			SA(s)cd						70,8	41,7	61,1	578			3,2		30
 
-IC342/Maffei²				305-002	13826	5	"Hidden Galaxy"		SAB(rs)cd			21,4	20,9	150,0	1419		10,7	101
+IC342/Maffei²							305-002		13826	5	"Hidden Galaxy"		SAB(rs)cd					21,4	20,9	150,0	1419		10,7	101
 
-Sculptor			300		3238	70	Sculptor Pinwheel	SA(s)d				21,9	15,5	55,2	522		6,1	57
-						1014	72	String of Pearls	SB(s)m				32,4	5,6	68,5	648		6,5	61
-				253		2789	65	Sculptor		SAB(s)c				27,5	6,8	120,5	1140		11,4	108
+Sculptor						300					3238	70	Sculptor Pinwheel	SA(s)d						21,9	15,5	55,2	522			6,1		57
+													1014	72	String of Pearls	SB(s)m						32,4	5,6		68,5	648			6,5		61
+								253					2789	65	Sculptor			SAB(s)c						27,5	6,8		120,5	1140		11,4	108
 
-M81				2403	309-040	21396	7				SAB(s)cd			21,9	12,3	90,3	854		9,7	91
-			82	3034		28655		Cigar			I0				11,2	4,3	40,8	386		11,4	108
-				4236		39346	3				SB(s)dm				21,9	7,2	74,0	700		11,7	111
-			81			28630		Bode's			SA(s)ab, AGN			26,9	14,1	96,0	908		11,8	112
+M81								2403	309-040		21396	7						SAB(s)cd					21,9	12,3	90,3	854			9,7		91
+						82		3034				28655		Cigar				I0							11,2	4,3		40,8	386			11,4	108
+								4236				39346	3						SB(s)dm						21,9	7,2		74,0	700			11,7	111
+						81							28630		Bode's				SA(s)ab, AGN				26,9	14,1	96,0	908			11,8	112
 
-Centaurus A/M83			5128		46957	77	Centaurus A		S0 pec, Ep, AGN			25,7	20,0	123,1	1165		12,0	114
-			83	5236		48082		Southern Pinwheel	SAB(s)c				12,9	11,5	118,0	1116		14,7	139
+Centaurus A/M83					5128				46957	77	Centaurus A			S0 pec, Ep, AGN				25,7	20,0	123,1	1165		12,0	114
+						83		5236				48082		Southern Pinwheel	SAB(s)c						12,9	11,5	118,0	1116		14,7	139
 
-Canes Venatici I	94	4736		43495					(R)SA(r)ab			11,2	9,1	45,0	426		16,0	151
-			51a	5194		47404		Whirlpool		SA(s)bc pec, AGN		11,2	6,9	76,9	728		23,5	222
+Canes Venatici I		94		4736				43495							(R)SA(r)ab					11,2	9,1		45,0	426			16,0	151
+						51a		5194				47404		Whirlpool			SA(s)bc pec, AGN			11,2	6,9		76,9	728			23,5	222
 
-M101			101	5457	272-021	50063		Pinwheel		SAB(rs)cd			28,8	26,9	252,0	2384		21,6	204
+M101					101		545		7272-021	50063		Pinwheel			SAB(rs)cd					28,8	26,9	252,0	2384		21,6	204
 
-Canes Venatici II	106³	4258		39600					SAB(s)bc, AGN			18,6	7,2	151,7	1435		23,7	224
+Canes Venatici II		106³	4258				39600							SAB(s)bc, AGN				18,6	7,2		151,7	1435		23,7	224
 
-Virgo						62836	101	Pavo			SAB(r)bc, AGN			20,0	12,9	171,8	1625		23,6	224
-						65001	12	Fireworks		SAB(rs)cd			16,0	11,2	87,3	826		25,2	238
+Virgo												62836	101	Pavo				SAB(r)bc, AGN				20,0	12,9	171,8	1625		23,6	224
+													65001	12	Fireworks			SAB(rs)cd					16,0	11,2	87,3	826			25,2	238
 
-NGC5866				5907	274-038	54470		Splinter⁴		SA(s)c, ULX			12,7	1,4	173,4	1640		46,6	440
+NGC5866							590		7274-038	54470		Splinter⁴			SA(s)c, ULX					12,7	1,4		173,4	1640		46,6	440
 ~~~
 ¹) c.f. Brunthaler et al. ([2005](https://doi.org/10.1126/science.1108342)).  
 ²) c.f. Karachentsev et al. ([2020](https://doi.org/10.1051/0004-6361/202037993)).  
