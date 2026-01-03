@@ -5,7 +5,7 @@
                Subroutine ssr_sonnensystem.bas
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            © 2025 by Dietmar Gerald Schrausser
+            © 2023-26 by Dietmar Gerald Schrausser
 !!
 ! % Sonne %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 IF ae/Lj_>=200000
@@ -35,7 +35,7 @@ IF t06s=1 & ae/Lj_<=5                  % Text
  ENDIF
 ENDIF
 ! % Merkur %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=250 %-13 %0                        % Position
+pos=182 %-13 %0                        % Position
 d=d_mkr_ae
 uf=uf_mkr_j
 xcr=0.097*ed
@@ -79,7 +79,7 @@ IF u01=1
  GR.LINE ln, mkx-xcr,mky-ycr,ex,ey
 ENDIF
 ! % Venus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=-27.5 %62                          % Position
+pos=107 %62                            % Position
 d=d_vns_ae
 uf=uf_vns_j
 vrd=TORADIANS(((pos-i/uf)-45))
@@ -218,7 +218,7 @@ IF s07=1 & swu=1                       % Zeit, Kalendersk.
  NEXT
 ENDIF
 ! % Mars %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=60 %82.6 %80                       % Position
+pos=235 %82.6 %80                       % Position
 d=d_mrs_ae
 uf=uf_mrs_j
 xcr=0.1216*ed
@@ -262,7 +262,7 @@ IF u03=1
  GR.LINE ln, msx+xcr,msy-ycr,ex,ey
 ENDIF
 ! % Jupiter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=142 %219                           % Position
+pos=113 %219                           % Position
 d=d_jpt_ae                             % AE Entfernung
 uf=uf_jpt_j                            % J Umlauf
 ycr=0.325*ed
@@ -305,7 +305,7 @@ IF u05=1
  GR.LINE ln, jsx,jsy-ycr,ex,ey
 ENDIF
 ! % Saturn %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=226 %240                           % Position
+pos=217 %240                           % Position
 d=d_stn_ae
 uf=uf_stn_j
 xcr=0.6367*ed
@@ -349,7 +349,7 @@ IF u06=1
  GR.LINE ln, ssx-xcr,ssy,ex,ey
 ENDIF
 ! % Uranus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=170                                % Position
+pos=160                                % Position
 d=d_urs_ae
 uf=uf_urs_j
 ycr=-0.6406*ed
@@ -394,7 +394,7 @@ IF u07=1
  GR.LINE ln, usx,usy-ycr,ex,ey
 ENDIF
 ! % Neptun %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pos=225 %228                           % Position
+pos=222 %228                           % Position
 d=d_npt_ae
 uf=uf_npt_j
 nrd=TORADIANS(((pos-i/uf)-45))
