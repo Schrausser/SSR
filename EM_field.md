@@ -20,12 +20,12 @@ Microwave		300	3000	MHz	1000	100	mm	Ultra high frequency		UHF		213	nm	Hypersound
 			3	30	GHz	100	10	mm	Super high frequency		SHF				
 			30	300	GHz	10	1	mm	Extremely high frequency	EHF				
 
-Thermal Infrared	300	3000	GHz	1000	100	mm	Tremendously high frequency	THF				
-			0,3	20	THz	1000	15	mm	Far-infrared			FIR				
+Thermal Infrared	300	3000	GHz	1000	100	μm	Tremendously high frequency	THF				
+			0,3	20	THz	1000	15	μm	Far-infrared			FIR				
 
-Infrared		20	37	THz	15	8	mm	Long-wavelength infrared	MIR				
-			37	100	THz	8	3	mm	Mid-wavelength infrared					
-			100	214	THz	3	1,4	mm	Short-wavelength infrared					
+Infrared		20	37	THz	15	8	μm	Long-wavelength infrared	MIR				
+			37	100	THz	8	3	μm	Mid-wavelength infrared					
+			100	214	THz	3	1,4	μm	Short-wavelength infrared					
 			214	400	THz	1400	750	nm	Near-infrared			NIR				
 
 Visible light		400	480	THz	750	625	nm	Red							
@@ -58,7 +58,7 @@ factor							m				m/Hz
 100						1E-02	c	centi		1E+02	h	hecto
 						
 1 000 						1E-03	m	milli		1E+03	k	kilo
-1 000 000 					1E-06	m	micro		1E+06	M	Mega
+1 000 000 					1E-06	μ	micro		1E+06	M	Mega
 1 000 000 000 					1E-09	n	nano		1E+09	G	Giga
 1 000 000 000 000 				1E-12	p	pico		1E+12	T	Tera
 1 000 000 000 000 000 				1E-15	f	femto		1E+15	P	Peta
